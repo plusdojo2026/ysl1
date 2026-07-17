@@ -9,7 +9,7 @@ import dao.utils.Column;
  * @param userName
  * @author YSL黄范航
  */
-public class Users {
+public class UsersDTO {
 
 	@Column("id")
 	private int userId;//データベース名id
@@ -20,17 +20,17 @@ public class Users {
 	@Column("name")
 	private String userName;//データベース名name
 
-	public Users() {
+	public UsersDTO() {
 		super();
 	}
 
-	public Users(int age, String userName) {
+	public UsersDTO(int age, String userName) {
 		super();
 		this.age = age;
 		this.userName = userName;
 	}
 
-	public Users(int userId, int age, String userName) {
+	public UsersDTO(int userId, int age, String userName) {
 		super();
 		this.userId = userId;
 		this.age = age;
