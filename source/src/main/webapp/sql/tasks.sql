@@ -10,7 +10,7 @@ task_priority varchar(10) not null default '中',
 deadline timestamp,
 progress_rate int default 0,
 start_date timestamp,
-task_planned_hours double,
+task_planned_hours decimal(5,1),
 task_description varchar(1000),
 FOREIGN KEY (case_id) REFERENCES cases(id)
 ON UPDATE CASCADE
