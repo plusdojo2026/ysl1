@@ -7,6 +7,9 @@
     <title>ログイン</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
+<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
+
 <input type="hidden" name="pageId" value="U001">
 <form action="Controller" method="post">
     <label for="loginId">ログインID</label>
@@ -18,6 +21,7 @@
     <input type="submit" name="buttonId" value="ログイン">
 </form>
 
+<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 
 </body>
 </html>
