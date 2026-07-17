@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import action.CasesAction;
+import action.HomeAction;
+import action.TasksAction;
 import action.UserAction;
+import action.WorksAction;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
@@ -92,7 +96,34 @@ public class Controller extends HttpServlet {
 			page = action.update();
 			
 		//ダッシュボード画面
-		}else if(pageId.equals("D001") && buttonId.equals("")) {
+		}else if(pageId.equals("nav")) {
+			
+			if(buttonId.equals("ダッシュボード")) {
+				HomeAction action = new HomeAction();
+				//ダッシュボード画面表示[]
+				page = action.selectAll();
+				
+			}else if(buttonId.equals("案件")) {
+				CasesAction action = new CasesAction();
+				//案件一覧画面表示[]
+				page = action.initialize();
+				
+			}else if(buttonId.equals("タスク管理")) {
+				TasksAction action = new TasksAction();
+				//タスク一覧画面表示[]
+				page = action.selectAll();
+				
+			}else if(buttonId.equals("月次集計")) {
+				WorksAction action = new WorksAction();
+				//月次集計画面表示[]
+				page = action.initialize();
+				
+			}else if(buttonId.equals("メンバー管理")) {
+				UserAction action = new UserAction();
+				//メンバー一覧画面表示[]
+				page = action.selectAll();
+				
+			}
 			
 		}else if(pageId.equals("C001") && buttonId.equals("")) {
 			
