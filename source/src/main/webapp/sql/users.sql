@@ -5,7 +5,7 @@ create database ysl1;
 use ysl1;
 
 -- ユーザー作成
-CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'パスワード';
+CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'GvJ28VvAB9AFkRKa';
 
 -- 権限を付与（全DB・全テーブルへのフルアクセス）
 GRANT ALL PRIVILEGES ON *.* TO 'ysl1'@'localhost';
