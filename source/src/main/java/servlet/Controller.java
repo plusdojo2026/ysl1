@@ -46,25 +46,52 @@ public class Controller extends HttpServlet {
 		String pageId = request.getParameter("page_id");
 		//ボタンIDを取得
 		String buttonId = request.getParameter("button_id");
-				
+		
+		//ログアウト
 		if(pageId.equals("none") && buttonId.equals("ログアウト")) {
 			//ユーザーのセッション情報を破棄
 			HttpSession session = request.getSession();
 			session.invalidate();
 			//ログイン画面のリンクを渡す
-			page = "/WEB-INF/jsp/login.jsp";		
+			page = "/WEB-INF/jsp/login.jsp";
+			
+		//ログイン画面
 		}else if(pageId.equals("U001") && buttonId.equals("ログイン")) {
 			UserAction action = new UserAction();
+			//ログイン処理[結果:ダッシュボード画面へ]
 			page = action.login();
+		
+		//パスワード変更画面
+		}else if(pageId.equals("U002") && buttonId.equals("保存")) {
+			UserAction action = new UserAction();
+			//パスワード更新処理[結果:成功メッセージ]
+			page =action.update();
 			
-		}else if(pageId.equals("U002") && buttonId.equals("")) {
+		//メンバー一覧画面
+		}else if(pageId.equals("U003")) {
+			UserAction action = new UserAction();
+			if(buttonId.equals("新規登録")) {
+				//新規登録画面へ遷移
+				page = "/WEB-INF/jsp/user_regist.jsp";
+				
+			}else if(buttonId.equals("編集")) {
+				//編集画面へ遷移
+				page = "/WEB-INF/jsp/user_update.jsp";
+			}
 			
-		}else if(pageId.equals("U003") && buttonId.equals("")) {
+		//メンバー新規登録画面
+		}else if(pageId.equals("U004") && buttonId.equals("登録")) {
+			UserAction action = new UserAction();
+			//メンバー新規登録処理[結果:成功メッセージ]
+			page = action.insert();
 			
-		}else if(pageId.equals("U004") && buttonId.equals("")) {
+		//メンバー編集画面
+		}else if(pageId.equals("U005") && buttonId.equals("保存")) {
+			UserAction action = new UserAction();
+			//メンバー更新処理[結果:メンバー一覧画面へ]
+			page = action.update();
 			
-		}else if(pageId.equals("U005") && buttonId.equals("")) {
-			
+		//ダッシュボード画面
 		}else if(pageId.equals("D001") && buttonId.equals("")) {
 			
 		}else if(pageId.equals("C001") && buttonId.equals("")) {
