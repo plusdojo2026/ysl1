@@ -12,8 +12,8 @@
 <body>
 	<%@ include file="header.jsp" %>
  	<%@ include file="side_menu.jsp" %>
- 	<%@ include file="footer.jsp" %> 
  	
+ <main>
 <h1>案件詳細</h1>
 <h2></h2>
 <div class="table" id="cases">
@@ -21,27 +21,35 @@
 	<table class="table" id="cases_table">
 		<tr>
 			<td>案件コード</td>
+			<td>${case.caseId}</td>
 		</tr>
 		<tr>
 			<td>案件名</td>
+			<td>${case.caseCode}</td>
 		</tr>
 		<tr>
 			<td>顧客名</td>
+			<td>${case.customerName}</td>
 		</tr>
 		<tr>
 			<td>PM</td>
+			<td>${case.pmId}</td>
 		</tr>
 		<tr>
 			<td>ステータス</td>
+			<td>${case.caseStatus}</td>
 		</tr>
 		<tr>
 			<td>優先度</td>
+			<td>${case.casePriority}</td>
 		</tr>
 		<tr>
 			<td>期間</td>
+			<td>${case.caseDescription}</td>
 		</tr>
 		<tr>
 			<td>予定工数</td>
+			<td>${task.s}</td>
 		</tr>
 		<tr>
 			<td>実績工数</td>
@@ -83,5 +91,8 @@
 		</tr>
 	</table>
 </div>
+</main>
+<%@ include file="footer.jsp" %> 
+
 </body>
 </html>
