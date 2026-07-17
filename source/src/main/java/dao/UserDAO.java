@@ -3,12 +3,12 @@ package dao;
 import java.util.List;
 
 import dao.utils.BaseDAO;
-import dto.Users;
+import dto.UsersDTO;
 
 /**
- * Usersテーブルを操作するDAOクラス。
+ * UsersDTOテーブルを操作するDAOクラス。
  * <p>
- * Users情報の検索、条件検索、登録などの
+ * UsersDTO情報の検索、条件検索、登録などの
  * データベース操作を行う。
  * </p>
  *
@@ -20,78 +20,77 @@ import dto.Users;
  *
  * @author YSL黄范航
  */
-public class UserDAO extends BaseDAO<Users> {
+public class UserDAO extends BaseDAO<UsersDTO> {
 
 	/**
 	 * UserDAOのコンストラクタ。
 	 * <p>
-	 * 親クラスBaseDAOにUsersクラスを渡し、
-	 * ResultSetからUsersオブジェクトへ変換できるようにする。
+	 * 親クラスBaseDAOにUsersDTOクラスを渡し、
+	 * ResultSetからUsersDTOオブジェクトへ変換できるようにする。
 	 * </p>
 	 */
 	public UserDAO() {
-		super(Users.class);
+		super(UsersDTO.class);
 	}
 
 	/**
-	 * Usersテーブルの全件検索を行う。
+	 * UsersDTOテーブルの全件検索を行う。
 	 *
-	 * @return Users情報のリスト。データが存在しない場合は空のリスト
+	 * @return UsersDTO情報のリスト。データが存在しない場合は空のリスト
 	 */
-	public List<Users> search() {
+	public List<UsersDTO> search() {
 
 		// 全件取得SQL
-		String sql = "SELECT * FROM users";
+		String sql = "SELECT * FROM UsersDTO";
 
 		// 複数件検索を実行
 		return selectList(sql);
 	}
 
 	/**
-	 * ユーザーIDを条件にUsers情報を1件取得する。
+	 * ユーザーIDを条件にUsersDTO情報を1件取得する。
 	 *
 	 * @param userId 検索対象のユーザーID
-	 * @return 該当するUsersオブジェクト。存在しない場合はnull
+	 * @return 該当するUsersDTOオブジェクト。存在しない場合はnull
 	 */
-	public Users findById(int userId) {
+	public UsersDTO findById(int userId) {
 
 		// ユーザーID検索SQL
-		String sql = "SELECT * FROM users WHERE id = ?";
+		String sql = "SELECT * FROM UsersDTO WHERE id = ?";
 
 		// 単一レコード検索を実行
 		return selectOne(sql, userId);
 	}
 
 	/**
-	 * 年齢を条件にUsers情報を1件取得する。
+	 * 年齢を条件にUsersDTO情報を1件取得する。
 	 * <p>
 	 * 同じ年齢のユーザーが複数存在する場合、
 	 * 先頭の1件のみを取得する。
 	 * </p>
 	 *
 	 * @param age 検索対象の年齢
-	 * @return 該当するUsersオブジェクト。存在しない場合はnull
+	 * @return 該当するUsersDTOオブジェクト。存在しない場合はnull
 	 */
-	public Users findByAge(int age) {
+	public UsersDTO findByAge(int age) {
 
 		// 年齢検索SQL
-		String sql = "SELECT * FROM users WHERE age = ?";
+		String sql = "SELECT * FROM UsersDTO WHERE age = ?";
 
 		// 単一レコード検索を実行
 		return selectOne(sql, age);
 	}
 
-
 	/**
-	 * Users情報を新規登録する。
+	 * UsersDTO情報を新規登録する。
 	 *
-	 * @param user 登録対象のUsersオブジェクト
+	 * @param user 登録対象のUsersDTOオブジェクト
 	 * @return 登録された件数。通常は1
 	 */
-	public int insert(Users user) {
+	public int insert(UsersDTO user) {
 
 		// 登録SQL
-		String sql = "INSERT INTO users(name, age) VALUES(?, ?)";
+		String sql = "INSERT INTO UsersDTO(name, age) VALUES(?, ?)";
 
 		// 更新処理を実行
 		return executeUpdate(sql, user.getUserName(), user.getAge());
