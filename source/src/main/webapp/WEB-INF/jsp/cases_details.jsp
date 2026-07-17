@@ -10,6 +10,10 @@
 </head>
 
 <body>
+	<%@ include file="header.jsp" %>
+ 	<%@ include file="side_menu.jsp" %>
+ 	<%@ include file="footer.jsp" %> 
+ 	
 <h1>案件詳細</h1>
 <h2></h2>
 <div class="table" id="cases">
