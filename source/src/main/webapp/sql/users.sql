@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT 'ysl1' EXISITS;
+
 
 
 create database ysl1;
