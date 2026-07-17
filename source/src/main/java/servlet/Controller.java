@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/Controller")
@@ -45,6 +46,18 @@ public class Controller extends HttpServlet {
 		//ボタンIDを取得
 		String buttonId = request.getParameter("button_id");
 				
+		if(pageId.equals("none") && buttonId.equals("ログアウト")) {
+			//ユーザーのセッション情報を破棄
+			HttpSession session = request.getSession();
+			session.invalidate();
+			//ログイン画面のリンクを渡す
+			page = "/WEB-INF/jsp/login.jsp";		
+		}else if(pageId.equals("U001") && buttonId.equals("ログイン")) {
+			
+		}else if(pageId.equals("") && buttonId.equals("")) {
+			
+		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
