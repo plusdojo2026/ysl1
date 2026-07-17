@@ -3,6 +3,16 @@ CREATE DATABASE IF NOT 'ysl1' EXISITS;
 
 create database ysl1;
 use ysl1;
+
+-- ユーザー作成
+CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'パスワード';
+
+-- 権限を付与（全DB・全テーブルへのフルアクセス）
+GRANT ALL PRIVILEGES ON *.* TO 'ysl1'@'localhost';
+
+-- 反映
+FLUSH PRIVILEGES;
+
 create table users (
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 login_id VARCHAR(30) NOT NULL UNIQUE,
