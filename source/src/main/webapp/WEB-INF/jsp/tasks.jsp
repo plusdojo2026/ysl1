@@ -52,8 +52,7 @@
 </div>
 
 <!-- タスクの一覧表示 -->
-<table class="table" id="tasks_table">
-	<table border="1">	
+<table class="table" id="tasks_table" border="1">	
 	<thead>
 			<tr>
 				<th>案件名</th>
@@ -67,6 +66,7 @@
 				<th>編集</th>
 			</tr>
 	</thead>
+	<tbody>
 	<c:forEach var="e" items="${TaskList}">
 		<tr>
 			<td>${e.caseName}</td>
@@ -89,9 +89,13 @@
 			</td>
 		</tr>
 	</c:forEach>	
-	</table>
+	</tbody>
+</table>
 </div>
 </main>
 	<%@ include file="footer.jsp" %> 
 </body>
-		
+<script src="<c:url value='/js/tasks.js' />"></script>
+<script src="<c:url value='/js/common.js' />"></script>
+</html>
+	
