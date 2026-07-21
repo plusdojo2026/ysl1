@@ -29,6 +29,12 @@ public class TasksDTO {
 	private double taskPlannedHours;
 	private String taskDescription;
 	
+	//空のコンストラクタを生成
+	public TasksDTO() {
+		super();
+	}
+	
+	//全てのフィールドが入っているコンストラクタを生成（初期値の設定）
 	public TasksDTO(int id, int caseId, String taskName, int managerId, String taskStatus, String taskPriority,
 			String deadline, int progressRate, String startDate, double taskPlannedHours, String taskDescription) {
 		super();
@@ -44,9 +50,7 @@ public class TasksDTO {
 		this.taskPlannedHours = taskPlannedHours;
 		this.taskDescription = taskDescription;
 	}
-	public TasksDTO() {
-		super();
-	}
+	
 	public int getId() {
 		return id;
 	}
