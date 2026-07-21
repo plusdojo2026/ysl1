@@ -80,10 +80,21 @@ public class WorksAction {
 			
 			 WorksService service = new WorksService();
 			 
-			 //月次集計画面に表示するデータを取得して、リストに入れる
-			 ArrayList<AllDTO>arrayList = service.initialize();
+			 //サマリー情報を取得して、リストに入れる
+			allDTO = service.initialize();
 			
-			 request.setAttribute("allList", allList);
+			//案件別集計を取得して、リストに入れる
+			caseSummaryList = service.selectCaseSummary();
+			
+			//メンバー別集計を取得して、リストに入れる
+			memberSummaryList = service.selectMemberSummary();
+			
+			//JSPへ渡すためにAttributeに入れる
+			 request.setAttribute("monthlyTotalHours", allDTO.getMonthlyTotalHours()); //月合計工数(h)
+			 request.setAttribute("caseCount", allDTO.getCaseCount());                 //集計案件数
+			 request.setAttribute("memberCount", allDTO.getMemberCount());             //稼働メンバー数
+			 request.setAttribute("caseSummaryList", caseSummaryList);                 //案件別工数
+			 request.setAttribute("memberSummaryList", memberSummaryList);             //メンバー別工数
 			 
 			return page;
 		}	
@@ -91,13 +102,34 @@ public class WorksAction {
 		
 	//指定した月の工数ログ（月次集計画面 ）---------------------------------------		
 		public String selectByMonth() throws UnsupportedEncodingException {	
-		
-	
+			String page = "/WEB-INF/jsp/monthly_sum.jsp";
+			
+			//値の取得
+			request.setCharacterEncoding("UTF-8");
+			String month = request.getParameter("month");
+			
+			WorksService service = new WorksService();
+			
+			//リストを作成して、月の工数ログをリストに格納する
+			ArrayList<AllDTO> workList = service.selectByMounth();
+			
+			//Attributeに保存
+			request.setAttribute("workList", workList);
+			request.setAttribute("selectedMonth", month);
+			
+			return page;
 	
 		}
 	//指定した月の月次集計（月次集計画面）---------------------------------------	
 		public String aggregate() throws UnsupportedEncodingException {
-	
+			//値の取得
+			request.setCharacterEncoding("UTF-8");
+			String month = request.getParameter("month");
+			
+			WorksService service = new WorksService();
+			
+			
+			
 		}
 	
 	

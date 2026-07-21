@@ -96,7 +96,7 @@
 				<div class="progress-bar">
 				<div class="progress-value" style="width: ${caseData.progressRate}%"></div>
 				</div>
-				<span>${caseData.progressRate}%</span>
+				<span>${caseData.caseProgressRate}%</span>
 				</td>
 			</tr>
 			</c:forEach>
