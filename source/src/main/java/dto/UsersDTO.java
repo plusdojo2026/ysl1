@@ -12,30 +12,40 @@ import dao.utils.Column;
 public class UsersDTO {
 
 	@Column("id")
-	private int userId;//データベース名id
+	//データベース名id
+	private int userId;
 
-	@Column("age")
-	private int age;
+	@Column("login_id")
+	//データベース名login_id
+	private String loginId;
 
-	@Column("name")
-	private String userName;//データベース名name
+	@Column("login_pw")
+	//データベース名login_pw
+	private String loginPw;
 
-	public UsersDTO() {
-		super();
-	}
+	@Column("user_name")
+	//データベース名user_name
+	private int userName;
 
-	public UsersDTO(int age, String userName) {
-		super();
-		this.age = age;
-		this.userName = userName;
-	}
+	@Column("mail_address")
+	//データベース名mail_address
+	private String mailAddress;
 
-	public UsersDTO(int userId, int age, String userName) {
-		super();
-		this.userId = userId;
-		this.age = age;
-		this.userName = userName;
-	}
+	@Column("authority")
+	//データベース名authority
+	private boolean authority;
+
+	@Column("active")
+	//データベース名active
+	private boolean active;
+
+	@Column("created_at")
+	//データベース名created_at
+	private String created_at;
+
+	@Column("update_at")
+	//データベース名user_name
+	private String update_at;
 
 	public int getUserId() {
 		return userId;
@@ -45,26 +55,86 @@ public class UsersDTO {
 		this.userId = userId;
 	}
 
-	public int getAge() {
-		return age;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
-	/**userNameをゲットするメソッド
-	 * @return String
-	 */
-	public String getUserName() {
+	public String getLoginPw() {
+		return loginPw;
+	}
+
+	public void setLoginPw(String loginPw) {
+		this.loginPw = loginPw;
+	}
+
+	public int getUserName() {
 		return userName;
 	}
 
-	/**userNameをセットするメソッド
-	 * @param userName
-	 */
-	public void setUserName(String userName) {
+	public void setUserName(int userName) {
 		this.userName = userName;
+	}
+
+	public String getMailAddress() {
+		return mailAddress;
+	}
+
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
+	}
+
+	public boolean isAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(boolean authority) {
+		this.authority = authority;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+
+	public String getUpdate_at() {
+		return update_at;
+	}
+
+	public void setUpdate_at(String update_at) {
+		this.update_at = update_at;
+	}
+
+	public UsersDTO(int userId, String loginId, String loginPw, int userName, String mailAddress, boolean authority,
+			boolean active, String created_at, String update_at) {
+		super();
+		this.userId = userId;
+		this.loginId = loginId;
+		this.loginPw = loginPw;
+		this.userName = userName;
+		this.mailAddress = mailAddress;
+		this.authority = authority;
+		this.active = active;
+		this.created_at = created_at;
+		this.update_at = update_at;
+	}
+
+	public UsersDTO() {
+		super();
 	}
 
 	/**
@@ -72,7 +142,9 @@ public class UsersDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Users [id=" + userId + ", age=" + age + ", username=" + userName + "]";
+		return "UsersDTO [userId=" + userId + ", loginId=" + loginId + ", loginPw=" + loginPw + ", userName=" + userName
+				+ ", mailAddress=" + mailAddress + ", authority=" + authority + ", active=" + active + ", created_at="
+				+ created_at + ", update_at=" + update_at + "]";
 	}
 
 }
