@@ -8,10 +8,11 @@
 <meta charset="UTF-8">
 <title>タスク一覧</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
 </head>
 <body>
-  <%@ include file="header.jsp" %>
-  <%@ include file="side_menu.jsp" %>
+	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
+	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 
  <main>	
 <h1>タスク一覧</h1>
@@ -26,6 +27,7 @@
 		<select id="caseName">
 			<option value="">すべて</option>
 			<c:forEach var="e" items="${caseNameList}">
+				<!-- casename　に "e" という名前をつけたよ-->
 				<option value="${e}">${e}</option>	
 				<!-- valueはシステムに送る値 ${e}は画面に表示するものを示す-->
 			</c:forEach>
@@ -53,7 +55,7 @@
 
 <!-- タスクの一覧表示 -->
 <table class="table" id="tasks_table" border="1">	
-	<thead>
+	<thead>		<!-- thead:テーブルの見出しを強調表示するもの -->
 			<tr>
 				<th>案件名</th>
 				<th>タスク名</th>
@@ -66,6 +68,7 @@
 				<th>編集</th>
 			</tr>
 	</thead>
+
 	<tbody>
 	<c:forEach var="e" items="${TaskList}">
 		<tr>
@@ -81,7 +84,7 @@
 			<td>${e.progressRate}</td>
 			<td>
 				<!-- 編集ボタン -->
-				<form method="POST" action="<c:url value='/Controller'/>">
+				<form method="POST" action="<c:url value='/Controller'/>"> <!-- ここ多分間違ってる -->
 					<input type="hidden" name="pageId" value="T002">
 					<input type="hidden" name="taskId" value="${e.taskId}"> 
 					<input type="submit" name="buttonId" value="編集する">
@@ -93,9 +96,10 @@
 </table>
 </div>
 </main>
-	<%@ include file="footer.jsp" %> 
-</body>
+	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
+<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script src="<c:url value='/js/tasks.js' />"></script>
 <script src="<c:url value='/js/common.js' />"></script>
+</body>
 </html>
 	
