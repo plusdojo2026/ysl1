@@ -134,9 +134,16 @@ input[type="submit"]:hover {
     color: #1b3f72;
 }
 
-.request-message.hidden {
+/* メッセージがない場合隠す */
+.request-message:empty {
     display: none;
 }
+
+/* メッセージがあると示す*/
+.request-message.visible {
+    display: block;
+}
+
 
 .error {
     background-color: #ffe9ed;

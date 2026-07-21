@@ -3,55 +3,131 @@ package dto;
 import dao.utils.Column;
 
 /**
- * UsersDTO ユーザーオブジェクトのJAVAbeans
- * @param userId
- * @param age
- * @param userName
- * @author YSL黄范航
+ * usersテーブルのユーザー情報を保持するJavaBeansクラスです。
+ *
+ * <p>保持する項目：</p>
+ * <ul>
+ *   <li>userId：ユーザーID</li>
+ *   <li>loginId：ログインID</li>
+ *   <li>loginPw：ログインパスワード</li>
+ *   <li>userName：ユーザー名</li>
+ *   <li>mailAddress：メールアドレス</li>
+ *   <li>authority：ユーザー権限</li>
+ *   <li>active：有効状態</li>
+ *   <li>createdAt：作成日時</li>
+ *   <li>updateAt：更新日時</li>
+ * </ul>
  */
 public class UsersDTO {
-
+	/**
+	 * ユーザーID。
+	 * usersテーブルの id カラムに対応します。
+	 */
 	@Column("id")
-	//データベース名id
-	private int userId;
+	private Integer userId;
 
+	/**
+	 * ログインID。
+	 * usersテーブルの login_id カラムに対応します。
+	 */
 	@Column("login_id")
-	//データベース名login_id
 	private String loginId;
 
+	/**
+	 * ハッシュ化されたログインパスワード。
+	 * usersテーブルの login_pw カラムに対応します。
+	 */
 	@Column("login_pw")
-	//データベース名login_pw
 	private String loginPw;
 
+	/**
+	 * ユーザー名。
+	 * usersテーブルの user_name カラムに対応します。
+	 */
 	@Column("user_name")
-	//データベース名user_name
-	private int userName;
+	private String userName;
 
+	/**
+	 * メールアドレス。
+	 * usersテーブルの mail_address カラムに対応します。
+	 */
 	@Column("mail_address")
-	//データベース名mail_address
 	private String mailAddress;
 
+	/**
+	 * ユーザー権限。
+	 * usersテーブルの authority カラムに対応します。
+	 */
 	@Column("authority")
-	//データベース名authority
-	private boolean authority;
+	private Boolean authority;
 
+	/**
+	 * ユーザーの有効状態。
+	 * usersテーブルの active カラムに対応します。
+	 */
 	@Column("active")
-	//データベース名active
-	private boolean active;
+	private Boolean active;
 
+	/**
+	 * 作成日時。
+	 * usersテーブルの created_at カラムに対応します。
+	 */
 	@Column("created_at")
-	//データベース名created_at
-	private String created_at;
+	private String createdAt;
 
+	/**
+	 * 更新日時。
+	 * usersテーブルの update_at カラムに対応します。
+	 */
 	@Column("update_at")
-	//データベース名user_name
-	private String update_at;
+	private String updateAt;
 
-	public int getUserId() {
+	/**
+	 * デフォルトコンストラクタ。
+	 */
+	public UsersDTO() {
+	}
+
+	/**
+	 * 全フィールドを指定してユーザーDTOを生成します。
+	 *
+	 * @param userId      ユーザーID
+	 * @param loginId     ログインID
+	 * @param loginPw     ハッシュ化されたログインパスワード
+	 * @param userName    ユーザー名
+	 * @param mailAddress メールアドレス
+	 * @param authority   ユーザー権限
+	 * @param active      有効状態
+	 * @param createdAt   作成日時
+	 * @param updateAt    更新日時
+	 */
+	public UsersDTO(
+			Integer userId,
+			String loginId,
+			String loginPw,
+			String userName,
+			String mailAddress,
+			Boolean authority,
+			Boolean active,
+			String createdAt,
+			String updateAt) {
+
+		this.userId = userId;
+		this.loginId = loginId;
+		this.loginPw = loginPw;
+		this.userName = userName;
+		this.mailAddress = mailAddress;
+		this.authority = authority;
+		this.active = active;
+		this.createdAt = createdAt;
+		this.updateAt = updateAt;
+	}
+
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -71,11 +147,11 @@ public class UsersDTO {
 		this.loginPw = loginPw;
 	}
 
-	public int getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUserName(int userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
@@ -87,64 +163,55 @@ public class UsersDTO {
 		this.mailAddress = mailAddress;
 	}
 
-	public boolean isAuthority() {
+	public Boolean getAuthority() {
 		return authority;
 	}
 
-	public void setAuthority(boolean authority) {
+	public void setAuthority(Boolean authority) {
 		this.authority = authority;
 	}
 
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public String getUpdate_at() {
-		return update_at;
+	public String getUpdateAt() {
+		return updateAt;
 	}
 
-	public void setUpdate_at(String update_at) {
-		this.update_at = update_at;
-	}
-
-	public UsersDTO(int userId, String loginId, String loginPw, int userName, String mailAddress, boolean authority,
-			boolean active, String created_at, String update_at) {
-		super();
-		this.userId = userId;
-		this.loginId = loginId;
-		this.loginPw = loginPw;
-		this.userName = userName;
-		this.mailAddress = mailAddress;
-		this.authority = authority;
-		this.active = active;
-		this.created_at = created_at;
-		this.update_at = update_at;
-	}
-
-	public UsersDTO() {
-		super();
+	public void setUpdateAt(String updateAt) {
+		this.updateAt = updateAt;
 	}
 
 	/**
-	 *toString 変数を文字列に変換するメソッド
+	 * DTOの内容を文字列として返します。
+	 * セキュリティ上の理由により、ログインパスワードは出力しません。
+	 *
+	 * @return DTOの文字列表現
 	 */
 	@Override
 	public String toString() {
-		return "UsersDTO [userId=" + userId + ", loginId=" + loginId + ", loginPw=" + loginPw + ", userName=" + userName
-				+ ", mailAddress=" + mailAddress + ", authority=" + authority + ", active=" + active + ", created_at="
-				+ created_at + ", update_at=" + update_at + "]";
+		return "UsersDTO{" +
+				"userId=" + userId +
+				", loginId='" + loginId + '\'' +
+				", userName='" + userName + '\'' +
+				", mailAddress='" + mailAddress + '\'' +
+				", authority=" + authority +
+				", active=" + active +
+				", createdAt='" + createdAt + '\'' +
+				", updateAt='" + updateAt + '\'' +
+				'}';
 	}
-
 }
