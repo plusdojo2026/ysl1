@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ログイン</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>

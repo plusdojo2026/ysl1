@@ -1,7 +1,4 @@
-
-
-
-create database ysl1;
+；create database if not exists ysl1;
 use ysl1;
 
 -- ユーザー作成
