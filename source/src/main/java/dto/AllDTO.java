@@ -61,7 +61,7 @@ public class AllDTO {
 
 	//ダッシュボード
 	private String inProgressCase; //進行中案件
-	private String AssignedTask; //自分の担当タスク
+	private String assignedTask; //自分の担当タスク
 	private String deadlineNumber; //期限超過タスク 
 
 	//--------------------------------コンストラクタ----------------------------------
@@ -116,7 +116,7 @@ public class AllDTO {
 		this.actualHours = actualHours;
 		this.workDescription = workDescription;
 		this.inProgressCase = inProgressCase;
-		AssignedTask = assignedTask;
+		this.assignedTask = assignedTask;
 		this.deadlineNumber = deadlineNumber;
 	}
 	
@@ -419,11 +419,11 @@ public class AllDTO {
 	}
 
 	public String getAssignedTask() {
-		return AssignedTask;
+		return assignedTask;
 	}
 
 	public void setAssignedTask(String assignedTask) {
-		AssignedTask = assignedTask;
+		this.assignedTask = assignedTask;
 	}
 
 	public String getDeadlineNumber() {
