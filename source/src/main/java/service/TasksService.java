@@ -4,7 +4,7 @@ package service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dao.UserDAO;
+import dao.TasksDAO;
 import dto.AllDTO;
 
 	
@@ -16,17 +16,23 @@ public class TasksService extends DBAccess{
 		super.access();
 	}
 	
-	//一覧表示メソッド---------------------------
+	
+	/**
+	 * 一覧表示メソッド
+	 * @return ArrayList<AllDTO>
+	 */
 	public ArrayList<AllDTO> selectAll() {
 		ArrayList<AllDTO> taskList = null;
 		
-		UserDAO dao = new UserDAO(super.conn);
+		TasksDAO dao = new TasksDAO(super.conn);
 		try {
 			taskList = dao.selectAll();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("SQL文おかしいよ");
+			e.printStackTrace(); //エラーの説明をしてくれる
+		} finally {
+			super.close();
 		}
-		super.close();
 		
 		return taskList ;	
 	}

@@ -13,16 +13,18 @@ package dto;
  */
 
 public class AllDTO {
+	//ユーザー
 	private int userId;
 	private String loginId;
 	private String loginPw;
-	private int userName;
+	private String userName;
 	private String mailAddress;
 	private boolean authority;
 	private boolean active;
 	private String created_at;
 	private String update_at;
 	
+	//案件
 	private int caseId;
 	private String caseName;
 	private int caseCode;
@@ -38,7 +40,7 @@ public class AllDTO {
 	private int caseNow;
 	private double actualHoursSum;
 	
-	
+	//タスク
 	private int taskId;
 	private String taskName;
 	private int managerId;
@@ -49,6 +51,7 @@ public class AllDTO {
 	private double taskPlannedHours;
 	private String taskDescription;
 
+	//工数
 	private int workId;
 	private String workDate;
 	private String actualHours;
@@ -60,7 +63,7 @@ public class AllDTO {
 		super();
 	}
 
-	public AllDTO(int userId, String loginId, String loginPw, int userName, String mailAddress, boolean authority,
+	public AllDTO(int userId, String loginId, String loginPw, String userName, String mailAddress, boolean authority,
 			boolean active, String created_at, String update_at, int caseId, String caseName, int caseCode,
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
 			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
@@ -131,11 +134,11 @@ public class AllDTO {
 		this.loginPw = loginPw;
 	}
 
-	public int getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUserName(int userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
