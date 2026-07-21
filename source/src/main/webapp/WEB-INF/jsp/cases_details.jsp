@@ -10,9 +10,9 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp" %>
- 	<%@ include file="side_menu.jsp" %>
- 	
+	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
+	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
+	
  <main>
 <h1>案件詳細</h1>
 <h2></h2>
@@ -92,7 +92,7 @@
 	</table>
 </div>
 </main>
-<%@ include file="footer.jsp" %> 
+	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 
 </body>
 </html>
