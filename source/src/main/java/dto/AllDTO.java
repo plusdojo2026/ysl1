@@ -25,7 +25,7 @@ public class AllDTO {
 	private boolean active;
 	private String created_at;
 	private String update_at;
-	
+
 	//案件
 	private int caseId;
 	private String caseName;
@@ -41,7 +41,7 @@ public class AllDTO {
 	private int caseSum;
 	private int caseNow;
 	private BigDecimal actualHoursSum;
-	
+
 	//タスク
 	private int taskId;
 	private String taskName;
@@ -58,9 +58,14 @@ public class AllDTO {
 	private String workDate;
 	private BigDecimal actualHours;
 	private String workDescription;
-	
-	
+
+	//ダッシュボード
+	private String inProgressCase; //進行中案件
+	private String AssignedTask; //自分の担当タスク
+	private String deadlineNumber; //期限超過タスク 
+
 	//--------------------------------コンストラクタ----------------------------------
+
 	public AllDTO() {
 		super();
 	}
@@ -69,9 +74,10 @@ public class AllDTO {
 			boolean active, String created_at, String update_at, int caseId, String caseName, int caseCode,
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
 			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
-			BigDecimal actualHoursSum, int taskId, String taskName, int managerId, String taskStatus, String taskPriority,
-			String deadline, int progressRate, BigDecimal taskPlannedHours, String taskDescription, int workId,
-			String workDate, BigDecimal actualHours, String workDescription) {
+			BigDecimal actualHoursSum, int taskId, String taskName, int managerId, String taskStatus,
+			String taskPriority, String deadline, int progressRate, BigDecimal taskPlannedHours, String taskDescription,
+			int workId, String workDate, BigDecimal actualHours, String workDescription, String inProgressCase,
+			String assignedTask, String deadlineNumber) {
 		super();
 		this.userId = userId;
 		this.loginId = loginId;
@@ -109,13 +115,17 @@ public class AllDTO {
 		this.workDate = workDate;
 		this.actualHours = actualHours;
 		this.workDescription = workDescription;
+		this.inProgressCase = inProgressCase;
+		AssignedTask = assignedTask;
+		this.deadlineNumber = deadlineNumber;
 	}
+	
+	//------------------------------getter setter--------------------------------------
 
 	public int getUserId() {
 		return userId;
-	}	
+	}
 
-	//------------------------------getter setter--------------------------------------
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -399,7 +409,29 @@ public class AllDTO {
 	public void setWorkDescription(String workDescription) {
 		this.workDescription = workDescription;
 	}
-	
-	
-	
+
+	public String getInProgressCase() {
+		return inProgressCase;
+	}
+
+	public void setInProgressCase(String inProgressCase) {
+		this.inProgressCase = inProgressCase;
+	}
+
+	public String getAssignedTask() {
+		return AssignedTask;
+	}
+
+	public void setAssignedTask(String assignedTask) {
+		AssignedTask = assignedTask;
+	}
+
+	public String getDeadlineNumber() {
+		return deadlineNumber;
+	}
+
+	public void setDeadlineNumber(String deadlineNumber) {
+		this.deadlineNumber = deadlineNumber;
+	}
+
 }

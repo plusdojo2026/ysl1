@@ -14,5 +14,3 @@
     	//データテーブルを使用
         $("#tasks_table").DataTable();
     });
-    
-    

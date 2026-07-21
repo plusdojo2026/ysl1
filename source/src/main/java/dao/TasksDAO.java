@@ -8,8 +8,23 @@ import java.util.ArrayList;
 
 import dto.AllDTO;
 
+/**
+ * タスクテーブルを操作するDAOクラス。
+ * <p>
+ * タスクテーブルの一覧表示、情報の検索、条件検索、登録などの
+ * データベース操作を行う。
+ * </p>
+ *
+ *
+ * @author 石田
+ */
 
 public class TasksDAO {
+	
+	/**
+	 * TasksDAOを生成するコンストラクタ
+	 * @param conn データベース接続情報
+	 */
 	
 	public Connection conn = null;
 	
@@ -20,17 +35,24 @@ public class TasksDAO {
 	
 	/**
 	 * タスクの一覧を取得するメソッド
-	 * @return
-	 * @throws SQLException
+	 * @return taskList
+	 * @throws SQLException SQL実行時にエラーが発生した場合
 	 */
 	public ArrayList<AllDTO> selectAll() throws SQLException {
 		ArrayList<AllDTO> taskList = new ArrayList<AllDTO>();
 		
 		// SELECT文を準備する
 		String sql = "select t.id,c.case_name,t.task_name,u.user_name,t.task_status,t.task_priority,t.deadline,"
-				+ "t.progress_rate from tasks t"
-				+ "LEFT JOIN cases c ON t.case_id = c.id"
-				+ "LEFT JOIN  users u ON t.manager_id = u.id";
+				+ "t.progress_rate, COALESCE(sum(works.actual_hours), 0) as actual_hours,t.task_planned_hours "
+				+ "from tasks t "
+				+ "LEFT JOIN cases c ON t.case_id = c.id "
+				+ "LEFT JOIN users u ON t.manager_id = u.id "
+				+ "LEFT JOIN works ON t.id = works.task_id " 
+				+ "GROUP BY t.id,c.case_name,t.task_name,u.user_name,"
+		        + "t.task_status,t.task_priority,t.deadline,"
+		        + "t.progress_rate,t.task_planned_hours" ;
+
+		
 		
 		//デバッグ（SQL文の確認用）
 		System.out.println(sql);
@@ -52,6 +74,10 @@ public class TasksDAO {
 			dto.setTaskPriority(rs.getString("task_priority"));	
 			dto.setDeadline(rs.getString("deadline"));
 			dto.setProgressRate(rs.getInt("progress_rate"));
+			dto.setActualHours(rs.getBigDecimal("actual_hours"));
+			dto.setTaskPlannedHours(rs.getBigDecimal("task_planned_hours"));
+
+			taskList.add(dto);
 		}
 		//serviceに返却する
 			return taskList;
