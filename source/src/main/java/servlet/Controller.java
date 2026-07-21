@@ -16,6 +16,12 @@ import action.TasksAction;
 import action.UserAction;
 import action.WorksAction;
 
+/*
+ * -- コントローラ --
+ * ボタン押下時など各画面の遷移を処理
+ * 
+ */
+
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,15 +31,14 @@ public class Controller extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String page = "/WEB-INF/jsp/login.jsp";	
-		//ページIDを取得
+		//ページIDとボタンIDを取得
 		String pageId = request.getParameter("page_id");
-		//ボタンIDを取得
 		String buttonId = request.getParameter("button_id");
 		
 		//何もわたってきて無ければログイン画面へ
 		if(pageId==null && buttonId==null) {
 			page = "/WEB-INF/jsp/login.jsp";	
-		}//else if(xxxxx)と続いていく
+		}
 		
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
@@ -46,20 +51,34 @@ public class Controller extends HttpServlet {
 		
 		String page = null;
 		
-		//ページIDを取得
+		//ページID、ボタンIDを取得
 		String pageId = request.getParameter("page_id");
-		//ボタンIDを取得
 		String buttonId = request.getParameter("button_id");
-		
-		//ログアウト
-		if(pageId.equals("none") && buttonId.equals("ログアウト")) {
-			//ユーザーのセッション情報を破棄
-			HttpSession session = request.getSession();
-			session.invalidate();
-			//ログイン画面のリンクを渡す
-			page = "/WEB-INF/jsp/login.jsp";
+		//共通部分(ナビゲーション、ヘッダー、フッター)を押したかどうか
+		String nav = request.getParameter("nav");
+		String header = request.getParameter("header");
+		String hooter = request.getParameter("hooter");
+
+		//ヘッダー ---------------------------------------
+		if(pageId.equals("header")) {
+			if(buttonId.equals("ログアウト")) {
+				//ユーザーのセッション情報を破棄
+				HttpSession session = request.getSession();
+				session.invalidate();
+				//ログイン画面のリンクを渡す
+				page = "/WEB-INF/jsp/login.jsp";
+				
+			}else if(buttonId.equals("パスワード変更")) {
+				//パスワード変更画面へ遷移
+				page = "/WEB-INF/jsp/resetPassword.jsp";
+				
+			}else if(buttonId.equals("トップへ戻る")) {
+				//ダッシュボード画面へ遷移
+				page = "/WEB-INF/jsp/home.jsp";
+				
+			}
 			
-		//ログイン画面
+		//ログイン画面 ------------------------------------
 		}else if(pageId.equals("U001") && buttonId.equals("ログイン")) {
 			UserAction action = new UserAction();
 			//ログイン処理[結果:ダッシュボード画面へ]
@@ -71,7 +90,7 @@ public class Controller extends HttpServlet {
 			//パスワード更新処理[結果:成功メッセージ]
 			page =action.update();
 			
-		//メンバー一覧画面
+		//メンバー一覧画面 --------------------------------
 		}else if(pageId.equals("U003")) {
 			UserAction action = new UserAction();
 			if(buttonId.equals("新規登録")) {
@@ -83,19 +102,19 @@ public class Controller extends HttpServlet {
 				page = "/WEB-INF/jsp/user_update.jsp";
 			}
 			
-		//メンバー新規登録画面
+		//メンバー新規登録画面 ----------------------------
 		}else if(pageId.equals("U004") && buttonId.equals("登録")) {
 			UserAction action = new UserAction();
 			//メンバー新規登録処理[結果:成功メッセージ]
 			page = action.insert();
 			
-		//メンバー編集画面
+		//メンバー編集画面 --------------------------------
 		}else if(pageId.equals("U005") && buttonId.equals("保存")) {
 			UserAction action = new UserAction();
 			//メンバー更新処理[結果:メンバー一覧画面へ]
 			page = action.update();
 			
-		//ダッシュボード画面
+		//ダッシュボード画面 ------------------------------
 		}else if(pageId.equals("nav")) {
 			
 			if(buttonId.equals("ダッシュボード")) {
@@ -125,7 +144,17 @@ public class Controller extends HttpServlet {
 				
 			}
 			
-		}else if(pageId.equals("C001") && buttonId.equals("")) {
+		//案件一覧画面 -----------------------------------
+		}else if(pageId.equals("C001")) {
+			if(buttonId.equals("新規登録")) {
+				
+			}else if(buttonId.equals("検索")) {
+				
+			}else if(buttonId.equals("編集")) {
+				
+			}else if(buttonId.equals("参照")) {
+				
+			}
 			
 		}else if(pageId.equals("C002") && buttonId.equals("")) {
 			
@@ -139,7 +168,7 @@ public class Controller extends HttpServlet {
 			
 		}else if(pageId.equals("M001") && buttonId.equals("")) {
 			
-		}		
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
