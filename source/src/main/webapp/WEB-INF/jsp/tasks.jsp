@@ -84,10 +84,11 @@
 			<td>${e.progressRate}</td>
 			<td>
 				<!-- 編集ボタン -->
-				<form method="POST" action="<c:url value='/Controller'/>"> <!-- ここ多分間違ってる -->
-					<input type="hidden" name="pageId" value="T002">
+				<form method="POST" action="<c:url value='/Controller'/>">
+					<input type="hidden" name="pageId" value="T001">
 					<input type="hidden" name="taskId" value="${e.taskId}"> 
-					<input type="submit" name="buttonId" value="編集する">
+					<input type="hidden" name="buttonId" value="編集する">
+					<input type="image"  src="<c:url value='/images/edit.png'/>" alt="編集">
 				</form>
 			</td>
 		</tr>
