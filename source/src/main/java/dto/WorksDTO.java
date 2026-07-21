@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class WorksDTO implements Serializable{
 	//フィールド
@@ -8,20 +9,20 @@ public class WorksDTO implements Serializable{
 	private int userId;
 	private int taskId;
 	private String workDate;
-	private String actualHours;
+	private BigDecimal actualHours;
 	private String workDescription;
 	private int progressRate;
 	
 	
 	//コンストラクタ
-	public WorksDTO(int id, int userId, int taskId, String workDate, String actualHours, String workDescription) {
+	public WorksDTO(int id, int userId, int taskId, String workDate, BigDecimal actualHours, String workDescription,int progressRates) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.taskId = taskId;
-		this.workDate = workDate;
-		this.actualHours = actualHours;
-		this.workDescription = workDescription;
+		this.workDate = workDate;                //作業日
+		this.actualHours = actualHours;          //実績工数
+		this.workDescription = workDescription;  //作業内容
 		this.progressRate = progressRate;
 	}
 
@@ -66,11 +67,11 @@ public class WorksDTO implements Serializable{
 		this.workDate = workDate;
 	}
 
-	public String getActualHours() {
+	public BigDecimal getActualHours() {
 		return actualHours;
 	}
 
-	public void setActualHours(String actualHours) {
+	public void setActualHours(BigDecimal actualHours) {
 		this.actualHours = actualHours;
 	}
 
