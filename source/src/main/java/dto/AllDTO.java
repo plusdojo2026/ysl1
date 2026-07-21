@@ -1,5 +1,7 @@
 package dto;
 
+import java.math.BigDecimal;
+
 /**
  * AllDTO オールオブジェクトのJAVAbeans
  * 未定義の項目のみ以下に記載する
@@ -38,7 +40,7 @@ public class AllDTO {
 	private int casePlannedHours;
 	private int caseSum;
 	private int caseNow;
-	private double actualHoursSum;
+	private BigDecimal actualHoursSum;
 	
 	//タスク
 	private int taskId;
@@ -48,13 +50,13 @@ public class AllDTO {
 	private String taskPriority;
 	private String deadline;
 	private int progressRate;
-	private double taskPlannedHours;
+	private BigDecimal taskPlannedHours;
 	private String taskDescription;
 
 	//工数
 	private int workId;
 	private String workDate;
-	private String actualHours;
+	private BigDecimal actualHours;
 	private String workDescription;
 	
 	
@@ -67,9 +69,9 @@ public class AllDTO {
 			boolean active, String created_at, String update_at, int caseId, String caseName, int caseCode,
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
 			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
-			double actualHoursSum, int taskId, String taskName, int managerId, String taskStatus, String taskPriority,
-			String deadline, int progressRate, double taskPlannedHours, String taskDescription, int workId,
-			String workDate, String actualHours, String workDescription) {
+			BigDecimal actualHoursSum, int taskId, String taskName, int managerId, String taskStatus, String taskPriority,
+			String deadline, int progressRate, BigDecimal taskPlannedHours, String taskDescription, int workId,
+			String workDate, BigDecimal actualHours, String workDescription) {
 		super();
 		this.userId = userId;
 		this.loginId = loginId;
@@ -286,11 +288,11 @@ public class AllDTO {
 		this.caseNow = caseNow;
 	}
 
-	public double getActualHoursSum() {
+	public BigDecimal getActualHoursSum() {
 		return actualHoursSum;
 	}
 
-	public void setActualHoursSum(double actualHoursSum) {
+	public void setActualHoursSum(BigDecimal actualHoursSum) {
 		this.actualHoursSum = actualHoursSum;
 	}
 
@@ -350,11 +352,11 @@ public class AllDTO {
 		this.progressRate = progressRate;
 	}
 
-	public double getTaskPlannedHours() {
+	public BigDecimal getTaskPlannedHours() {
 		return taskPlannedHours;
 	}
 
-	public void setTaskPlannedHours(double taskPlannedHours) {
+	public void setTaskPlannedHours(BigDecimal taskPlannedHours) {
 		this.taskPlannedHours = taskPlannedHours;
 	}
 
@@ -382,11 +384,11 @@ public class AllDTO {
 		this.workDate = workDate;
 	}
 
-	public String getActualHours() {
+	public BigDecimal getActualHours() {
 		return actualHours;
 	}
 
-	public void setActualHours(String actualHours) {
+	public void setActualHours(BigDecimal actualHours) {
 		this.actualHours = actualHours;
 	}
 
