@@ -410,4 +410,57 @@ public class DBMapper {
 
 		return sb.toString();
 	}
+
+	/**
+	 * DTOから値が設定されているフィールドを取得する。
+	 *
+	 * <p>null、空文字、空白のみの文字列は対象外とする。</p>
+	 *
+	 * @param obj 対象オブジェクト
+	 * @return 値が設定されているフィールドのリスト
+	 */
+	public static List<Field> getNotEmptyFields(Object obj) {
+
+		List<Field> result = new ArrayList<>();
+
+		// オブジェクトがnullの場合
+		if (obj == null) {
+			return result;
+		}
+
+		// 親クラスを含めてフィールドを取得
+		List<Field> fields = getAllFields(obj.getClass());
+
+		for (Field field : fields) {
+			try {
+				// privateフィールドを読み取れるようにする
+				field.setAccessible(true);
+
+				// フィールドの値を取得
+				Object value = field.get(obj);
+
+				// nullの場合は対象外
+				if (value == null) {
+					continue;
+				}
+
+				// 空文字または空白のみの場合は対象外
+				if (value instanceof String
+						&& ((String) value).isBlank()) {
+					continue;
+				}
+
+				// 値が設定されているフィールドを追加
+				result.add(field);
+
+			} catch (IllegalAccessException e) {
+				throw new RuntimeException(
+						"フィールドの読み取りに失敗しました: "
+								+ field.getName(),
+						e);
+			}
+		}
+
+		return result;
+	}
 }
