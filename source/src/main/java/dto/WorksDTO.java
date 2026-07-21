@@ -10,6 +10,7 @@ public class WorksDTO implements Serializable{
 	private String workDate;
 	private String actualHours;
 	private String workDescription;
+	private int progressRate;
 	
 	
 	//コンストラクタ
@@ -21,6 +22,7 @@ public class WorksDTO implements Serializable{
 		this.workDate = workDate;
 		this.actualHours = actualHours;
 		this.workDescription = workDescription;
+		this.progressRate = progressRate;
 	}
 
 	//引数のないコンストラクタ
@@ -79,8 +81,15 @@ public class WorksDTO implements Serializable{
 	public void setWorkDescription(String workDescription) {
 		this.workDescription = workDescription;
 	}
-	
-	
+
+	public int getProgressRate() {
+		return progressRate;
+	}
+
+	public void setProgressRate(int progressRate) {
+		this.progressRate = progressRate;
+	}
+
 	
 	
 	
