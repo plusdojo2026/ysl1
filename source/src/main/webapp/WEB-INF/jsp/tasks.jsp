@@ -70,7 +70,7 @@
 	</thead>
 
 	<tbody>
-	<c:forEach var="e" items="${TaskList}">
+	<c:forEach var="e" items="${taskList}">
 		<tr>
 			<td>${e.caseName}</td>
 			<td>${e.taskName}</td>
@@ -87,7 +87,7 @@
 				<form method="POST" action="<c:url value='/Controller'/>">
 					<input type="hidden" name="pageId" value="T001">
 					<input type="hidden" name="taskId" value="${e.taskId}"> 
-					<input type="hidden" name="buttonId" value="編集する">
+					<input type="hidden" name="buttonId" value="編集">
 					<input type="image"  src="<c:url value='/images/edit.png'/>" alt="編集">
 				</form>
 			</td>

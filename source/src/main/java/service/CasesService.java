@@ -1,20 +1,32 @@
 package service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 
 import dao.CasesDAO;
-import dto.CasesDTO;
+import dao.utils.DBUtils;
+import dto.AllDTO;
 
 public class CasesService {
 
 	//ページを開いた時に表示するもののメソッド
-	public ArrayList<CasesDTO> intiCasesDetail() {
+	public ArrayList<AllDTO> intiCasesDetail() {
 		//一旦空にする
-		ArrayList<CasesDTO> casesList = null;
-		CasesDAO dao = new CasesDAO(super.conn);
+		ArrayList<AllDTO> casesList = null;
+		ArrayList<AllDTO> tasksList = null;
+		ArrayList<E>
+		// データベースに接続する
+		// DBUtilsで接続
+		Connection conn = DBUtils.getConnection();
+		CasesDAO dao = new CasesDAO(conn);
 
-		casesList = CasesDAO.class;
-		return;
+		casesList = dao.select();
+		tasksList
+		list
+		//まとめたリストの文
+
+		return casesList;
 
 	}
 
