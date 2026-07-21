@@ -15,7 +15,8 @@
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
  <!--検索系統 -->	
 	<h1>案件一覧</h1>
-		<form action="/ysl/Controller" method="get">
+	
+		<form action="${pageContext.request.contextPath}/Controller" method="get">
 		    <label>キーワード:</label>
 		    <input type="text" name="keyword">
 		    
@@ -84,6 +85,6 @@
 	</table>
 </div>
 
-<%@ include file="footer.jsp" %> 
+	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 </body>
 </html>
