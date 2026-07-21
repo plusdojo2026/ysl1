@@ -68,7 +68,7 @@ public class DBUtils {
 	private static final Integer PORT = null;
 
 	/** DB名 */
-	private static final String DB_NAME = "testdb";
+	private static final String DB_NAME = "ysl1";
 
 	/** ユーザー名 */
 	private static final String USER = "root";
