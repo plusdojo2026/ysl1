@@ -5,10 +5,15 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import dto.AllDTO;
 import dto.TasksDTO;
 import service.WorksService;
 
 public class WorksAction {
+	
+	private AllDTO allDTO;
+	private ArrayList<AllDTO> caseSummaryList;
+	private ArrayList<AllDTO> memberSummaryList;
 	
 	HttpServletRequest request ;
 	//コンストラクタ
@@ -68,17 +73,20 @@ public class WorksAction {
 	
 		public String initialize() throws UnsupportedEncodingException {
 			//返却する次の飛び先のURLをとりあえず定義
-			//String ans = null;
+			String page = "/WEB-INF/jsp/monthly_sum.jsp";
 			
 			//値の取得
 			request.setCharacterEncoding("UTF-8");		
-			String month = request.getParameter("month");
 			
-			allDTO= worksService.initialize();
+			 WorksService service = new WorksService();
+			 
+			 //月次集計画面に表示するデータを取得して、リストに入れる
+			 ArrayList<AllDTO>arrayList = service.initialize();
 			
-			return SUCCESS;
+			 request.setAttribute("allList", allList);
+			 
+			return page;
 		}	
-		
 		
 		
 	//指定した月の工数ログ（月次集計画面 ）---------------------------------------		

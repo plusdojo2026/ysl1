@@ -37,10 +37,11 @@ public class AllDTO {
 	private String startDate;
 	private String plannedEndDate;
 	private String caseDescription;
-	private int casePlannedHours;
-	private int caseSum;
-	private int caseNow;
-	private BigDecimal actualHoursSum;
+	private int casePlannedHours;      //案件予定工数
+	private int caseSum;               //総タスク数
+	private int caseNow;               //完了タスク数
+	private BigDecimal actualHoursSum; //実績工数の合計
+	private int caseProgressRate;      //案件進捗バー（完了タスク/総タスク）
 
 	//タスク
 	private int taskId;
@@ -49,8 +50,8 @@ public class AllDTO {
 	private String taskStatus;
 	private String taskPriority;
 	private String deadline;
-	private int progressRate;
-	private BigDecimal taskPlannedHours;
+	private int taskProgressRate;        //タスク進捗バー（任意で設定）
+	private BigDecimal taskPlannedHours; //タスク予定工数
 	private String taskDescription;
 
 	//工数
@@ -63,6 +64,13 @@ public class AllDTO {
 	private String inProgressCase; //進行中案件
 	private String assignedTask; //自分の担当タスク
 	private String deadlineNumber; //期限超過タスク 
+	
+	//月次集計
+	private BigDecimal monthlyTotalHours; //月合計工数
+	private int caseCount;               //集計案件数
+	private int memberCount;             //稼働メンバー数
+	
+	
 
 	//--------------------------------コンストラクタ----------------------------------
 
@@ -75,7 +83,7 @@ public class AllDTO {
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
 			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
 			BigDecimal actualHoursSum, int taskId, String taskName, int managerId, String taskStatus,
-			String taskPriority, String deadline, int progressRate, BigDecimal taskPlannedHours, String taskDescription,
+			String taskPriority, String deadline, int taskProgressRate, BigDecimal taskPlannedHours, String taskDescription,
 			int workId, String workDate, BigDecimal actualHours, String workDescription, String inProgressCase,
 			String assignedTask, String deadlineNumber) {
 		super();
@@ -108,7 +116,7 @@ public class AllDTO {
 		this.taskStatus = taskStatus;
 		this.taskPriority = taskPriority;
 		this.deadline = deadline;
-		this.progressRate = progressRate;
+		this.taskProgressRate = taskProgressRate;
 		this.taskPlannedHours = taskPlannedHours;
 		this.taskDescription = taskDescription;
 		this.workId = workId;
@@ -120,6 +128,16 @@ public class AllDTO {
 		this.deadlineNumber = deadlineNumber;
 	}
 	
+	
+	
+	public AllDTO(int caseProgressRate, BigDecimal monthlyTotalHours, int caseCount, int memberCount) {
+		super();
+		this.caseProgressRate = caseProgressRate;
+		this.monthlyTotalHours = monthlyTotalHours;
+		this.caseCount = caseCount;
+		this.memberCount = memberCount;
+	}
+
 	//------------------------------getter setter--------------------------------------
 
 	public int getUserId() {
@@ -354,12 +372,12 @@ public class AllDTO {
 		this.deadline = deadline;
 	}
 
-	public int getProgressRate() {
-		return progressRate;
+	public int getTaskProgressRate() {
+		return taskProgressRate;
 	}
 
-	public void setProgressRate(int progressRate) {
-		this.progressRate = progressRate;
+	public void setTaskProgressRate(int taskProgressRate) {
+		this.taskProgressRate = taskProgressRate;
 	}
 
 	public BigDecimal getTaskPlannedHours() {
@@ -433,5 +451,39 @@ public class AllDTO {
 	public void setDeadlineNumber(String deadlineNumber) {
 		this.deadlineNumber = deadlineNumber;
 	}
+
+	public int getCaseProgressRate() {
+		return caseProgressRate;
+	}
+
+	public void setCaseProgressRate(int caseProgressRate) {
+		this.caseProgressRate = caseProgressRate;
+	}
+
+	public BigDecimal getMonthlyTotalHours() {
+		return monthlyTotalHours;
+	}
+
+	public void setMonthlyTotalHours(BigDecimal monthlyTotalHours) {
+		this.monthlyTotalHours = monthlyTotalHours;
+	}
+
+	public int getCaseCount() {
+		return caseCount;
+	}
+
+	public void setCaseCount(int caseCount) {
+		this.caseCount = caseCount;
+	}
+
+	public int getMemberCount() {
+		return memberCount;
+	}
+
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
+	}
+	
+	
 
 }
