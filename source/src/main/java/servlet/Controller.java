@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import action.UserAction;
 import action.CasesAction;
-import action.TasksAction;
-import action.WorksAction;
 import action.HomeAction;
-import action.DownloadAction;
+import action.TasksAction;
+import action.UserAction;
+import action.WorksAction;
 
 
 /*
@@ -251,7 +250,7 @@ public class Controller extends HttpServlet {
 				page = tAction.update();
 			}
 			
-		//月次集計画面 ------------------------------------
+		//タスク詳細画面 ------------------------------------
 		}else if(pageId.equals("T003")) {
 			WorksAction wAction = new WorksAction();
 			if(buttonId.equals("削除")) {
@@ -262,6 +261,18 @@ public class Controller extends HttpServlet {
 				//工数入力モーダル
 				page = wAction.insert();
 			}
+			
+		//月次集計画面 ------------------------------------
+		}else if(pageId.equals("M001")) {
+			WorksAction wAction = new WorksAction();
+			if(buttonId.equals("集計")) {
+				//選択した月の情報を表示
+				page = wAction.selectByMonth();
+			}else if(buttonId.equals("CSV出力")) {
+				//これから実装(現在は仮でinitializeしときます)
+				page = wAction.initialize();
+			}
+		}
 		
 		//pageに格納したリンク先にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
