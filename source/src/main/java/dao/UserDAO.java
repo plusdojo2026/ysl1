@@ -10,7 +10,7 @@ import dao.utils.DBMapper;
 import dto.UsersDTO;
 
 /**
- * UsersDTOテーブルを操作するDAOクラス。
+ * Usersテーブルを操作するDAOクラス。
  * <p>
  * UsersDTO情報の検索、条件検索、登録などの
  * データベース操作を行う。
