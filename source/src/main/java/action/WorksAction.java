@@ -11,7 +11,7 @@ import service.WorksService;
 
 public class WorksAction {
 	
-	private AllDTO allDTO;
+	private AllDTO summaryList;
 	private ArrayList<AllDTO> caseSummaryList;
 	private ArrayList<AllDTO> memberSummaryList;
 	
@@ -81,7 +81,7 @@ public class WorksAction {
 			 WorksService service = new WorksService();
 			 
 			 //サマリー情報を取得して、リストに入れる
-			allDTO = service.initialize();
+			summaryList = service.selectSummary();
 			
 			//案件別集計を取得して、リストに入れる
 			caseSummaryList = service.selectCaseSummary();

@@ -4,6 +4,21 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class WorksDTO implements Serializable{
+	/**
+	 * worksテーブルの工数情報を保持するJavaBeansクラスです。
+	 *
+	 * <p>保持する項目：</p>
+	 * <ul>
+	 *   <li>id：工数ID</li>
+	 *   <li>userId：ユーザーID（FK)</li>
+	 *   <li>taskId：タスクID（FK)</li>
+	 *   <li>workDate：作業日</li>
+	 *   <li>actualHours：実績工数</li>
+	 *   <li>workDescription：作業内容</li>
+	 *   <li>progressRate：達成率</li>
+	 *   
+	 * </ul>
+	 */
 	//フィールド
 	private int id;
 	private int userId;
