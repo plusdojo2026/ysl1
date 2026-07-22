@@ -14,7 +14,7 @@
 
 <main>
 <h1>月次集計</h1>
-<form method="POST" action="/ysl1/ControllerServlet">
+<form method="POST" action="/ysl1/ControllerServlet"></form>
 <input type="hidden" name="pageId" value="M001">
 <div class="layout">
 
@@ -38,6 +38,8 @@
 		</form>
 
 	</div>
+	
+	<c:if test="${displayMode == 'summary'}">
 	<!-- サマリーカード -->
 	<div class="summary-cards">
 		<!-- 月合計工数(h) -->
@@ -144,6 +146,43 @@
 		</p>
 		</section>
 	</div>
+	
+	</c:if>
+	
+	
+	<c:if test="${displayMode == 'workList'}">
+	<!-- 工数ログ -->
+	<h2>工数ログ一覧</h2>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>作業日</th>
+				<th>案件名</th>
+				<th>タスク名</th>
+				<th>担当者</th>
+				<th>工数</th>
+				<th>作業内容</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+		<c:forEach var="workData" items="${workList}">
+		<tr>
+			<td>${workData.workDate}</td>
+			<td>${workData.caseName}</td>
+			<td>${workData.taskName}</td>
+			<td>${workData.userName}</td>
+			<td>${workData.actulHours}</td>
+			<td>${workData.workDescription}</td>
+		</tr>
+		</c:forEach>
+		</tbody>		
+	
+	</table>
+	
+	</c:if>
+	
 	
 	<!-- 集計条件 -->
 	<div class="condition-area">

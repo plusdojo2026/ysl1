@@ -95,7 +95,7 @@ public class WorksAction {
 			 request.setAttribute("memberCount", allDTO.getMemberCount());             //稼働メンバー数
 			 request.setAttribute("caseSummaryList", caseSummaryList);                 //案件別工数
 			 request.setAttribute("memberSummaryList", memberSummaryList);             //メンバー別工数
-			 
+			 request.setAttribute("displayMode", "summary");                           //最初に月次集計を表示
 			return page;
 		}	
 		
@@ -114,22 +114,40 @@ public class WorksAction {
 			ArrayList<AllDTO> workList = service.selectByMounth();
 			
 			//Attributeに保存
-			request.setAttribute("workList", workList);
-			request.setAttribute("selectedMonth", month);
+			request.setAttribute("workList", workList);           //工数ログ一覧のリスト
+			request.setAttribute("selectedMonth", month);         //選択された月
+			request.setAttribute("displayMode", "summary");       //集計ボタンを押すと月次集計が表示される
 			
 			return page;
 	
 		}
-	//指定した月の月次集計（月次集計画面）---------------------------------------	
+	//指定した月の月次集計（月次集計画面）(aggregateメソッドで3つのサマリーを取得)---------------------------------------	
 		public String aggregate() throws UnsupportedEncodingException {
+			String page = "/WEB-INF/jsp/monthly_sum.jsp";
+			
 			//値の取得
 			request.setCharacterEncoding("UTF-8");
 			String month = request.getParameter("month");
 			
 			WorksService service = new WorksService();
 			
+			//サマリー取得
+			AllDTO summary = service.aggregate(month);
 			
+			//案件別
+			ArrayList<AllDTO> caseSummaryList = service.selectCaseSummary(month);
 			
+			//メンバー別
+			ArrayList<AllDTO> memberSummaryList = service.selectMemberSummary(month);
+			
+			//Attributeに保存
+			request.setAttribute("summary", summary);                         //サマリー（月合計工数、集計案件数、稼働メンバー数）
+			request.setAttribute("caseSummaryList", caseSummaryList);         //案件別集計
+			request.setAttribute("memberSummaryList", memberSummaryList);     //メンバー別集計
+			request.setAttribute("selectedMonth",month);                      //選択された月
+			request.setAttribute("displayMode", "workList");                   //工数一覧ボタンを押すと工数ログが表示される
+			
+			return page;
 		}
 	
 	
