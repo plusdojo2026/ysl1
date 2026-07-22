@@ -76,7 +76,7 @@
 				<form method="POST" action="<c:url value='/Controller'/>">
 					<input type="hidden" name="pageId" value="C002">
 					<input type="hidden" name="caseId" value="${e.caseId}"> 
-					<input type="submit" name="buttonId" value="編集する">
+					<input type="submit" name="buttonId" value="編集">
 				</form>
 			</td>
 				</tr>

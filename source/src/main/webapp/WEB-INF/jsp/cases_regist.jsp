@@ -20,16 +20,16 @@
 		<table>
 			<tr>
 		        	<td class="label" name="caseName">案件名</td>
-		        	<td><input type="text"  name="caseName"></td>
+		        	<td><input type="text"  name="caseName" value="${cases.caseName }"></td>
 		   		
 		
 		   		 <td class="label">	案件コード</td>
-		        	<td><input type="text"  name="caseCode"></td>
+		        	<td><input type="text"  name="caseCode" value="${cases.caseCode }"></td>
 		    </tr>	
 		    <tr>	
 		    		
 		    		<td class="label">顧客名</td>
-		        	<td><input type="customerName" name="pw"></td>
+		        	<td><input type="text" name="customerName"value="${cases.caseName }"></td>
 		    		
 		        	<td class="label">担当PM</td>
 		        	<td><select name="pmId">
@@ -65,12 +65,12 @@
 			    	<tr>
 				    	<td class="label">開始日</td>
 				    	<td>
-				    	<input type="date"name="startDate" required>
+				    	<input type="date"name="startDate" value="${cases.startDate }"required>
 				    	</td>
 				    	
 				    	<td class="label">終了予定日</td>
 				    	<td>
-				    	<input type="date" name="plannedEndDate" required>
+				    	<input type="date" name="plannedEndDate" value="${cases.plannedEndDate }"required>
 			    	</td>
 		    	
 		    	</tr>
@@ -79,7 +79,7 @@
 		    	
 			    	<td class="label">予定工数(h)</td>
 			    	<td colspan="3">
-			    	<input type="number" name="actualHours" step="0.5" required>
+			    	<input type="number" name="actualHours" step="0.5" value="${cases.actualHours }"required>
 			    	</td>
 		    	
 		    	</tr>
@@ -88,7 +88,7 @@
 		    		<td colspan="4">
 		    		<label>案件説明</label><br>
 		    		
-		    		<textarea name="description" rows="6"cols="80"></textarea>
+		    		<textarea name="description" value="${cases.caseDescription }" rows="6"cols="80"></textarea>
 		    		
 		    		</td>
 		    	</tr>
@@ -96,9 +96,9 @@
 			
 		<div class="buttonArea">
 				
-		   	<input type="button"value="キャンセルする"onclick="history.back()">
+		   	<input type="button"value="キャンセル"onclick="history.back()">
 		   		
-		   	<input type="submit"value="登録する">
+		   	<input type="submit"value="登録">
 		</div>
 
 	</form>

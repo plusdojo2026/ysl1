@@ -26,12 +26,14 @@ public class TasksAction {
 	public String selectAll() throws UnsupportedEncodingException {
 		String page="/WEB-INF/jsp/Tasks.jsp";
 		
-		//Serviceを呼びだす
+		//TaskServiceを呼びだす
 		TasksService service = new TasksService();
+	
 		
 		//タスク一覧を表示
 		ArrayList<AllDTO> taskList = service.selectAll();
 		
+
 		//reqestスコープに格納する
 		request.setAttribute("taskList", taskList);
 		
