@@ -2,19 +2,19 @@ package service;
 
 import java.util.ArrayList;
 
-import dao.UserDAO;
+import dao.UsersDAO;
 import dto.UsersDTO;
 
 /**
  * 
- * UserServiceクラス。
+ * UsersServiceクラス。
  * <p>
  * TODO DAOとActionを繋がるサービス層。条件・結果を判断、処理を行う。
  * </p>
  *
  * @author YSL黄范航
  */
-public class UserService {
+public class UsersService {
 
 	/**
 	 * ログインのメソッド、ログインID・パスワードが入っているDTOで判断する
@@ -23,7 +23,7 @@ public class UserService {
 	 * @return UsersDTO
 	 */
 	public UsersDTO login(UsersDTO uDTO) {
-		UserDAO dao = new UserDAO();
+		UsersDAO dao = new UsersDAO();
 
 		if (dao.login(uDTO)) {
 			return dao.selectOne(uDTO);
@@ -40,7 +40,7 @@ public class UserService {
 	 */
 	public ArrayList<UsersDTO> selectAll() {
 
-		UserDAO dao = new UserDAO();
+		UsersDAO dao = new UsersDAO();
 		return new ArrayList<>(dao.selectAll());
 
 	}
@@ -53,7 +53,7 @@ public class UserService {
 	public UsersDTO select(UsersDTO uDTO) {
 		UsersDTO user = null;
 
-		UserDAO dao = new UserDAO();
+		UsersDAO dao = new UsersDAO();
 		user = dao.selectOne(uDTO);
 
 		return user;
@@ -68,7 +68,7 @@ public class UserService {
 	 * @return 件数int
 	 */
 	public int insert(UsersDTO uDTO) {
-		UserDAO dao = new UserDAO();
+		UsersDAO dao = new UsersDAO();
 		int ans = 0;
 		if (dao.check(uDTO)) {
 			ans = dao.insert(uDTO);
@@ -85,7 +85,7 @@ public class UserService {
 	 * @return 件数int
 	 */
 	public int update(UsersDTO uDTO) {
-		UserDAO dao = new UserDAO();
+		UsersDAO dao = new UsersDAO();
 		int ans = 0;
 		ans = dao.update(uDTO);
 		return ans;
@@ -99,7 +99,7 @@ public class UserService {
 	 * @return 件数int 0の場合は失敗
 	 */
 	public int delete(String id) {
-		UserDAO dao = new UserDAO();
+		UsersDAO dao = new UsersDAO();
 		int ans = 0;
 		ans = dao.delete(Integer.parseInt(id));
 		return ans;

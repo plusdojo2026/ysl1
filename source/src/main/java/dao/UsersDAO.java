@@ -10,7 +10,7 @@ import dao.utils.DBMapper;
 import dto.UsersDTO;
 
 /**
- * UsersDTOテーブルを操作するDAOクラス。
+ * Usersテーブルを操作するDAOクラス。
  * <p>
  * UsersDTO情報の検索、条件検索、登録などの
  * データベース操作を行う。
@@ -24,16 +24,16 @@ import dto.UsersDTO;
  *
  * @author YSL黄范航
  */
-public class UserDAO extends BaseDAO<UsersDTO> {
+public class UsersDAO extends BaseDAO<UsersDTO> {
 
 	/**
-	 * UserDAOのコンストラクタ。
+	 * UsersDAOのコンストラクタ。
 	 * <p>
 	 * 親クラスBaseDAOにUsersDTOクラスを渡し、
 	 * ResultSetからUsersDTOオブジェクトへ変換できるようにする。
 	 * </p>
 	 */
-	public UserDAO() {
+	public UsersDAO() {
 		super(UsersDTO.class);
 	}
 
