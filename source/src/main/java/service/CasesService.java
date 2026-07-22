@@ -32,38 +32,42 @@ public class CasesService {
 	}
 	
 	//案件一覧の初期画面の表示のメソッド
-			public ArrayList<AllDTO> intiCases(aDto AllDTO) {
+			public ArrayList<AllDTO> initCases() {
 				//一旦空にする
-				ArrayList<AllDTO> casesCard = null;
+				ArrayList<AllDTO> casesList = null;
+				
+				
 				CasesDAO dao = new CasesDAO(super.conn);
 				
 				try {
-					casesCard = dao.selectAll();
+					casesList = dao.initCases();
 				} catch (SQLException e) {
 					System.out.println("SQL文おかしいよ");
-					e.printStackTrace();
-				}
+					e.printStackTrace();//エラーの説明をしてくれる
+				}finally {
 				super.close();
-				
-				return casesCard;
+				}
+				return casesList;
 
 			}
-	//案件一覧の検索メソッド		
-			public ArrayList<AllDTO> intiCases(aDto AllDTO) {
-				//一旦空にする
-				ArrayList<AllDTO> casesCard = null;
-				CasesDAO dao = new CasesDAO(super.conn);
-				
-				try {
-					casesCard = dao.selectAll();
-				} catch (SQLException e) {
-					System.out.println("SQL文おかしいよ");
-					e.printStackTrace();
-				}
-				super.close();
-				
-				return casesCard;
-			}
+			
+			
+//	//案件一覧の検索メソッド	ジェークエリーを使うから使わなかった	
+//			public ArrayList<AllDTO> select() {
+//				//一旦空にする
+//				ArrayList<AllDTO> casesCard = null;
+//				CasesDAO dao = new CasesDAO(super.conn);
+//				
+//				try {
+//					casesCard = dao.select();
+//				} catch (SQLException e) {
+//					System.out.println("SQL文おかしいよ");
+//					e.printStackTrace();
+//				}
+//				super.close();
+//				
+//				return casesList;
+//			}
 	//新規案件登録のdoGetメソッド
 			public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
 				//一旦空にする

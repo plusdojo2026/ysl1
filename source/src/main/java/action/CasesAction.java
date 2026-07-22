@@ -34,35 +34,39 @@ public class CasesAction {
 	}
 	
 	//案件一覧の初期画面の表示のメソッド
-		public String initicases() throws UnsupportedEncodingException{
+		public String initCases() throws UnsupportedEncodingException{
 			String page = "/WEB-INF/jsp/cases.jsp";
 			
+			//Serviceを呼びだす
 			CasesService service = new CasesService();
-			ArrayList<AllDTO> casesList = service.intiCases();
-			
+			//初期の案件一覧を表示
+			ArrayList<AllDTO> casesList = service.initCases();
+			//reqestスコープに格納する
 			request.setAttribute("casesList", casesList);
+			
+			return page;
 			}
 	
-	//案件一覧の検索メソッド
-		public String select() throws UnsupportedEncodingException{
-			String page="/WEB-INF/jsp/cases.jsp";
-			
-			//値の取得
-			request.setCharacterEncoding("UTF-8");		
-			String id = request.getParameter("id");
-			String caseName = request.getParameter("case_name");
-			String caseCode = request.getParameter("case_code");
-			String customerName = request.getParameter("customer_name");
-			String caseStatus = request.getParameter("case_status");
-			String casePriority = request.getParameter("case_priority");
-			
-			CasesService service = new CasesService();
-			//serviceに処理を依頼　真似しただけなので書き直す
-			boolean ans = service.select(id);
-			
-			ArrayList<AllDTO> casesCard = service.selectAll();
-			request.setAttribute("casesCard", casesCard);
-		}
+//	//案件一覧の検索メソッド　ジェークエリーを使うから使わなかった
+//		public String select() throws UnsupportedEncodingException{
+//			String page="/WEB-INF/jsp/cases.jsp";
+//			
+//			//値の取得
+//			request.setCharacterEncoding("UTF-8");		
+//			String id = request.getParameter("id");
+//			String caseName = request.getParameter("case_name");
+//			String caseCode = request.getParameter("case_code");
+//			String customerName = request.getParameter("customer_name");
+//			String caseStatus = request.getParameter("case_status");
+//			String casePriority = request.getParameter("case_priority");
+//			
+//			CasesService service = new CasesService();
+//			//serviceに処理を依頼　真似しただけなので書き直す
+//			boolean ans = service.select();
+//			
+//			ArrayList<AllDTO> casesList = service.select();
+//			request.setAttribute("casesList", casesList);
+//		}
 		
 		
 		//新規案件登録のdoGetメソッド（有効か無効かはまだ見分けられない）
