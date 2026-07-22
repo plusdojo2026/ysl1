@@ -15,7 +15,7 @@ public class WorksDTO implements Serializable{
 	
 	
 	//コンストラクタ
-	public WorksDTO(int id, int userId, int taskId, String workDate, BigDecimal actualHours, String workDescription,int progressRates) {
+	public WorksDTO(int id, int userId, int taskId, String workDate, BigDecimal actualHours, String workDescription,int progressRate) {
 		super();
 		this.id = id;
 		this.userId = userId;

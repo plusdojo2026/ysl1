@@ -1,5 +1,7 @@
 package dto;
 
+import java.math.BigDecimal;
+
 /**
  * AllDTO オールオブジェクトのJAVAbeans
  * 未定義の項目のみ以下に記載する
@@ -23,7 +25,7 @@ public class AllDTO {
 	private boolean active;
 	private String created_at;
 	private String update_at;
-	
+
 	//案件
 	private int caseId;
 	private String caseName;
@@ -35,11 +37,12 @@ public class AllDTO {
 	private String startDate;
 	private String plannedEndDate;
 	private String caseDescription;
-	private int casePlannedHours;
-	private int caseSum;
-	private int caseNow;
-	private double actualHoursSum;
-	
+	private int casePlannedHours;      //案件予定工数
+	private int caseSum;               //総タスク数
+	private int caseNow;               //完了タスク数
+	private BigDecimal actualHoursSum; //実績工数の合計
+	private int caseProgressRate;      //案件進捗バー（完了タスク/総タスク）
+
 	//タスク
 	private int taskId;
 	private String taskName;
@@ -47,18 +50,30 @@ public class AllDTO {
 	private String taskStatus;
 	private String taskPriority;
 	private String deadline;
-	private int progressRate;
-	private double taskPlannedHours;
+	private int taskProgressRate;        //タスク進捗バー（任意で設定）
+	private BigDecimal taskPlannedHours; //タスク予定工数
 	private String taskDescription;
 
 	//工数
 	private int workId;
 	private String workDate;
-	private String actualHours;
+	private BigDecimal actualHours;
 	private String workDescription;
+
+	//ダッシュボード
+	private String inProgressCase; //進行中案件
+	private String assignedTask; //自分の担当タスク
+	private String deadlineNumber; //期限超過タスク 
+	
+	//月次集計
+	private BigDecimal monthlyTotalHours; //月合計工数
+	private int caseCount;               //集計案件数
+	private int memberCount;             //稼働メンバー数
 	
 	
+
 	//--------------------------------コンストラクタ----------------------------------
+
 	public AllDTO() {
 		super();
 	}
@@ -67,9 +82,10 @@ public class AllDTO {
 			boolean active, String created_at, String update_at, int caseId, String caseName, int caseCode,
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
 			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
-			double actualHoursSum, int taskId, String taskName, int managerId, String taskStatus, String taskPriority,
-			String deadline, int progressRate, double taskPlannedHours, String taskDescription, int workId,
-			String workDate, String actualHours, String workDescription) {
+			BigDecimal actualHoursSum, int taskId, String taskName, int managerId, String taskStatus,
+			String taskPriority, String deadline, int taskProgressRate, BigDecimal taskPlannedHours, String taskDescription,
+			int workId, String workDate, BigDecimal actualHours, String workDescription, String inProgressCase,
+			String assignedTask, String deadlineNumber) {
 		super();
 		this.userId = userId;
 		this.loginId = loginId;
@@ -100,20 +116,34 @@ public class AllDTO {
 		this.taskStatus = taskStatus;
 		this.taskPriority = taskPriority;
 		this.deadline = deadline;
-		this.progressRate = progressRate;
+		this.taskProgressRate = taskProgressRate;
 		this.taskPlannedHours = taskPlannedHours;
 		this.taskDescription = taskDescription;
 		this.workId = workId;
 		this.workDate = workDate;
 		this.actualHours = actualHours;
 		this.workDescription = workDescription;
+		this.inProgressCase = inProgressCase;
+		this.assignedTask = assignedTask;
+		this.deadlineNumber = deadlineNumber;
 	}
+	
+	
+	
+	public AllDTO(int caseProgressRate, BigDecimal monthlyTotalHours, int caseCount, int memberCount) {
+		super();
+		this.caseProgressRate = caseProgressRate;
+		this.monthlyTotalHours = monthlyTotalHours;
+		this.caseCount = caseCount;
+		this.memberCount = memberCount;
+	}
+
+	//------------------------------getter setter--------------------------------------
 
 	public int getUserId() {
 		return userId;
-	}	
+	}
 
-	//------------------------------getter setter--------------------------------------
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -286,11 +316,11 @@ public class AllDTO {
 		this.caseNow = caseNow;
 	}
 
-	public double getActualHoursSum() {
+	public BigDecimal getActualHoursSum() {
 		return actualHoursSum;
 	}
 
-	public void setActualHoursSum(double actualHoursSum) {
+	public void setActualHoursSum(BigDecimal actualHoursSum) {
 		this.actualHoursSum = actualHoursSum;
 	}
 
@@ -342,19 +372,19 @@ public class AllDTO {
 		this.deadline = deadline;
 	}
 
-	public int getProgressRate() {
-		return progressRate;
+	public int getTaskProgressRate() {
+		return taskProgressRate;
 	}
 
-	public void setProgressRate(int progressRate) {
-		this.progressRate = progressRate;
+	public void setTaskProgressRate(int taskProgressRate) {
+		this.taskProgressRate = taskProgressRate;
 	}
 
-	public double getTaskPlannedHours() {
+	public BigDecimal getTaskPlannedHours() {
 		return taskPlannedHours;
 	}
 
-	public void setTaskPlannedHours(double taskPlannedHours) {
+	public void setTaskPlannedHours(BigDecimal taskPlannedHours) {
 		this.taskPlannedHours = taskPlannedHours;
 	}
 
@@ -382,11 +412,11 @@ public class AllDTO {
 		this.workDate = workDate;
 	}
 
-	public String getActualHours() {
+	public BigDecimal getActualHours() {
 		return actualHours;
 	}
 
-	public void setActualHours(String actualHours) {
+	public void setActualHours(BigDecimal actualHours) {
 		this.actualHours = actualHours;
 	}
 
@@ -397,7 +427,63 @@ public class AllDTO {
 	public void setWorkDescription(String workDescription) {
 		this.workDescription = workDescription;
 	}
+
+	public String getInProgressCase() {
+		return inProgressCase;
+	}
+
+	public void setInProgressCase(String inProgressCase) {
+		this.inProgressCase = inProgressCase;
+	}
+
+	public String getAssignedTask() {
+		return assignedTask;
+	}
+
+	public void setAssignedTask(String assignedTask) {
+		this.assignedTask = assignedTask;
+	}
+
+	public String getDeadlineNumber() {
+		return deadlineNumber;
+	}
+
+	public void setDeadlineNumber(String deadlineNumber) {
+		this.deadlineNumber = deadlineNumber;
+	}
+
+	public int getCaseProgressRate() {
+		return caseProgressRate;
+	}
+
+	public void setCaseProgressRate(int caseProgressRate) {
+		this.caseProgressRate = caseProgressRate;
+	}
+
+	public BigDecimal getMonthlyTotalHours() {
+		return monthlyTotalHours;
+	}
+
+	public void setMonthlyTotalHours(BigDecimal monthlyTotalHours) {
+		this.monthlyTotalHours = monthlyTotalHours;
+	}
+
+	public int getCaseCount() {
+		return caseCount;
+	}
+
+	public void setCaseCount(int caseCount) {
+		this.caseCount = caseCount;
+	}
+
+	public int getMemberCount() {
+		return memberCount;
+	}
+
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
+	}
 	
 	
-	
+
 }
