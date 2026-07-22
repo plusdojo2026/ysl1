@@ -24,16 +24,16 @@ import dto.UsersDTO;
  *
  * @author YSL黄范航
  */
-public class UserDAO extends BaseDAO<UsersDTO> {
+public class UsersDAO extends BaseDAO<UsersDTO> {
 
 	/**
-	 * UserDAOのコンストラクタ。
+	 * UsersDAOのコンストラクタ。
 	 * <p>
 	 * 親クラスBaseDAOにUsersDTOクラスを渡し、
 	 * ResultSetからUsersDTOオブジェクトへ変換できるようにする。
 	 * </p>
 	 */
-	public UserDAO() {
+	public UsersDAO() {
 		super(UsersDTO.class);
 	}
 
