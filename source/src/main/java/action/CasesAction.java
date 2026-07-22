@@ -107,63 +107,103 @@ public class CasesAction {
 	//			request.setAttribute("casesList", casesList);
 	//		}
 
-	//新規案件登録のdoGetメソッド（有効か無効かはまだ見分けられない）
-	public String casesRegist() throws UnsupportedEncodingException {
-		String page = "/WEB-INF/jsp/cases_regist.jsp";
-		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
-		String userName = request.getParameter("pm_id");
+//	//新規案件登録のdoGetメソッド（有効か無効かはまだ見分けられない）
+//	public String casesRegist() throws UnsupportedEncodingException {
+//		String page = "/WEB-INF/jsp/cases_regist.jsp";
+//		request.setCharacterEncoding("UTF-8");
+//		String id = request.getParameter("id");
+//		String userName = request.getParameter("pm_id");
+//
+//		CasesService service = new CasesService();
+//		//serviceに処理を依頼　真似しただけなので書き直す
+//		boolean ans = service.select(id);
+//
+//		ArrayList<CasesDTO> casesList = service.selectAll();
+//		request.setAttribute("casesList", casesList);
+//	}
 
-		CasesService service = new CasesService();
-		//serviceに処理を依頼　真似しただけなので書き直す
-		boolean ans = service.select(id);
-
-		ArrayList<CasesDTO> casesList = service.selectAll();
-		request.setAttribute("casesList", casesList);
-	}
-
-	//新規案件登録のdoPost,insertメソッド
+	//新規案件登録のinsertメソッド
 	public String insert() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
 
 		//値の取得
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		//String id = request.getParameter("id");登録すると自動でつくため。
 		String caseName = request.getParameter("case_name");
-		String caseCode = request.getParameter("case_code");
+		int caseCode = Integer.parseInt(request.getParameter("case_code"));
 		String customerName = request.getParameter("customer_name");
+		int pmId=Integer.parseInt(request.getParameter("pm_id"));//担当PM
 		String caseStatus = request.getParameter("case_status");
 		String casePriority = request.getParameter("case_priority");
 		String startDate = request.getParameter("start_date");
 		String plannedEndDate = request.getParameter("planned_end_date");
-		String casePlannedHours = request.getParameter("case_planned_hours");
+		int casePlannedHours = Integer.parseInt(request.getParameter("case_planned_hours"));
 		String caseDescription = request.getParameter("case_description");
+		
+		CasesDTO dto=new CasesDTO(0,caseName,caseCode,customerName,casePriority,pmId,caseStatus,
+				startDate,plannedEndDate,caseDescription,casePlannedHours);
+		
+		CasesService service =new CasesService();
+		//serviceに処理を依頼する
+		int ans=service.insert(dto);
+		//ちゃんと登録できたか確認
+				if(ans == 1) {
+					request.setAttribute("msg", "※の登録完了！");
+				}else {
+					request.setAttribute("msg", "※登録失敗！");
+				}
+				//ユーザー情報を全て取得する,
+				//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
+				ArrayList<CasesDTO> casesList = service.selectAll();
+				request.setAttribute("casesList", casesList);
+				
+				return page;
+			}
+	
 
-	}
+//	//案件編集のdoGetメソッド
+//	public String casesEdit() throws UnsupportedEncodingException {
+//		String page = "/WEB-INF/jsp/cases_regist.jsp";
+//
+//		//値の取得	すでに入っているデータをとってくる
+//
+//	}
 
-	//案件編集のdoGetメソッド
-	public String casesEdit() throws UnsupportedEncodingException {
-		String page = "/WEB-INF/jsp/cases_regist.jsp";
-
-		//値の取得	すでに入っているデータをとってくる
-
-	}
-
-	//案件編集のdoPostメソッド
+	//案件編集のupdateメソッド
 	public String update() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
 
 		//値の取得
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		int id = Integer.parseInt(request.getParameter("id"));//編集だとidが必要かな。
 		String caseName = request.getParameter("case_name");
-		String caseCode = request.getParameter("case_code");
+		int caseCode = Integer.parseInt(request.getParameter("case_code"));
 		String customerName = request.getParameter("customer_name");
+		int pmId=Integer.parseInt(request.getParameter("pm_id"));//担当PM
 		String caseStatus = request.getParameter("case_status");
 		String casePriority = request.getParameter("case_priority");
 		String startDate = request.getParameter("start_date");
 		String plannedEndDate = request.getParameter("planned_end_date");
-		String casePlannedHours = request.getParameter("case_planned_hours");
+		int casePlannedHours = Integer.parseInt(request.getParameter("case_planned_hours"));
 		String caseDescription = request.getParameter("case_description");
-	}
+		
+		CasesDTO dto=new CasesDTO(id,caseName,caseCode,customerName,casePriority,pmId,caseStatus,
+				startDate,plannedEndDate,caseDescription,casePlannedHours);
+		
+		CasesService service =new CasesService();
+		//serviceに処理を依頼する
+		int ans=service.update(dto);
+		//ちゃんと登録できたか確認
+				if(ans == 1) {
+					request.setAttribute("msg", "※の登録完了！");
+				}else {
+					request.setAttribute("msg", "※登録失敗！");
+				}
+				//ユーザー情報を全て取得する
+				//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
+				ArrayList<CasesDTO> casesList = service.selectAll();
+				request.setAttribute("casesList", casesList);
+				
+				return page;
+			}
 }

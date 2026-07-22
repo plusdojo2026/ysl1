@@ -156,70 +156,71 @@ public class CasesService extends DBAccess {
 	//				return casesList;
 	//			}
 	//新規案件登録のdoGetメソッド
-	public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
-		//一旦空にする
-		ArrayList<CasesDTO> casesList = null;
-		CasesDAO dao = new CasesDAO(super.conn);
+//	public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
+//		//一旦空にする
+//		ArrayList<CasesDTO> casesList = null;
+//		CasesDAO dao = new CasesDAO(super.conn);
+//
+//		try {
+//			casesList = dao.insertAll();
+//		} catch (SQLException e) {
+//			System.out.println("SQL文おかしいよ");
+//			e.printStackTrace();
+//		}
+//		super.close();
+//
+//		return casesList;
+//	}
 
+	//新規案件登録のinsertメソッド
+	public int insert(CasesDTO dto) {
+		//一旦空にする
+		CasesDAO dao = new CasesDAO(super.conn);
+		
+		int ans=0;
 		try {
-			casesList = dao.insertAll();
+			ans = dao.insert(dto);
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();
 		}
 		super.close();
 
-		return casesList;
+		return ans;
 	}
 
-	//新規案件登録のdoPost,insertメソッド
-	public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
-		//一旦空にする
-		ArrayList<CasesDTO> casesList = null;
-		CasesDAO dao = new CasesDAO(super.conn);
 
+	//案件編集のupdateメソッド
+	public int update(CasesDTO dto) {
+		//一旦空にする
+		CasesDAO dao = new CasesDAO(super.conn);
+		
+		int ans=0;
 		try {
-			casesList = dao.insertAll();
+			ans = dao.update(dto);
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();
 		}
 		super.close();
 
-		return casesList;
+		return ans;
 	}
-
-	//案件編集のdoGetメソッド
-	public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
-		//一旦空にする
-		ArrayList<CasesDTO> casesList = null;
-		CasesDAO dao = new CasesDAO(super.conn);
-
-		try {
-			casesList = dao.insertAll();
-		} catch (SQLException e) {
-			System.out.println("SQL文おかしいよ");
-			e.printStackTrace();
+	
+	//全ての案件を取得するメソッド
+		public ArrayList<CasesDTO> selectAll() {
+			ArrayList<CasesDTO> casesList = null;
+			
+			CasesDAO dao = new CasesDAO(super.conn);
+			try {
+				casesList = dao.selectAll();
+			} catch (SQLException e) {
+				System.out.println("SQL文おかしいよ");
+				e.printStackTrace();
+			}
+			super.close();
+			
+			return casesList ;
+			
 		}
-		super.close();
-
-		return casesList;
-	}
-
-	//案件編集のdoPostメソッド
-	public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
-		//一旦空にする
-		ArrayList<CasesDTO> casesList = null;
-		CasesDAO dao = new CasesDAO(super.conn);
-
-		try {
-			casesList = dao.insertAll();
-		} catch (SQLException e) {
-			System.out.println("SQL文おかしいよ");
-			e.printStackTrace();
-		}
-		super.close();
-
-		return casesList;
-	}
 }
