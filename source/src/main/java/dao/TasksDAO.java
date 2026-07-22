@@ -73,7 +73,7 @@ public class TasksDAO {
 			dto.setTaskStatus(rs.getString("task_status"));
 			dto.setTaskPriority(rs.getString("task_priority"));	
 			dto.setDeadline(rs.getString("deadline"));
-			dto.setProgressRate(rs.getInt("progress_rate"));
+			dto.setTaskProgressRate(rs.getInt("progress_rate"));
 			dto.setActualHours(rs.getBigDecimal("actual_hours"));
 			dto.setTaskPlannedHours(rs.getBigDecimal("task_planned_hours"));
 

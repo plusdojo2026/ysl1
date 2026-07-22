@@ -26,9 +26,9 @@
 	<label for="caseName">案件名</label>
 		<select id="caseName">
 			<option value="">すべて</option>
-			<c:forEach var="e" items="${caseNameList}">
-				<!-- casename　に "e" という名前をつけたよ-->
-				<option value="${e}">${e}</option>	
+			<c:forEach var="e" items="${taskList}">
+				<!-- casename に "e" という名前をつけたよ-->
+				<option value="${e.caseName}">${e.caseName}</option>	
 				<!-- valueはシステムに送る値 ${e}は画面に表示するものを示す-->
 			</c:forEach>
 		</select>
@@ -47,14 +47,14 @@
 	<label for="managerId">担当者</label>
 		<select id="managerId">
 			<option value="">すべて</option>
-			<c:forEach var="e" items="${managerList}">
-				<option value="${e}">${e}</option>
+			<c:forEach var="e" items="${taskList}">
+				<option value="${e.userName}">${e.userName}</option>
 			</c:forEach>
 		</select>
 </div>
 
 <!-- タスクの一覧表示 -->
-<table class="table" id="tasks_table" border="1">	
+<table class="table" id="tasksTable" border="1">	
 	<thead>		<!-- thead:テーブルの見出しを強調表示するもの -->
 			<tr>
 				<th>案件名</th>
@@ -71,10 +71,14 @@
 
 	<tbody>
 	<c:forEach var="e" items="${taskList}">
-		<tr>
+		<tr 
+		data-manager="${e.userName}"
+		data-case="${e.caseName}"
+		data-status="${e.taskStatus}">
+		
 			<td>${e.caseName}</td>
 			<td>${e.taskName}</td>
-			<td>${e.managerId}</td>
+			<td>${e.userName}</td>
 			<td>${e.taskStatus}</td>
 			<td>${e.taskPriority}</td>
 			<td>${e.deadline}</td>
@@ -95,7 +99,6 @@
 	</c:forEach>	
 	</tbody>
 </table>
-</div>
 </main>
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>

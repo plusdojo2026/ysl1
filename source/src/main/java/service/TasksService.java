@@ -25,7 +25,10 @@ public class TasksService extends DBAccess{
 		ArrayList<AllDTO> taskList = null;
 		
 		TasksDAO dao = new TasksDAO(super.conn);
+	
+		
 		try {
+			
 			taskList = dao.selectAll();
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
@@ -36,4 +39,6 @@ public class TasksService extends DBAccess{
 		
 		return taskList ;	
 	}
+	
+	
 }
