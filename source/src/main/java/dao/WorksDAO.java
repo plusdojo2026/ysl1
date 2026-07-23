@@ -36,7 +36,7 @@ public Connection conn = null;
 				pStmt.setBigDecimal(4, actualHours);
 				pStmt.setString(5, workDescription);
 
-				// SELECT文を実行し、結果表を取得する
+				// INSERT文を実行
 				ans = pStmt.executeUpdate();
 				
 				
@@ -45,7 +45,7 @@ public Connection conn = null;
 			}
 				
 	//工数を削除するメソッド---------------------------------------
-				public int worksDelete(String id) throws SQLException{
+				public int worksDelete(int id) throws SQLException{
 					int ans = 0;
 					// SQL文を準備する
 					String sql = "DELETE FROM works WHERE id=?";
@@ -56,10 +56,10 @@ public Connection conn = null;
 					
 					
 					// SQL文を完成させる
-					pStmt.setString(1,id);
+					pStmt.setInt(1,id);
 
 					
-					// SELECT文を実行し、結果表を取得する
+					// DELETE文を実行
 					ans = pStmt.executeUpdate();
 					
 					

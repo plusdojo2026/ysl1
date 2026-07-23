@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.UsersAction;
+import action.WorksAction;
 import dto.UsersDTO;
 
 /**
@@ -72,14 +73,17 @@ public class Controller extends HttpServlet {
 
 				}
 			}
-
-			//		ダッシュボード画面 ------------------------------
-			//		else if (pageId.equals("nav")) {
-			//			if (buttonId.equals("ダッシュボード")) {
-			//				HomeAction hAction = new HomeAction(request);
-			//				//ダッシュボード画面表示[]
-			//				page = hAction.selectAll();
-			//
+		
+			
+			
+			
+//					ダッシュボード画面 ------------------------------
+//					else if (pageId.equals("nav")) {
+//						if (buttonId.equals("ダッシュボード")) {
+//							HomeAction hAction = new HomeAction(request);
+//							//ダッシュボード画面表示[]
+//							page = hAction.selectAll();
+//			
 			//			} else if (buttonId.equals("案件")) {
 			//				CasesAction cAction = new CasesAction(request);
 			//				//案件一覧画面表示[]
@@ -275,17 +279,20 @@ public class Controller extends HttpServlet {
 			//				page = wAction.insert();
 			//			}
 			//		}
-			//			//月次集計画面 ------------------------------------
-			//		 else if (pageId.equals("M001")) {
-			//			WorksAction wAction = new WorksAction(request);
-			//			if (buttonId.equals("集計")) {
-			//				//選択した月の情報を表示
-			//				page = wAction.selectByMonth();
-			//			} else if (buttonId.equals("CSV出力")) {
-			//				//これから実装(現在は仮でinitializeしときます)
-			//				page = wAction.initialize();
-			//			}
-			//					}
+						//月次集計画面 ------------------------------------
+					 else if (pageId.equals("M001")) {
+						WorksAction wAction = new WorksAction(request);
+						if (buttonId.equals("集計")) {
+							//選択した月の情報を表示
+							page = wAction.initialize();
+						} else if (buttonId.equals("工数一覧")) {
+							page = wAction.selectByMonth();
+						} 
+//							else if (buttonId.equals("CSV出力")) {
+//							//これから実装(現在は仮でcsvとしときます)
+//							page = wAction.csv();
+//						}
+								}
 		}
 		//pageに格納したリンク先にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);

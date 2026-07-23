@@ -27,7 +27,7 @@ public class WorksService extends DBAccess{
 		}
 		
 	//工数を削除するメソッド---------------------------------------
-		public int worksDelete(String id) {
+		public int worksDelete(int id) {
 			//DAOに処理を任せる
 			WorksDAO dao = new WorksDAO(super.conn);
 			int ans=0;
@@ -95,7 +95,7 @@ public class WorksService extends DBAccess{
 		
 		
 		
-	//指定した月の工数ログ（月次集計画面 ）---------------------------------------
+	//指定した月の工数ログ（月次集計画面）---------------------------------------
 		public ArrayList<AllDTO> selectByMonth(String month){
 			ArrayList<AllDTO> workList = null;
 			WorksDAO dao = new WorksDAO(super.conn);
