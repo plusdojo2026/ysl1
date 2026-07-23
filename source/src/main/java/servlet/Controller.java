@@ -52,7 +52,88 @@ public class Controller extends HttpServlet {
 		//何もわたってきて無ければログイン画面へ
 		if (pageId == null || usersDTO == null) {
 			page = "/WEB-INF/jsp/login.jsp";
-		}
+			
+		//ヘッダー
+		}else if (pageId.equals("header")) {
+			if (buttonId.equals("ログアウト")) {
+				//ユーザーのセッション情報を破棄
+				session = request.getSession();
+				session.invalidate();
+				//ログイン画面のリンクを渡す
+				page = "/WEB-INF/jsp/login.jsp";
+
+			} else if (buttonId.equals("パスワード変更")) {
+				//パスワード変更画面へ遷移
+				page = "/WEB-INF/jsp/resetPassword.jsp";
+
+			} else if (buttonId.equals("トップへ戻る")) {
+				//ダッシュボード画面へ遷移
+				page = "/WEB-INF/jsp/home.jsp";
+
+			}
+
+		//メンバー一覧画面 --------------------------------
+		} else if (pageId.equals("U003")) {
+			UsersAction uAction = new UsersAction(request);
+			if (buttonId.equals("新規登録")) {
+				//新規登録画面へ遷移
+				page = "/WEB-INF/jsp/user_regist.jsp";
+
+			} else if (buttonId.equals("編集")) {
+				//編集画面へ遷移
+				page = "/WEB-INF/jsp/user_update.jsp";
+			}
+
+			//ダッシュボード画面 ------------------------------
+		} else if (pageId.equals("nav")) {
+
+			if (buttonId.equals("ダッシュボード")) {
+				HomeAction hAction = new HomeAction(request);
+				//ダッシュボード画面表示[]
+				page = hAction.selectAll();
+
+			} else if (buttonId.equals("案件")) {
+				CasesAction cAction = new CasesAction(request);
+				//案件一覧画面表示[]
+				page = cAction.initialize();
+
+			} else if (buttonId.equals("タスク管理")) {
+				TasksAction tAction = new TasksAction(request);
+				//タスク一覧画面表示[]
+				page = tAction.selectAll();
+
+			} else if (buttonId.equals("月次集計")) {
+				WorksAction wAction = new WorksAction(request);
+				//月次集計画面表示[]
+				page = wAction.initialize();
+
+			} else if (buttonId.equals("メンバー管理")) {
+				UsersAction uAction = new UsersAction(request);
+				//メンバー一覧画面表示[]
+				page = uAction.selectAll();
+
+			}
+
+			//案件一覧画面 -----------------------------------
+		} else if (pageId.equals("C001")) {
+			CasesAction cAction = new CasesAction(request);
+			if (buttonId.equals("新規登録")) {
+				//新規登録画面表示[]
+				page = cAction.casesRegist();
+			}
+			
+			//案件詳細画面 ------------------------------------
+		} else if (pageId.equals("C003")) {
+			if (buttonId.equals("タスク追加")) {
+				TasksAction tAction = new TasksAction(request);
+				//タスク登録画面表示[]
+				page = tAction.functions();
+
+			} else if (buttonId.equals("工数入力")) {
+				//工数登録画面へ遷移
+				page = "/WEB-INF/jsp/works_regist.jsp";
+
+			}
 
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
