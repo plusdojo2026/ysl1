@@ -30,7 +30,7 @@ public class RootServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/jsp/resetPassword.jsp")
+		request.getRequestDispatcher("/WEB-INF/jsp/user_update.jsp")
 				.forward(request, response);
 
 	}

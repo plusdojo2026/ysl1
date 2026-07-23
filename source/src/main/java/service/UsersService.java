@@ -67,9 +67,9 @@ public class UsersService {
 	 * @param uDTO
 	 * @return 件数int
 	 */
-	public int insert(UsersDTO uDTO) {
+	public boolean insert(UsersDTO uDTO) {
 		UsersDAO dao = new UsersDAO();
-		int ans = 0;
+		boolean ans = false;
 		if (dao.check(uDTO)) {
 			ans = dao.insert(uDTO);
 		}
@@ -84,9 +84,9 @@ public class UsersService {
 	 * @param uDTO
 	 * @return 件数int
 	 */
-	public int update(UsersDTO uDTO) {
+	public boolean update(UsersDTO uDTO) {
 		UsersDAO dao = new UsersDAO();
-		int ans = 0;
+		boolean ans = false;
 		ans = dao.update(uDTO);
 		return ans;
 	}
@@ -98,9 +98,9 @@ public class UsersService {
 	 * @param id
 	 * @return 件数int 0の場合は失敗
 	 */
-	public int delete(String id) {
+	public boolean delete(String id) {
 		UsersDAO dao = new UsersDAO();
-		int ans = 0;
+		boolean ans = false;
 		ans = dao.delete(Integer.parseInt(id));
 		return ans;
 	}

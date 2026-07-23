@@ -46,8 +46,8 @@
     </c:if>
     <!-- 送信ボタン: フォームを送信 -->
     <input type="submit" name="buttonId" value="パスワードをリセット" data-confirm="この内容でパスワードをリセットしますか？">
-    <input type="button" class="js-form-reset" data-confirm="フォームをリセットしますか？" value="リセット">
-    <button type="button" class="js-back-page">戻る</button>
+    <input type="button" class="js-form-reset" data-confirm="フォームをリセットしますか？" value="リセット" name="buttonId">
+    <button type="button" class="js-back-page" name="buttonId" value="戻る">戻る</button>
 </form>
 </main>
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>

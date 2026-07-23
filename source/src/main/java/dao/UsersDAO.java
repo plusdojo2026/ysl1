@@ -227,7 +227,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 	 * @param user 登録対象のUsersDTOオブジェクト
 	 * @return 登録された件数。通常は1
 	 */
-	public int insert(UsersDTO user) {
+	public boolean insert(UsersDTO user) {
 
 		// 登録SQL
 		String sql = "INSERT INTO users (\n"
@@ -241,7 +241,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 
 		// 更新処理を実行
 		return executeUpdate(sql, user.getLoginId(), user.getLoginPw(), user.getUserName(), user.getMailAddress(),
-				user.getAuthority(), true);
+				user.getAuthority(), true) > 0;
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 	 * @param user 登録対象のUsersDTOオブジェクト
 	 * @return 登録された件数。通常は1
 	 */
-	public int update(UsersDTO user) {
+	public boolean update(UsersDTO user) {
 
 		// 登録SQL
 		String sql = "UPDATE users " +
@@ -258,7 +258,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 				"WHERE id=?";
 		// 更新処理を実行
 		return executeUpdate(sql, user.getLoginId(), user.getLoginPw(), user.getUserName(), user.getMailAddress(),
-				user.getAuthority(), user.getActive(), user.getUserId());
+				user.getAuthority(), user.getActive(), user.getUserId()) > 0;
 	}
 
 	/**
@@ -267,12 +267,12 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 	 * @param 削除したいUserのID
 	 * @return 削除された件数。通常は1
 	 */
-	public int delete(int userId) {
+	public boolean delete(int userId) {
 
 		// 登録SQL
 		String sql = "DELETE FROM users WHERE id = ?";
 
 		// 更新処理を実行
-		return executeUpdate(sql, userId);
+		return executeUpdate(sql, userId) > 0;
 	}
 }
