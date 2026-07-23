@@ -17,7 +17,7 @@ import action.UsersAction;
 import action.WorksAction;
 import dto.UsersDTO;
 
-/*
+/**
  * -- コントローラ --
  * ボタン押下時など各画面の遷移を処理
  * ページID、ボタンIDは外部設計書の項目定義書を参照
@@ -28,10 +28,8 @@ import dto.UsersDTO;
  * 
  * page = 各action実行における返り値（遷移先jspファイルのリンク）を格納
  * 
- * !未実装
- * ・[確認]基本的な画面遷移や処理のダブルチェック
- * ・未ログイン状態で特定のページに対する直接アクセス時、ログイン画面に戻す
- * ・（コメントの整理）
+ * 
+ * @author haruto.tanaka
  */
 
 @WebServlet("/Controller")
@@ -148,27 +146,9 @@ public class Controller extends HttpServlet {
 			request.setAttribute("message", "buttonIdは存在していない！");
 		}
 
-		//ヘッダー ---------------------------------------
-		if (pageId.equals("header")) {
-			if (buttonId.equals("ログアウト")) {
-				//ユーザーのセッション情報を破棄
-				HttpSession session = request.getSession();
-				session.invalidate();
-				//ログイン画面のリンクを渡す
-				page = "/WEB-INF/jsp/login.jsp";
-
-			} else if (buttonId.equals("パスワード変更")) {
-				//パスワード変更画面へ遷移
-				page = "/WEB-INF/jsp/resetPassword.jsp";
-
-			} else if (buttonId.equals("トップへ戻る")) {
-				//ダッシュボード画面へ遷移
-				page = "/WEB-INF/jsp/home.jsp";
-
-			}
 
 			//ログイン画面 ------------------------------------
-		} else if (pageId.equals("U001") && buttonId.equals("ログイン")) {
+		if (pageId.equals("U001") && buttonId.equals("ログイン")) {
 			UsersAction uAction = new UsersAction(request);
 			//ログイン処理[結果:ダッシュボード画面へ]
 			page = uAction.login();
@@ -180,16 +160,10 @@ public class Controller extends HttpServlet {
 			page = uAction.update();
 
 			//メンバー一覧画面 --------------------------------
-		} else if (pageId.equals("U003")) {
+		} else if (pageId.equals("U003") && buttonId.equals("編集")) {
 			UsersAction uAction = new UsersAction(request);
-			if (buttonId.equals("新規登録")) {
-				//新規登録画面へ遷移
-				page = "/WEB-INF/jsp/user_regist.jsp";
-
-			} else if (buttonId.equals("編集")) {
-				//編集画面へ遷移
-				page = "/WEB-INF/jsp/user_update.jsp";
-			}
+			//編集画面表示
+			page = uAction.update();
 
 			//メンバー新規登録画面 ----------------------------
 		} else if (pageId.equals("U004") && buttonId.equals("登録")) {
@@ -203,44 +177,10 @@ public class Controller extends HttpServlet {
 			//メンバー更新処理[結果:メンバー一覧画面へ]
 			page = uAction.update();
 
-			//ダッシュボード画面 ------------------------------
-		} else if (pageId.equals("nav")) {
-
-			if (buttonId.equals("ダッシュボード")) {
-				HomeAction hAction = new HomeAction(request);
-				//ダッシュボード画面表示[]
-				page = hAction.selectAll();
-
-			} else if (buttonId.equals("案件")) {
-				CasesAction cAction = new CasesAction(request);
-				//案件一覧画面表示[]
-				page = cAction.initialize();
-
-			} else if (buttonId.equals("タスク管理")) {
-				TasksAction tAction = new TasksAction(request);
-				//タスク一覧画面表示[]
-				page = tAction.selectAll();
-
-			} else if (buttonId.equals("月次集計")) {
-				WorksAction wAction = new WorksAction(request);
-				//月次集計画面表示[]
-				page = wAction.initialize();
-
-			} else if (buttonId.equals("メンバー管理")) {
-				UsersAction uAction = new UsersAction(request);
-				//メンバー一覧画面表示[]
-				page = uAction.selectAll();
-
-			}
-
 			//案件一覧画面 -----------------------------------
 		} else if (pageId.equals("C001")) {
 			CasesAction cAction = new CasesAction(request);
-			if (buttonId.equals("新規登録")) {
-				//新規登録画面表示[]
-				page = cAction.casesRegist();
-
-			} else if (buttonId.equals("検索")) {
+			if (buttonId.equals("検索")) {
 				//案件検索処理[結果:絞り込みしたデータを取得]
 				page = cAction.select();
 
@@ -289,13 +229,14 @@ public class Controller extends HttpServlet {
 				page = tAction.functions();
 
 			} else if (buttonId.equals("タスク削除")) {
-				TasksAction tAction = new TasksAction();
+				TasksAction tAction = new TasksAction(request);
 				//タスク削除処理[結果:該当タスクと紐づく工数削除、案件詳細画面へ]
 				page = tAction.delete();
 
 			} else if (buttonId.equals("工数入力")) {
-				//工数登録画面へ遷移
-				page = "/WEB-INF/jsp/works_regist.jsp";
+				WorksAction wAction = new WorksAction(request);
+				//工数登録画面表示
+				page = wAction.insert();
 
 			} else if (buttonId.equals("すべて見る")) {
 				WorksAction wAction = new WorksAction(request);

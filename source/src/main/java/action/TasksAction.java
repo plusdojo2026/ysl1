@@ -74,7 +74,7 @@ public class TasksAction {
         request.setAttribute("casesList", casesList);
         request.setAttribute("pmList", pmList);
         
-        //タスクIDがあるなら、編集モード ----------------------------------------------
+        //タスクIDがあるなら、編集モード -----------------------------
         if(taskIdStr != null && !taskIdStr.isEmpty()) {
         	//タスクIDを取得
         	int taskId = Integer.parseInt(taskIdStr);
@@ -92,4 +92,52 @@ public class TasksAction {
 
         return page;
     }
+	
+	/**
+	 * - タスク登録処理 -
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public String insert() throws UnsupportedEncodingException {
+
+	    String page = "/WEB-INF/jsp/cases_details.jsp";
+
+	    // パラメータ取得
+	    String caseIdStr = request.getParameter("caseId");
+	    String taskName = request.getParameter("taskName");
+	    String managerIdStr = request.getParameter("managerId");
+	    String taskStatus = request.getParameter("taskStatus");
+	    String taskPriority = request.getParameter("taskPriority");
+	    String taskPlannedHoursStr = request.getParameter("taskPlannedHours");
+	    String progressRateStr = request.getParameter("progressRate");
+	    String startDate = request.getParameter("startDate");
+	    String dueDate = request.getParameter("dueDate");
+	    String taskDescription = request.getParameter("taskDescription");
+
+	    // DTOへ格納
+	    TasksDTO tDTO = new TasksDTO();
+
+	    tDTO.setCaseId(Integer.parseInt(caseIdStr));
+	    tDTO.setTaskName(taskName);
+	    tDTO.setManagerId(Integer.parseInt(managerIdStr));
+	    tDTO.setTaskStatus(taskStatus);
+	    tDTO.setTaskPriority(taskPriority);
+	    tDTO.setTaskPlannedHours(Integer.parseInt(taskPlannedHoursStr));
+	    tDTO.setProgressRate(Integer.parseInt(progressRateStr));
+	    tDTO.setStartDate(startDate);
+	    tDTO.setDeadline(dueDate);
+	    tDTO.setTaskDescription(taskDescription);
+
+	    // 登録処理
+	    TasksService service = new TasksService();
+
+	    boolean result = service.insert(tDTO);
+
+	    if (!result) {
+	        page = "/WEB-INF/jsp/tasks_regist.jsp";
+	    }
+
+	    return page;
+	}
 }
