@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import dao.TasksDAO;
 import dto.AllDTO;
+import dto.CasesDTO;
 import dto.TasksDTO;
+import dto.UsersDTO;
 
 	
 
@@ -41,14 +43,20 @@ public class TasksService extends DBAccess{
 		return taskList ;	
 	}
 	
-	public ArrayList<AllDTO> regist() {
-        ArrayList<AllDTO> casesList = null;
-        ArrayList<AllDTO> pmList = null;
+	/**
+	 * - 登録されている全案件の名前を取得する -
+	 * 
+	 * @return casesList;
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public ArrayList<CasesDTO> selectCases() {
+        ArrayList<CasesDTO> casesList = null;
 
         TasksDAO dao = new TasksDAO(super.conn);
         try {
-            casesList = dao.selectAllCases();
-            pmList = dao.selectAllPM();
+            casesList = dao.selectCases();
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
@@ -56,9 +64,42 @@ public class TasksService extends DBAccess{
             super.close();
         }
 
-        return List;
+        return casesList;
     }
 
+	/**
+	 * - 登録されているすべてのPMの名前を取得する
+	 * 
+	 * @return pmList;
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public ArrayList<UsersDTO> selectPM() {
+        ArrayList<UsersDTO> pmList = null;
+
+        TasksDAO dao = new TasksDAO(super.conn);
+        try {
+            pmList = dao.selectPM();
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        } finally {
+            super.close();
+        }
+
+        return pmList;
+    }
+	
+
+	/**
+	 * - 選択したタスクIDのレコードの詳細を取得する
+	 * 
+	 * @return taskList;
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
     public ArrayList<TasksDTO> edit(int id) {
         ArrayList<TasksDTO> taskList = null;
 
