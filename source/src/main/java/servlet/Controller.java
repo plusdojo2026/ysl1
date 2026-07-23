@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.CasesAction;
+import action.HomeAction;
 import action.TasksAction;
 import action.UsersAction;
 import action.WorksAction;
@@ -79,9 +80,6 @@ public class Controller extends HttpServlet {
 				//新規登録画面へ遷移
 				page = "/WEB-INF/jsp/user_regist.jsp";
 
-			} else if (buttonId.equals("編集")) {
-				//編集画面へ遷移
-				page = "/WEB-INF/jsp/user_update.jsp";
 			}
 
 			//ダッシュボード画面 ------------------------------
@@ -122,19 +120,8 @@ public class Controller extends HttpServlet {
 				page = cAction.casesRegist();
 			}
 			
-			//案件詳細画面 ------------------------------------
-		} else if (pageId.equals("C003")) {
-			if (buttonId.equals("タスク追加")) {
-				TasksAction tAction = new TasksAction(request);
-				//タスク登録画面表示[]
-				page = tAction.functions();
-
-			} else if (buttonId.equals("工数入力")) {
-				//工数登録画面へ遷移
-				page = "/WEB-INF/jsp/works_regist.jsp";
-
-			}
-
+		}
+		
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);

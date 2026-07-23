@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import dao.TasksDAO;
 import dto.AllDTO;
+import dto.TasksDTO;
 
 	
 
@@ -58,12 +59,12 @@ public class TasksService extends DBAccess{
         return List;
     }
 
-    pulic ArrayList<TasksDTO> edit() {
+    public ArrayList<TasksDTO> edit(int id) {
         ArrayList<TasksDTO> taskList = null;
 
         TasksDAO dao = new TasksDAO(super.conn);
         try {
-            taskList = dao.selectByTaskID();
+            taskList = dao.selectByTaskID(id);
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();

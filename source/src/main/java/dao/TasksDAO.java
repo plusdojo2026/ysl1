@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.AllDTO;
+import dto.TasksDTO;
 
 /**
  * タスクテーブルを操作するDAOクラス。
@@ -81,6 +82,48 @@ public class TasksDAO {
 		}
 		//serviceに返却する
 			return taskList;
+	}
+	
+	/**
+	 * - 指定したタスクIDの詳細を取得するメソッド -
+	 * 
+	 * @return ArrayList<TasksDTO> taskList;
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public ArrayList<TasksDTO> selectByTaskID(int id) throws SQLException {
+		ArrayList<TasksDTO> taskList = new ArrayList<TasksDTO>();
+		
+		//タスクIDが一致するデータの詳細を検索する
+		String sql = "SELECT * FROM tasks WHERE id = ?";
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		
+		//タスクIDをSQLの絞り込み条件にあてはめる
+		pStmt.setInt(1, id);
+		
+		ResultSet rs = pStmt.executeQuery();
+
+		//格納
+		while (rs.next()) {
+		    TasksDTO dto = new TasksDTO();
+
+		    dto.setId(rs.getInt("id"));
+		    dto.setCaseId(rs.getInt("case_id"));
+		    dto.setTaskName(rs.getString("task_name"));
+		    dto.setManagerId(rs.getInt("manager_id"));
+		    dto.setTaskStatus(rs.getString("task_status"));
+		    dto.setTaskPriority(rs.getString("task_priority"));
+		    dto.setDeadline(rs.getString("deadline"));
+		    dto.setProgressRate(rs.getInt("progress_rate"));
+		    dto.setStartDate(rs.getString("start_date"));
+		    dto.setTaskPlannedHours(rs.getInt("task_planned_hours"));
+		    dto.setTaskDescription(rs.getString("task_description"));
+
+		    taskList.add(dto);
+		}
+
+		return taskList;
 	}
 }
 	

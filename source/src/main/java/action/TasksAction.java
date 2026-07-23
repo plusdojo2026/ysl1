@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.AllDTO;
+import dto.TasksDTO;
 import service.TasksService;
-
-
 
 
 public class TasksAction {
@@ -41,25 +40,48 @@ public class TasksAction {
 		return page;
 	}
 
+	/**
+	 * - タスク登録・編集 -
+	 * 
+	 * 返り値: タスク登録・編集画面のページリンク
+	 * @return String page
+	 * 
+	 * 
+	 * jspへ渡す値
+	 * 共通:
+	 * ・registList[案件名、PM名をリストで取得]
+	 * +編集モードのみ:
+	 * ・taskList[選択したタスクの詳細を取得]
+	 * ・mode[編集モードの判別に使用]
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
 	public String functions() throws UnsupportedEncodingException {
         String page = "/WEB-INF/jsp/tasks_regist.jsp";
-
         String mode = "regist";
-        //タスクIDを取得（nullなら新規登録、任意の値ならそのタスクの編集）
-        String taskIdStr = request.getParameter("taskId");
-        //service呼び出し
-        TasksService service = new TasksService();
 
-        //案件名とPM名のリストを格納
+        //タスクIDをStringでいったん取得（nullなら新規登録、任意の値ならそのタスクの編集）
+        String taskIdStr = request.getParameter("taskId");
+
+        //service呼び出し、案件名とPM名のリストを格納
+        TasksService service = new TasksService();
         ArrayList<AllDTO> registList = service.regist();
+        
         request.setAttribute("registList", registList);
         
-        //編集ボタンからの遷移なら、一致するタスクIDの詳細を格納
+        //タスクIDがあるなら、編集モード ----------------------------------------------
         if(taskIdStr != null && !taskIdStr.isEmpty()) {
-			int taskId = Integer.parseInt(taskIdStr);
-			//編集モードを決定
+        	//タスクIDを取得
+        	int taskId = Integer.parseInt(taskIdStr);
+
+        	//編集モードを決定
 			mode = "edit";
-            ArrayList<AllDTO> taskList = service.edit(TasksDTO tDTO);
+			
+			//タスク詳細を取得
+            ArrayList<TasksDTO> taskList = service.edit(taskId);
+            
+            //タスク詳細と、編集モードの状態を格納
             request.setAttribute("taskList", taskList);
 			request.setAttribute("mode", mode);
         }
