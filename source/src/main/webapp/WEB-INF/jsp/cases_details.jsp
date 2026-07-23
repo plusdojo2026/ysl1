@@ -19,48 +19,50 @@
 <div class="table" id="cases">
 	<h2>基本情報</h2>
 	<table class="table" id="cases_table">
-		<tr>
-			<td>案件コード</td>
-			<td>${case.caseId}</td>
-		</tr>
-		<tr>
-			<td>案件名</td>
-			<td>${case.caseCode}</td>
-		</tr>
-		<tr>
-			<td>顧客名</td>
-			<td>${case.customerName}</td>
-		</tr>
-		<tr>
-			<td>PM</td>
-			<td>${case.pmId}</td>
-		</tr>
-		<tr>
-			<td>ステータス</td>
-			<td>${case.caseStatus}</td>
-		</tr>
-		<tr>
-			<td>優先度</td>
-			<td>${case.casePriority}</td>
-		</tr>
-		<tr>
-			<td>期間</td>
-			<td>${case.caseDescription}</td>
-		</tr>
-		<tr>
-			<td>予定工数</td>
-			<td>${task.s}</td>
-		</tr>
-		<tr>
-			<td>実績工数</td>
-		</tr>
-		<tr>
-			<td>タスク進捗</td>
-		</tr>
-		<tr>
-			<td>説明</td>
-		</tr>
+	
+		<c:forEach var="c" items="${casesList}">
+			<tr>
+				<td>案件コード</td>
+				<td>${c.caseCode}</td>
+			</tr>
+
+			<tr>
+				<td>案件名</td>
+			</tr>
+		
+		
+			<tr>
+				<td>顧客名</td>
+			</tr>
+			<tr>
+				<td>PM</td>
+			</tr>
+			<tr>
+				<td>ステータス</td>
+			</tr>
+			<tr>
+				<td>優先度</td>
+			</tr>
+			<tr>
+				<td>期間</td>
+			</tr>
+			<tr>
+				<td>予定工数</td>
+			</tr>
+			<tr>
+				<td>実績工数</td>
+			</tr>
+			<tr>
+				<td>タスク進捗</td>
+				<td>${}</td>
+			</tr>
+			<tr>
+				<td>説明</td>
+				<td></td>
+			</tr>
+		</c:forEach>
 	</table>
+	
 </div>	
 
 <div class="table" id="tasks">

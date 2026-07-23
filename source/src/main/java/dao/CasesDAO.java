@@ -12,16 +12,38 @@ public class CasesDAO {
 
 	public Connection conn = null;
 
-	//コネクションを保持するコンストラクタ
+	/**
+	 * コネクションを保持するコンストラクタ
+	 * @param conn
+	 */
 	public CasesDAO(Connection conn) {
 		this.conn = conn;
 	}
 
-	//案件詳細を持ってくるメソッド
+	/**
+	 * 案件詳細を持ってくるメソッド
+	 * @return ArrayList<AllDTO>
+	 * @throws SQLException
+	 */
 	public ArrayList<AllDTO> selectCases(int id) throws SQLException {
 		ArrayList<AllDTO> allDTOs = new ArrayList<AllDTO>();
 		//sql文
-		String sql = "SELECT * FROM cases WHERE case_id=?";
+		String sql = "select"
+				+ "	cases.*,"
+				+ "	sum(distinct works.actual_hours),"
+				+ "	COUNT(DISTINCT tasks.id) AS task_count,"
+				+ "	COUNT(DISTINCT CASE WHEN tasks.task_status = '完了' THEN tasks.id END) "
+				+ "AS completed_task_count,"
+				+ "    GROUP_CONCAT(DISTINCT users.user_name) AS user_names "
+				+ "from  cases "
+				+ "join tasks  "
+				+ "on cases.id = tasks.case_id "
+				+ "join works "
+				+ "on tasks.id = works.task_id "
+				+ "join users "
+				+ "on users.id = works.user_id "
+				+ "WHERE case_id=? "
+				+ "group by cases.id";
 
 		// まとめる
 		PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -50,11 +72,23 @@ public class CasesDAO {
 		return allDTOs;
 	}
 
-	//タスクを持ってくるメソッド
+	/**
+	 * タスクを持ってくるメソッド
+	 * @param id
+	 * @return ArrayList<AllDTO>
+	 * @throws SQLException
+	 */
 	public ArrayList<AllDTO> selectTasks(int id) throws SQLException {
 		ArrayList<AllDTO> allDTOs = new ArrayList<AllDTO>();
 
-		String sql = "SELECT * FROM tasks JOIN WHERE case_id=?";
+		String sql = "select t.*, u.user_name, sum(w.actual_hours) as ac\r\n"
+				+ "from tasks as t\r\n"
+				+ "join users as u on t.manager_id = u.id\r\n"
+				+ "join works as w on t.id = w.task_id\r\n"
+				+ "where t.case_id = ?\r\n"
+				+ "group by t.id;\r\n"
+				+ "";
+
 		// まとめる
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -76,18 +110,28 @@ public class CasesDAO {
 			dto.setDeadline(rs.getString("deadline"));
 
 			dto.setTaskPlannedHours(rs.getBigDecimal("task_planned_hours"));
-			dto.setProgressRate(rs.getInt("progress_rate"));
+			dto.setTaskProgressRate(rs.getInt("progress_rate"));
 
 			allDTOs.add(dto);
 		}
 		return allDTOs;
 	}
 
-	//工数を持ってくるメソッド
+	/**
+	 * 工数を持ってくるメソッド
+	 * @param id 
+	 * @return ArrayList<AllDTO>
+	 * @throws SQLException
+	 */
 	public ArrayList<AllDTO> selectWorks(int id) throws SQLException {
 		ArrayList<AllDTO> allDTOs = new ArrayList<AllDTO>();
 		//sql文
-		String sql = "SELECT * FROM taskss WHERE case_id=?";
+		String sql = "select works.* ,users.user_name,tasks.task_name from works\r\n"
+				+ "join users\r\n"
+				+ "on works.user_id = users.id\r\n"
+				+ "join tasks\r\n"
+				+ "on works.task_id = tasks.id"
+				+ "WHERE case_id=?";
 
 		// まとめる
 		PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -97,8 +141,14 @@ public class CasesDAO {
 
 		ResultSet rs = pStmt.executeQuery();
 
+		//作業日、タスク名、担当者、工数、作業内容を持ってくる
 		while (rs.next()) {
 			AllDTO dto = new AllDTO();
+			dto.setWorkDate(rs.getString("work_date"));
+			dto.setTaskName(rs.getString("task_name"));
+			dto.setUserName(rs.getString("user_name"));
+			dto.setActualHours(rs.getBigDecimal("actual_hours"));
+			dto.setWorkDescription(rs.getString("work_description"));
 
 		}
 		return allDTOs;

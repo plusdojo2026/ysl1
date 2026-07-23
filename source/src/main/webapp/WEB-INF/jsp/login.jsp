@@ -18,7 +18,6 @@
     <!-- フォーム開始: Controller に POST 送信 -->
     <!-- ページ識別子: サーバ側で画面判定に使用 -->
     <input type="hidden" name="pageId" value="U001">
-<!-- エラーメッセージ表示（存在する場合のみ表示） -->
     <!-- ログインID入力欄: ユーザーのログインIDを入力 -->
     <label for="loginId">ログインID</label>
     <input type="text" name="loginId" id="loginId" placeholder="ログインIDを入力" autocomplete="username" required>
@@ -36,7 +35,6 @@
     <c:if test="${not empty errorMsgPw}">
         <div class="error"><c:out value="${errorMsgPw}"/></div>
     </c:if>
-
     <!-- 送信ボタン: フォームを送信 -->
     <input type="submit" name="buttonId" value="ログイン">
 </form>
