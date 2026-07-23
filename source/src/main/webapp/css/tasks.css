@@ -8,4 +8,7 @@
 .search{
     display:flex;
     flex-direction:column;
+    margin-bottom:20px;
+    width:150px;
+    font-size:13px;    
 }
