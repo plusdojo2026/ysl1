@@ -9,7 +9,25 @@ import java.util.ArrayList;
 
 import dto.AllDTO;
 
-
+/**
+ * Worksテーブルを操作するDAOクラス。
+ *
+ * <p>
+ * WorksDTO情報の登録、削除、一覧表示などの
+ * データベース操作を行う。
+ * </p>
+ *
+ * <p>
+ * DB接続、PreparedStatement生成、パラメータ設定、
+ * ResultSetからDTOへの変換処理は親クラスBaseDAOで行う。
+ * </p>
+ *
+ * <p>
+ * テーブル名はWorksDTOに定義された@Tableから自動取得する。
+ * </p>
+ *
+ * @author YSL土屋莉里子
+ */
 public class WorksDAO {
 public Connection conn = null;
 	

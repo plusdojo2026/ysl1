@@ -7,11 +7,28 @@ import java.util.ArrayList;
 import dao.WorksDAO;
 import dto.AllDTO;
 
+/**
+ * 
+ * WorksServiceクラス。
+ * <p>
+ * TODO DAOとActionを繋がるサービス層。条件・結果を判断、処理を行う。
+ * </p>
+ *
+ * @author YSL土屋莉里子
+ */
 public class WorksService extends DBAccess{
 	
 	public WorksService() {
 		super.access();
 	}
+	
+
+	/**
+	 * 工数登録メソッド
+	 *
+	 * @param userId, taskId, workDate, actualHours, workdescription
+	 * @return int
+	 */
 	//工数を登録するメソッド---------------------------------------
 		public int worksInsert(int userId, int taskId, String workDate ,BigDecimal actualHours ,String workDescription) {
 			//DAOに処理を任せる
@@ -25,6 +42,13 @@ public class WorksService extends DBAccess{
 			}
 			return ans;		
 		}
+	
+	/**
+	 * 工数削除メソッド
+	 *
+	 * @param id
+	 * @return int
+	 */
 		
 	//工数を削除するメソッド---------------------------------------
 		public int worksDelete(int id) {
@@ -40,6 +64,13 @@ public class WorksService extends DBAccess{
 			return ans;		
 			
 		}
+	
+	/**
+	* サマリー表示メソッド
+	*
+	* @param month
+	* @return AllDTO
+	*/	
 		
 	//サマリー（月合計工数、集計案件数、稼働メンバー数）---------------------------------------	
 		public AllDTO selectSum(String month) {
@@ -57,7 +88,12 @@ public class WorksService extends DBAccess{
 			return selectSum;
 		}
 			
-
+	/**
+	 * 案件別集計メソッド
+	 *
+	 * @param month
+	 * @return ArrayList<AllDTO>
+	 */
 	//案件別集計---------------------------------------
 		public ArrayList<AllDTO> selectCaseSum(String month){
 			ArrayList<AllDTO> caseSumList =null;
@@ -76,7 +112,12 @@ public class WorksService extends DBAccess{
 			return caseSumList ;
 		}
 		
-		
+	/**
+	 * メンバー別集計メソッド
+	 *
+	 * @param month
+	 * @return ArrayList<AllDTO>
+	 */	
 	//メンバー別集計---------------------------------------
 		public ArrayList<AllDTO> selectMemberSum(String month){
 			ArrayList<AllDTO> memberSumList= null;
@@ -93,7 +134,12 @@ public class WorksService extends DBAccess{
 			return memberSumList;
 		}
 		
-		
+	/**
+	 * 工数ログ一覧メソッド
+	 *
+	 * @param month
+	 * @return ArrayList<AllDTO>
+	 */	
 		
 	//指定した月の工数ログ（月次集計画面）---------------------------------------
 		public ArrayList<AllDTO> selectByMonth(String month){
