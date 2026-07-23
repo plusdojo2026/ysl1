@@ -93,26 +93,26 @@ public class TasksDAO {
 	 * @author haruto.tanaka
 	 */
 	public ArrayList<CasesDTO> selectCases() throws SQLException {
-	    ArrayList<CasesDTO> casesList = new ArrayList<CasesDTO>();
+		ArrayList<CasesDTO> casesList = new ArrayList<CasesDTO>();
 
-	    // 案件名をすべて取得
-	    String sql = "SELECT case_name FROM cases";
-	    PreparedStatement pStmt = conn.prepareStatement(sql);
+		// 案件名をすべて取得
+		String sql = "SELECT case_name FROM cases";
+		PreparedStatement pStmt = conn.prepareStatement(sql);
 
-	    ResultSet rs = pStmt.executeQuery();
+		ResultSet rs = pStmt.executeQuery();
 
-	    // 格納
-	    while (rs.next()) {
-	        CasesDTO dto = new CasesDTO();
+		// 格納
+		while (rs.next()) {
+			CasesDTO dto = new CasesDTO();
 
-	        dto.setCaseName(rs.getString("case_name"));
+			dto.setCaseName(rs.getString("case_name"));
 
-	        casesList.add(dto);
-	    }
+			casesList.add(dto);
+		}
 
-	    return casesList;
+		return casesList;
 	}
-	
+
 	/**
 	 * - すべてのPM名を取得する -
 	 * 
@@ -120,29 +120,29 @@ public class TasksDAO {
 	 * @author haruto.tanaka
 	 */
 	public ArrayList<UsersDTO> selectPM() throws SQLException {
-	    ArrayList<UsersDTO> pmList = new ArrayList<UsersDTO>();
+		ArrayList<UsersDTO> pmList = new ArrayList<UsersDTO>();
 
-	    // PMとして登録されているユーザー名を取得
-	    String sql =
-	        "SELECT DISTINCT u.user_name FROM users u "
-	        + "INNER JOIN cases c ON u.id = c.pm_id AND u.active = 1";
+		// PMとして登録されているユーザー名を取得
+		String sql =
+			"SELECT DISTINCT u.user_name FROM users u "
+			+ "INNER JOIN cases c ON u.id = c.pm_id AND u.active = 1";
 
-	    PreparedStatement pStmt = conn.prepareStatement(sql);
+		PreparedStatement pStmt = conn.prepareStatement(sql);
 
-	    ResultSet rs = pStmt.executeQuery();
+		ResultSet rs = pStmt.executeQuery();
 
-	    // 格納
-	    while (rs.next()) {
-	        UsersDTO dto = new UsersDTO();
+		// 格納
+		while (rs.next()) {
+			UsersDTO dto = new UsersDTO();
 
-	        dto.setUserName(rs.getString("user_name"));
+			dto.setUserName(rs.getString("user_name"));
 
-	        pmList.add(dto);
-	    }
+			pmList.add(dto);
+		}
 
-	    return pmList;
+		return pmList;
 	}
-	
+
 	/**
 	 * - 指定したタスクIDの詳細を取得するメソッド -
 	 * 
@@ -165,24 +165,69 @@ public class TasksDAO {
 
 		//格納
 		while (rs.next()) {
-		    TasksDTO dto = new TasksDTO();
+			TasksDTO dto = new TasksDTO();
 
-		    dto.setId(rs.getInt("id"));
-		    dto.setCaseId(rs.getInt("case_id"));
-		    dto.setTaskName(rs.getString("task_name"));
-		    dto.setManagerId(rs.getInt("manager_id"));
-		    dto.setTaskStatus(rs.getString("task_status"));
-		    dto.setTaskPriority(rs.getString("task_priority"));
-		    dto.setDeadline(rs.getString("deadline"));
-		    dto.setProgressRate(rs.getInt("progress_rate"));
-		    dto.setStartDate(rs.getString("start_date"));
-		    dto.setTaskPlannedHours(rs.getInt("task_planned_hours"));
-		    dto.setTaskDescription(rs.getString("task_description"));
+			dto.setId(rs.getInt("id"));
+			dto.setCaseId(rs.getInt("case_id"));
+			dto.setTaskName(rs.getString("task_name"));
+			dto.setManagerId(rs.getInt("manager_id"));
+			dto.setTaskStatus(rs.getString("task_status"));
+			dto.setTaskPriority(rs.getString("task_priority"));
+			dto.setDeadline(rs.getString("deadline"));
+			dto.setProgressRate(rs.getInt("progress_rate"));
+			dto.setStartDate(rs.getString("start_date"));
+			dto.setTaskPlannedHours(rs.getInt("task_planned_hours"));
+			dto.setTaskDescription(rs.getString("task_description"));
 
-		    taskList.add(dto);
+			taskList.add(dto);
 		}
 
 		return taskList;
+	}
+
+	/**
+	 * タスクを登録する
+	 *
+	 * @param dto
+	 * @return result
+	 *
+	 * @throws SQLException
+	 */
+	public boolean insert(TasksDTO dto) throws SQLException {
+		boolean result = false;
+
+		String sql =
+			"INSERT INTO tasks (" +
+			"case_id," +
+			"task_name," +
+			"task_status," +
+			"task_priority," +
+			"task_planned_hours," +
+			"progress_rate," +
+			"start_date," +
+			"deadline," +
+			"task_description) "
+			+"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+
+		pStmt.setInt(1, dto.getCaseId());
+		pStmt.setString(2, dto.getTaskName());
+		pStmt.setString(3, dto.getTaskStatus());
+		pStmt.setString(4, dto.getTaskPriority());
+		pStmt.setDouble(5, dto.getTaskPlannedHours());
+		pStmt.setInt(6, dto.getProgressRate());
+		pStmt.setString(7, dto.getStartDate());
+		pStmt.setString(8, dto.getDeadline());
+		pStmt.setString(9, dto.getTaskDescription());
+
+		int count = pStmt.executeUpdate();
+
+		if (count > 0) {
+			result = true;
+		}
+
+		return result;
 	}
 }
 	

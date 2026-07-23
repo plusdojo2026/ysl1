@@ -115,4 +115,28 @@ public class TasksService extends DBAccess{
 
         return taskList;
     }
+    
+    /**
+     * - タスクを登録する -
+     *
+     * @return true:成功 false:失敗
+     *
+     *
+     * @author haruto.tanaka
+     */
+    public boolean insert(TasksDTO tDTO) {
+        boolean result = false;
+        TasksDAO dao = new TasksDAO(super.conn);
+
+        try {
+            result = dao.insert(tDTO);
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        } finally {
+            super.close();
+        }
+
+        return result;
+    }
 }
