@@ -30,8 +30,8 @@
         <div class="error"><c:out value="${errorMsgName}"/></div>
     </c:if>
   <!-- メールアドレス確認欄: ユーザーのメールアドレスを入力 -->
-    <label for="mailAdress">メールアドレス</label>
-    <input type="text" name="mailAdress" id="mailAdress" placeholder="メールアドレスを入力" autocomplete="current-mailAdress" >
+    <label for="mailAddress">メールアドレス</label>
+    <input type="text" name="mailAddress" id="mailAddress" placeholder="メールアドレスを入力" autocomplete="current-mailAddress" >
       <!-- パスワードのエラーメッセージ表示（存在する場合のみ表示） -->
     <c:if test="${not empty errorMsgMail}">
         <div class="error"><c:out value="${errorMsgMail}"/></div>

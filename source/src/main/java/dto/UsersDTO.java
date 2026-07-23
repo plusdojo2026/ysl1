@@ -1,6 +1,7 @@
 package dto;
 
 import dao.utils.Column;
+import dao.utils.Table;
 
 /**
  * usersテーブルのユーザー情報を保持するJavaBeansクラスです。
@@ -18,6 +19,7 @@ import dao.utils.Column;
  *   <li>updateAt：更新日時</li>
  * </ul>
  */
+@Table("users")
 public class UsersDTO {
 	/**
 	 * ユーザーID。
@@ -86,6 +88,15 @@ public class UsersDTO {
 	 * デフォルトコンストラクタ。
 	 */
 	public UsersDTO() {
+	}
+
+	/**
+	 * @param
+	 * @param updatedId
+	 */
+	public UsersDTO(int userId) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		this.userId = userId;
 	}
 
 	/**

@@ -29,7 +29,7 @@ public class RootServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("111");
+
 		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 
 	}
