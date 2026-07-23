@@ -140,4 +140,52 @@ public class TasksAction {
 
 		return page;
 	}
+	
+	/**
+	 * - 更新処理 -
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public String update() throws UnsupportedEncodingException {
+	    String page = "/WEB-INF/jsp/cases_details.jsp";
+
+	    // パラメータ取得
+	    String taskIdStr = request.getParameter("taskId");
+	    String caseIdStr = request.getParameter("caseId");
+	    String managerIdStr = request.getParameter("managerId");
+	    String taskName = request.getParameter("taskName");
+	    String taskStatus = request.getParameter("taskStatus");
+	    String taskPriority = request.getParameter("taskPriority");
+	    String taskPlannedHoursStr = request.getParameter("taskPlannedHours");
+	    String progressRateStr = request.getParameter("progressRate");
+	    String startDate = request.getParameter("startDate");
+	    String dueDate = request.getParameter("dueDate");
+	    String taskDescription = request.getParameter("taskDescription");
+
+	    // DTOへ格納
+	    TasksDTO tDTO = new TasksDTO();
+
+	    tDTO.setId(Integer.parseInt(taskIdStr));
+	    tDTO.setCaseId(Integer.parseInt(caseIdStr));
+	    tDTO.setManagerId(Integer.parseInt(managerIdStr));
+	    tDTO.setTaskName(taskName);
+	    tDTO.setTaskStatus(taskStatus);
+	    tDTO.setTaskPriority(taskPriority);
+	    tDTO.setTaskPlannedHours(Integer.parseInt(taskPlannedHoursStr));
+	    tDTO.setProgressRate(Integer.parseInt(progressRateStr));
+	    tDTO.setStartDate(startDate);
+	    tDTO.setDeadline(dueDate);
+	    tDTO.setTaskDescription(taskDescription);
+
+	    // 更新処理
+	    TasksService service = new TasksService();
+	    boolean result = service.update(tDTO);
+
+	    if (!result) {
+	        page = "/WEB-INF/jsp/tasks_regist.jsp";
+	    }
+
+	    return page;
+	}
 }

@@ -188,10 +188,11 @@ public class TasksDAO {
 	/**
 	 * タスクを登録する
 	 *
-	 * @param dto
 	 * @return result
-	 *
 	 * @throws SQLException
+	 * 
+	 * 
+	 * @author haruto.tanaka
 	 */
 	public boolean insert(TasksDTO dto) throws SQLException {
 		boolean result = false;
@@ -200,6 +201,7 @@ public class TasksDAO {
 			"INSERT INTO tasks (" +
 			"case_id," +
 			"task_name," +
+			"manager_id," +
 			"task_status," +
 			"task_priority," +
 			"task_planned_hours," +
@@ -207,19 +209,20 @@ public class TasksDAO {
 			"start_date," +
 			"deadline," +
 			"task_description) "
-			+"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 
 		pStmt.setInt(1, dto.getCaseId());
 		pStmt.setString(2, dto.getTaskName());
-		pStmt.setString(3, dto.getTaskStatus());
-		pStmt.setString(4, dto.getTaskPriority());
-		pStmt.setDouble(5, dto.getTaskPlannedHours());
-		pStmt.setInt(6, dto.getProgressRate());
-		pStmt.setString(7, dto.getStartDate());
-		pStmt.setString(8, dto.getDeadline());
-		pStmt.setString(9, dto.getTaskDescription());
+		pStmt.setInt(3, dto.getManagerId());
+		pStmt.setString(4, dto.getTaskStatus());
+		pStmt.setString(5, dto.getTaskPriority());
+		pStmt.setDouble(6, dto.getTaskPlannedHours());
+		pStmt.setInt(7, dto.getProgressRate());
+		pStmt.setString(8, dto.getStartDate());
+		pStmt.setString(9, dto.getDeadline());
+		pStmt.setString(10, dto.getTaskDescription());
 
 		int count = pStmt.executeUpdate();
 
@@ -228,6 +231,55 @@ public class TasksDAO {
 		}
 
 		return result;
+	}
+	
+	/**
+	 * タスクを更新する
+	 *
+	 * @param dto
+	 * @return result
+	 *
+	 * @throws SQLException
+	 */
+	public boolean update(TasksDTO dto) throws SQLException {
+
+	    boolean result = false;
+
+	    String sql =
+	        "UPDATE tasks SET " +
+	        "case_id = ?, " +
+	        "manager_id = ?, " +
+	        "task_name = ?, " +
+	        "task_status = ?, " +
+	        "task_priority = ?, " +
+	        "task_planned_hours = ?, " +
+	        "progress_rate = ?, " +
+	        "start_date = ?, " +
+	        "deadline = ?, " +
+	        "task_description = ? " +
+	        "WHERE id = ?";
+
+	    PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	    pStmt.setInt(1, dto.getCaseId());
+	    pStmt.setInt(2, dto.getManagerId());
+	    pStmt.setString(3, dto.getTaskName());
+	    pStmt.setString(4, dto.getTaskStatus());
+	    pStmt.setString(5, dto.getTaskPriority());
+	    pStmt.setDouble(6, dto.getTaskPlannedHours());
+	    pStmt.setInt(7, dto.getProgressRate());
+	    pStmt.setString(8, dto.getStartDate());
+	    pStmt.setString(9, dto.getDeadline());
+	    pStmt.setString(10, dto.getTaskDescription());
+	    pStmt.setInt(11, dto.getId());
+
+	    int count = pStmt.executeUpdate();
+
+	    if (count > 0) {
+	        result = true;
+	    }
+
+	    return result;
 	}
 }
 	
