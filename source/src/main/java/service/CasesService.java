@@ -8,6 +8,7 @@ import dao.CasesDAO;
 import dao.utils.DBUtils;
 import dto.AllDTO;
 import dto.CasesDTO;
+import dto.UsersDTO;
 
 /**
  * 
@@ -121,14 +122,14 @@ public class CasesService extends DBAccess {
 	}
 
 	//案件一覧の初期画面の表示のメソッド
-	public ArrayList<AllDTO> initCases() {
+	public ArrayList<AllDTO> initialize() {
 		//一旦空にする
 		ArrayList<AllDTO> casesList = null;
 
 		CasesDAO dao = new CasesDAO(super.conn);
 
 		try {
-			casesList = dao.initiCases();
+			casesList = dao.initialize();
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();//エラーの説明をしてくれる
@@ -138,6 +139,39 @@ public class CasesService extends DBAccess {
 		return casesList;
 
 	}
+	
+	//案件一覧から編集ボタンで個別の案件を表示するcasesEditメソッド
+	public CasesDTO casesEdit(int id) {
+		//DAOに処理を任せる
+		CasesDAO dao = new CasesDAO(conn);
+		CasesDTO dto = null;
+		try {
+			dto = dao.casesEdit(id);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return dto;		
+	}
+	
+	//PM一覧を取得するメソッド
+	public ArrayList<UsersDTO>
+	selectPmList(){
+		CasesDAO dao=new CasesDAO(conn);
+		
+		ArrayList<UsersDTO>
+		usersList=null;
+		try {
+			usersList = dao.selectPmList();
+		} catch (SQLException e) {
+			System.out.println("SQL文おかしいよ");
+			e.printStackTrace();//エラーの説明をしてくれる
+		} finally {
+			super.close();
+		}
+		return usersList;
+	}
+	
 
 	//	//案件一覧の検索メソッド	ジェークエリーを使うから使わなかった	
 	//			public ArrayList<AllDTO> select() {
@@ -208,8 +242,8 @@ public class CasesService extends DBAccess {
 	}
 	
 	//全ての案件を取得するメソッド
-		public ArrayList<CasesDTO> selectAll() {
-			ArrayList<CasesDTO> casesList = null;
+		public ArrayList<AllDTO> selectAll() {
+			ArrayList<AllDTO> casesList = null;
 			
 			CasesDAO dao = new CasesDAO(super.conn);
 			try {
@@ -223,4 +257,5 @@ public class CasesService extends DBAccess {
 			return casesList ;
 			
 		}
+
 }
