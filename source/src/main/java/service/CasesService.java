@@ -128,7 +128,7 @@ public class CasesService extends DBAccess {
 		CasesDAO dao = new CasesDAO(super.conn);
 
 		try {
-			casesList = dao.initCases();
+			casesList = dao.initiCases();
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();//エラーの説明をしてくれる

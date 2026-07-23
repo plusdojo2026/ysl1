@@ -73,7 +73,11 @@ public class CasesAction {
 	}
 
 	//案件一覧の初期画面の表示のメソッド
-	public String initCases() throws UnsupportedEncodingException {
+	/**
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	public String initiCases() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases.jsp";
 
 		//Serviceを呼びだす
@@ -123,6 +127,10 @@ public class CasesAction {
 //	}
 
 	//新規案件登録のinsertメソッド
+	/**
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	public String insert() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
 
@@ -170,6 +178,10 @@ public class CasesAction {
 //	}
 
 	//案件編集のupdateメソッド
+	/**
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	public String update() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
 
