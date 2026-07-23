@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import dto.AllDTO;
 import dto.CasesDTO;
+import dto.UsersDTO;
 
 public class CasesDAO {
 
@@ -160,7 +161,7 @@ public class CasesDAO {
 	 * @return ArrayList<AllDTO>
 	 * @throws SQLException
 	 */
-	public ArrayList<AllDTO> initiCases() throws SQLException {
+	public ArrayList<AllDTO> initialize() throws SQLException {
 		ArrayList<AllDTO> allDTOs = new ArrayList<AllDTO>();
 		
 		//sql文
@@ -184,11 +185,12 @@ public class CasesDAO {
 				AllDTO dto = new AllDTO();
 				dto.setCaseId(rs.getInt("id"));
 				dto.setCaseName(rs.getString("case_name"));
+				dto.setCaseCode(rs.getInt("case_code"));
 				dto.setCustomerName(rs.getString("customer_name"));
-				dto.setUserName(rs.getString("user_name"));
+				dto.setUserName(rs.getString("user_names"));
 				dto.setCaseStatus(rs.getString("case_status"));
 				dto.setCasePriority(rs.getString("case_priority"));	
-				dto.setStartDate(rs.getString("satrt_date"));
+				dto.setStartDate(rs.getString("start_date"));
 				dto.setPlannedEndDate(rs.getString("planned_end_date"));
 				dto.setCaseNow(rs.getInt("case_now"));
 				dto.setCaseSum(rs.getInt("case_sum"));
@@ -200,10 +202,122 @@ public class CasesDAO {
 				return allDTOs;
 	}
 	
-	/**
+	public CasesDTO casesEdit(int id) throws SQLException {
+		CasesDTO dto = new CasesDTO();
+		
+		//sql文
+		String sql ="SELECT cases.*, u.user_name FROM cases JOIN users AS u ON cases.pm_id=u.id WHERE cases.id=?";
+	
+	//デバッグ（SQL文の確認用）
+	System.out.println(sql);
+	
+	// まとめる
+	PreparedStatement pStmt = conn.prepareStatement(sql);
+	pStmt.executeQuery();
+
+	// SELECT文を実行し、結果表を取得する
+	ResultSet rs = pStmt.executeQuery();
+	
+	//移し替え
+			while(rs.next()) {
+				
+				dto.setId(rs.getInt("id"));
+				dto.setCaseName(rs.getString("case_name"));
+				dto.setCaseCode(rs.getInt("case_code"));
+				dto.setCustomerName(rs.getString("customer_name"));
+				dto.setPmId(rs.getInt("pm_id"));
+				dto.setCaseStatus(rs.getString("case_status"));
+				dto.setCasePriority(rs.getString("case_priority"));	
+				dto.setStartDate(rs.getString("start_date"));
+				dto.setPlannedEndDate(rs.getString("planned_end_date"));
+				dto.setCaseDescription(rs.getString("caseDescription"));
+				dto.setPlannedEndDate(rs.getString("case_planned_hours"));
+				
+			}
+			return dto;	
+				
+	}
+	
+	//PM一覧を取得するメソッド(案件編集や案件登録の際にPMをプルダウンで一覧で出すため)
+	public ArrayList<UsersDTO> selectPmList() throws SQLException{
+		ArrayList<UsersDTO>usersList=new ArrayList<>();
+		
+		String sql="SELECT id, user_name FROM users ORDER BY user_name";
+		//デバッグ（SQL文の確認用）
+		System.out.println(sql);
+		
+		// まとめる
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+
+		// SELECT文を実行し、結果表を取得する
+		ResultSet rs = pStmt.executeQuery();
+		
+		//移し替え
+				while(rs.next()) {
+					
+				UsersDTO dto=new UsersDTO();
+				
+				dto.setUserId(rs.getInt("id"));
+				dto.setUserName(rs.getString("user_name"));
+				
+				usersList.add(dto);
+					
+				}
+				return usersList;	
+		
+		
+	}
+	
+	
+	
+	
+	
+	//すべての案件を表示するメソッドselectAll
+		public ArrayList<AllDTO> selectAll() throws SQLException {
+			ArrayList<AllDTO> allDTOs = new ArrayList<AllDTO>();
+			
+			//sql文
+			String sql ="select cases.*, sum(distinct works.actual_hours),COUNT(DISTINCT tasks.id) AS task_count,"
+		+ "COUNT(DISTINCT CASE WHEN tasks.task_status = '完了' THEN tasks.id END) AS completed_task_count,"
+		+ "GROUP_CONCAT(DISTINCT users.user_name) AS user_names"
+		+ "from cases join tasks on cases.id = tasks.case_id join works on tasks.id = works.task_id"
+		+ "join users on users.id = works.user_id group by cases.id";
+		
+		//デバッグ（SQL文の確認用）
+		System.out.println(sql);
+		
+		// まとめる
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+
+		// SELECT文を実行し、結果表を取得する
+		ResultSet rs = pStmt.executeQuery();
+		
+		//移し替え
+				while(rs.next()) {
+					AllDTO dto = new AllDTO();
+					dto.setCaseId(rs.getInt("id"));
+					dto.setCaseName(rs.getString("case_name"));
+					dto.setCaseCode(rs.getInt("case_code"));
+					dto.setCustomerName(rs.getString("customer_name"));
+					dto.setUserName(rs.getString("user_names"));
+					dto.setCaseStatus(rs.getString("case_status"));
+					dto.setCasePriority(rs.getString("case_priority"));	
+					dto.setStartDate(rs.getString("start_date"));
+					dto.setPlannedEndDate(rs.getString("planned_end_date"));
+					dto.setCaseNow(rs.getInt("case_now"));
+					dto.setCaseSum(rs.getInt("case_sum"));
+					dto.setActualHoursSum(rs.getBigDecimal("actual_hours_sum"));
+
+					allDTOs.add(dto);
+				}
+					
+					return allDTOs;
+		}
+	/*
 	 * @param dto
 	 * @return insert
 	 * @throws SQLException
+	 * 案件を新規登録するinsertメソッド
 	 */
 	public int insert(CasesDTO dto) throws SQLException {
 		int ans = 0;
@@ -270,6 +384,12 @@ public class CasesDAO {
 			}
 		
 	
+	/**
+	 * @param dto
+	 * @return update
+	 * @throws SQLException
+	 * 案件を編集するupdateメソッド
+	 */
 	public int update(CasesDTO dto) throws SQLException {
 		int ans = 0;
 		// SELECT文を準備する

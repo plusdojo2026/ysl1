@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.AllDTO;
 import dto.CasesDTO;
+import dto.UsersDTO;
 import service.CasesService;
 
 public class CasesAction {
@@ -77,16 +78,36 @@ public class CasesAction {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
-	public String initiCases() throws UnsupportedEncodingException {
+	public String initialize() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases.jsp";
 
 		//Serviceを呼びだす
 		CasesService service = new CasesService();
 		//初期の案件一覧を表示
-		ArrayList<AllDTO> casesList = service.initCases();
+		ArrayList<AllDTO> casesList = service.initialize();
 		//reqestスコープに格納する
 		request.setAttribute("casesList", casesList);
 
+		return page;
+	}
+	
+	//案件一覧から編集ボタンで個別の案件を表示するcasesRegistメソッド
+	public String casesEdit() throws UnsupportedEncodingException {
+		String page = "/WEB-INF/jsp/cases_regist.jsp";
+		
+		//値の取得
+		request.setCharacterEncoding("UTF-8");		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		CasesService service = new CasesService();
+		
+		CasesDTO dto=service.casesEdit(id);
+		
+		ArrayList<UsersDTO>
+		userList=service.selectPmList();
+		request.setAttribute("cases", dto);
+		request.setAttribute("userList", userList);
+		
 		return page;
 	}
 
@@ -162,7 +183,7 @@ public class CasesAction {
 				}
 				//ユーザー情報を全て取得する,
 				//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
-				ArrayList<CasesDTO> casesList = service.selectAll();
+				ArrayList<AllDTO> casesList = service.selectAll();
 				request.setAttribute("casesList", casesList);
 				
 				return page;
@@ -213,7 +234,7 @@ public class CasesAction {
 				}
 				//ユーザー情報を全て取得する
 				//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
-				ArrayList<CasesDTO> casesList = service.selectAll();
+				ArrayList<AllDTO> casesList = service.selectAll();
 				request.setAttribute("casesList", casesList);
 				
 				return page;

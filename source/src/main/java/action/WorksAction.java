@@ -13,6 +13,16 @@ import dto.UsersDTO;
 import service.TasksService;
 import service.WorksService;
 
+/**
+ * 
+ * WorksActionクラス。
+ * <p>
+ * TODO 画面上のデータをJSPから取得し、表示する。Serviceメソッドを呼び出す。
+ * </p>
+ *
+ * @author YSL土屋莉里子
+ */
+
 public class WorksAction {
 	
 	private AllDTO selectSum;
@@ -26,6 +36,12 @@ public class WorksAction {
 	}
 	
 	
+	/**
+	 * 工数登録メソッド
+	 * 
+	 * @return タスク詳細画面のurl
+	 * @throws UnsupportedEncodingException
+	 */
 	//工数登録メソッド（ダッシュボード、案件詳細画面、タスク詳細画面）---------------------------------------
 		public String worksInsert() throws UnsupportedEncodingException {
 			String page="/WEB-INF/jsp/task_details.jsp";
@@ -57,14 +73,21 @@ public class WorksAction {
 			
 			return page;
 		}
-	
+		
+		
+	/**
+	 * 工数削除メソッド
+	 * 
+	 * @return タスク詳細画面のurl
+	 * @throws UnsupportedEncodingException
+	 */
 	//工数削除メソッド（タスク詳細画面）---------------------------------------
 		public String delete() throws UnsupportedEncodingException {
 			String page="/WEB-INF/jsp/task_details.jsp";
 					
 			//値の取得
 			request.setCharacterEncoding("UTF-8");		
-			String id = request.getParameter("id");
+			int id = Integer.parseInt(request.getParameter("id"));
 						
 			WorksService service = new WorksService();
 			
@@ -86,7 +109,14 @@ public class WorksAction {
 					
 			return page;
 		}
-				
+		
+		
+	/**
+	 * 月次集計画面の初期表示メソッド
+	 * 			
+	 * @return 月次集計画面のurl
+	 * @throws UnsupportedEncodingException
+	 */
 	//月次集計画面の初期表示 ---------------------------------------
 	
 		public String initialize() throws UnsupportedEncodingException {
@@ -127,6 +157,12 @@ public class WorksAction {
 		}	
 		
 		
+	/**
+	 * 指定した月の工数ログメソッド
+	 * 	
+	 * @return 月次集計画面のurl
+	 * @throws UnsupportedEncodingException
+	 */
 	//指定した月の工数ログ（月次集計画面 ）---------------------------------------		
 		public String selectByMonth() throws UnsupportedEncodingException {	
 			String page = "/WEB-INF/jsp/monthly_sum.jsp";
