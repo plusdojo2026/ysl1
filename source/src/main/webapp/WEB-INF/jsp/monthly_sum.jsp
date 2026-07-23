@@ -92,7 +92,7 @@
 			<tr>
 				<td>${caseData.caseCode}</td>
 				<td>${caseData.caseName}</td>
-				<td>${caseData.actualHours}h</td>
+				<td>${caseData.actualHoursSum}</td>
 				<td>${caseData.casePlannedHours}h</td>
 				<td>
 				<div class="progress-bar">

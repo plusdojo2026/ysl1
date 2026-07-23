@@ -1,13 +1,16 @@
 package action;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import dto.AllDTO;
-import dto.TasksDTO;
+import dto.UsersDTO;
+import service.TasksService;
 import service.WorksService;
 
 public class WorksAction {
@@ -24,28 +27,33 @@ public class WorksAction {
 	
 	
 	//工数登録メソッド（ダッシュボード、案件詳細画面、タスク詳細画面）---------------------------------------
-		public String insert() throws UnsupportedEncodingException {
+		public String worksInsert() throws UnsupportedEncodingException {
 			String page="/WEB-INF/jsp/task_details.jsp";
 			
 			//値の取得
-			request.setCharacterEncoding("UTF-8");		
+			request.setCharacterEncoding("UTF-8");	
+			HttpSession session = request.getSession();
+			UsersDTO user = (UsersDTO) session.getAttribute("user");
+			int userId = user.getUserId();
+			int taskId= Integer.parseInt(request.getParameter("taskId"));		
 			String workDate = request.getParameter("workDate");
-			String actualHours = request.getParameter("actualHours");
+			BigDecimal actualHours = new BigDecimal(request.getParameter("actualHours"));
 			String workDescription = request.getParameter("workDescription");
 			
 			
 			WorksService service = new WorksService();
 			//serviceに処理を依頼
-			int ans = service.workInsert(workDate,actualHours,workDescription);
+			int ans = service.worksInsert(userId,taskId,workDate,actualHours,workDescription);
 			//ちゃんと登録できたか確認
 			if(ans == 1) {
 				request.setAttribute("msg", "※工数登録完了！");
 			}else {
 				request.setAttribute("msg", "※登録失敗！");
 			}
-			//タスク詳細情報を全て取得する
-			ArrayList<TasksDTO> taskList = service.selectAll();
-			request.setAttribute("taskList", taskList);
+			
+			//タスク詳細表示メソッドを呼び出す
+			TasksService tasksService = new TasksService();
+			tasksService.edit(taskId);
 			
 			return page;
 		}
@@ -57,15 +65,24 @@ public class WorksAction {
 			//値の取得
 			request.setCharacterEncoding("UTF-8");		
 			String id = request.getParameter("id");
-					
-					
+						
 			WorksService service = new WorksService();
+			
 			//serviceに処理を依頼
-			int ans = service.workDelete(id);
+			int ans=service.worksDelete(id);
+			
+			//ちゃんと削除できたか確認
+			if(ans == 1) {
+				request.setAttribute("msg", "※削除完了！");
+			}else {
+				request.setAttribute("msg", "※削除失敗！");
+			}
 					
-			//タスク詳細情報を全て取得する
-			ArrayList<TasksDTO> taskList = service.selectAll();
-			request.setAttribute("taskList", taskList);
+			//タスク詳細表示メソッドを呼び出す
+			TasksService tasksService = new TasksService();
+			String taskIdStr = request.getParameter("taskId");
+			int taskId = Integer.parseInt(taskIdStr);
+			tasksService.edit(taskId);
 					
 			return page;
 		}
@@ -78,10 +95,14 @@ public class WorksAction {
 			
 			//値の取得
 			request.setCharacterEncoding("UTF-8");		
+			String month=request.getParameter("month");
 			
 			//現在の年月を取得
-			YearMonth currentMonth = YearMonth.now();
-			String month = currentMonth.toString();
+			if(month==null || month.isEmpty()) {
+				month= YearMonth.now().toString();
+			}
+			
+			System.out.println("month = " + month);
 			
 			 WorksService service = new WorksService();
 			 
@@ -117,44 +138,43 @@ public class WorksAction {
 			WorksService service = new WorksService();
 			
 			//リストを作成して、月の工数ログをリストに格納する
-			ArrayList<AllDTO> workList = service.selectByMounth();
+			ArrayList<AllDTO> workList = service.selectByMonth(month);
 			
 			//Attributeに保存
 			request.setAttribute("workList", workList);           //工数ログ一覧のリスト
 			request.setAttribute("selectedMonth", month);         //選択された月
-			request.setAttribute("displayMode", "summary");       //集計ボタンを押すと月次集計が表示される
-			
+			request.setAttribute("displayMode", "workList");      //工数一覧ボタンを押すと工数ログが表示される
 			return page;
 	
 		}
 	//指定した月の月次集計（月次集計画面）(aggregateメソッドで3つのサマリーを取得)---------------------------------------	
-		public String aggregate() throws UnsupportedEncodingException {
-			String page = "/WEB-INF/jsp/monthly_sum.jsp";
-			
-			//値の取得
-			request.setCharacterEncoding("UTF-8");
-			String month = request.getParameter("month");
-			
-			WorksService service = new WorksService();
-			
-			//サマリー取得
-			AllDTO summary = service.aggregate(month);
-			
-			//案件別
-			ArrayList<AllDTO> caseSummaryList = service.selectCaseSum(month);
-			
-			//メンバー別
-			ArrayList<AllDTO> memberSummaryList = service.selectMemberSum(month);
-			
-			//Attributeに保存
-			request.setAttribute("summary", summary);                         //サマリー（月合計工数、集計案件数、稼働メンバー数）
-			request.setAttribute("caseSummaryList", caseSummaryList);         //案件別集計
-			request.setAttribute("memberSummaryList", memberSummaryList);     //メンバー別集計
-			request.setAttribute("selectedMonth",month);                      //選択された月
-			request.setAttribute("displayMode", "workList");                   //工数一覧ボタンを押すと工数ログが表示される
-			
-			return page;
-		}
+//		public String aggregate() throws UnsupportedEncodingException {
+//			String page = "/WEB-INF/jsp/monthly_sum.jsp";
+//			
+//			//値の取得
+//			request.setCharacterEncoding("UTF-8");
+//			String month = request.getParameter("month");
+//			
+//			WorksService service = new WorksService();
+//			
+//			//サマリー取得
+//			AllDTO summary = service.aggregate(month);
+//			
+//			//案件別
+//			ArrayList<AllDTO> caseSummaryList = service.selectCaseSum(month);
+//			
+//			//メンバー別
+//			ArrayList<AllDTO> memberSummaryList = service.selectMemberSum(month);
+//			
+//			//Attributeに保存
+//			request.setAttribute("summary", summary);                         //サマリー（月合計工数、集計案件数、稼働メンバー数）
+//			request.setAttribute("caseSummaryList", caseSummaryList);         //案件別集計
+//			request.setAttribute("memberSummaryList", memberSummaryList);     //メンバー別集計
+//			request.setAttribute("selectedMonth",month);                      //選択された月
+//			
+//			
+//			return page;
+//		}
 	
 	
 	
