@@ -212,7 +212,7 @@
 						<button type="submit" name="buttonId" value="update">
 							更新する
 						</button>
-					</c:when>
+					</c:when>^
 
                     <!-- 登録ボタン -->
 					<c:otherwise>

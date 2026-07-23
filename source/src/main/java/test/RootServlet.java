@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RootServlet
  */
-@WebServlet("")
+@WebServlet("RootServlet")
 public class RootServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class RootServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/jsp/user_update.jsp")
+		request.getRequestDispatcher("/WEB-INF/jsp/tasks_regist.jsp")
 				.forward(request, response);
 
 	}

@@ -40,5 +40,37 @@ public class TasksService extends DBAccess{
 		return taskList ;	
 	}
 	
-	
+	public ArrayList<AllDTO> regist() {
+        ArrayList<AllDTO> casesList = null;
+        ArrayList<AllDTO> pmList = null;
+
+        TasksDAO dao = new TasksDAO(super.conn);
+        try {
+            casesList = dao.selectAllCases();
+            pmList = dao.selectAllPM();
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        } finally {
+            super.close();
+        }
+
+        return List;
+    }
+
+    pulic ArrayList<TasksDTO> edit() {
+        ArrayList<TasksDTO> taskList = null;
+
+        TasksDAO dao = new TasksDAO(super.conn);
+        try {
+            taskList = dao.selectByTaskID();
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        } finally {
+            super.close();
+        }
+
+        return taskList;
+    }
 }
