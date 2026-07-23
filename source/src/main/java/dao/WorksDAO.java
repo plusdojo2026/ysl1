@@ -70,7 +70,7 @@ public Connection conn = null;
 					AllDTO selectSum = new AllDTO();
 					
 					// ①月合計工数のSQL文を準備する
-					String sql1 = "select sum(actual_hours) from works where data_format(work_date, '%Y-%m')=?";
+					String sql1 = "select sum(actual_hours) as monthly_total_hours from works where date_format(work_date, '%Y-%m')=?";
 					
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql1);
@@ -90,7 +90,7 @@ public Connection conn = null;
 					}
 					
 					//②集計案件数のSQL文を準備する
-					String sql2 = "select count(distinct t.case_id) from works w join tasks t on w.id = t.id where data_format(work_date, '%Y-%m')=?";
+					String sql2 = "select count(distinct t.case_id) from works w join tasks t on w.task_id = t.id where date_format(work_date, '%Y-%m')=?";
 					
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql2);
@@ -110,7 +110,7 @@ public Connection conn = null;
 					}
 					
 					//③稼働メンバー数のSQL文を準備する
-					String sql3 = "select count(distinct user_id) from works where data_format(work_date, '%Y-%m')=?";
+					String sql3 = "select count(distinct user_id) as member_count from works where date_format(work_date, '%Y-%m')=?";
 					
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql3);
@@ -126,7 +126,7 @@ public Connection conn = null;
 			
 					if(rs3.next()) {
 						selectSum.setCaseCount(
-								rs3.getInt("case_count"));
+								rs3.getInt("member_count"));
 					}
 					//serviceに返却する
 					return selectSum;
@@ -137,18 +137,33 @@ public Connection conn = null;
 					ArrayList<AllDTO> caseList = new ArrayList<AllDTO>();
 					
 					// SQL文を準備する
-					String sql ="select c.case_code, c.case_name, sum(w.actual_hours), c.case_planned_hours, count(distinct t.id) as case_sum,"
+					String sql ="select c.case_code, c.case_name, sum(w.actual_hours) as actual_hours_sum, c.case_planned_hours, count(distinct t.id) as case_sum,"
 								+ " count(distinct case when t.task_status='完了' then t.task_id end) as case_now from cases c join tasks t on c.id = t.case_id"
-								+ " join works w on t.id = w.task_id where w.work_date >= ? and work_date <=?";
+								+ " join works w on t.id = w.task_id where date_format(work_date, '%Y-%m')=? "
+								+ "group by c.case_code, c.case_name, c.case_planned_hours";
 	
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql);
 					
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					
+					// ?に値をセット
+					pStmt.setString(1, month);
+					
 					// SELECT文を実行し、結果表を取得する
 					ResultSet rs = pStmt.executeQuery();
 					
+					//AllDTOの変数にDBから取得してきた値をセット
+					while(rs.next()) {
+						AllDTO dto=new AllDTO();
+						dto.setCaseCode(rs.getInt("case_code"));
+						dto.setCaseName(rs.getString("case_name"));
+						dto.setActualHoursSum(rs.getBigDecimal("actual_hours_sum"));
+						dto.setCasePlannedHours(rs.getInt("case_planned_hours"));
+						dto.setCaseSum(rs.getInt("case_sum"));
+						dto.setCaseNow(rs.getInt("case_now"));
+						caseList.add(dto);
+					}
 					
 					//serviceに返却する
 					return caseList;
@@ -159,16 +174,27 @@ public Connection conn = null;
 					ArrayList<AllDTO> userList = new ArrayList<AllDTO>();
 					
 					// SQL文を準備する
-					String sql ="select u.user_name, w.actual_hours,";			
+					String sql ="select u.user_name, sum(w.actual_hours) as actual_hours from users u join works w on u.id=w.user_id "
+							+ "where date_format(work_date, '%Y-%m')=? group by u.id, u.user_name";			
 
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql);
 					
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					
+					// ?に値をセット
+					pStmt.setString(1, month);
+					
 					// SELECT文を実行し、結果表を取得する
 					ResultSet rs = pStmt.executeQuery();
 					
+					
+					while(rs.next()) {
+						AllDTO dto=new AllDTO();
+						dto.setUserName(rs.getString("user_name"));
+						dto.setActualHours(rs.getBigDecimal("actual_hours"));
+						userList.add(dto);
+					}
 					
 					//serviceに返却する
 					return userList;
