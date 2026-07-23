@@ -15,6 +15,7 @@
 <main>
 <h1>工数入力</h1>
 <form method="POST" action="/ysl1/ControllerServlet">
+<input type="hidden" name="taskId" value="${task.id}">
 <div class="table" id="works">
 案件名：${task.caseName}<br>
 タスク名：${task.taskName}<br>

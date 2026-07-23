@@ -463,4 +463,23 @@ public class DBMapper {
 
 		return result;
 	}
+
+	/**
+	 * データベースのテーブル名をもらうメソッド
+	 * 
+	 *
+	 * @param clazz DTOクラス
+	 * @return String DBのテーブル名
+	 */
+	public static String getTableName(Class<?> clazz) {
+
+		Table table = clazz.getAnnotation(Table.class);
+
+		if (table == null) {
+			throw new RuntimeException(
+					clazz.getName() + " に@Tableが定義されていません。");
+		}
+
+		return table.value();
+	}
 }

@@ -1,6 +1,7 @@
 package action;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +30,10 @@ public class HomeAction {
 	 * 案件一覧を表示するメソッド
 	 * タスク一覧表示メソッド
 	 * @return String page
+	 * @throws SQLException 
 	 */
 	
-	public String Intilize() throws UnsupportedEncodingException {
+	public String Intilize() throws UnsupportedEncodingException, SQLException {
 		String page="/WEB-INF/jsp/Home.jsp";
 		//Intilize にするのは、複数のServiceを呼び出しているから
 		
@@ -39,7 +41,7 @@ public class HomeAction {
 		//Serviceを呼びだす
 		HomeService hservice = new HomeService();
 		TasksService tservice = new TasksService();
-		CasesServise cservice = new CasesService();
+		CasesService cservice = new CasesService();
 		
 		//セッションからログインユーザーの情報を取得する
 		UsersDTO user = new UsersDTO();
@@ -54,14 +56,15 @@ public class HomeAction {
 		
 		
 		//タスク一覧を表示するメソッド呼び出し
-		ArrayList<AllDTO> taskList = tservice.selectAll();
+		ArrayList<AllDTO> taskList = tservice.selectAll();		
 		
-		//案件一覧を表示
-		
+		//案件一覧を表示するメソッド呼び出し
+		ArrayList<AllDTO> casesList = cservice.initCases();
 		
 		//reqestスコープに格納する
 		request.setAttribute("taskList", taskList);		//名前 taskList 値 taskList
 		request.setAttribute("count", count);
+		request.setAttribute("casesList", casesList);
 		
 		//ページを返す
 		return page;
