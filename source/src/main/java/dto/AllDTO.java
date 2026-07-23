@@ -69,7 +69,7 @@ public class AllDTO {
 	private BigDecimal monthlyTotalHours; //月合計工数
 	private int caseCount;               //集計案件数
 	private int memberCount;             //稼働メンバー数
-	
+	private int workRate;                //メンバー別集計の全体に占める割合
 	
 
 	//--------------------------------コンストラクタ----------------------------------
