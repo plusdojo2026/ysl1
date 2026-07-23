@@ -1,6 +1,6 @@
 package service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import dao.UsersDAO;
 import dto.UsersDTO;
@@ -24,11 +24,16 @@ public class UsersService {
 	 */
 	public UsersDTO login(UsersDTO uDTO) {
 		UsersDAO dao = new UsersDAO();
+		//userの中の数値はnullかどうかを判断する
+		if (uDTO == null
+				|| uDTO.getLoginId() == null
+				|| uDTO.getLoginId().isBlank()
+				|| uDTO.getLoginPw() == null
+				|| uDTO.getLoginPw().isBlank()) {
 
-		if (dao.login(uDTO)) {
-			return dao.selectOne(uDTO);
-		} else {
 			return null;
+		} else {
+			return (UsersDTO) dao.login(uDTO);
 		}
 
 	}
@@ -38,10 +43,10 @@ public class UsersService {
 	 * 
 	 * @return ArrayList<UsersDTO>
 	 */
-	public ArrayList<UsersDTO> selectAll() {
+	public List<UsersDTO> selectAll() {
 
 		UsersDAO dao = new UsersDAO();
-		return new ArrayList<>(dao.selectAll());
+		return dao.selectAll();
 
 	}
 
@@ -70,7 +75,13 @@ public class UsersService {
 	public boolean insert(UsersDTO uDTO) {
 		UsersDAO dao = new UsersDAO();
 		boolean ans = false;
-		if (dao.check(uDTO)) {
+
+		if (uDTO == null
+				|| uDTO.getLoginId() == null
+				|| uDTO.getLoginId().isBlank()) {
+
+			return ans;
+		} else if (dao.check(uDTO)) {
 			ans = dao.insert(uDTO);
 		}
 
@@ -87,7 +98,13 @@ public class UsersService {
 	public boolean update(UsersDTO uDTO) {
 		UsersDAO dao = new UsersDAO();
 		boolean ans = false;
-		ans = dao.update(uDTO);
+		if (!(uDTO == null
+				|| uDTO.getUserId() == null
+				|| uDTO.getUserId() <= 0)) {
+
+			ans = dao.update(uDTO);
+		}
+
 		return ans;
 	}
 
@@ -99,10 +116,26 @@ public class UsersService {
 	 * @return 件数int 0の場合は失敗
 	 */
 	public boolean delete(String id) {
-		UsersDAO dao = new UsersDAO();
-		boolean ans = false;
-		ans = dao.delete(Integer.parseInt(id));
-		return ans;
+		UsersDAO usersDAO = new UsersDAO();
+		//id数値チェック
+		if (id == null || id.isBlank()) {
+			return false;
+		}
+
+		try {
+			//String→int
+			int userId = Integer.parseInt(id);
+
+			if (userId <= 0) {
+				return false;
+			}
+			//実行
+			return usersDAO.delete(userId);
+
+		} catch (NumberFormatException e) {
+			//転換失敗の場合FALSE
+			return false;
+		}
 	}
 
 }
