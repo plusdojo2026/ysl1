@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.AllDTO;
+import dto.CasesDTO;
 import dto.TasksDTO;
+import dto.UsersDTO;
 
 /**
  * タスクテーブルを操作するDAOクラス。
@@ -82,6 +84,63 @@ public class TasksDAO {
 		}
 		//serviceに返却する
 			return taskList;
+	}
+	
+	/**
+	 * - すべての案件名を取得する -
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public ArrayList<CasesDTO> selectCases() throws SQLException {
+	    ArrayList<CasesDTO> casesList = new ArrayList<CasesDTO>();
+
+	    // 案件名をすべて取得
+	    String sql = "SELECT case_name FROM cases";
+	    PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	    ResultSet rs = pStmt.executeQuery();
+
+	    // 格納
+	    while (rs.next()) {
+	        CasesDTO dto = new CasesDTO();
+
+	        dto.setCaseName(rs.getString("case_name"));
+
+	        casesList.add(dto);
+	    }
+
+	    return casesList;
+	}
+	
+	/**
+	 * - すべてのPM名を取得する -
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public ArrayList<UsersDTO> selectPM() throws SQLException {
+	    ArrayList<UsersDTO> pmList = new ArrayList<UsersDTO>();
+
+	    // PMとして登録されているユーザー名を取得
+	    String sql =
+	        "SELECT DISTINCT u.user_name FROM users u "
+	        + "INNER JOIN cases c ON u.id = c.pm_id AND u.active = 1";
+
+	    PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	    ResultSet rs = pStmt.executeQuery();
+
+	    // 格納
+	    while (rs.next()) {
+	        UsersDTO dto = new UsersDTO();
+
+	        dto.setUserName(rs.getString("user_name"));
+
+	        pmList.add(dto);
+	    }
+
+	    return pmList;
 	}
 	
 	/**

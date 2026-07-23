@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.AllDTO;
+import dto.CasesDTO;
 import dto.TasksDTO;
+import dto.UsersDTO;
 import service.TasksService;
 
 
@@ -66,9 +68,11 @@ public class TasksAction {
 
         //service呼び出し、案件名とPM名のリストを格納
         TasksService service = new TasksService();
-        ArrayList<AllDTO> registList = service.regist();
+        ArrayList<CasesDTO> casesList = service.selectCases();
+        ArrayList<UsersDTO> pmList = service.selectPM();
         
-        request.setAttribute("registList", registList);
+        request.setAttribute("casesList", casesList);
+        request.setAttribute("pmList", pmList);
         
         //タスクIDがあるなら、編集モード ----------------------------------------------
         if(taskIdStr != null && !taskIdStr.isEmpty()) {
