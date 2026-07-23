@@ -1,8 +1,10 @@
 package service;
 
+import java.sql.SQLException;
 
 import dao.HomeDAO;
 import dto.AllDTO;
+
 
 	
 
@@ -18,13 +20,15 @@ public class HomeService extends DBAccess{
 	 * 
 	 * @param AllDTO adto (条件が入っているDTO)
 	 * @return AllDTO
+	 * @throws SQLException 
 	 */
 	
-	public AllDTO select(AllDTO adto) {		//AllDTOのなかで、adtoという名前の条件で探す
+	public AllDTO select(int id) throws SQLException {		//idという名前の条件で探す
 		AllDTO count = null;
 		
+		//AllDTOでcountを作成し、それを返す
 		HomeDAO dao = new HomeDAO(super.conn);
-		count = dao.select(adto);		
+		count = dao.select(id);		
 		
 		return count;
 	}

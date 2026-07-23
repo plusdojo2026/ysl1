@@ -16,17 +16,17 @@
  <main>
  <div class ="cases">
  	<p>進行中の案件</p>
-	 ${inProgressCase}
+	 ${count.inProgressCase}
  </div>
  
  <div class ="tasks">
  	<p>担当タスク</p>
- 	${myTask}
+ 	${count.myTask}
  </div>
  
  <div class ="overdueTasks">
  	<p>期限超過件数</p>
- 	${overDueTasks}
+ 	${count.overDueTasks}
  </div>
  
 <!--案件一覧 -->
