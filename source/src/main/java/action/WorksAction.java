@@ -1,6 +1,7 @@
 package action;
 
 import java.io.UnsupportedEncodingException;
+import java.time.YearMonth;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,9 @@ import service.WorksService;
 
 public class WorksAction {
 	
-	private AllDTO summaryList;
-	private ArrayList<AllDTO> caseSummaryList;
-	private ArrayList<AllDTO> memberSummaryList;
+	private AllDTO selectSum;
+	private ArrayList<AllDTO> caseSumList;
+	private ArrayList<AllDTO> memberSumList;
 	
 	HttpServletRequest request ;
 	//コンストラクタ
@@ -78,24 +79,29 @@ public class WorksAction {
 			//値の取得
 			request.setCharacterEncoding("UTF-8");		
 			
+			//現在の年月を取得
+			YearMonth currentMonth = YearMonth.now();
+			String month = currentMonth.toString();
+			
 			 WorksService service = new WorksService();
 			 
 			 //サマリー情報を取得して、リストに入れる
-			summaryList = service.selectSummary();
+			selectSum = service.selectSum(month);
 			
 			//案件別集計を取得して、リストに入れる
-			caseSummaryList = service.selectCaseSummary();
+			caseSumList = service.selectCaseSum(month);
 			
 			//メンバー別集計を取得して、リストに入れる
-			memberSummaryList = service.selectMemberSummary();
+			memberSumList = service.selectMemberSum(month);
 			
 			//JSPへ渡すためにAttributeに入れる
-			 request.setAttribute("monthlyTotalHours", allDTO.getMonthlyTotalHours()); //月合計工数(h)
-			 request.setAttribute("caseCount", allDTO.getCaseCount());                 //集計案件数
-			 request.setAttribute("memberCount", allDTO.getMemberCount());             //稼働メンバー数
-			 request.setAttribute("caseSummaryList", caseSummaryList);                 //案件別工数
-			 request.setAttribute("memberSummaryList", memberSummaryList);             //メンバー別工数
-			 request.setAttribute("displayMode", "summary");                           //最初に月次集計を表示
+			 request.setAttribute("monthlyTotalHours", selectSum.getMonthlyTotalHours()); //月合計工数(h)
+			 request.setAttribute("caseCount", selectSum.getCaseCount());                 //集計案件数
+			 request.setAttribute("memberCount", selectSum.getMemberCount());             //稼働メンバー数
+			 request.setAttribute("caseSumList", caseSumList);                            //案件別工数
+			 request.setAttribute("memberSumList", memberSumList);      				  //メンバー別工数
+			 request.setAttribute("displayMode", "summary");                              //最初に月次集計を表示
+			 request.setAttribute("selectMonth", month);                                  //作ったMonthを表示
 			return page;
 		}	
 		
@@ -135,10 +141,10 @@ public class WorksAction {
 			AllDTO summary = service.aggregate(month);
 			
 			//案件別
-			ArrayList<AllDTO> caseSummaryList = service.selectCaseSummary(month);
+			ArrayList<AllDTO> caseSummaryList = service.selectCaseSum(month);
 			
 			//メンバー別
-			ArrayList<AllDTO> memberSummaryList = service.selectMemberSummary(month);
+			ArrayList<AllDTO> memberSummaryList = service.selectMemberSum(month);
 			
 			//Attributeに保存
 			request.setAttribute("summary", summary);                         //サマリー（月合計工数、集計案件数、稼働メンバー数）

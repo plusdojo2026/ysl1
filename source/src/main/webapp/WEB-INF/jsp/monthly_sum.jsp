@@ -33,7 +33,7 @@
 	
 		<!-- CSV出力 -->
 		<form action="${pageContext.request.contextPath}/Controller" method="post">
-		<input type="hidden" name="month" value="${selectedMonth}">
+		<input type="hidden" name="month" value="${selectMonth}>
 		<input type="submit" name="byttonId" value="CSV出力">
 		</form>
 
@@ -88,7 +88,7 @@
 			</thead>
 			
 			<tbody>
-			<c:forEach var="caseData" items="${caseSummaryList}">
+			<c:forEach var="caseData" items="${caseSumList}">
 			<tr>
 				<td>${caseData.caseCode}</td>
 				<td>${caseData.caseName}</td>
@@ -126,15 +126,15 @@
 			</thead>
 			
 			<tbody>
-			<c:forEach var="memberData" items="${memberSummaryList}">
+			<c:forEach var="memberData" items="${memberSumList}">
 			<tr>
 				<td>${memberData.userName}</td>
 				<td>${memberData.actualHours}h</td>
 				<td>
 				<div class="progress-bar">
-				<div class="progress-value" style="width: ${memberData.progressRate}%"></div>
+				<div class="progress-value" style="width: ${memberData.workRate}%"></div>
 				</div>
-				<span>${memberData.progressRate}%</span>
+				<span>${memberData.workRate}%</span>
 				</td>
 			</tr>
 			</c:forEach>
@@ -142,7 +142,7 @@
 		</table>
 		</div>
 		<p class="note">
-		※全体に占める割合 = 実績工数 / タスクの予算工数 × 100(小数点以下切り捨て)
+		※全体に占める割合 = 実績工数 / 月の全メンバーの実績工数×100(小数点切り捨て）
 		</p>
 		</section>
 	</div>

@@ -32,7 +32,7 @@ public class WorksService extends DBAccess{
 			WorksDAO dao = new WorksDAO(super.conn);
 			int ans=0;
 			try {
-				ans = dao.worksDelete(Integer.parseInt(id));
+				ans = dao.worksDelete(id);
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
@@ -42,40 +42,40 @@ public class WorksService extends DBAccess{
 		}
 		
 	//サマリー（月合計工数、集計案件数、稼働メンバー数）---------------------------------------	
-		public AllDTO selectSummary() {
-			AllDTO summaryList =null;
+		public AllDTO selectSum(String month) {
+			AllDTO selectSum =null;
 			WorksDAO dao = new WorksDAO(super.conn);
 			
 			//月合計工数、集計案件数、稼働メンバー数
-			AllDTO summary=dao.selectSummary();
+			 selectSum=dao.selectSum();
 			
-			return summaryList;
+			return selectSum;
 		}
 			
 
 	//案件別集計---------------------------------------
-		public ArrayList<AllDTO> selectCaseSummary() {
-			ArrayList<AllDTO> selectCaseSumaary =null;
+		public ArrayList<AllDTO> selectCaseSum(String month) {
+			ArrayList<AllDTO> selectCaseSum =null;
 			WorksDAO dao = new WorksDAO(super.conn);
 			
 			
 			//案件別集計
-			ArrayList<AllDTO> caseList=dao.selectCaseSummary();
+			 selectCaseSum=dao.selectCaseSum();
 			
 			
-			return selectCaseSumaary ;
+			return selectCaseSum ;
 		}
 		
 		
 	//メンバー別集計---------------------------------------
-		public ArrayList<AllDTO> selectMemberSummary() {
-			ArrayList<AllDTO> selectMemberSummary= null;
+		public ArrayList<AllDTO> selectMemberSum(String month) {
+			ArrayList<AllDTO> selectMemberSum= null;
 			WorksDAO dao = new WorksDAO(super.conn);
 			
 			//メンバー別集計
-			ArrayList<AllDTO> memberList=dao.selectMemberSummary();
+			selectMemberSum=dao.selectMemberSum();
 			
-			return selectMemberSummary;
+			return selectMemberSum;
 		}
 		
 		

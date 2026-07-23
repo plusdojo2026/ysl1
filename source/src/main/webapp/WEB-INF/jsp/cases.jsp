@@ -41,8 +41,8 @@
 			<input type="button" value="新規登録">
 		</form>
 <!--案件一覧 -->
-<div class="table" id="cases">
-	<table border="1" id="foo-table" class="table table-bordered">
+<table class="table" id="cases"border="1" >
+	
 		<thead>
 			<tr>
 				<th>案件コード</th>
@@ -70,7 +70,7 @@
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
 					<td>${e.caseNow}/${e.caseSum}</td>
-					<td>${e.actualHours}</td>
+					<td>${e.ActualHoursSum}</td>
 					<td>
 				<!-- 編集ボタン -->
 				<form method="POST" action="<c:url value='/Controller'/>">
@@ -82,8 +82,8 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
-</div>
+	
+</table>
 
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 </body>
