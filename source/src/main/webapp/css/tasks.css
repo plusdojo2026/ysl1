@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.search_area{
+    display:flex;
+    gap:20px;
+}
+
+.search{
+    display:flex;
+    flex-direction:column;
+}
