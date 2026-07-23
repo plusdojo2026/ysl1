@@ -8,25 +8,28 @@
 <meta charset="UTF-8">
 <title>ダッシュボード</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<link rel="stylesheet" href="<c:url value='/css/home.css' />">
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 
  <main>
- <div class ="cases">
+ <div class ="count_area">
+ <div class ="count">
  	<p>進行中の案件</p>
-	 ${count.inProgressCase}
+	 ${count.inProgressCase} 件
  </div>
  
- <div class ="tasks">
+ <div class ="count">
  	<p>担当タスク</p>
- 	${count.myTask}
+ 	${count.myTask} 件
  </div>
  
- <div class ="overdueTasks">
+ <div class ="count">
  	<p>期限超過件数</p>
- 	${count.overDueTasks}
+ 	${count.overDueTasks} 件
+ </div>
  </div>
  
 <!--案件一覧 -->

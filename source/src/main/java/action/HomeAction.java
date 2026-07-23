@@ -31,6 +31,8 @@ public class HomeAction {
 	 * タスク一覧表示メソッド
 	 * @return String page
 	 * @throws SQLException 
+	 * 
+	 * @author 石田
 	 */
 	
 	public String Intilize() throws UnsupportedEncodingException, SQLException {

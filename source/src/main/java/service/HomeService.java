@@ -20,7 +20,9 @@ public class HomeService extends DBAccess{
 	 * 
 	 * @param AllDTO adto (条件が入っているDTO)
 	 * @return AllDTO
-	 * @throws SQLException 
+	 * @throws SQLException
+	 * 
+	 *  @author 石田
 	 */
 	
 	public AllDTO select(int id) throws SQLException {		//idという名前の条件で探す
