@@ -212,7 +212,8 @@ public class WorksAction {
 //			return page;
 //		}
 	
-	
+	//CSV出力
+		public String csv throws UnsupportedEncodingException {	
 	
 	
 	
