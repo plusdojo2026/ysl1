@@ -42,6 +42,31 @@ public class TasksService extends DBAccess{
 		
 		return taskList ;	
 	}
+
+    /**
+     * タスク詳細を取得する
+     *
+     * @param id
+     * @return detailsList
+     *
+     * @author haruto.tanaka
+     */
+    public ArrayList<AllDTO> details(int id) {
+        ArrayList<AllDTO> detailsList = null;
+        TasksDAO dao = new TasksDAO(super.conn);
+
+        try {
+            detailsList = dao.details(id);
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        } finally {
+            super.close();
+        }
+
+        return detailsList;
+    }
+
 	
 	/**
 	 * - 登録されている全案件の名前を取得する -

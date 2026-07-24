@@ -85,6 +85,83 @@ public class TasksDAO {
 		//serviceに返却する
 			return taskList;
 	}
+
+	public ArrayList<AllDTO> details(int id) throws SQLException {
+		ArrayList<AllDTO> detailsList = new ArrayList<AllDTO>();
+
+		String sql =
+			"SELECT " +
+			"t.id AS task_id, " +
+			"t.task_name, " +
+			"t.task_status, " +
+			"t.task_priority, " +
+			"t.task_planned_hours, " +
+			"t.progress_rate, " +
+			"t.start_date, " +
+			"t.deadline, " +
+			"t.task_description, " +
+
+			"c.id AS case_id, " +
+			"c.case_name, " +
+			"c.customer_name, " +
+
+			"u.id AS user_id, " +
+			"u.user_name, " +
+
+			"w.id AS work_id, " +
+			"w.work_description, " +
+			"w.work_date, " +
+			"w.actual_hours " +
+
+			"FROM tasks t " +
+			"INNER JOIN cases c " +
+			"ON t.case_id = c.id " +
+
+			"INNER JOIN users u " +
+			"ON t.manager_id = u.id " +
+
+			"LEFT JOIN works w " +
+			"ON t.id = w.task_id " +
+
+			"WHERE t.id = ?";
+
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, id);
+		ResultSet rs = pStmt.executeQuery();
+
+		while (rs.next()) {
+			AllDTO dto = new AllDTO();
+			// Task
+			dto.setTaskId(rs.getInt("task_id"));
+			dto.setTaskName(rs.getString("task_name"));
+			dto.setTaskStatus(rs.getString("task_status"));
+			dto.setTaskPriority(rs.getString("task_priority"));
+			dto.setTaskPlannedHours(rs.getInt("task_planned_hours"));
+			dto.setProgressRate(rs.getInt("progress_rate"));
+			dto.setStartDate(rs.getString("start_date"));
+			dto.setDeadline(rs.getString("deadline"));
+			dto.setTaskDescription(rs.getString("task_description"));
+
+			// Case
+			dto.setCaseId(rs.getInt("case_id"));
+			dto.setCaseName(rs.getString("case_name"));
+			dto.setCustomerName(rs.getString("customer_name"));
+
+			// User
+			dto.setUserId(rs.getInt("user_id"));
+			dto.setUserName(rs.getString("user_name"));
+
+			// Work
+			dto.setWorkId(rs.getInt("work_id"));
+			dto.setWorkDescription(rs.getString("work_description"));
+			dto.setWorkDate(rs.getString("work_date"));
+			dto.setActualHours(rs.getInt("actual_hours"));
+
+			detailsList.add(dto);
+		}
+
+		return detailsList;
+	}
 	
 	/**
 	 * - すべての案件名を取得する -

@@ -43,6 +43,23 @@ public class TasksAction {
 	}
 
 	/**
+	 * 
+	 */
+	public String details() throws UnsupportedEncodingException {
+		String page = "/WEB-INF/jsp/tasks_details.jsp";
+		// タスクID取得
+		int taskId = Integer.parseInt(request.getParameter("taskId"));
+
+		// 詳細取得
+		TasksService service = new TasksService();
+		ArrayList<AllDTO> detailsList = service.details(taskId);
+
+		request.setAttribute("detailsList", detailsList);
+
+		return page;
+	}
+
+	/**
 	 * - タスク登録・編集 -
 	 * 
 	 * 返り値: タスク登録・編集画面のページリンク
@@ -151,7 +168,7 @@ public class TasksAction {
 	    String page = "/WEB-INF/jsp/cases_details.jsp";
 
 	    // パラメータ取得
-	    String idStr = request.getParameter("id");
+	    String taskIdStr = request.getParameter("taskId");
 	    String caseIdStr = request.getParameter("caseId");
 	    String managerIdStr = request.getParameter("managerId");
 	    String taskName = request.getParameter("taskName");
@@ -166,7 +183,7 @@ public class TasksAction {
 	    // DTOへ格納
 	    TasksDTO tDTO = new TasksDTO();
 
-	    tDTO.setId(Integer.parseInt(idStr));
+	    tDTO.setId(Integer.parseInt(taskIdStr));
 	    tDTO.setCaseId(Integer.parseInt(caseIdStr));
 	    tDTO.setManagerId(Integer.parseInt(managerIdStr));
 	    tDTO.setTaskName(taskName);
