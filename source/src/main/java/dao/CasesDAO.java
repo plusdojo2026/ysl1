@@ -10,13 +10,27 @@ import dto.AllDTO;
 import dto.CasesDTO;
 import dto.UsersDTO;
 
+/**
+ * Casesrsテーブルを操作するDAOクラス。
+ *
+ * <p>
+ * CasesDTO情報の案件一覧の表示、検索、条件検索、案件登録および更新などの
+ * データベース操作を行う。
+ * </p>
+ *
+ *
+ *
+ * @author 横山
+ */
+
 public class CasesDAO {
 
 	public Connection conn = null;
 
 	/**
 	 * コネクションを保持するコンストラクタ
-	 * @param conn
+	 * @param conn データベース接続情報
+	 * 
 	 */
 	public CasesDAO(Connection conn) {
 		this.conn = conn;
@@ -238,6 +252,11 @@ public class CasesDAO {
 				
 	}
 	
+	/**
+	 * - すべてのPM名を取得する -
+	 * 
+	 * 	 * @author 横山大貴
+	 */
 	//PM一覧を取得するメソッド(案件編集や案件登録の際にPMをプルダウンで一覧で出すため)
 	public ArrayList<UsersDTO> selectPmList() throws SQLException{
 		ArrayList<UsersDTO>usersList=new ArrayList<>();
@@ -270,7 +289,12 @@ public class CasesDAO {
 	
 	
 	
-	
+	/**
+	 * - すべての案件を表示する -
+	 * 
+	 * 
+	 * @author 横山大貴
+	 */
 	
 	//すべての案件を表示するメソッドselectAll
 		public ArrayList<AllDTO> selectAll() throws SQLException {
@@ -313,11 +337,11 @@ public class CasesDAO {
 					
 					return allDTOs;
 		}
-	/*
+	/**
 	 * @param dto
 	 * @return insert
 	 * @throws SQLException
-	 * 案件を新規登録するinsertメソッド
+	 * 案件を新規登録する
 	 */
 	public int insert(CasesDTO dto) throws SQLException {
 		int ans = 0;
@@ -388,7 +412,7 @@ public class CasesDAO {
 	 * @param dto
 	 * @return update
 	 * @throws SQLException
-	 * 案件を編集するupdateメソッド
+	 * 案件を編集する
 	 */
 	public int update(CasesDTO dto) throws SQLException {
 		int ans = 0;
