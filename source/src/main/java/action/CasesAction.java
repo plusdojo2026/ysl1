@@ -114,7 +114,7 @@ public class CasesAction {
 		CasesDTO dto=service.casesEdit(id);
 		
 		ArrayList<UsersDTO>
-		userList=service.selectPmList();
+		userList=service.pmList();
 		request.setAttribute("cases", dto);
 		request.setAttribute("userList", userList);
 		
@@ -239,14 +239,24 @@ public class CasesAction {
 				
 				return page;
 			}
+	
 
-	//個別の案件詳細に行くメソッド
-	public String initiCasesDetail() {
+	//案件一覧から案件登録に移動するメソッド
+	public String casesRegist() throws UnsupportedEncodingException{
 		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		String page = "/WEB-INF/jsp/cases_regist.jsp";
+		
+		CasesService service = new CasesService();
+		
+		ArrayList<UsersDTO>
+		userList=service.pmList();
+		request.setAttribute("userList", userList);
+		return page;
 	}
-
-	public String casesRegist() {
+	
+	
+	//案件一覧から案件詳細に遷移するメソッド
+	public String initiCasesDetail() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

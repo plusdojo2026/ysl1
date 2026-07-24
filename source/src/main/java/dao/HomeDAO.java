@@ -58,6 +58,9 @@ public class HomeDAO {
 		// まとめる
 		PreparedStatement pStmt = conn.prepareStatement(casesql);
 		
+		// ?に値をセット
+		pStmt.setInt(1,id);
+		
 		// SELECT文を実行し、結果表を取得する
 		ResultSet rs = pStmt.executeQuery();
 		
@@ -79,6 +82,9 @@ public class HomeDAO {
 		// まとめる
 		pStmt = conn.prepareStatement(tasksql);
 		
+		// ?に値をセット
+		pStmt.setInt(1,id);
+		
 		// SELECT文を実行し、結果表を取得する
 		 rs = pStmt.executeQuery();
 				
@@ -92,7 +98,7 @@ public class HomeDAO {
 //--------------------------------------------------------------------------------------
 		
 		//担当タスク内の期限超過件数
-		String oversql = "SELECT COUNT(*) AS over from tasks t "
+		String oversql = "SELECT COUNT(*) AS overDate from tasks t "
 						 + "WHERE t.manager_id = ? and t.deadline < CURRENT_DATE ";
 				 
 		//デバッグ（SQL文の確認用）
@@ -101,12 +107,15 @@ public class HomeDAO {
 		// まとめる
 		pStmt = conn.prepareStatement(oversql);
 		
+		// ?に値をセット
+		pStmt.setInt(1,id);
+		
 		// SELECT文を実行し、結果表を取得する
 		 rs = pStmt.executeQuery();
 				
 		//移し替え
 			while(rs.next()) {			
-				selectdto.setInProgressCase(rs.getInt("over"));
+				selectdto.setInProgressCase(rs.getInt("overDate"));
 			}
 		
 		return selectdto;	

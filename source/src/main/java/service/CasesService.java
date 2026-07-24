@@ -1,11 +1,9 @@
 package service;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.CasesDAO;
-import dao.utils.DBUtils;
 import dto.AllDTO;
 import dto.CasesDTO;
 import dto.UsersDTO;
@@ -14,6 +12,11 @@ import dto.UsersDTO;
  * 
  */
 public class CasesService extends DBAccess {
+	
+	
+	public CasesService() {
+		super.access();
+	}
 
 	/**
 	 * ページを開いた時に表示するもののメソッド
@@ -22,24 +25,16 @@ public class CasesService extends DBAccess {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public ArrayList<AllDTO> intiCasesDetail(int id) {
+	public ArrayList<AllDTO> intiCasesDetail(int id) throws ClassNotFoundException, SQLException {
 		//一旦空にする
 		ArrayList<AllDTO> casesList = null;
 
 		// データベースに接続する
 
 		// DBUtilsで接続
-		Connection conn;
-		try {
-			conn = DBUtils.getConnection();
-		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		CasesDAO dao = new CasesDAO(super.conn);
+		
+		
+		CasesDAO dao = new CasesDAO(conn);
 
 		try {
 			casesList = dao.selectCases(id);
@@ -61,18 +56,8 @@ public class CasesService extends DBAccess {
 
 		// データベースに接続する
 
-		// DBUtilsで接続
-		Connection conn;
-		try {
-			conn = DBUtils.getConnection();
-		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		CasesDAO dao = new CasesDAO(super.conn);
+		
+		CasesDAO dao = new CasesDAO(conn);
 
 		try {
 			tasksList = dao.selectTasks(id);
@@ -94,18 +79,8 @@ public class CasesService extends DBAccess {
 
 		// データベースに接続する
 
-		// DBUtilsで接続
-		Connection conn;
-		try {
-			conn = DBUtils.getConnection();
-		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		CasesDAO dao = new CasesDAO(super.conn);
+		
+		CasesDAO dao = new CasesDAO(conn);
 
 		try {
 			worksList = dao.selectWorks(id);
@@ -130,7 +105,7 @@ public class CasesService extends DBAccess {
 		//一旦空にする
 		ArrayList<AllDTO> casesList = null;
 
-		CasesDAO dao = new CasesDAO(super.conn);
+		CasesDAO dao = new CasesDAO(conn);
 
 		try {
 			casesList = dao.initialize();
@@ -167,20 +142,20 @@ public class CasesService extends DBAccess {
 	/**
 	 * - 登録されているすべてのPMの名前を取得する
 	 * 
-	 * @return selectPmList;
+	 * @return pmList;
 	 * 
 	 * 
 	 * @author 横山
 	 */
 	//PM一覧を取得するメソッド
 	public ArrayList<UsersDTO>
-	selectPmList(){
+	pmList(){
 		CasesDAO dao=new CasesDAO(conn);
 		
 		ArrayList<UsersDTO>
 		usersList=null;
 		try {
-			usersList = dao.selectPmList();
+			usersList = dao.pmList();
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();//エラーの説明をしてくれる
@@ -193,7 +168,7 @@ public class CasesService extends DBAccess {
 	//新規案件登録のinsertメソッド
 	public int insert(CasesDTO dto) {
 		//一旦空にする
-		CasesDAO dao = new CasesDAO(super.conn);
+		CasesDAO dao = new CasesDAO(conn);
 		
 		int ans=0;
 		try {
@@ -218,7 +193,7 @@ public class CasesService extends DBAccess {
 	//案件編集のupdateメソッド
 	public int update(CasesDTO dto) {
 		//一旦空にする
-		CasesDAO dao = new CasesDAO(super.conn);
+		CasesDAO dao = new CasesDAO(conn);
 		
 		int ans=0;
 		try {
@@ -241,7 +216,7 @@ public class CasesService extends DBAccess {
 		public ArrayList<AllDTO> selectAll() {
 			ArrayList<AllDTO> casesList = null;
 			
-			CasesDAO dao = new CasesDAO(super.conn);
+			CasesDAO dao = new CasesDAO(conn);
 			try {
 				casesList = dao.selectAll();
 			} catch (SQLException e) {
@@ -253,6 +228,11 @@ public class CasesService extends DBAccess {
 			return casesList ;
 			
 		}
+		
+	//案件一覧から案件登録に移動するメソッド
+		
+		
+		
 //		//案件一覧の検索メソッド	ジェークエリーを使うから使わなかった	
 		//			public ArrayList<AllDTO> select() {
 		//				//一旦空にする

@@ -16,7 +16,7 @@ public class DBAccess {
 				// JDBCドライバを読み込む
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample1?"
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ysl1?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 						"root", "password");	//あとで変更
 				
