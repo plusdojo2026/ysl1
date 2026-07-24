@@ -206,15 +206,14 @@
 					リセット
 				</button>
 
+				<!-- 登録・更新ボタン -->
 				<c:choose>
-                    <!-- 更新ボタン -->
 					<c:when test="${mode == 'edit'}">
 						<button type="submit" name="buttonId" value="更新">
 							更新する
 						</button>
 					</c:when>
 
-                    <!-- 登録ボタン -->
 					<c:otherwise>
 						<button type="submit" name="buttonId" value="登録">
 							登録する
