@@ -33,7 +33,16 @@
 		    		
 		        	<td class="label">担当PM</td>
 		        	<td><select name="pmId">
-		        	<option>選択してください</option>
+		        	<c:forEach var="pm" items="${pmList}">
+								<option
+									value="${pm.userId}"
+									${casesList.pmId == pm.userId ? 'selected' : ''}>
+
+									${pmList.userName}
+
+								</option>
+							</c:forEach>
+						</select>
 		        	</td>
 		        	
 		    </tr>
@@ -43,7 +52,7 @@
 		    	<td class="label">案件ステータス</td>
 			    	<td>
 				    	<select name="status">
-							    <option value="すべて">すべて</option>
+							    
 							    <option value="進行中">進行中</option>
 							    <option value="完了">完了</option>
 							    <option value="中止">中止</option>
@@ -53,7 +62,7 @@
 		    	<td class="label">案件優先度</td>
 			    	<td>
 				    	<select name="priority">
-							    <option value="すべて">すべて</option>
+							   
 							    <option value="高">高</option>
 							    <option value="中">中</option>
 							    <option value="低">低</option>
@@ -79,7 +88,7 @@
 		    	
 			    	<td class="label">予定工数(h)</td>
 			    	<td colspan="3">
-			    	<input type="number" name="actualHours" step="0.5" value="${cases.actualHours }"required>
+			    	<input type="number" name="casePlannedHours" step="0.5" value="${cases.casePlannedHours }"required>
 			    	</td>
 		    	
 		    	</tr>
