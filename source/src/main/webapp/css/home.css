@@ -18,3 +18,11 @@
 .mytask {
 	padding-top: 35px;
 }
+
+.mycase {
+	padding-top: 35px;
+}
+
+#casesTable,#tasksTable {
+	width:100%;
+}
