@@ -17,12 +17,12 @@
 	href="${pageContext.request.contextPath}/css/common.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/tasks_regist.css">
+	href="${pageContext.request.contextPath}/css/tasks_details.css">
 
 </head>
 <body>
 
-    <!-- ヘッダー、サイドメニュー -->
+<!-- ヘッダー、サイドメニュー -->
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 
@@ -44,13 +44,13 @@
                 <!-- 左側(案件名、顧客名、担当者名、ステータス、優先度、予定工数、期限、開始日、終了予定日) -->
                 <div class="info-left">
                     <div class="info-row">
-                        <label>タスクID</label>
-                        <p>${taskList.id}</p>
+                        <label>案件名</label>
+                        <p>${caseList.caseName}</p>
                     </div>
 
                     <div class="info-row">
-                        <label>案件名</label>
-                        <p>${caseList.caseName}</p>
+                        <label>顧客名</label>
+                        <p>${caseList.customerName}</p>
                     </div>
 
                     <div class="info-row">
