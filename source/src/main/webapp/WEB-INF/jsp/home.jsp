@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
-	<%@ include file="/WEB-INF/jsp/common/works_regist.jsp" %>
+	<%@ include file="/WEB-INF/jsp/works_regist.jsp" %>
 
  <main>
  <div class ="count_area">

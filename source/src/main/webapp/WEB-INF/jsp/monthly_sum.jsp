@@ -30,8 +30,7 @@
 		
 	
 		<!-- CSV出力 -->
-		<input type="hidden" name="month" value="${selectMonth}>
-		<input type="submit" name="byttonId" value="CSV出力">
+		<input type="submit" name="buttonId" value="CSV出力">
 		</form>
 
 	</div>
@@ -93,7 +92,7 @@
 				<td>${caseData.casePlannedHours}h</td>
 				<td>
 				<div class="progress-bar">
-				<div class="progress-value" style="width: ${caseData.progressRate}%"></div>
+				<div class="progress-value" style="width: ${caseData.caseProgressRate}%"></div>
 				</div>
 				<span>${caseData.caseProgressRate}%</span>
 				</td>
