@@ -151,7 +151,7 @@ public class TasksAction {
 	    String page = "/WEB-INF/jsp/cases_details.jsp";
 
 	    // パラメータ取得
-	    String taskIdStr = request.getParameter("taskId");
+	    String idStr = request.getParameter("id");
 	    String caseIdStr = request.getParameter("caseId");
 	    String managerIdStr = request.getParameter("managerId");
 	    String taskName = request.getParameter("taskName");
@@ -166,7 +166,7 @@ public class TasksAction {
 	    // DTOへ格納
 	    TasksDTO tDTO = new TasksDTO();
 
-	    tDTO.setId(Integer.parseInt(taskIdStr));
+	    tDTO.setId(Integer.parseInt(idStr));
 	    tDTO.setCaseId(Integer.parseInt(caseIdStr));
 	    tDTO.setManagerId(Integer.parseInt(managerIdStr));
 	    tDTO.setTaskName(taskName);

@@ -53,7 +53,7 @@
 
 						<select name="caseName">
 							<c:forEach var="cases" items="${casesList}">
-								<option value="${cases.caseName}">${taskList.caseName}</option>
+								<option value="${cases.id}">${cases.caseName}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -159,12 +159,12 @@
 						<label>担当者</label>
 
 						<select name="userName">
-							<c:forEach var="member" items="${memberList}">
+							<c:forEach var="pm" items="${pmList}">
 								<option
-									value="${member.userName}"
-									${taskList.userName == member.userName ? 'selected' : ''}>
+									value="${pm.userId}"
+									${taskList.managerId == pm.userId ? 'selected' : ''}>
 
-									${taskList.userName}
+									${pmList.userName}
 
 								</option>
 							</c:forEach>

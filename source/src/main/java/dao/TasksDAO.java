@@ -96,7 +96,7 @@ public class TasksDAO {
 		ArrayList<CasesDTO> casesList = new ArrayList<CasesDTO>();
 
 		// 案件名をすべて取得
-		String sql = "SELECT case_name FROM cases";
+		String sql = "SELECT id, case_name FROM cases";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 
 		ResultSet rs = pStmt.executeQuery();
@@ -105,6 +105,7 @@ public class TasksDAO {
 		while (rs.next()) {
 			CasesDTO dto = new CasesDTO();
 
+			dto.setId(rs.getInt("id"));
 			dto.setCaseName(rs.getString("case_name"));
 
 			casesList.add(dto);
@@ -116,7 +117,7 @@ public class TasksDAO {
 	/**
 	 * - すべてのPM名を取得する -
 	 * 
-	 * 
+	 * (すいませんPMじゃなくて担当者名でした多分)
 	 * @author haruto.tanaka
 	 */
 	public ArrayList<UsersDTO> selectPM() throws SQLException {
@@ -124,7 +125,7 @@ public class TasksDAO {
 
 		// PMとして登録されているユーザー名を取得
 		String sql =
-			"SELECT DISTINCT u.user_name FROM users u "
+			"SELECT DISTINCT u.id, u.user_name FROM users u "
 			+ "INNER JOIN cases c ON u.id = c.pm_id AND u.active = 1";
 
 		PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -135,6 +136,7 @@ public class TasksDAO {
 		while (rs.next()) {
 			UsersDTO dto = new UsersDTO();
 
+			dto.setUserId(rs.getInt("id"));
 			dto.setUserName(rs.getString("user_name"));
 
 			pmList.add(dto);
