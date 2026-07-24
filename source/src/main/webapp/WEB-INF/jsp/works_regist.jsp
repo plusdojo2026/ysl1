@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
 </head>
 <body>
-<%@ include file="header.jsp" %>
-<%@ include file="side_menu.jsp" %>
 
 <main>
 <h1>工数入力</h1>
@@ -27,6 +25,6 @@
 </form>
 </div>
 </main>
-<%@ include file="footer.jsp" %> 
+
 </body>
 </html>
