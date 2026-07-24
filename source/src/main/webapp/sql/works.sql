@@ -1,21 +1,39 @@
-use ysl1;
+USE ysl1;
 
-create table works(
-id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-user_id int not null,
-task_id int not null,
-work_date timestamp not null DEFAULT CURRENT_TIMESTAMP,
-actual_hours decimal(5,1) not null,
-work_description varchar(1000),
-FOREIGN KEY (user_id) REFERENCES users(id)
-ON UPDATE CASCADE
-ON DELETE RESTRICT,
-FOREIGN KEY (task_id) REFERENCES tasks(id)
-ON UPDATE CASCADE
-ON DELETE RESTRICT
+CREATE TABLE IF NOT EXISTS works (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
+    user_id INT NOT NULL,
+
+    task_id INT NOT NULL,
+
+    work_date TIMESTAMP NOT NULL
+        DEFAULT CURRENT_TIMESTAMP,
+
+    actual_hours DECIMAL(5, 1) NOT NULL,
+
+    work_description VARCHAR(1000),
+
+    CONSTRAINT chk_works_actual_hours
+        CHECK (actual_hours >= 0 AND actual_hours <= 24),
+
+    CONSTRAINT uk_works_user_task_date
+        UNIQUE (user_id, task_id, work_date),
+
+    CONSTRAINT fk_works_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_works_task
+        FOREIGN KEY (task_id)
+        REFERENCES tasks(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
 );
 
-INSERT INTO works (
+INSERT IGNORE INTO works (
     user_id,
     task_id,
     work_date,

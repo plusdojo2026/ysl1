@@ -1,27 +1,50 @@
-；create database if not exists ysl1;
-use ysl1;
+-- データベース作成
+CREATE DATABASE IF NOT EXISTS ysl1
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 
--- ユーザー作成
-CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'GvJ28VvAB9AFkRKa';
+-- 使用するデータベースを指定
+USE ysl1;
 
--- 権限を付与（全DB・全テーブルへのフルアクセス）
-GRANT ALL PRIVILEGES ON *.* TO 'ysl1'@'localhost';
+-- DB接続用ユーザー作成
+CREATE USER IF NOT EXISTS 'ysl1'@'localhost'
+IDENTIFIED BY '<DB_PASSWORD>';
 
--- 反映
+-- ysl1データベースに対する権限を付与
+GRANT ALL PRIVILEGES
+ON ysl1.*
+TO 'ysl1'@'localhost';
+
+-- 権限を反映
 FLUSH PRIVILEGES;
 
-create table users (
-id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-login_id VARCHAR(30) NOT NULL UNIQUE,
-login_pw VARCHAR(1000) NOT NULL CHECK (CHAR_LENGTH(login_pw) >= 6),
-user_name VARCHAR(30) NOT NULL,
-mail_address VARCHAR(50),
-authority BOOLEAN NOT NULL,
-active BOOLEAN NOT NULL,
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- usersテーブル作成
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
+    login_id VARCHAR(30) NOT NULL UNIQUE,
+
+    login_pw VARCHAR(255) NOT NULL,
+
+    user_name VARCHAR(30) NOT NULL,
+
+    mail_address VARCHAR(50),
+
+    authority BOOLEAN NOT NULL,
+
+    active BOOLEAN NOT NULL,
+
+    created_at TIMESTAMP
+        NOT NULL
+        DEFAULT CURRENT_TIMESTAMP,
+
+    update_at TIMESTAMP
+        NOT NULL
+        DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- 初期データ登録
 INSERT INTO users (
     login_id,
     login_pw,
@@ -51,6 +74,6 @@ INSERT INTO users (
     '$2b$12$gumii4suft2vNgSo7mLm6OTJ0qaZUlTdKfxZ09QVNSxtdMzm8W8l6',
     'システム管理者',
     'admin@example.com',
-    false,
+    true,
     true
 );

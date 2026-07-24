@@ -1,23 +1,49 @@
-use ysl1;
+USE ysl1;
 
-create table cases(
-id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-case_name varchar(100) not null unique,
-case_code varchar(20) not null unique,
-customer_name varchar(30),
-case_priority varchar(10) not null default '中',
-pm_id int,
-case_status varchar(10) not null default '進行中',
-start_date timestamp,
-planned_end_date timestamp,
-case_description varchar(1000),
-case_planned_hours int,
-FOREIGN KEY (pm_id) REFERENCES users(id)
-ON UPDATE CASCADE
-ON DELETE RESTRICT
+CREATE TABLE IF NOT EXISTS cases (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
+    case_name VARCHAR(100) NOT NULL UNIQUE,
+
+    case_code VARCHAR(20) NOT NULL UNIQUE,
+
+    customer_name VARCHAR(30),
+
+    case_priority VARCHAR(10) NOT NULL DEFAULT '中',
+
+    pm_id INT,
+
+    case_status VARCHAR(10) NOT NULL DEFAULT '進行中',
+
+    start_date TIMESTAMP NULL,
+
+    planned_end_date TIMESTAMP NULL,
+
+    case_description VARCHAR(1000),
+
+    case_planned_hours INT,
+
+    CONSTRAINT chk_cases_planned_hours
+        CHECK (
+            case_planned_hours IS NULL
+            OR case_planned_hours >= 0
+        ),
+
+    CONSTRAINT chk_cases_date_range
+        CHECK (
+            start_date IS NULL
+            OR planned_end_date IS NULL
+            OR planned_end_date >= start_date
+        ),
+
+    CONSTRAINT fk_cases_pm
+        FOREIGN KEY (pm_id)
+        REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
 );
 
-INSERT INTO cases (
+INSERT IGNORE INTO cases (
     case_name,
     case_code,
     customer_name,
