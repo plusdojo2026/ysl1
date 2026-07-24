@@ -1,0 +1,446 @@
+@charset "UTF-8";
+
+/*=========================
+ 全体
+=========================*/
+
+.main{
+    max-width:1200px;
+}
+
+/*=========================
+ タイトル
+=========================*/
+
+.main h2{
+
+    margin-bottom:25px;
+
+    color:#234d84;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+/*=========================
+ 上部ボタン
+=========================*/
+
+.top-button-area{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:20px;
+
+}
+
+.top-button-area button{
+
+    width:140px;
+
+    height:45px;
+
+    background:linear-gradient(90deg,#3d8bfd,#2268d4);
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:25px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+}
+
+.top-button-area button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/*=========================
+ 情報エリア
+=========================*/
+
+.task-info-area{
+
+    display:grid;
+
+    grid-template-columns:55% 45%;
+
+    gap:25px;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    box-shadow:0 5px 18px rgba(40,90,180,.08);
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+}
+
+.info-left{
+
+    display:grid;
+
+    grid-template-columns:140px 1fr;
+
+    row-gap:18px;
+
+}
+
+.info-row{
+
+    display:contents;
+
+}
+
+.info-row label{
+
+    font-weight:bold;
+
+    color:#4a6586;
+
+}
+
+.info-row p{
+
+    margin:0;
+
+    font-size:15px;
+
+    color:#234;
+
+}
+
+/*=========================
+ バッジ
+=========================*/
+
+.status-badge,
+.priority-badge{
+
+    display:inline-block;
+
+    width:fit-content;
+
+    padding:5px 14px;
+
+    border-radius:15px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+.status-badge{
+
+    background:#3b82f6;
+
+}
+
+.priority-badge{
+
+    background:#ff8b2c;
+
+}
+
+/*=========================
+ 右側
+=========================*/
+
+.info-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/*=========================
+ Progress
+=========================*/
+
+.progress-area label{
+
+    margin-bottom:10px;
+
+}
+
+.progress-bar{
+
+    height:14px;
+
+    background:#dbe9ff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(90deg,#3d8bfd,#2268d4);
+
+}
+
+.progress-area p{
+
+    margin-top:8px;
+
+    text-align:right;
+
+    font-weight:bold;
+
+    color:#345;
+
+}
+
+/*=========================
+ 状態変更
+=========================*/
+
+.status-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.status-buttons button{
+
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:#edf4ff;
+
+    color:#296dd4;
+
+    font-weight:bold;
+
+}
+
+.status-buttons button:hover{
+
+    background:#3b82f6;
+
+    color:white;
+
+}
+
+/*=========================
+ 説明
+=========================*/
+
+.description-box{
+
+    margin-top:10px;
+
+    min-height:180px;
+
+    border:1px solid #d6e2f2;
+
+    border-radius:12px;
+
+    background:#f9fbff;
+
+    padding:15px;
+
+    white-space:pre-wrap;
+
+    line-height:1.7;
+
+}
+
+/*=========================
+ 工数実績
+=========================*/
+
+.works-area{
+
+    background:white;
+
+    border-radius:16px;
+
+    box-shadow:0 5px 18px rgba(40,90,180,.08);
+
+    padding:25px;
+
+}
+
+.works-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.works-header h3{
+
+    margin:0;
+
+    color:#234d84;
+
+}
+
+.works-header button{
+
+    width:130px;
+
+    height:42px;
+
+    background:linear-gradient(90deg,#3d8bfd,#2268d4);
+
+    color:white;
+
+    border:none;
+
+    border-radius:22px;
+
+}
+
+/*=========================
+ テーブル
+=========================*/
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#edf5ff;
+
+}
+
+th{
+
+    padding:14px;
+
+    color:#35557e;
+
+    text-align:left;
+
+}
+
+td{
+
+    padding:15px;
+
+    border-top:1px solid #e7edf7;
+
+}
+
+tbody tr:hover{
+
+    background:#f8fbff;
+
+}
+
+/*=========================
+ ゴミ箱
+=========================*/
+
+td button{
+
+    background:none;
+
+    border:none;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+td button:hover{
+
+    transform:scale(1.15);
+
+}
+
+/*=========================
+ モーダル
+=========================*/
+
+.modal{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.4);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.modal-content{
+
+    width:600px;
+
+    height:420px;
+
+    background:white;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.2);
+
+}
+
+/*=========================
+ レスポンシブ
+=========================*/
+
+@media(max-width:900px){
+
+    .task-info-area{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
