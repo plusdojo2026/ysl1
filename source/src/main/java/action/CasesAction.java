@@ -89,6 +89,7 @@ public class CasesAction {
 		CasesService service = new CasesService();
 		//初期の案件一覧を表示
 		ArrayList<AllDTO> casesList = service.initialize();
+		
 		//reqestスコープに格納する
 		request.setAttribute("casesList", casesList);
 
