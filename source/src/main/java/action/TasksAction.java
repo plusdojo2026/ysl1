@@ -25,7 +25,7 @@ public class TasksAction {
 	 * @return String page
 	 */
 	public String selectAll() throws UnsupportedEncodingException {
-		String page="/WEB-INF/jsp/Tasks.jsp";
+		String page="/WEB-INF/jsp/jasks.jsp";
 		
 		//TaskServiceを呼びだす
 		TasksService service = new TasksService();
@@ -43,7 +43,12 @@ public class TasksAction {
 	}
 
 	/**
+	 * - タスク詳細表示 -
+	 * @return String page;
+	 * jspへ渡す値:
+	 * ・detailsList(AllDTO)
 	 * 
+	 * @author haruto.tanaka
 	 */
 	public String details() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/tasks_details.jsp";
