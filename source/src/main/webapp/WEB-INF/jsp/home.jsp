@@ -62,7 +62,7 @@
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
 					<td>${e.caseNow}/${e.caseSum}</td>
-					<td>${e.actualHours}</td>
+					<td>${e.actualHoursSum}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

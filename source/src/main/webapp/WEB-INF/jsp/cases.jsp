@@ -70,7 +70,7 @@
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
 					<td>${e.caseNow}/${e.caseSum}</td>
-					<td>${e.ActualHoursSum}</td>
+					<td>${e.actualHoursSum}</td>
 					<td>
 				<!-- 編集ボタン -->
 				<form method="POST" action="<c:url value='/Controller'/>">
