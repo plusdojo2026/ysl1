@@ -33,7 +33,7 @@
  </div>
  
 <!--案件一覧 -->
-<p>案件一覧</p>
+<p class="mycase">案件一覧</p>
 <table class="table" id="casesTable" border="1">
 		<thead>
 			<tr>
@@ -103,7 +103,7 @@
 			<td>${e.progressRate}</td>
 			<td>
 			<form method="POST" action="<c:url value='/Controller'/>">
-				<input type="hidden" name="page_id" value="W001">
+				<input type="hidden" name="page_id" value="D001">
 				<input type="hidden" name="taskId" value="${e.taskId}">							
 				<input type="submit" name="button_id" value="工数入力">
 			</form>

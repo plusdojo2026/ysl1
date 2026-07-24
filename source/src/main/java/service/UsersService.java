@@ -22,20 +22,17 @@ public class UsersService {
 	 * @param uDTO(id,pw)
 	 * @return UsersDTO
 	 */
-	public UsersDTO login(UsersDTO uDTO) {
-		UsersDAO dao = new UsersDAO();
-		//userの中の数値はnullかどうかを判断する
-		if (uDTO == null
-				|| uDTO.getLoginId() == null
-				|| uDTO.getLoginId().isBlank()
-				|| uDTO.getLoginPw() == null
-				|| uDTO.getLoginPw().isBlank()) {
+	public UsersDTO login(UsersDTO user) {
+
+		if (user == null
+				|| user.getLoginId() == null
+				|| user.getLoginId().isBlank()) {
 
 			return null;
-		} else {
-			return (UsersDTO) dao.login(uDTO);
 		}
 
+		UsersDAO dao = new UsersDAO();
+		return dao.login(user);
 	}
 
 	/**

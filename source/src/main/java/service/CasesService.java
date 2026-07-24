@@ -120,7 +120,11 @@ public class CasesService extends DBAccess {
 		return worksList;
 
 	}
-
+	
+	/**
+	 * 一覧表示メソッド
+	 * @return ArrayList<AllDTO>
+	 */
 	//案件一覧の初期画面の表示のメソッド
 	public ArrayList<AllDTO> initialize() {
 		//一旦空にする
@@ -139,7 +143,14 @@ public class CasesService extends DBAccess {
 		return casesList;
 
 	}
-	
+	/**
+	 * - 選択したcasesIDのレコードの詳細を取得する
+	 * 
+	 * @return dto;
+	 * 
+	 * 
+	 * @author 横山
+	 */
 	//案件一覧から編集ボタンで個別の案件を表示するcasesEditメソッド
 	public CasesDTO casesEdit(int id) {
 		//DAOに処理を任せる
@@ -153,7 +164,14 @@ public class CasesService extends DBAccess {
 		}
 		return dto;		
 	}
-	
+	/**
+	 * - 登録されているすべてのPMの名前を取得する
+	 * 
+	 * @return selectPmList;
+	 * 
+	 * 
+	 * @author 横山
+	 */
 	//PM一覧を取得するメソッド
 	public ArrayList<UsersDTO>
 	selectPmList(){
@@ -171,40 +189,6 @@ public class CasesService extends DBAccess {
 		}
 		return usersList;
 	}
-	
-
-	//	//案件一覧の検索メソッド	ジェークエリーを使うから使わなかった	
-	//			public ArrayList<AllDTO> select() {
-	//				//一旦空にする
-	//				ArrayList<AllDTO> casesCard = null;
-	//				CasesDAO dao = new CasesDAO(super.conn);
-	//				
-	//				try {
-	//					casesCard = dao.select();
-	//				} catch (SQLException e) {
-	//					System.out.println("SQL文おかしいよ");
-	//					e.printStackTrace();
-	//				}
-	//				super.close();
-	//				
-	//				return casesList;
-	//			}
-	//新規案件登録のdoGetメソッド
-//	public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
-//		//一旦空にする
-//		ArrayList<CasesDTO> casesList = null;
-//		CasesDAO dao = new CasesDAO(super.conn);
-//
-//		try {
-//			casesList = dao.insertAll();
-//		} catch (SQLException e) {
-//			System.out.println("SQL文おかしいよ");
-//			e.printStackTrace();
-//		}
-//		super.close();
-//
-//		return casesList;
-//	}
 
 	//新規案件登録のinsertメソッド
 	public int insert(CasesDTO dto) {
@@ -223,7 +207,14 @@ public class CasesService extends DBAccess {
 		return ans;
 	}
 
-
+	/**
+     * - 案件を編集する -
+     *ごめん、booleanに直します
+     * @return 1:成功 0:失敗
+     *
+     *
+     * @author haruto.tanaka
+     */
 	//案件編集のupdateメソッド
 	public int update(CasesDTO dto) {
 		//一旦空にする
@@ -240,7 +231,12 @@ public class CasesService extends DBAccess {
 
 		return ans;
 	}
-	
+	/**
+	 * - 登録されている全案件の名前を取得する -
+	 * 
+	 * @return casesList;
+	 * @author 横山
+	 */
 	//全ての案件を取得するメソッド
 		public ArrayList<AllDTO> selectAll() {
 			ArrayList<AllDTO> casesList = null;
@@ -257,5 +253,36 @@ public class CasesService extends DBAccess {
 			return casesList ;
 			
 		}
-
+//		//案件一覧の検索メソッド	ジェークエリーを使うから使わなかった	
+		//			public ArrayList<AllDTO> select() {
+		//				//一旦空にする
+		//				ArrayList<AllDTO> casesCard = null;
+		//				CasesDAO dao = new CasesDAO(super.conn);
+		//				
+		//				try {
+		//					casesCard = dao.select();
+		//				} catch (SQLException e) {
+		//					System.out.println("SQL文おかしいよ");
+		//					e.printStackTrace();
+		//				}
+		//				super.close();
+		//				
+		//				return casesList;
+		//			}
+		//新規案件登録のdoGetメソッド
+//		public ArrayList<CasesDTO> intiCases(cDto CasesDTO) {
+//			//一旦空にする
+//			ArrayList<CasesDTO> casesList = null;
+//			CasesDAO dao = new CasesDAO(super.conn);
+	//
+//			try {
+//				casesList = dao.insertAll();
+//			} catch (SQLException e) {
+//				System.out.println("SQL文おかしいよ");
+//				e.printStackTrace();
+//			}
+//			super.close();
+	//
+//			return casesList;
+//		}
 }

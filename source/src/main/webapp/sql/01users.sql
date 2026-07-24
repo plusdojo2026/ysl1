@@ -55,7 +55,7 @@ INSERT INTO users (
 ) VALUES
 (
     'tanaka456',
-    '$2b$12$cJVMF57mLzWEu9/9B1qoTO7WUF9v3rGOAETUV6wtaC5ajjiFUcg8y',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
     '田中恵梨香',
     'tanaka@example.com',
     false,
@@ -63,7 +63,7 @@ INSERT INTO users (
 ),
 (
     'sato_hanako',
-    '$2b$12$6o38rlVGusnvChFKimPu1eTjBTffB/lUBI8jXOGR4fmwz/49i6eCW',
+    '$2a$12$UjsS9xhZ5PypWlaMwMyAWOPuxDJBGC5H2oaRz2lmsXqjTpTI2L/lq',
     '佐藤 花子',
     'sato@example.com',
     true,
@@ -71,7 +71,7 @@ INSERT INTO users (
 ),
 (
     'admin001',
-    '$2b$12$gumii4suft2vNgSo7mLm6OTJ0qaZUlTdKfxZ09QVNSxtdMzm8W8l6',
+    '$2a$12$bIMk7jQ9JzBb0Vy36Cu1suxaZo4WIJvOdMOCdEuB9yRJboFHxZ8VK',
     'システム管理者',
     'admin@example.com',
     true,

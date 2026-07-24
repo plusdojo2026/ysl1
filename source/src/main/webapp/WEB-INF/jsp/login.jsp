@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
-<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
+
 <main>
 <!-- ログイン画面 -->
  <h2>ログイン</h2>

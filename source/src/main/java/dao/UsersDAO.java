@@ -53,11 +53,9 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 				SELECT *
 				FROM %s
 				WHERE login_id = ?
-				  AND login_pw = ?
-				  AND active = ?
 				""".formatted(getTableName());
 
-		return selectOne(sql, user.getLoginId(), user.getLoginPw(), true);
+		return selectOne(sql, user.getLoginId());
 	}
 
 	/**

@@ -75,7 +75,10 @@ public class CasesAction {
 
 	//案件一覧の初期画面の表示のメソッド
 	/**
-	 * @return
+	 * 
+	 *  - 案件一覧の初期画面表示 -
+	 *  返り値:案件一覧画面
+	 * @return String page
 	 * @throws UnsupportedEncodingException
 	 */
 	public String initialize() throws UnsupportedEncodingException {
@@ -91,6 +94,13 @@ public class CasesAction {
 		return page;
 	}
 	
+	/**
+	 * 
+	 *  - 案件一覧の初期画面表示 -
+	 *  返り値:案件登録画面のページリンク（編集モード）
+	 * @return String page
+	 * @throws UnsupportedEncodingException
+	 */
 	//案件一覧から編集ボタンで個別の案件を表示するcasesEditメソッド
 	public String casesEdit() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
@@ -111,41 +121,7 @@ public class CasesAction {
 		return page;
 	}
 
-	//	//案件一覧の検索メソッド　ジェークエリーを使うから使わなかった
-	//		public String select() throws UnsupportedEncodingException{
-	//			String page="/WEB-INF/jsp/cases.jsp";
-	//			
-	//			//値の取得
-	//			request.setCharacterEncoding("UTF-8");		
-	//			String id = request.getParameter("id");
-	//			String caseName = request.getParameter("case_name");
-	//			String caseCode = request.getParameter("case_code");
-	//			String customerName = request.getParameter("customer_name");
-	//			String caseStatus = request.getParameter("case_status");
-	//			String casePriority = request.getParameter("case_priority");
-	//			
-	//			CasesService service = new CasesService();
-	//			//serviceに処理を依頼　真似しただけなので書き直す
-	//			boolean ans = service.select();
-	//			
-	//			ArrayList<AllDTO> casesList = service.select();
-	//			request.setAttribute("casesList", casesList);
-	//		}
 
-//	//新規案件登録のdoGetメソッド（有効か無効かはまだ見分けられない）
-//	public String casesRegist() throws UnsupportedEncodingException {
-//		String page = "/WEB-INF/jsp/cases_regist.jsp";
-//		request.setCharacterEncoding("UTF-8");
-//		String id = request.getParameter("id");
-//		String userName = request.getParameter("pm_id");
-//
-//		CasesService service = new CasesService();
-//		//serviceに処理を依頼　真似しただけなので書き直す
-//		boolean ans = service.select(id);
-//
-//		ArrayList<CasesDTO> casesList = service.selectAll();
-//		request.setAttribute("casesList", casesList);
-//	}
 	
 	/**
 	 * 一覧表示メソッド
@@ -169,8 +145,9 @@ public class CasesAction {
 		return page;
 	}
 
-	//新規案件登録のinsertメソッド
+	//新規案件登録処理insertメソッド
 	/**
+	 * - 新規案件登録処理 -
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
@@ -222,6 +199,7 @@ public class CasesAction {
 
 	//案件編集のupdateメソッド
 	/**
+	 * - 案件編集の処理 -
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
@@ -268,5 +246,44 @@ public class CasesAction {
 		return null;
 	}
 
+	public String casesRegist() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+	//	//案件一覧の検索メソッド　ジェークエリーを使うから使わなかった
+	//		public String select() throws UnsupportedEncodingException{
+	//			String page="/WEB-INF/jsp/cases.jsp";
+	//			
+	//			//値の取得
+	//			request.setCharacterEncoding("UTF-8");		
+	//			String id = request.getParameter("id");
+	//			String caseName = request.getParameter("case_name");
+	//			String caseCode = request.getParameter("case_code");
+	//			String customerName = request.getParameter("customer_name");
+	//			String caseStatus = request.getParameter("case_status");
+	//			String casePriority = request.getParameter("case_priority");
+	//			
+	//			CasesService service = new CasesService();
+	//			//serviceに処理を依頼　真似しただけなので書き直す
+	//			boolean ans = service.select();
+	//			
+	//			ArrayList<AllDTO> casesList = service.select();
+	//			request.setAttribute("casesList", casesList);
+	//		}
+
+//	//新規案件登録のdoGetメソッド（有効か無効かはまだ見分けられない）
+//	public String casesRegist() throws UnsupportedEncodingException {
+//		String page = "/WEB-INF/jsp/cases_regist.jsp";
+//		request.setCharacterEncoding("UTF-8");
+//		String id = request.getParameter("id");
+//		String userName = request.getParameter("pm_id");
+//
+//		CasesService service = new CasesService();
+//		//serviceに処理を依頼　真似しただけなので書き直す
+//		boolean ans = service.select(id);
+//
+//		ArrayList<CasesDTO> casesList = service.selectAll();
+//		request.setAttribute("casesList", casesList);
+//	}
 	
 }
