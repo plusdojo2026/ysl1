@@ -268,7 +268,7 @@ public class Controller extends HttpServlet {
 					//				//月次集計画面表示[]
 					//				page = wAction.initialize();
 					//
-					//			}
+					}
 				}
 
 				//タスク一覧画面 ---------------------------------
@@ -284,29 +284,29 @@ public class Controller extends HttpServlet {
 					}
 				}
 
-				//			//タスク新規登録・編集画面 ------------------------
-				//		else if (pageId.equals("T002")) {
-				//			TasksAction tAction = new TasksAction(request);
-				//			if (buttonId.equals("登録")) {
-				//				//タスク登録処理[結果:Tasksテーブルにレコードを追加、案件詳細画面へ]
-				//				page = tAction.insert();
-				//			} else if (buttonId.equals("編集")) {
-				//				//タスク更新処理[結果:Tasks該当レコードを更新、案件詳細画面へ]
-				//				page = tAction.update();
-				//			}
-				//		}
-				//			//タスク詳細画面 ------------------------------------
-				//		 else if (pageId.equals("T003")) {
-				//			WorksAction wAction = new WorksAction(request);
-				//			if (buttonId.equals("削除")) {
-				//				//工数データ削除処理[結果:]
-				//				page = wAction.delete();
-				//
-				//			} else if (buttonId.equals("工数入力")) {
-				//				//工数入力モーダル
-				//				page = wAction.insert();
-				//			}
-				//		}
+							//タスク新規登録・編集画面 ------------------------
+						else if (pageId.equals("T002")) {
+							TasksAction tAction = new TasksAction(request);
+							if (buttonId.equals("登録")) {
+								//タスク登録処理[結果:Tasksテーブルにレコードを追加、案件詳細画面へ]
+								page = tAction.insert();
+							} else if (buttonId.equals("編集")) {
+								//タスク更新処理[結果:Tasks該当レコードを更新、案件詳細画面へ]
+								page = tAction.update();
+							}
+						}
+							//タスク詳細画面 ------------------------------------
+						 else if (pageId.equals("T003")) {
+							WorksAction wAction = new WorksAction(request);
+							if (buttonId.equals("削除")) {
+								//工数削除処理[結果:]
+								page = wAction.delete();
+				
+//							} else if (buttonId.equals("工数入力")) {
+//								//工数入力モーダル
+//								page = wAction.insert();
+							}
+						}
 				//月次集計画面 ------------------------------------
 				else if (pageId.equals("M001")) {
 					WorksAction wAction = new WorksAction(request);
@@ -328,4 +328,3 @@ public class Controller extends HttpServlet {
 		}
 
 	}
-}
