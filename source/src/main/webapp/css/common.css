@@ -3,6 +3,7 @@
     box-sizing: border-box;
 }
 
+
 html, body {
     min-height: 100%;
     margin: 0;
@@ -29,6 +30,9 @@ header {
     box-shadow: 0 2px 6px rgba(15, 57, 103, 0.14);
 }
 
+div.header__logo img{
+	height: 65px;
+}
 footer {
     padding: 14px 24px;
     text-align: center;
