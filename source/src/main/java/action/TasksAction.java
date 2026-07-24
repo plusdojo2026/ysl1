@@ -25,7 +25,7 @@ public class TasksAction {
 	 * @return String page
 	 */
 	public String selectAll() throws UnsupportedEncodingException {
-		String page="/WEB-INF/jsp/jasks.jsp";
+		String page="/WEB-INF/jsp/tasks.jsp";
 		
 		//TaskServiceを呼びだす
 		TasksService service = new TasksService();
