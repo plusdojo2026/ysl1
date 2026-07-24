@@ -88,7 +88,7 @@ main > h1 {
 .month-select {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 15px;
 }
 
 
@@ -96,7 +96,7 @@ main > h1 {
 
 input[type="month"] {
     width: 330px;
-    height: 56px;
+    height: 55px;
 
     padding: 0 18px;
 
@@ -117,13 +117,13 @@ input[type="month"] {
 ========================= */
 
 .top-area input[type="submit"] {
-    height: 56px;
+    height: 55px;
 
-    padding: 0 36px;
+    padding: 0 35px;
 
     border-radius: 10px;
 
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 600;
 
     cursor: pointer;
