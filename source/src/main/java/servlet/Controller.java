@@ -79,62 +79,63 @@ public class Controller extends HttpServlet {
 				}
 			}
 
-//			//月次集計画面 ------------------------------------
-//			else if (pageId.equals("M001")) {
-//				WorksAction wAction = new WorksAction(request);
-//				if (buttonId.equals("集計")) {
-//					//選択した月の情報を表示
-//					page = wAction.initialize();
-//				} else if (buttonId.equals("工数一覧")) {
-//					page = wAction.selectByMonth();
-//				}
-			
-				//				else if (buttonId.equals("CSV出力")) {
-				//				//これから実装(現在は仮でcsvとしときます)
-				//				page = wAction.csv();
-				//			}
+			//			//月次集計画面 ------------------------------------
+			//			else if (pageId.equals("M001")) {
+			//				WorksAction wAction = new WorksAction(request);
+			//				if (buttonId.equals("集計")) {
+			//					//選択した月の情報を表示
+			//					page = wAction.initialize();
+			//				} else if (buttonId.equals("工数一覧")) {
+			//					page = wAction.selectByMonth();
+			//				}
 
-				//					ダッシュボード画面 ------------------------------
+			//				else if (buttonId.equals("CSV出力")) {
+			//				//これから実装(現在は仮でcsvとしときます)
+			//				page = wAction.csv();
+			//			}
+
+			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {
 
-			    if ("ダッシュボード".equals(buttonId)) {
-			        HomeAction hAction = new HomeAction(request);
+				if ("ダッシュボード".equals(buttonId)) {
+					HomeAction hAction = new HomeAction(request);
 
-			        try {
-			            page = hAction.Intilize();
-			        } catch (UnsupportedEncodingException | SQLException e) {
-			            e.printStackTrace();
-			            page = "/WEB-INF/jsp/error.jsp";
-			        }
+					try {
+						page = hAction.Intilize();
+					} catch (UnsupportedEncodingException | SQLException e) {
+						e.printStackTrace();
+						page = "/WEB-INF/jsp/error.jsp";
+					}
 
-			    } else if ("案件一覧".equals(buttonId)) {
-			        CasesAction cAction = new CasesAction(request);
-			        page = cAction.initialize();
+				} else if ("案件一覧".equals(buttonId)) {
+					CasesAction cAction = new CasesAction(request);
+					page = cAction.initialize();
 
-			    } else if ("タスク管理".equals(buttonId)) {
-			        TasksAction tAction = new TasksAction(request);
-			        page = tAction.selectAll();
+				} else if ("タスク管理".equals(buttonId)) {
+					TasksAction tAction = new TasksAction(request);
+					page = tAction.selectAll();
 
-			    } else if ("月次集計".equals(buttonId)) {
-			        WorksAction wAction = new WorksAction(request);
-			        page = wAction.initialize();
+				} else if ("月次集計".equals(buttonId)) {
+					WorksAction wAction = new WorksAction(request);
+					page = wAction.initialize();
 
-//			    } else if ("メンバー管理".equals(buttonId)) {
-//			        UsersAction uAction = new UsersAction(request);
-//			        page = uAction.selectAll();
-			    }
+				} else if ("メンバー管理".equals(buttonId)) {
+					UsersAction uAction = new UsersAction(request);
+					page = uAction.selectAll();
+
+				}
 			}
-						//案件一覧画面 -----------------------------------
-						//		else if (pageId.equals("C001")) {
-						//			CasesAction cAction = new CasesAction(request);
-						//			if (buttonId.equals("新規登録")) {
-						//				//新規登録画面表示[]
-						//				page = cAction.casesRegist();
-//					}
-//				}
-//			
+			//案件一覧画面 -----------------------------------
+			//		else if (pageId.equals("C001")) {
+			//			CasesAction cAction = new CasesAction(request);
+			//			if (buttonId.equals("新規登録")) {
+			//				//新規登録画面表示[]
+			//				page = cAction.casesRegist();
+			//					}
+			//				}
+			//			
 		}
-		
+
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
@@ -268,63 +269,63 @@ public class Controller extends HttpServlet {
 					//				//月次集計画面表示[]
 					//				page = wAction.initialize();
 					//
-					}
-				}
-
-				//タスク一覧画面 ---------------------------------
-				else if (pageId.equals("T001")) {
-					TasksAction tAction = new TasksAction(request);
-					if (buttonId.equals("検索")) {
-						//タスク検索処理[結果:絞り込んだデータを取得して表示]
-						page = tAction.selectAll();
-
-					} else if (buttonId.equals("編集")) {
-						//タスク編集画面表示[]
-						page = tAction.functions();
-					}
-				}
-
-							//タスク新規登録・編集画面 ------------------------
-						else if (pageId.equals("T002")) {
-							TasksAction tAction = new TasksAction(request);
-							if (buttonId.equals("登録")) {
-								//タスク登録処理[結果:Tasksテーブルにレコードを追加、案件詳細画面へ]
-								page = tAction.insert();
-							} else if (buttonId.equals("編集")) {
-								//タスク更新処理[結果:Tasks該当レコードを更新、案件詳細画面へ]
-								page = tAction.update();
-							}
-						}
-							//タスク詳細画面 ------------------------------------
-						 else if (pageId.equals("T003")) {
-							WorksAction wAction = new WorksAction(request);
-							if (buttonId.equals("削除")) {
-								//工数削除処理[結果:]
-								page = wAction.delete();
-				
-//							} else if (buttonId.equals("工数入力")) {
-//								//工数入力モーダル
-//								page = wAction.insert();
-							}
-						}
-				//月次集計画面 ------------------------------------
-				else if (pageId.equals("M001")) {
-					WorksAction wAction = new WorksAction(request);
-					if (buttonId.equals("集計")) {
-						//選択した月の情報を表示
-						page = wAction.initialize();
-					} else if (buttonId.equals("工数一覧")) {
-						page = wAction.selectByMonth();
-					}
-					//							else if (buttonId.equals("CSV出力")) {
-					//							//これから実装(現在は仮でcsvとしときます)
-					//							page = wAction.csv();
-					//						}
 				}
 			}
-			//pageに格納したリンク先にフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-			dispatcher.forward(request, response);
-		}
 
+			//タスク一覧画面 ---------------------------------
+			else if (pageId.equals("T001")) {
+				TasksAction tAction = new TasksAction(request);
+				if (buttonId.equals("検索")) {
+					//タスク検索処理[結果:絞り込んだデータを取得して表示]
+					page = tAction.selectAll();
+
+				} else if (buttonId.equals("編集")) {
+					//タスク編集画面表示[]
+					page = tAction.functions();
+				}
+			}
+
+			//タスク新規登録・編集画面 ------------------------
+			else if (pageId.equals("T002")) {
+				TasksAction tAction = new TasksAction(request);
+				if (buttonId.equals("登録")) {
+					//タスク登録処理[結果:Tasksテーブルにレコードを追加、案件詳細画面へ]
+					page = tAction.insert();
+				} else if (buttonId.equals("編集")) {
+					//タスク更新処理[結果:Tasks該当レコードを更新、案件詳細画面へ]
+					page = tAction.update();
+				}
+			}
+			//タスク詳細画面 ------------------------------------
+			else if (pageId.equals("T003")) {
+				WorksAction wAction = new WorksAction(request);
+				if (buttonId.equals("削除")) {
+					//工数削除処理[結果:]
+					page = wAction.delete();
+
+					//							} else if (buttonId.equals("工数入力")) {
+					//								//工数入力モーダル
+					//								page = wAction.insert();
+				}
+			}
+			//月次集計画面 ------------------------------------
+			else if (pageId.equals("M001")) {
+				WorksAction wAction = new WorksAction(request);
+				if (buttonId.equals("集計")) {
+					//選択した月の情報を表示
+					page = wAction.initialize();
+				} else if (buttonId.equals("工数一覧")) {
+					page = wAction.selectByMonth();
+				}
+				//							else if (buttonId.equals("CSV出力")) {
+				//							//これから実装(現在は仮でcsvとしときます)
+				//							page = wAction.csv();
+				//						}
+			}
+		}
+		//pageに格納したリンク先にフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+		dispatcher.forward(request, response);
 	}
+
+}

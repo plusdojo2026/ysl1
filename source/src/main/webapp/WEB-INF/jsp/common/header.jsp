@@ -3,17 +3,35 @@
 
 <header class="header">
 
+<%-- 各メニューのURLを生成 --%>
+<c:url var="dashboardUrl" value="/Controller">
+    <c:param name="pageId" value="side" />
+    <c:param name="buttonId" value="ダッシュボード" />
+ </c:url>   
+    
+<c:url var="loginUrl" value="/Controller">
+    <c:param name="pageId" value="header" />
+    <c:param name="buttonId" value="ログイン" />
+ </c:url>   
+    <c:url var="resetPWUrl" value="/Controller">
+    <c:param name="pageId" value="header" />
+    <c:param name="buttonId" value="パスワード変更" />
+    </c:url>
+      <c:url var="logoutUrl" value="/Controller">
+    <c:param name="pageId" value="header" />
+    <c:param name="buttonId" value="ログアウト" />
+</c:url>
     <div class="header__logo">
+    <a href="${dashboardUrl}">
         <img alt="Tz"
-             src="${pageContext.request.contextPath}/images/tennpurechann.png">
+             src="${pageContext.request.contextPath}/images/tennpurechann.png" >
+             </a>
     </div>
 
     <c:if test="${empty sessionScope.user}">
-        <nav class="header__auth">
-            <form action="${pageContext.request.contextPath}/Controller" method="get">
-                <button class="btn btn-outline" type="submit">ログイン</button>
-            </form>
-        </nav>
+        <div class="header__auth">
+                 <button onclick="location.href='${loginUrl}'" class="btn btn-outline">ログイン</button>
+        </div>
     </c:if>
 
     <c:if test="${not empty sessionScope.user}">
@@ -23,16 +41,14 @@
                 ようこそ${sessionScope.user.userName}さん
             </span>
 
-            <form action="${pageContext.request.contextPath}/SigninServlet" method="get">
-                <button class="btn btn-outline" type="submit">
-                    サインイン（新規作成）
-                </button>
-            </form>
+           
+              <button onclick="location.href='${resetPWUrl}'" class="btn btn-outline">パスワード変更</button>
+          
 
-            <form action="${pageContext.request.contextPath}/Forward" method="post">
+          
                 <input type="hidden" name="page" value="logout">
-                <button class="btn btn-red" type="submit">ログアウト</button>
-            </form>
+                <button onclick="location.href='${logoutUrl}'" class="btn btn-outline">ログアウト</button>
+           
 
         </nav>
     </c:if>

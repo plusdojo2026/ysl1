@@ -81,6 +81,12 @@ public class UsersAction {
 		return page;
 	}
 
+	public String selectAll() {
+		String page = "/WEB-INF/jsp/home.jsp";
+
+		return page;
+	}
+
 	/**
 	 * 
 	 * TODO

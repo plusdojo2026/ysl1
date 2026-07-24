@@ -272,8 +272,17 @@ public Connection conn = null;
 				public ArrayList<AllDTO> selectByMonth(String month) throws SQLException{
 					ArrayList<AllDTO> workList = new ArrayList<AllDTO>();	
 					
-					String sql="select c.case_name, w.work_date, t.task_name, u.user_name, w.actual_hours, w.work_description from cases c "
-							+ "join tasks t on c.id = t.case_id join works w on t.id = w.task_id join users u on u.id = w.user_id "
+					String sql="select "
+							+ "c.case_name, "
+							+ "w.work_date, "
+							+ "t.task_name, "
+							+ "u.user_name, "
+							+ "w.actual_hours, "
+							+ "w.work_description "
+							+ "from cases c "
+							+ "join tasks t on c.id = t.case_id "
+							+ "join works w on t.id = w.task_id "
+							+ "join users u on u.id = w.user_id "
 							+ "where date_format(work_date, '%Y-%m')=?";
 					
 					//デバッグ（SQL文の確認用）
