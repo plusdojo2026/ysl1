@@ -29,7 +29,7 @@ public class AllDTO {
 	//案件
 	private int caseId;
 	private String caseName;
-	private int caseCode;
+	private String caseCode;
 	private String customerName;
 	private String casePriority;
 	private int pmId;
@@ -78,7 +78,7 @@ public class AllDTO {
 	}
 
 	public AllDTO(int userId, String loginId, String loginPw, String userName, String mailAddress, boolean authority,
-			boolean active, String created_at, String update_at, int caseId, String caseName, int caseCode,
+			boolean active, String created_at, String update_at, int caseId, String caseName, String caseCode,
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
 			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
 			BigDecimal actualHoursSum, int caseProgressRate, int taskId, String taskName, int managerId,
@@ -222,11 +222,11 @@ public class AllDTO {
 		this.caseName = caseName;
 	}
 
-	public int getCaseCode() {
+	public String getCaseCode() {
 		return caseCode;
 	}
 
-	public void setCaseCode(int caseCode) {
+	public void setCaseCode(String caseCode) {
 		this.caseCode = caseCode;
 	}
 
