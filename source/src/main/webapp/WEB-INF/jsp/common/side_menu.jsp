@@ -13,17 +13,14 @@
 </div>
 
 <!-- ナビゲーション -->
+<input type="hidden" name="pageId" value="side">
 <nav class="sidebar-nav">
 <ul>
-	<li><input type="button" value="ダッシュボード" name="buttonId">
-	<a href="${pageContext.request.contextPath}/main?pageId=D001"><span>ダッシュボード</span></a></li>
-	
-	
-	
-	<li><a href="cases.jsp"><span>案件一覧</span></a></li>
-	<li><a href="tasks.jsp"><span>タスク管理</span></a></li>
-	<li><a href="monthly_sum.jsp"><span>月次集計</span></a></li>
-	<li><a href="user.jsp"><span>メンバー管理</span></a></li>
+	<li><a href="${pageContext.request.contextPath}/main?pageId=D001&buttonId=ダッシュボード"><span>ダッシュボード</span></a></li>
+	<li><a href="${pageContext.request.contextPath}/main?pageId=C001&buttonId=案件一覧"><span>案件一覧</span></a></li>
+	<li><a href="${pageContext.request.contextPath}/main?pageId=T001&buttonId=タスク管理"><span>タスク管理</span></a></li>
+	<li><a href="${pageContext.request.contextPath}/main?pageId=M001&buttonId=月次集計"><span>月次集計</span></a></li>
+	<li><a href="${pageContext.request.contextPath}/main?pageId=U003&buttonId=メンバー管理"><span>メンバー管理</span></a></li>
 </ul>
 </nav>
 </aside>

@@ -95,7 +95,7 @@ public class Controller extends HttpServlet {
 				//			}
 
 				//					ダッシュボード画面 ------------------------------
-				else if (pageId.equals("D001")) {
+				else if (pageId.equals("side")) {
 					if (buttonId.equals("ダッシュボード")) {
 						HomeAction hAction = new HomeAction(request);
 						//ダッシュボード画面表示[]
