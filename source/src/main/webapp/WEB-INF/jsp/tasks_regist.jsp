@@ -20,7 +20,7 @@
 <!-- ヘッダー、サイドメニュー -->
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
-
+taskList = ${taskList}<br>
 <div class="container">
 	<div class="main">
 		<h2>
@@ -53,7 +53,10 @@
 
 						<select name="caseName">
 							<c:forEach var="cases" items="${casesList}">
-								<option value="${cases.id}">${cases.caseName}</option>
+								<option value="${cases.id}" 
+									${cases.id == taskList.id ? 'selected' : ''}>
+									${cases.caseName}
+								</option>
 							</c:forEach>
 						</select>
 					</div>
