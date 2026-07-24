@@ -61,7 +61,7 @@ public class HomeAction {
 		ArrayList<AllDTO> taskList = tservice.selectAll();		
 		
 		//案件一覧を表示するメソッド呼び出し
-		ArrayList<AllDTO> casesList = cservice.initCases();
+		ArrayList<AllDTO> casesList = cservice.initialize();
 		
 		//reqestスコープに格納する
 		request.setAttribute("taskList", taskList);		//名前 taskList 値 taskList

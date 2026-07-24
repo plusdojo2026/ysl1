@@ -68,7 +68,7 @@
 </table>
 
 <!-- タスクの一覧表示 -->
-<p>担当タスク一覧</p>
+<p class="mytask">担当タスク一覧</p>
 <table class="table" id="tasksTable" border="1">	
 	<thead>		<!-- thead:テーブルの見出しを強調表示するもの -->
 			<tr>
@@ -114,8 +114,7 @@
 </table>
 </main>
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
-<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-<script src="<c:url value='/js/tasks.js' />"></script>
+
 <script src="<c:url value='/js/common.js' />"></script>
 </body>
 </html>

@@ -18,8 +18,6 @@ import dto.UsersDTO;
  * データベース操作を行う。
  * </p>
  *
- *
- * @author 石田
  */
 
 public class TasksDAO {
@@ -27,6 +25,8 @@ public class TasksDAO {
 	/**
 	 * TasksDAOを生成するコンストラクタ
 	 * @param conn データベース接続情報
+	 * 
+	 *  * @author 石田
 	 */
 	
 	public Connection conn = null;
