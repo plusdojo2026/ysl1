@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>月次集計</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<link rel="stylesheet" href="<c:url value='/css/monthly_sum.css'/>">
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
@@ -169,7 +170,7 @@
 			<td>${workData.caseName}</td>
 			<td>${workData.taskName}</td>
 			<td>${workData.userName}</td>
-			<td>${workData.actulHours}</td>
+			<td>${workData.actualHours}</td>
 			<td>${workData.workDescription}</td>
 		</tr>
 		</c:forEach>
