@@ -4,13 +4,10 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%-- CSSのURL --%>
-<c:url var="commonCssUrl" value="/css/common.css" />
+<%-- CSS --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 
-<%-- ロゴ画像のURL。実際の保存場所に合わせて変更する --%>
-<c:url var="logoUrl" value="/img/img_kuma.png" />
-
-<%-- サイドバーの遷移先URL --%>
+<%-- 各メニューのURLを生成 --%>
 <c:url var="dashboardUrl" value="/Controller">
     <c:param name="pageId" value="side" />
     <c:param name="buttonId" value="ダッシュボード" />
@@ -36,48 +33,46 @@
     <c:param name="buttonId" value="メンバー管理" />
 </c:url>
 
-${commonCssUrl}
-
 <aside class="sidebar">
 
     <!-- サイドバーヘッダー -->
     <div class="sidebar-header">
         <div class="logo">
-            ${logoUrl}
+         
         </div>
 
         <span class="title">Task Manager</span>
     </div>
 
-    <!-- ナビゲーション -->
+    <!-- サイドバーナビゲーション -->
     <nav class="sidebar-nav">
         <ul>
             <li>
-                ${dashboardUrl}
+            <button onclick="location.href='${dashboardUrl}'">
                     <span>ダッシュボード</span>
-                </a>
+              </button>
             </li>
 
             <li>
-                ${caseListUrl}
+                <button onclick="location.href='${caseListUrl}'">
                     <span>案件一覧</span>
                 </a>
             </li>
 
             <li>
-                ${taskListUrl}
+                <button onclick="location.href='${taskListUrl}'">
                     <span>タスク管理</span>
                 </a>
             </li>
 
             <li>
-                ${monthlyUrl}
+                <button onclick="location.href='${monthlyUrl}'">
                     <span>月次集計</span>
                 </a>
             </li>
 
             <li>
-                ${memberListUrl}
+                 <button onclick="location.href='${memberListUrl}'">
                     <span>メンバー管理</span>
                 </a>
             </li>

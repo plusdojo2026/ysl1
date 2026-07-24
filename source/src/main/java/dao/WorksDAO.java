@@ -212,7 +212,7 @@ public Connection conn = null;
 					//AllDTOの変数にDBから取得してきた値をセット
 					while(rs.next()) {
 						AllDTO dto=new AllDTO();
-						dto.setCaseCode(rs.getInt("case_code"));
+						dto.setCaseCode(rs.getString("case_code"));
 						dto.setCaseName(rs.getString("case_name"));
 						dto.setActualHoursSum(rs.getBigDecimal("actual_hours_sum"));
 						dto.setCasePlannedHours(rs.getInt("case_planned_hours"));
