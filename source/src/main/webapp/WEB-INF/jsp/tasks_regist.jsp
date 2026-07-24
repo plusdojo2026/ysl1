@@ -36,7 +36,7 @@
 		</h2>
 
         <!-- 入力フォーム----------------------------------------------------- -->
-		<form action="${pageContext.request.contextPath}/TaskRegistServlet" method="post">
+		<form action="${pageContext.request.contextPath}/Controller" method="post">
 
 			<!-- hidden -->
 			<input type="hidden" name="pageId" value="T002"> <!-- ページID -->
@@ -209,14 +209,14 @@
 				<c:choose>
                     <!-- 更新ボタン -->
 					<c:when test="${mode == 'edit'}">
-						<button type="submit" name="buttonId" value="update">
+						<button type="submit" name="buttonId" value="更新">
 							更新する
 						</button>
 					</c:when>^
 
                     <!-- 登録ボタン -->
 					<c:otherwise>
-						<button type="submit" name="buttonId" value="insert">
+						<button type="submit" name="buttonId" value="登録">
 							登録する
 						</button>
 					</c:otherwise>
