@@ -79,15 +79,15 @@ public class Controller extends HttpServlet {
 				}
 			}
 
-			//月次集計画面 ------------------------------------
-			else if (pageId.equals("M001")) {
-				WorksAction wAction = new WorksAction(request);
-				if (buttonId.equals("集計")) {
-					//選択した月の情報を表示
-					page = wAction.initialize();
-				} else if (buttonId.equals("工数一覧")) {
-					page = wAction.selectByMonth();
-				}
+//			//月次集計画面 ------------------------------------
+//			else if (pageId.equals("M001")) {
+//				WorksAction wAction = new WorksAction(request);
+//				if (buttonId.equals("集計")) {
+//					//選択した月の情報を表示
+//					page = wAction.initialize();
+//				} else if (buttonId.equals("工数一覧")) {
+//					page = wAction.selectByMonth();
+//				}
 			
 				//				else if (buttonId.equals("CSV出力")) {
 				//				//これから実装(現在は仮でcsvとしときます)
@@ -95,7 +95,7 @@ public class Controller extends HttpServlet {
 				//			}
 
 				//					ダッシュボード画面 ------------------------------
-				else if (pageId.equals("D001")) {
+				else if (pageId.equals("side")) {
 					if (buttonId.equals("ダッシュボード")) {
 						HomeAction hAction = new HomeAction(request);
 						//ダッシュボード画面表示[]
@@ -106,28 +106,29 @@ public class Controller extends HttpServlet {
 							e.printStackTrace();
 						}
 
-						//						} else if (buttonId.equals("案件")) {
-						//							CasesAction cAction = new CasesAction(request);
-						//							//案件一覧画面表示[]
-						//							page = cAction.initialize();
-						//			
-						//						} else if (buttonId.equals("タスク管理")) {
-						//							TasksAction tAction = new TasksAction(request);
-						//							//タスク一覧画面表示[]
-						//							page = tAction.selectAll();
-						//			
-						//						} else if (buttonId.equals("月次集計")) {
-						//							WorksAction wAction = new WorksAction(request);
-						//							//月次集計画面表示[]
-						//							page = wAction.initialize();
+												} else if (buttonId.equals("案件一覧")) {
+													CasesAction cAction = new CasesAction(request);
+													//案件一覧画面表示[]
+													page = cAction.initialize();
+									
+												} else if (buttonId.equals("タスク管理")) {
+													TasksAction tAction = new TasksAction(request);
+													//タスク一覧画面表示[]
+													page = tAction.selectAll();
+									
+												} else if (buttonId.equals("月次集計")) {
+													WorksAction wAction = new WorksAction(request);
+													//月次集計画面表示[]
+													page = wAction.initialize();
 
-						//						} else if (buttonId.equals("メンバー管理")) {
-						//							UsersAction uAction = new UsersAction(request);
-						//							//メンバー一覧画面表示[]
-						//							page = uAction.selectAll();
+												} else if (buttonId.equals("メンバー管理")) {
+													UsersAction uAction = new UsersAction(request);
+													//メンバー一覧画面表示[]
+//													page = uAction.selectAll();
 
-						//						}
-						//					}
+												}
+											}
+						}
 
 						//案件一覧画面 -----------------------------------
 						//		else if (pageId.equals("C001")) {
@@ -135,10 +136,11 @@ public class Controller extends HttpServlet {
 						//			if (buttonId.equals("新規登録")) {
 						//				//新規登録画面表示[]
 						//				page = cAction.casesRegist();
-					}
-				}
-			}
-		}
+//					}
+//				}
+//			
+
+		
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
