@@ -40,7 +40,7 @@
 
 			<!-- hidden -->
 			<input type="hidden" name="pageId" value="T002"> <!-- ページID -->
-			<input type="hidden" name="id" value="${taskList.id}"> <!-- タスクID(編集モードで使用、新規ならnull) -->
+			<input type="hidden" name="taskId" value="${taskList.id}"> <!-- タスクID(編集モードで使用、新規ならnull) -->
 
 			<div class="form-area">
 				<!-- 左側 -->
