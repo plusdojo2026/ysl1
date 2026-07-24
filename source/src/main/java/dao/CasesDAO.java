@@ -183,9 +183,9 @@ public class CasesDAO {
 		//sql文
 		String sql = "select cases.*, sum(distinct works.actual_hours),COUNT(DISTINCT tasks.id) AS task_count,"
 				+ "COUNT(DISTINCT CASE WHEN tasks.task_status = '完了' THEN tasks.id END) AS completed_task_count,"
-				+ "GROUP_CONCAT(DISTINCT users.user_name) AS user_names"
-				+ "from cases join tasks on cases.id = tasks.case_id join works on tasks.id = works.task_id"
-				+ "join users on users.id = works.user_id group by cases.id";
+				+ "GROUP_CONCAT(DISTINCT users.user_name) AS user_names "
+				+ "from cases join tasks on cases.id = tasks.case_id join works on tasks.id = works.task_id "
+				+ "join users on users.id = works.user_id group by cases.id" ;
 
 		//デバッグ（SQL文の確認用）
 		System.out.println(sql);
