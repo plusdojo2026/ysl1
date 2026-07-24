@@ -88,13 +88,14 @@ public class Controller extends HttpServlet {
 				} else if (buttonId.equals("工数一覧")) {
 					page = wAction.selectByMonth();
 				}
+			
 				//				else if (buttonId.equals("CSV出力")) {
 				//				//これから実装(現在は仮でcsvとしときます)
 				//				page = wAction.csv();
 				//			}
 
 				//					ダッシュボード画面 ------------------------------
-				else if (pageId.equals("nav")) {
+				else if (pageId.equals("D001")) {
 					if (buttonId.equals("ダッシュボード")) {
 						HomeAction hAction = new HomeAction(request);
 						//ダッシュボード画面表示[]
