@@ -36,7 +36,7 @@ public class HomeAction {
 	 */
 	
 	public String Intilize() throws UnsupportedEncodingException, SQLException {
-		String page="/WEB-INF/jsp/Home.jsp";
+		String page="/WEB-INF/jsp/home.jsp";
 		//Intilize にするのは、複数のServiceを呼び出しているから
 		
 		

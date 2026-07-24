@@ -23,12 +23,12 @@
  
  <div class ="count">
  	<p>担当タスク</p>
- 	${count.myTask} 件
+ 	${count.assignedTask} 件
  </div>
  
  <div class ="count">
  	<p>期限超過件数</p>
- 	${count.overDueTasks} 件
+ 	${count.deadlineNumber} 件
  </div>
  </div>
  
