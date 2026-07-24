@@ -79,6 +79,20 @@ public class Controller extends HttpServlet {
 				}
 			}
 
+			//月次集計画面 ------------------------------------
+		 else if (pageId.equals("M001")) {
+			WorksAction wAction = new WorksAction(request);
+			if (buttonId.equals("集計")) {
+				//選択した月の情報を表示
+				page = wAction.initialize();
+			} else if (buttonId.equals("工数一覧")) {
+				page = wAction.selectByMonth();
+			} 
+//				else if (buttonId.equals("CSV出力")) {
+//				//これから実装(現在は仮でcsvとしときます)
+//				page = wAction.csv();
+//			}
+			
 			//					ダッシュボード画面 ------------------------------
 			else if (pageId.equals("nav")) {
 				if (buttonId.equals("ダッシュボード")) {
@@ -121,12 +135,12 @@ public class Controller extends HttpServlet {
 					//				//新規登録画面表示[]
 					//				page = cAction.casesRegist();
 				}
-				//
 			}
 		}
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
+	}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -309,4 +323,5 @@ public class Controller extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+}
 }
