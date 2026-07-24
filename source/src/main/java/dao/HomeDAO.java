@@ -90,7 +90,7 @@ public class HomeDAO {
 				
 		//移し替え
 		while(rs.next()) {			
-			selectdto.setInProgressCase(rs.getInt("tasks"));
+			selectdto.setAssignedTask(rs.getInt("tasks"));
 		}		
 			
 		
@@ -115,7 +115,7 @@ public class HomeDAO {
 				
 		//移し替え
 			while(rs.next()) {			
-				selectdto.setInProgressCase(rs.getInt("overDate"));
+				selectdto.setDeadlineNumber(rs.getInt("overDate"));
 			}
 		
 		return selectdto;	
