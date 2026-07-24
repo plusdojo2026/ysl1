@@ -93,7 +93,7 @@
 			<td>
 				${e.taskPlannedHours}/${e.actualHours}
 			</td>
-			<td>${e.progressRate}</td>
+			<td>${e.caseProgressRate}</td>
 			<td>
 				<!-- 編集ボタン -->
 				<form method="POST" action="<c:url value='/Controller'/>">
