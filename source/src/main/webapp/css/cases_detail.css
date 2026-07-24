@@ -1,0 +1,91 @@
+  /* 全要素にbox-sizingを適用し、paddingを含めたサイズ計算にする */
+  * { box-sizing: border-box; }
+
+  /* ページ全体の背景とフォント設定 */
+  body {
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+    background: #f4f5f7;
+    margin: 0;
+    padding: 60px 20px;
+  }
+
+  /* タブ全体を包むカード。角丸＋影で浮いた見た目にする */
+  .tab-container {
+    width: 420px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  /* タブボタンを横並びにする台座部分（グレーの背景） */
+  .tab-buttons {
+    display: flex;
+    background: #f1f2f5;
+    padding: 4px;   /* 台座の余白を縮小 */
+    gap: 4px;       /* ボタン同士の間隔も縮小 */
+  }
+
+  /* タブボタン本体：クリックする部分を小さめに調整 */
+  .tab-btn {
+    flex: 1;
+    padding: 6px 8px;   /* ↓縮小：以前は12px */
+    border: none;
+    border-radius: 8px; /* サイズが小さくなった分、角丸も少し控えめに */
+    cursor: pointer;
+    font-size: 12px;    /* ↓縮小：以前は14px */
+    font-weight: 600;
+    background: transparent;
+    color: #888;
+    transition: all 0.25s ease; /* 色や背景の変化を滑らかにする */
+  }
+
+  /* マウスホバー時：文字色を濃くして反応を示す */
+  .tab-btn:hover {
+    color: #333;
+  }
+
+  /* 現在選択中のタブボタン：白背景＋影で「浮いている」状態を表現 */
+  .tab-btn.active {
+    background: #fff;
+    color: #222;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* タブの中身：初期状態は非表示 */
+  .tab-content {
+    display: none;
+    padding: 40px 30px;
+    text-align: center;
+    min-height: 160px;
+    opacity: 0;
+    transform: translateY(6px);
+    /* 表示/非表示の切り替え時にフェード＋わずかに上へ動くアニメーション */
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  /* activeクラスが付いたタブ内容だけ表示し、アニメーションを完了状態にする */
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tab-content h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  .tab-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  /* 各タブごとの背景色（グラデーション）を個別に指定 */
+  #tab1 { background: linear-gradient(135deg, #43cea2, #185a9d); color: #fff; } /* 緑〜青 */
+  #tab2 { background: linear-gradient(135deg, #ff9966, #ff5e62); color: #fff; } /* オレンジ〜赤 */
+  #tab3 { background: linear-gradient(135deg, #7f00ff, #e100ff); color: #fff; } /* 紫〜マゼンタ */

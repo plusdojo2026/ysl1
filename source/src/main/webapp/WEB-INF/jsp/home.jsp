@@ -13,6 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
+	<%@ include file="/WEB-INF/jsp/common/works_regist.jsp" %>
 
  <main>
  <div class ="count_area">
@@ -50,7 +51,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="e" items="${CasesList}" >
+			<c:forEach var="e" items="${casesList}" >
 				<tr>
 					<td>${e.caseCode}</td>
 					<td>${e.caseName}</td>

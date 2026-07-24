@@ -59,7 +59,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="e" items="${CasesList}" >
+			<c:forEach var="e" items="${casesList}" >
 				<tr>
 					<td>${e.caseCode}</td>
 					<td>${e.caseName}</td>
