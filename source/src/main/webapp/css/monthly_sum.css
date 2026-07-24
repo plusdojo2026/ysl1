@@ -229,8 +229,9 @@ input[type="month"] {
 ========================= */
 
 .table-area {
-    display: grid;
-
+    display: flex;
+	flex-direction: column;
+	gap: 10px;
     grid-template-columns: 1.4fr 1fr;
 
     gap: 28px;
@@ -248,9 +249,7 @@ input[type="month"] {
 
 /* テーブルをカード化 */
 
-.table-wrapper {
-    overflow: hidden;
-
+.table-wrapper { 
     border: 1px solid #e1e5ec;
     border-radius: 14px;
 
