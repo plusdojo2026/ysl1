@@ -14,14 +14,12 @@
 
 <main>
 <h1>月次集計</h1>
-<form method="POST" action="/ysl1/ControllerServlet"></form>
-<input type="hidden" name="pageId" value="M001">
 <div class="layout">
 
 	<!-- 上部操作エリア -->
 	<div class="top-area">
 		<form action="${pageContext.request.contextPath}/Controller" method="post">
-	
+		<input type="hidden" name="pageId" value="M001">
 		<!-- 月選択 -->
 		<div class="month-select">
 		<input type="month" name="month" value="${selectMonth}">
@@ -29,10 +27,9 @@
 		<input type="submit" name="buttonId" value="工数一覧"> 
 	
 		</div>
-		</form>
+		
 	
 		<!-- CSV出力 -->
-		<form action="${pageContext.request.contextPath}/Controller" method="post">
 		<input type="hidden" name="month" value="${selectMonth}>
 		<input type="submit" name="byttonId" value="CSV出力">
 		</form>
@@ -184,18 +181,7 @@
 	</c:if>
 	
 	
-	<!-- 集計条件 -->
-	<div class="condition-area">
-		<div class="condition-title">集計条件</div>
-		
-		<div>
-		集計対象期間：${startDate}～${endDate}
-		</div>
-		<div>
-		集計日時：${currentDateTime}
-		</div>
-		
-	</div>
+	
 	
 </div>
 
