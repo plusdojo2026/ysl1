@@ -13,18 +13,15 @@ import service.CasesService;
 import service.HomeService;
 import service.TasksService;
 
-
-
-
 public class HomeAction {
-	
-	HttpServletRequest request ;
+
+	HttpServletRequest request;
+
 	//コンストラクタ
 	public HomeAction(HttpServletRequest request) {
-		this.request=request;
+		this.request = request;
 	}
-		
-	
+
 	/**
 	 * 各項目の件数を取得するメソッド
 	 * 案件一覧を表示するメソッド
@@ -34,43 +31,40 @@ public class HomeAction {
 	 * 
 	 * @author 石田
 	 */
-	
+
 	public String Intilize() throws UnsupportedEncodingException, SQLException {
-		String page="/WEB-INF/jsp/home.jsp";
+		String page = "/WEB-INF/jsp/home.jsp";
 		//Intilize にするのは、複数のServiceを呼び出しているから
-		
-		
+
 		//Serviceを呼びだす
 		HomeService hservice = new HomeService();
 		TasksService tservice = new TasksService();
 		CasesService cservice = new CasesService();
-		
+
 		//セッションからログインユーザーの情報を取得する
 		UsersDTO user = new UsersDTO();
 		HttpSession usersession = request.getSession();
-		user =  (UsersDTO) usersession.getAttribute ("user");
-		
+		user = (UsersDTO) usersession.getAttribute("user");
+
 		//UserIdを取得する
 		int id = user.getUserId();
-		
+
 		//カウントした結果を返すメソッド呼び出し
 		AllDTO count = hservice.select(id);
-		
-		
+
 		//タスク一覧を表示するメソッド呼び出し
-		ArrayList<AllDTO> taskList = tservice.selectAll();		
-		
+		ArrayList<AllDTO> taskList = tservice.selectAll();
+
 		//案件一覧を表示するメソッド呼び出し
 		ArrayList<AllDTO> casesList = cservice.initialize();
 
-		
+		HttpSession session = request.getSession();
 		//reqestスコープに格納する
-		request.setAttribute("taskList", taskList);		//名前 taskList 値 taskList
-		request.setAttribute("count", count);
-		request.setAttribute("casesList", casesList);
-		
+		session.setAttribute("taskList", taskList); //名前 taskList 値 taskList
+		session.setAttribute("count", count);
+		session.setAttribute("casesList", casesList);
+
 		//ページを返す
 		return page;
 	}
 }
-	
