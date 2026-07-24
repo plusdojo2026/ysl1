@@ -167,20 +167,20 @@ public class CasesService extends DBAccess {
 	/**
 	 * - 登録されているすべてのPMの名前を取得する
 	 * 
-	 * @return selectPmList;
+	 * @return pmList;
 	 * 
 	 * 
 	 * @author 横山
 	 */
 	//PM一覧を取得するメソッド
 	public ArrayList<UsersDTO>
-	selectPmList(){
+	pmList(){
 		CasesDAO dao=new CasesDAO(conn);
 		
 		ArrayList<UsersDTO>
 		usersList=null;
 		try {
-			usersList = dao.selectPmList();
+			usersList = dao.pmList();
 		} catch (SQLException e) {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();//エラーの説明をしてくれる
@@ -253,6 +253,11 @@ public class CasesService extends DBAccess {
 			return casesList ;
 			
 		}
+		
+	//案件一覧から案件登録に移動するメソッド
+		
+		
+		
 //		//案件一覧の検索メソッド	ジェークエリーを使うから使わなかった	
 		//			public ArrayList<AllDTO> select() {
 		//				//一旦空にする

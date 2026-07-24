@@ -260,7 +260,7 @@ public class CasesDAO {
 	 * 	 * @author 横山大貴
 	 */
 	//PM一覧を取得するメソッド(案件編集や案件登録の際にPMをプルダウンで一覧で出すため)
-	public ArrayList<UsersDTO> selectPmList() throws SQLException {
+	public ArrayList<UsersDTO> pmList() throws SQLException {
 		ArrayList<UsersDTO> usersList = new ArrayList<>();
 
 		String sql = "SELECT id, user_name FROM users ORDER BY user_name";
