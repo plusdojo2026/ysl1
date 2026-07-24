@@ -78,54 +78,51 @@ public class Controller extends HttpServlet {
 
 				}
 			}
-		
-			
-			
-			
-//					ダッシュボード画面 ------------------------------
-					else if (pageId.equals("nav")) {
-						if (buttonId.equals("ダッシュボード")) {
-							HomeAction hAction = new HomeAction(request);
-							//ダッシュボード画面表示[]
-							try {
-								page = hAction.Intilize();
-							} catch (UnsupportedEncodingException | SQLException e) {
-								// TODO 自動生成された catch ブロック
-								e.printStackTrace();
-							}
-			
-//						} else if (buttonId.equals("案件")) {
-//							CasesAction cAction = new CasesAction(request);
-//							//案件一覧画面表示[]
-//							page = cAction.initialize();
-//			
-//						} else if (buttonId.equals("タスク管理")) {
-//							TasksAction tAction = new TasksAction(request);
-//							//タスク一覧画面表示[]
-//							page = tAction.selectAll();
-//			
-//						} else if (buttonId.equals("月次集計")) {
-//							WorksAction wAction = new WorksAction(request);
-//							//月次集計画面表示[]
-//							page = wAction.initialize();
-			
-//						} else if (buttonId.equals("メンバー管理")) {
-//							UsersAction uAction = new UsersAction(request);
-//							//メンバー一覧画面表示[]
-//							page = uAction.selectAll();
-			
-//						}
-//					}
-			
-			//案件一覧画面 -----------------------------------
-			//		else if (pageId.equals("C001")) {
-			//			CasesAction cAction = new CasesAction(request);
-			//			if (buttonId.equals("新規登録")) {
-			//				//新規登録画面表示[]
-			//				page = cAction.casesRegist();
-						}
-			//
+
+			//					ダッシュボード画面 ------------------------------
+			else if (pageId.equals("nav")) {
+				if (buttonId.equals("ダッシュボード")) {
+					HomeAction hAction = new HomeAction(request);
+					//ダッシュボード画面表示[]
+					try {
+						page = hAction.Intilize();
+					} catch (UnsupportedEncodingException | SQLException e) {
+						// TODO 自動生成された catch ブロック
+						e.printStackTrace();
+					}
+
+					//						} else if (buttonId.equals("案件")) {
+					//							CasesAction cAction = new CasesAction(request);
+					//							//案件一覧画面表示[]
+					//							page = cAction.initialize();
+					//			
+					//						} else if (buttonId.equals("タスク管理")) {
+					//							TasksAction tAction = new TasksAction(request);
+					//							//タスク一覧画面表示[]
+					//							page = tAction.selectAll();
+					//			
+					//						} else if (buttonId.equals("月次集計")) {
+					//							WorksAction wAction = new WorksAction(request);
+					//							//月次集計画面表示[]
+					//							page = wAction.initialize();
+
+					//						} else if (buttonId.equals("メンバー管理")) {
+					//							UsersAction uAction = new UsersAction(request);
+					//							//メンバー一覧画面表示[]
+					//							page = uAction.selectAll();
+
+					//						}
+					//					}
+
+					//案件一覧画面 -----------------------------------
+					//		else if (pageId.equals("C001")) {
+					//			CasesAction cAction = new CasesAction(request);
+					//			if (buttonId.equals("新規登録")) {
+					//				//新規登録画面表示[]
+					//				page = cAction.casesRegist();
 				}
+				//
+			}
 		}
 		//ログイン画面へフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
@@ -187,47 +184,47 @@ public class Controller extends HttpServlet {
 				//メンバー更新処理[結果:メンバー一覧画面へ]
 				page = uAction.update();
 			}
-						//案件一覧画面 -----------------------------------
-					else if (pageId.equals("C001")) {
-						CasesAction cAction = new CasesAction(request);
-						if (buttonId.equals("検索")) {
-							//案件検索処理[結果:絞り込みしたデータを取得]
-							page = cAction.selectAll();
-			
-						} else if (buttonId.equals("編集")) {
-							//編集画面表示[]
-							page = cAction.casesEdit();
-			
-						} else if (buttonId.equals("参照")) {
-							//案件詳細画面表示[]
-							page = cAction.initiCasesDetail();
-			
-						}
-					} 
-			//			//案件登録、編集画面 ------------------------------
-					else if (pageId.equals("C002")) {
-						CasesAction cAction = new CasesAction(request);
-						if (buttonId.equals("登録")) {
-							//案件登録処理[結果:Casesテーブルへ登録、案件一覧画面へ]
-							page = cAction.insert();
-			
-						} else if (buttonId.equals("編集")) {
-							//案件編集・更新処理[結果:Cases該当レコードを更新、案件一覧画面へ]
-							page = cAction.update();
-			
-						}
-					}
-			//			//案件詳細画面 ------------------------------------
-			//		 else if (pageId.equals("C003")) {
-			//			if (buttonId.equals("完了にする")) {
+			//			//案件一覧画面 -----------------------------------
+			//		else if (pageId.equals("C001")) {
+			//			CasesAction cAction = new CasesAction(request);
+			//			if (buttonId.equals("検索")) {
+			//				//案件検索処理[結果:絞り込みしたデータを取得]
+			//				page = cAction.select();
 			//
-			//			} else if (buttonId.equals("中止にする")) {
-			//
-			//			} else if (buttonId.equals("案件編集")) {
-			//				CasesAction cAction = new CasesAction(request);
-			//				//案件編集画面表示[]
+			//			} else if (buttonId.equals("編集")) {
+			//				//編集画面表示[]
 			//				page = cAction.casesEdit();
 			//
+			//			} else if (buttonId.equals("参照")) {
+			//				//案件詳細画面表示[]
+			//				page = cAction.initiCasesDetail();
+			//
+			//			}
+			//		} 
+			//			//案件登録、編集画面 ------------------------------
+			//		else if (pageId.equals("C002")) {
+			//			CasesAction cAction = new CasesAction(request);
+			//			if (buttonId.equals("登録")) {
+			//				//案件登録処理[結果:Casesテーブルへ登録、案件一覧画面へ]
+			//				page = cAction.insert();
+			//
+			//			} else if (buttonId.equals("編集")) {
+			//				//案件編集・更新処理[結果:Cases該当レコードを更新、案件一覧画面へ]
+			//				page = cAction.update();
+			//
+			//			}
+			//		}
+			//			//案件詳細画面 ------------------------------------
+					 else if (pageId.equals("C003")) {
+						if (buttonId.equals("完了にする")) {
+			
+						} else if (buttonId.equals("中止にする")) {
+			
+						} else if (buttonId.equals("案件編集")) {
+							CasesAction cAction = new CasesAction(request);
+							//案件編集画面表示[]
+							page = cAction.casesEdit();
+			
 			//			} else if (buttonId.equals("タスク追加")) {
 			//				TasksAction tAction = new TasksAction(request);
 			//				//タスク登録画面表示[]
@@ -254,7 +251,7 @@ public class Controller extends HttpServlet {
 			//				page = wAction.initialize();
 			//
 			//			}
-			//			}
+					}
 			
 						//タスク一覧画面 ---------------------------------
 					 else if (pageId.equals("T001")) {
