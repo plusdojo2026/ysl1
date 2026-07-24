@@ -91,7 +91,7 @@ public class CasesAction {
 		return page;
 	}
 	
-	//案件一覧から編集ボタンで個別の案件を表示するcasesRegistメソッド
+	//案件一覧から編集ボタンで個別の案件を表示するcasesEditメソッド
 	public String casesEdit() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
 		
@@ -146,6 +146,28 @@ public class CasesAction {
 //		ArrayList<CasesDTO> casesList = service.selectAll();
 //		request.setAttribute("casesList", casesList);
 //	}
+	
+	/**
+	 * 一覧表示メソッド
+	 * @return String page
+	 */
+	public String selectAll() throws UnsupportedEncodingException {
+		String page="/WEB-INF/jsp/cases.jsp";
+		
+		//CasesServiceを呼びだす
+		CasesService service = new CasesService();
+	
+		
+		//案件一覧を表示
+		ArrayList<AllDTO> casesList = service.selectAll();
+		
+
+		//reqestスコープに格納する
+		request.setAttribute("casesList", casesList);
+		
+		//ページを返す
+		return page;
+	}
 
 	//新規案件登録のinsertメソッド
 	/**
@@ -239,4 +261,12 @@ public class CasesAction {
 				
 				return page;
 			}
+
+	//個別の案件詳細に行くメソッド
+	public String initiCasesDetail() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	
 }

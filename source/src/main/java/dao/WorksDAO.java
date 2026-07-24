@@ -30,12 +30,29 @@ import dto.AllDTO;
  */
 public class WorksDAO {
 public Connection conn = null;
-	
+
+/**
+ * WorksDAOのコンストラクタ。
+ *
+ * <p>
+ * 親クラスBaseDAOにWorksDTOクラスを渡す。
+ * BaseDAOはWorksDTOに設定された@Tableから
+ * テーブル名を自動取得する。
+ * </p>
+ */
 	//コネクションを保持するコンストラクタ
 	public WorksDAO(Connection conn) {
 		this.conn=conn;
 	}
 	
+	
+	/**
+	 * 画面上に入力されたデータをworksテーブルに保存する。
+	 * 
+	 *
+	 * @param works 工数情報
+	 * @return pStmt.executeUpdate(）
+	 */	
 	//工数を登録するメソッド---------------------------------------
 			public int worksInsert(int userId, int taskId, String workDate ,BigDecimal actualHours ,String workDescription) throws SQLException{
 				int ans = 0;
@@ -61,7 +78,13 @@ public Connection conn = null;
 				//serviceに返却する
 				return ans;
 			}
-				
+	
+	/**
+	* 指定された工数IDの工数を削除する。
+	*
+	* @param workId 削除対象工数ID
+	* @return pStmt.executeUpdate();
+	*/
 	//工数を削除するメソッド---------------------------------------
 				public int worksDelete(int id) throws SQLException{
 					int ans = 0;
@@ -85,7 +108,13 @@ public Connection conn = null;
 					return ans;
 				}
 	
-				
+	/**
+	* 月次集計画面のサマリーを表示する
+	*
+	* @param month 月が選択されていない場合は
+	* 当月の月次集計が表示される
+	* @return AllDTO selectSum
+	*/			
 	//月次集計画面のサマリー（月合計工数、集計案件数、稼働メンバー数）---------------------------------------			
 				public AllDTO selectSum(String month) throws SQLException{
 					AllDTO selectSum = new AllDTO();
@@ -152,7 +181,13 @@ public Connection conn = null;
 					//serviceに返却する
 					return selectSum;
 				}
-					
+	/**
+	* 月次集計画面の案件別集計を表示する
+	*
+	* @param month 月が選択されていない場合は
+	* 当月の月次集計が表示される
+	* @return ArrayList<AllDTO> caseList
+	*/						
 	//月次集計画面の案件別集計				
 				public ArrayList<AllDTO> selectCaseSum(String month) throws SQLException{
 					ArrayList<AllDTO> caseList = new ArrayList<AllDTO>();
@@ -189,7 +224,13 @@ public Connection conn = null;
 					//serviceに返却する
 					return caseList;
 				}
-	
+	/**
+	* 月次集計画面のメンバー別集計を表示する
+	*
+	* @param month 月が選択されていない場合は
+	* 当月の月次集計が表示される
+	* @return ArrayList<AllDTO> userList
+	*/		
 	//月次集計画面のメンバー別集計				
 				public ArrayList<AllDTO> selectMemberSum(String month) throws SQLException{
 					ArrayList<AllDTO> userList = new ArrayList<AllDTO>();
@@ -220,7 +261,13 @@ public Connection conn = null;
 					//serviceに返却する
 					return userList;
 				}
-	
+	/**
+	* 月次集計画面の月ごとの工数ログを表示する
+	*
+	* @param month 月が選択されていない場合は
+	* 当月の工数ログが表示される
+	* @return ArrayList<AllDTO> workList
+	*/	
 	//月ごとの工数ログ
 				public ArrayList<AllDTO> selectByMonth(String month) throws SQLException{
 					ArrayList<AllDTO> workList = new ArrayList<AllDTO>();	
