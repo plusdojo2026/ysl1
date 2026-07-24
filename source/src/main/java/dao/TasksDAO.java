@@ -136,8 +136,8 @@ public class TasksDAO {
 			dto.setTaskName(rs.getString("task_name"));
 			dto.setTaskStatus(rs.getString("task_status"));
 			dto.setTaskPriority(rs.getString("task_priority"));
-			dto.setTaskPlannedHours(rs.getInt("task_planned_hours"));
-			dto.setProgressRate(rs.getInt("progress_rate"));
+			dto.setTaskPlannedHours(rs.getBigDecimal("task_planned_hours"));
+			dto.setTaskProgressRate(rs.getInt("progress_rate"));
 			dto.setStartDate(rs.getString("start_date"));
 			dto.setDeadline(rs.getString("deadline"));
 			dto.setTaskDescription(rs.getString("task_description"));
@@ -155,7 +155,7 @@ public class TasksDAO {
 			dto.setWorkId(rs.getInt("work_id"));
 			dto.setWorkDescription(rs.getString("work_description"));
 			dto.setWorkDate(rs.getString("work_date"));
-			dto.setActualHours(rs.getInt("actual_hours"));
+			dto.setActualHours(rs.getBigDecimal("actual_hours"));
 
 			detailsList.add(dto);
 		}
