@@ -1,0 +1,399 @@
+@charset "UTF-8";
+
+/*=========================
+   月次集計画面
+========================= */
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #f4f7fb;
+    color: #1f2937;
+    font-family:
+        "Noto Sans JP",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+}
+
+
+/* =========================
+   メインエリア
+========================= */
+
+main {
+    margin-left: 195px;
+    padding: 16px;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   画面全体
+========================= */
+
+.layout {
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 24px 30px 30px;
+    min-height: calc(100vh - 32px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================
+   タイトル
+========================= */
+
+main > h1 {
+    margin: 0;
+    padding: 20px 30px;
+
+    background-color: #ffffff;
+
+    border-radius: 14px 14px 0 0;
+    border-bottom: 1px solid #e5e7eb;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   上部操作エリア
+========================= */
+
+.top-area {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 32px;
+}
+
+.top-area form {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* 月選択＋集計ボタン */
+
+.month-select {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+/* 月選択 */
+
+input[type="month"] {
+    width: 330px;
+    height: 56px;
+
+    padding: 0 18px;
+
+    border: 1px solid #d9dee8;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    font-size: 18px;
+    color: #1f2937;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   ボタン共通
+========================= */
+
+.top-area input[type="submit"] {
+    height: 56px;
+
+    padding: 0 36px;
+
+    border-radius: 10px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* 集計 */
+
+.top-area input[value="集計"] {
+    color: #ffffff;
+    background-color: #1476df;
+    border: 1px solid #1476df;
+}
+
+.top-area input[value="集計"]:hover {
+    background-color: #0e61bd;
+}
+
+
+/* 工数一覧 */
+
+.top-area input[value="工数一覧"] {
+    color: #ffffff;
+    background-color: #1476df;
+    border: 1px solid #1476df;
+}
+
+.top-area input[value="工数一覧"]:hover {
+    background-color: #eef6ff;
+}
+
+
+/* CSV出力 */
+
+.top-area input[value="CSV出力"] {
+   color: #ffffff;
+    background-color: #1476df;
+    border: 1px solid #1476df;
+}
+
+.top-area input[value="CSV出力"]:hover {
+    background-color: #f4f8fc;
+}
+
+
+/* =========================
+   サマリーカード
+========================= */
+
+.summary-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 28px;
+
+    margin-bottom: 40px;
+}
+
+.summary-card {
+    min-height: 170px;
+
+    padding: 28px 34px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.summary-title {
+    margin-bottom: 18px;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.summary-value {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.summary-value span {
+    margin-left: 8px;
+
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   集計テーブル
+========================= */
+
+.table-area {
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr;
+
+    gap: 28px;
+
+    margin-bottom: 30px;
+}
+
+.table-section h2 {
+    margin: 0 0 16px;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* テーブルをカード化 */
+
+.table-wrapper {
+    overflow: hidden;
+
+    border: 1px solid #e1e5ec;
+    border-radius: 14px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================
+   テーブル共通
+========================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f5f8fc;
+}
+
+th {
+    height: 56px;
+
+    padding: 0 12px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+td {
+    height: 56px;
+
+    padding: 0 12px;
+
+    border-top: 1px solid #edf0f4;
+
+    font-size: 14px;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+tbody tr:hover {
+    background-color: #fafcff;
+}
+
+
+/* =========================
+   プログレスバー
+========================= */
+
+.progress-bar {
+    display: inline-block;
+
+    width: 100px;
+    height: 10px;
+
+    margin-right: 8px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background-color: #e7edf5;
+
+    vertical-align: middle;
+}
+
+.progress-value {
+    height: 100%;
+
+    border-radius: 10px;
+
+    background-color: #1476df;
+}
+
+
+/* =========================
+   注釈
+========================= */
+
+.note {
+    margin: 14px 4px 0;
+
+    font-size: 13px;
+    color: #6b7280;
+}
+
+
+/* =========================
+   工数ログ一覧
+========================= */
+
+.layout > h2 {
+    margin: 10px 0 18px;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* 工数ログのテーブル */
+
+.layout > table {
+    overflow: hidden;
+
+    border: 1px solid #e1e5ec;
+    border-radius: 14px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================
+   レスポンシブ
+========================= */
+
+@media screen and (max-width: 1100px) {
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .table-area {
+        grid-template-columns: 1fr;
+    }
+
+    .top-area form {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .month-select {
+        flex-wrap: wrap;
+    }
+}
