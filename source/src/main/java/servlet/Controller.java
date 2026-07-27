@@ -139,7 +139,15 @@ public class Controller extends HttpServlet {
 				if (buttonId.equals("新規登録")) {
 					//新規登録画面表示[]
 					page = cAction.casesRegist();
-				}
+				}			
+				}else if (pageId.equals("D001")||(pageId.equals("C003"))
+						||(pageId.equals("T003"))) {
+					if (buttonId.equals("工数入力")) {	
+						//工数入力画面表示[]
+
+						WorksAction wAction = new WorksAction(request);
+						page = wAction.workRegist();	
+						} 		
 			}
 			//			
 		}

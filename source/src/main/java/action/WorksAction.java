@@ -110,6 +110,35 @@ public class WorksAction {
 			return page;
 		}
 		
+	
+		
+	/**
+	 * 	
+	 * @return page
+	 * @throws UnsupportedEncodingException
+	 * 
+	 * @author 石田
+	 */	
+		
+	//工数登録画面を表示するメソッド	
+		public String workRegist() throws UnsupportedEncodingException {
+			
+			String page="/WEB-INF/jsp/works_regist.jsp";
+			
+			//オブジェクトを生成する
+			AllDTO task= new AllDTO();
+			
+			//リクエストを取得する
+			task.setTaskId(Integer.parseInt(request.getParameter("taskId")));
+			task.setCaseName(request.getParameter("caseName"));
+			task.setTaskName(request.getParameter("taskName"));
+			
+			//JSPに返す
+			request.setAttribute("task", task);
+			
+			return page;
+		}
+		
 		
 	/**
 	 * 月次集計画面の初期表示メソッド

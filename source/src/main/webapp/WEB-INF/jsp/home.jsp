@@ -13,9 +13,6 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
-	<div style="display:none">
-	<%@ include file="/WEB-INF/jsp/works_regist.jsp" %>
-	</div>
  <main>
  <div class ="count_area">
  <div class ="count">
@@ -91,11 +88,7 @@
 		<tbody>
 		<c:forEach var="e" items="${taskList}">
 		<c:if test="${e.userId == sessionScope.user.userId}">
-			<tr 
-			data-manager="${e.userName}"
-			data-case="${e.caseName}"
-			data-status="${e.taskStatus}">
-			
+			<tr>		
 				<td>${e.caseName}</td>
 				<td>${e.taskName}</td>
 				<td>${e.userName}</td>
@@ -107,10 +100,12 @@
 				</td>
 				<td>${e.taskProgressRate}</td>
 				<td>
-				<form method="POST" action="<c:url value='/Controller'/>">
-					<input type="hidden" name="page_id" value="D001">
-					<input type="hidden" name="taskId" value="${e.taskId}">							
-					<input type="submit" name="button_id" value="工数入力">
+				<form method="GET" action="<c:url value='/Controller'/>">
+					<input type="hidden" name="pageId" value="D001">
+					<input type="hidden" name="caseName" value="${e.caseName}">	
+					<input type="hidden" name="taskName" value="${e.taskName}">	
+					<input type="hidden" name="taskId" value="${e.taskId}">						
+					<input type="submit" name="buttonId" value="工数入力">
 				</form>
 				</td>
 			</tr>
