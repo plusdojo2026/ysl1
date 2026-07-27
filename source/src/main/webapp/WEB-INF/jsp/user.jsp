@@ -14,7 +14,8 @@
 
     <div>
         <form action="Controller" method="post">
-        <input type="submit" value="+新規作成">
+         <input type="hidden" name="pageId" value="U003">
+        <input type="submit" value="+新規作成" name="buttonId">
         </form>
     </div>
 <table class="table" id="userTable" border="1">
@@ -34,12 +35,12 @@
 		</thead>
 		<tbody>
 			<c:forEach var="u" items="${userList}" >
-                <form action="Controller" method="post">
+                <form action="Controller" method="get">
                     <input type="hidden" name="pageId" value="U003">
+                    <input type="hidden" name="userId" value="${u.userId}">
 				<tr>
 					<td>${u.userId}</td>
 					<td>${u.loginId}</td>
-
 					<td>${u.userName}</td>
 					<td>${u.mailAddress}</td>
 					<td><c:if test="${u.authority}">ユーザー</c:if><c:if test="${!u.authority}">管理者</c:if></td>
@@ -47,7 +48,7 @@
 					<td>${u.createdAt}</td>
 					<td>${u.updateAt}</td>
                     <td><button name="buttonId" value="無効" type="submit">無効化</button></td>
-                    <td><button name="buttonId" type="submit" value="確認"> 詳細</button></td>
+                    <td><button name="buttonId" type="submit" value="編集"> 編集</button></td>
 				</tr>
                 </form>
 			</c:forEach>

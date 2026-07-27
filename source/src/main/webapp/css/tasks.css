@@ -9,7 +9,7 @@
     display:flex;
     flex-direction:column;
     margin-bottom:20px;
-    width:150px;
+    width:auto;
     font-size:15px;    
 }
 
@@ -17,6 +17,44 @@
 	margin-bottom:30px;
 }
 
-div.dataTables_wrapper div.dataTables_filter label {
-	text-align: right;
+#caseName,#taskStatus,#managerId{
+    font-size:14px;  
+}
+
+#tasksTable_filter label {
+  text-align: right;
+}
+
+/*=========================
+ スライダー
+=========================*/
+
+.slider-area{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+}
+
+.slider-area input[type=range]{
+
+    flex:1;
+
+    accent-color:#2d79f3;
+
+    cursor:pointer;
+
+}
+
+#progressValue{
+
+    width:50px;
+
+    font-weight:bold;
+
+    color:#345;
+
+    text-align:right;
+
 }

@@ -98,6 +98,28 @@ public class UsersAction {
 	}
 
 	/**
+	 * updateページの初期化メッセージ
+	 * 
+	 *
+	 * @return String IDでサーチ、成功後、updateページに遷移する。失敗の場合、user一覧に戻る。
+	 */
+	public String updateInit() {
+		//userIdを取る
+		UsersDTO dto = new UsersDTO(request.getParameter("userId"));
+		//page設定
+		String page = "/WEB-INF/jsp/user.jsp";
+		//id取得成功の場合
+		if (dto.getUserId() != null) {
+			//更新するユーザーの全情報を保存
+			request.setAttribute("updateUser", usersService.select(dto));
+			page = "/WEB-INF/jsp/user_update.jsp";
+		}
+
+		return page;
+
+	}
+
+	/**
 	 * 
 	 * TODO
 	 *

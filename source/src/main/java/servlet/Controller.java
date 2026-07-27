@@ -72,10 +72,11 @@ public class Controller extends HttpServlet {
 			//メンバー一覧画面 --------------------------------
 			else if (pageId.equals("U003")) {
 				UsersAction uAction = new UsersAction(request);
-				if (buttonId.equals("新規登録")) {
+				if (buttonId.equals("+新規登録")) {
 					//新規登録画面へ遷移
 					page = "/WEB-INF/jsp/user_regist.jsp";
-
+				} else if (buttonId.equals("編集")) {
+					page = uAction.updateInit();
 				}
 				//案件詳細画面へ（一覧から案件名を押した処理）
 			} else if (pageId.equals("C003")) {
@@ -191,10 +192,15 @@ public class Controller extends HttpServlet {
 				page = uAction.update();
 
 				//メンバー一覧画面 --------------------------------
-			} else if (pageId.equals("U003") && buttonId.equals("編集")) {
+			} else if (pageId.equals("U003")) {
 				UsersAction uAction = new UsersAction(request);
-				//編集画面表示
-				page = uAction.update();
+				if (buttonId.equals("保存")) {
+					//編集画面表示
+					page = uAction.update();
+
+				} else if (buttonId.equals("無効")) {
+					page = uAction.invalid();
+				}
 
 				//メンバー新規登録画面 ----------------------------
 			} else if (pageId.equals("U004") && buttonId.equals("登録")) {
