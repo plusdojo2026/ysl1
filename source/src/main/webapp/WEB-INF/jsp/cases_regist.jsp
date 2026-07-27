@@ -55,6 +55,7 @@
 							    
 							    <option value="進行中" ${cases.caseStatus=='進行中' ? 'selected' : ''}>進行中</option>
 							    <option value="完了" ${cases.caseStatus=='完了' ? 'selected' : ''}>完了</option>
+							    <option value="未着手" ${cases.caseStatus=='未着手' ? 'selected' : ''}>未着手</option>
 							    <option value="中止" ${cases.caseStatus=='中止' ? 'selected' : ''}>中止</option>
 						 </select>
 			    	</td>
