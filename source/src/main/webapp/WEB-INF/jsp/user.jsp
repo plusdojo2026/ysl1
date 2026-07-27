@@ -11,62 +11,50 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 <main>
-<!-- 編集画面 -->
- <h2>編集</h2>
- <!--パスワードresetエリア展開用ボタン-->
-<input type="button" name="resetAreaButton" value="パスワードリセット">
- <form action="${pageContext.request.contextPath}/Controller" method="post">
-     <!-- フォーム開始: Controller に POST 送信 -->
-    <!-- ページ識別子: サーバ側で画面判定に使用 -->
- <input type="hidden" name="pageId"  value="U005">
- <!--userid-->
-<input type="hidden" name="userId" value="${user.userId}">
-<!--userName-->
- <label for="userName">氏名</label>
- <input type="text" name="userName" id="usreName" class="userName" placeholder="氏名を入力" autocomplete="userName" required>
 
-     <!-- 氏名のエラーメッセージ表示（存在する場合のみ表示） -->
-    <c:if test="${not empty errorMsgName}">
-        <div class="error"><c:out value="${errorMsgName}"/></div>
-    </c:if>
-  <!-- メールアドレス確認欄: ユーザーのメールアドレスを入力 -->
-    <label for="mailAddress">メールアドレス</label>
-    <input type="text" name="mailAddress" id="mailAddress" placeholder="メールアドレスを入力" autocomplete="current-mailAddress" >
-      <!-- パスワードのエラーメッセージ表示（存在する場合のみ表示） -->
-    <c:if test="${not empty errorMsgMail}">
-        <div class="error"><c:out value="${errorMsgMail}"/></div>
-    </c:if>
-
-     <!-- パスワード入力欄: ユーザーのパスワードを入力 -->
-    <label for="loginPw">新しいパスワード</label>
-    <input type="password" name="loginPw" id="loginPw" placeholder="新しいパスワードを入力" autocomplete="current-password" required>
-
-     <!-- パスワード確認欄: ユーザーのパスワードを入力 -->
-    <label for="loginPw">パスワードを確認</label>
-    <input type="password" name="loginPwCheck" id="loginPwCheck" placeholder="新しいパスワードを入力" autocomplete="current-password-check" required>
-      <!-- パスワードのエラーメッセージ表示（存在する場合のみ表示） -->
-    <c:if test="${not empty errorMsgPw}">
-        <div class="error"><c:out value="${errorMsgPw}"/></div>
-    </c:if>
-
-    <!--権限-->
-    <label for="authority">権限</label>
-    <input type="radio" name="authority" id="authority" value="0">管理者
-       <input type="radio" name="authority" id="authority" value="1">一般
-
-
-    <!--状態-->
-    <label for="userStatus">状態</label>
-    <input type="radio" name="userStatus" id="userStatus" value="0">無効
-       <input type="radio" name="userStatus" id="userStatus" value="1">有効
-
-       <div id="submitArea">
-    <!-- 送信ボタン: フォームを送信 -->
-
-    <input type="submit" name="buttonId" value="保存" data-confirm="この内容でよろしいでしょうか？" >
-     <button type="button" class="js-back-page">戻る</button>
+    <div>
+        <form action="Controller" method="post">
+        <input type="submit" value="+新規作成">
+        </form>
     </div>
-</form>
+<table class="table" id="userTable" border="1">
+		<thead>
+			<tr>
+				<th>ユーザーID</th>
+				<th>ログインID</th>
+				<th>ユーザー名</th>
+				<th>メールアドレス</th>
+				<th>ユーザー権限</th>
+				<th>有効状態</th>
+				<th>作成日時</th>
+				<th>更新日時</th>
+                <th>無効化</th>
+                <th>詳細</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="u" items="${userList}" >
+                <form action="Controller" method="post">
+                    <input type="hidden" name="pageId" value="U003">
+				<tr>
+					<td>${u.userId}</td>
+					<td>${u.loginId}</td>
+
+					<td>${u.userName}</td>
+					<td>${u.mailAddress}</td>
+					<td><c:if test="${u.authority}">ユーザー</c:if><c:if test="${!u.authority}">管理者</c:if></td>
+					<td><c:if test="${u.active}">有効</c:if><c:if test="${!u.active}">無効</c:if></td>
+					<td>${u.createdAt}</td>
+					<td>${u.updateAt}</td>
+                    <td><button name="buttonId" value="無効" type="submit">無効化</button></td>
+                    <td><button name="buttonId" type="submit" value="確認"> 詳細</button></td>
+				</tr>
+                </form>
+			</c:forEach>
+		</tbody>
+</table>
+
+
 </main>
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 

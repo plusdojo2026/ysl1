@@ -63,7 +63,7 @@
 					<td>${e.customerName}</td>
 					<td>${e.caseStatus}</td>
 					<td>${e.casePriority}</td>
-					<td>${e.pmId}</td>
+					<td>${e.userName}</td>
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
 					<td>${e.caseNow}/${e.caseSum}</td>

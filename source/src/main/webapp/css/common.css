@@ -154,6 +154,19 @@ input[type="submit"]:hover {
     background-color: #ffe9ed;
     border: 1px solid #f5b3bf;
     color: #8b2434;
+    display: none;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.error.is-visible {
+    display: block;
+}
+
+.input-error {
+    border: 1px solid #d93025;
+    background-color: #fff5f5;
 }
 
 @media (max-width: 768px) {

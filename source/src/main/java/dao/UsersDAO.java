@@ -147,7 +147,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 				)
 				VALUES (?, ?, ?, ?, ?, ?)
 				""".formatted(getTableName());
-		//activeの初期設定,nullの場合false、それ以外の場合userのactiveを使用
+		// activeの初期設定：nullの場合はtrue、それ以外はDTOの値を使用
 		Boolean active = user.getActive() == null ? true : user.getActive();
 
 		int result = executeUpdate(

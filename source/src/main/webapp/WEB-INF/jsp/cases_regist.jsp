@@ -33,10 +33,10 @@
 		    		
 		        	<td class="label">担当PM</td>
 		        	<td><select name="pmId">
-		        	<c:forEach var="pm" items="${pmList}">
+		        	<c:forEach var="pm" items="${userList}">
 								<option
 									value="${pm.userId}"
-									${casesList.pmId == pm.userId ? 'selected' : ''}>
+									${cases.pmId == pm.userId ? 'selected' : ''}>
 
 									${pm.userName}
 
@@ -53,9 +53,9 @@
 			    	<td>
 				    	<select name="status">
 							    
-							    <option value="進行中">進行中</option>
-							    <option value="完了">完了</option>
-							    <option value="中止">中止</option>
+							    <option value="進行中" ${cases.caseStatus=='進行中' ? 'selected' : ''}>進行中</option>
+							    <option value="完了" ${cases.caseStatus=='完了' ? 'selected' : ''}>完了</option>
+							    <option value="中止" ${cases.caseStatus=='中止' ? 'selected' : ''}>中止</option>
 						 </select>
 			    	</td>
 		    	
@@ -64,15 +64,15 @@
 				    	<select name="priority">
 							   
 							    <option value="高"
-							    ${dto.casePriority=='高' ? 'selected' : ''}>
+							    ${cases.casePriority=='高' ? 'selected' : ''}>
 							    高
 							    </option>
 							    <option value="中"
-							    ${empty dto.casePriority || dto.casePriority=='中' ? 'selected' : ''}>
+							    ${empty cases.casePriority || cases.casePriority=='中' ? 'selected' : ''}>
 							    中
 							    </option>
 							    <option value="低"
-							    ${dto.casePriority=='低' ? 'selected' : ''}>
+							    ${cases.casePriority=='低' ? 'selected' : ''}>
 							    低
 							    </option>
 					    </select>
@@ -83,12 +83,12 @@
 			    	<tr>
 				    	<td class="label">開始日</td>
 				    	<td>
-				    	<input type="date"name="startDate" value="${cases.startDate }"required>
+				    	<input type="date" name="startDate" value="${cases.startDate.substring(0,10) }" required>
 				    	</td>
 				    	
 				    	<td class="label">終了予定日</td>
 				    	<td>
-				    	<input type="date" name="plannedEndDate" value="${cases.plannedEndDate }"required>
+				    	<input type="date" name="plannedEndDate" value="${cases.plannedEndDate.substring(0,10) }"required>
 			    	</td>
 		    	
 		    	</tr>
@@ -106,7 +106,7 @@
 		    		<td colspan="4">
 		    		<label>案件説明</label><br>
 		    		
-		    		<textarea name="description" value="${cases.caseDescription }" rows="6"cols="80"></textarea>
+		    		<textarea name="description"  rows="6"cols="80">${cases.caseDescription }</textarea>
 		    		
 		    		</td>
 		    	</tr>
