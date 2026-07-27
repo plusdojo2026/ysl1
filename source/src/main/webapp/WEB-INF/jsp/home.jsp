@@ -53,14 +53,14 @@
 		</thead>
 		<tbody>
 			<c:forEach var="e" items="${casesList}" >
-			<c:if test="${e.caseStatus == '進行中'}">
+			<c:if test="${e.caseStatus == '進行中' && e.pmId == sessionScope.user.userId}">
 				<tr>
 					<td>${e.caseCode}</td>
 					<td>${e.caseName}</td>
 					<td>${e.customerName}</td>
 					<td>${e.caseStatus}</td>
 					<td>${e.casePriority}</td>
-					<td>${e.pmId}</td>
+					<td>${sessionScope.user.userName}</td>
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
 					<td>${e.caseNow}/${e.caseSum}</td>

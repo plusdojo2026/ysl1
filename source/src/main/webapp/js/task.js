@@ -12,67 +12,57 @@
             }
         });
         
-    	 //-----------------------------------------------------------
-    	 
-    	//データテーブルを使用
-        $("#tasksTable").DataTable();
-          
-              
-        //担当者で絞り込み
-        $("manegerId").on("change",function(){
-			const manager = $(this).val();
-			
-			//全件表示
-			if (manager == "") {
-				$("#tasksTable tr").show();
-				return;			
-		}
-		
-			//クリアにする
-				$("#tasksTable tr").hide();
-			
-			//選択された案件のみ表示
-				$('#tasksTable tr[data-manager="' + manager + '"]').show();
-		});
-		
-		
-		//ステータスで絞り込み
-        $("taskStatus").on("change",function(){
-			const task = $(this).val();
-			
-			//全件表示
-			if (task == "") {
-				$("#tasksTable tr").show();
-				return;			
-		}
-		
-			//クリアにする
-				$("#tasksTable tr").hide();
-			
-			//選択された案件のみ表示
-				$('#tasksTable tr[data-status="' + task + '"]').show();
-		});
-		
-		
-		//案件名で絞り込み
-        $("caseName").on("change",function(){
-			const cases = $(this).val();
-			
-			//全件表示
-			if (cases == "") {
-				$("#tasksTable tr").show();
-				return;			
-		}
-		
-			//クリアにする
-				$("#tasksTable tr").hide();
-			
-			//選択された案件のみ表示
-				$('#tasksTable tr[data-case="' + cases + '"]').show();
-		});
-		
-			
-	});
+	//------------------------------------------------------------
+    
+    // フィルタ処理で複合条件で絞り込みできるようにする	 
+	$(function () {
 
+    const table = $("#tasksTable").DataTable();
+
+    function filterTasks() {
+        const caseName = $("#caseName").val();
+        const manager = $("#managerId").val();
+        const status = $("#taskStatus").val();
+
+        table.column(0).search(caseName);
+        table.column(2).search(manager);
+        table.column(3).search(status);
+
+        table.draw();
+    }
+
+    $("#caseName").on("change", filterTasks);
+    $("#managerId").on("change", filterTasks);
+    $("#taskStatus").on("change", filterTasks);
+
+    // 案件名の重複削除
+    const caseValues = new Set();
+    $("#caseName option").each(function () {
+        const value = $(this).val();
+
+        if (value && caseValues.has(value)) {
+            $(this).remove();
+        } else {
+            caseValues.add(value);
+        }
+    });
+
+    // 担当者の重複削除
+    const managerValues = new Set();
+    $("#managerId option").each(function () {
+        const value = $(this).val();
+
+        if (value && managerValues.has(value)) {
+            $(this).remove();
+        } else {
+            managerValues.add(value);
+        }
+    });
+	});
+});
+
+	
+			
+	
 
    
