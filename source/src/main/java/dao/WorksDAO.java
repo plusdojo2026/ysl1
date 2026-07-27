@@ -193,10 +193,10 @@ public Connection conn = null;
 					ArrayList<AllDTO> caseList = new ArrayList<AllDTO>();
 					
 					// SQL文を準備する
-					String sql ="select c.case_code, c.case_name, sum(w.actual_hours) as actual_hours_sum, c.case_planned_hours, count(distinct t.id) as case_sum,"
+					String sql ="select c.case_code, c.case_name, COALESCE(SUM(w.actual_hours), 0) as actual_hours_sum, c.case_planned_hours, count(distinct t.id) as case_sum,"
 								+ " count(distinct case when t.task_status='完了' then t.id end) as case_now from cases c join tasks t on c.id = t.case_id"
-								+ " left join works w on t.id = w.task_id where date_format(work_date, '%Y-%m')=? "
-								+ "group by c.case_code, c.case_name, c.case_planned_hours";
+								+ " left join works w on t.id = w.task_id and date_format(work_date, '%Y-%m')=? "
+								+ "group by c.case_code, c.case_name, c.case_planned_hours ORDER BY c.case_code";
 	
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql);
