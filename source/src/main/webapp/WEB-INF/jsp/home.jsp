@@ -17,17 +17,23 @@
  <div class ="count_area">
  <div class ="count">
  	<p>進行中の案件</p>
-	 ${count.inProgressCase} 件
+ 	<div class="number">
+	 ${count.inProgressCase} 件	
+	 </div>  
  </div>
  
  <div class ="count">
  	<p>担当タスク</p>
+ 	<div class="number">
  	${count.assignedTask} 件
+ 	</div>
  </div>
  
  <div class ="count">
  	<p>期限超過件数</p>
+ 	<div class="number" id="over">
  	${count.deadlineNumber} 件
+ 	</div>
  </div>
  </div>
  
@@ -98,7 +104,10 @@
 				<td>
 					${e.taskPlannedHours}/${e.actualHours}
 				</td>
-				<td>${e.taskProgressRate}</td>
+				<td>
+				<progress value="${e.taskProgressRate}" max="100"></progress>
+				${e.taskProgressRate}%
+				</td>
 				<td>
 				<form method="GET" action="<c:url value='/Controller'/>">
 					<input type="hidden" name="pageId" value="D001">

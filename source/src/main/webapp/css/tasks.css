@@ -25,36 +25,8 @@
   text-align: right;
 }
 
-/*=========================
- スライダー
-=========================*/
-
-.slider-area{
-
-    display:flex;
-    align-items:center;
-    gap:18px;
-
+.number {
+	font-size:30px;
+	font-weight:bold;
 }
 
-.slider-area input[type=range]{
-
-    flex:1;
-
-    accent-color:#2d79f3;
-
-    cursor:pointer;
-
-}
-
-#progressValue{
-
-    width:50px;
-
-    font-weight:bold;
-
-    color:#345;
-
-    text-align:right;
-
-}

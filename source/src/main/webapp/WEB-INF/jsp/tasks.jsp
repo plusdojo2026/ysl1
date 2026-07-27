@@ -90,7 +90,12 @@
 			<td>
 				${e.taskPlannedHours}/${e.actualHours}
 			</td>
-			<td>${e.taskProgressRate}</td>
+			<div class="progress-bar">
+			<td>
+			<progress value="${e.taskProgressRate}" max="100"></progress>
+			${e.taskProgressRate}%
+			</td>
+			</div>
 			<td>
 				<!-- 編集ボタン -->
 				<form method="POST" action="<c:url value='/Controller'/>">
