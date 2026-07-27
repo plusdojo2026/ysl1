@@ -62,7 +62,7 @@
 					</button>
 					</form>
 					</td>
-					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&caseId=${e.caseId}">
+					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&case_id=${e.caseId}">
 					${e.caseName}</td>
 					<td>${e.customerName}</td>
 					<td>${e.caseStatus}</td>
