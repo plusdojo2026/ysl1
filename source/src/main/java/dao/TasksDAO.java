@@ -45,13 +45,13 @@ public class TasksDAO {
 		ArrayList<AllDTO> taskList = new ArrayList<AllDTO>();
 		
 		// SELECT文を準備する
-		String sql = "select t.id,c.case_name,t.task_name,u.user_name,t.task_status,t.task_priority,t.deadline,"
+		String sql = "select t.id,c.case_name,t.task_name,u.id as user_id,u.user_name,t.task_status,t.task_priority,t.deadline,"
 				+ "t.progress_rate, COALESCE(sum(works.actual_hours), 0) as actual_hours,t.task_planned_hours "
 				+ "from tasks t "
 				+ "LEFT JOIN cases c ON t.case_id = c.id "
 				+ "LEFT JOIN users u ON t.manager_id = u.id "
 				+ "LEFT JOIN works ON t.id = works.task_id " 
-				+ "GROUP BY t.id,c.case_name,t.task_name,u.user_name,"
+				+ "GROUP BY t.id,c.case_name,t.task_name,u.id,u.user_name,"
 		        + "t.task_status,t.task_priority,t.deadline,"
 		        + "t.progress_rate,t.task_planned_hours" ;
 
@@ -72,6 +72,7 @@ public class TasksDAO {
 			dto.setTaskId(rs.getInt("id"));
 			dto.setCaseName(rs.getString("case_name"));
 			dto.setTaskName(rs.getString("task_name"));
+			dto.setUserId(rs.getInt("user_id"));
 			dto.setUserName(rs.getString("user_name"));
 			dto.setTaskStatus(rs.getString("task_status"));
 			dto.setTaskPriority(rs.getString("task_priority"));	
