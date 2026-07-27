@@ -105,7 +105,7 @@ public class TasksAction {
 			mode = "edit";
 			
 			//タスク詳細を取得
-            ArrayList<TasksDTO> taskList = service.edit(taskId);
+            TasksDTO taskList = service.edit(taskId);
             
             //タスク詳細と、編集モードの状態を格納
             request.setAttribute("taskList", taskList);
