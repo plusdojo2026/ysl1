@@ -54,13 +54,8 @@
 		<tbody>
 			<c:forEach var="e" items="${casesList}">
 				<tr>
-					<td><form method="post"action="<c:url value='/Controller'/>">
-					<input type="hidden" name="pageId" value="C001">
-					<input	type="hidden" name="id" value="${e.caseId}"> 
-					<button type="submit" name="buttonId"value="参照">
+					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&case_id=${e.caseId}">
 					${e.caseCode}
-					</button>
-					</form>
 					</td>
 					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&case_id=${e.caseId}">
 					${e.caseName}</td>

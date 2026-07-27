@@ -77,6 +77,11 @@ public class Controller extends HttpServlet {
 					page = "/WEB-INF/jsp/user_regist.jsp";
 
 				}
+				//案件詳細画面へ（一覧から案件名を押した処理）
+			}else if (pageId.equals("C003")) {
+				System.out.println("aaaaaa");
+				CasesAction action = new CasesAction(request);				
+				page= action.intiCasesDetail();				
 			}
 
 			//			//月次集計画面 ------------------------------------
@@ -213,15 +218,6 @@ public class Controller extends HttpServlet {
 				} else if (buttonId.equals("編集")) {
 					//編集画面表示[]
 					page = cAction.casesEdit();
-
-				} else if (buttonId.equals("参照")) {
-					//案件詳細画面表示[]
-					try {
-						page = cAction.intiCasesDetail();
-					} catch (UnsupportedEncodingException | ClassNotFoundException | SQLException e) {
-						// TODO 自動生成された catch ブロック
-						e.printStackTrace();
-					}
 
 				}
 			}
