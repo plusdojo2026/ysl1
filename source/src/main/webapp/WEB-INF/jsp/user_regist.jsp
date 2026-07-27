@@ -118,7 +118,7 @@
 
             <input type="submit"
                    name="buttonId"
-                   value="保存"
+                   value="登録"
                    data-confirm="この内容でよろしいでしょうか？">
 
             <button type="button" class="js-back-page">

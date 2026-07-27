@@ -127,7 +127,7 @@ public class UsersAction {
 	 */
 	public String update() {
 
-		String page = "/WEB-INF/jsp/user_update.jsp";
+		String page = updateInit();
 
 		UsersDTO loginUser = (UsersDTO) request.getSession().getAttribute("user");
 
@@ -201,7 +201,7 @@ public class UsersAction {
 			}
 			//UPDATE実行
 			if (usersService.update(updateUser)) {
-				page = "/WEB-INF/jsp/users.jsp";
+				page = selectAll();
 				request.setAttribute("message", "更新成功！");
 			} else {
 				request.setAttribute("message", "更新失敗。");
@@ -379,7 +379,7 @@ public class UsersAction {
 
 			if (usersService.insert(newUser)) {
 
-				page = "/WEB-INF/jsp/users.jsp";
+				page = selectAll();
 
 				request.setAttribute(
 						"message",
@@ -409,7 +409,7 @@ public class UsersAction {
 	 */
 	public String invalid() {
 		//失敗ページを設定
-		String page = "/WEB-INF/jsp/user.jsp";
+		String page = selectAll();
 		//ログインユーザーの情報を保存
 		UsersDTO loginUser = (UsersDTO) request.getSession().getAttribute("user");
 
@@ -424,6 +424,7 @@ public class UsersAction {
 			request.setAttribute(
 					"message",
 					"更新失敗！管理者専用機能です。");
+
 			return page;
 		}
 
@@ -451,7 +452,7 @@ public class UsersAction {
 			updateUser.setActive(false);
 			//更新実行、成功したらページを変更
 			if (usersService.update(updateUser)) {
-				page = "/WEB-INF/jsp/users.jsp";
+				page = selectAll();
 				request.setAttribute("message", "更新成功！");
 			} else {
 				request.setAttribute("message", "更新失敗。");
