@@ -21,12 +21,13 @@
     <c:param name="pageId" value="header" />
     <c:param name="buttonId" value="ログアウト" />
 </c:url>
+<%-- 
     <div class="header__logo">
     <a href="${dashboardUrl}">
         <img alt="Tz"
              src="${pageContext.request.contextPath}/images/tennpurechann.png" >
              </a>
-    </div>
+    </div>--%>
 
     <c:if test="${empty sessionScope.user}">
         <div class="header__auth">

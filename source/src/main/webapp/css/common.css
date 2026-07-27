@@ -183,26 +183,29 @@ input[type="submit"]:hover {
 	box-sizing: border-box;
 	overflow-y: auto;
 	z-index: 1000;
-	}
+}	
 	
+/*サイドメニューヘッダー*/	
 .sidebar-header {
 	display: flex;
 	align-items: center;
-	padding: 12px 28px 24px;
+	padding: 8px 12px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #e5e7eb;
 	box-sizing: border-box;
+	gap:0px;
 }	
 
 /* Task Managerの文字 */
 .sidebar-header .title {
 	color: #1f2937;
-	font-size: 25px;
+	font-size: 23px;
 	font-weight: bold;
 	white-space: nowrap;
 	padding: 10px 20px;
 	margin: 0;
 	line-height: 1.2;
+	gap:0px;
 }
 
 /* ナビゲーション */
@@ -273,7 +276,11 @@ font: inherit;
 	flex-shrink: 0;
 }
 .sidebar-header img{
-	width: 55%;
-    height: 55%;
-   
+	margin:0;
+	width: 45%;
+    height: 45%;
+    object-fit: contain;
+	flex-shrink: 0;
+	transform: translateX(-15px);
+	margin: 0 -45px 0 -10px;
 }
