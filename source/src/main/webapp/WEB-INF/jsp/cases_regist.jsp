@@ -9,14 +9,14 @@
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
 </head>
 
-<!--まだ、新規登録しかできません（まだ、データは持ってきていない状態） -->
+<!--データはとれそうだけど、新規登録のような表示になりそう -->
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
  	
 	<h2>案件登録</h2>
 	
-	<form action="/ysl1/ControllerServlet" method="post">
+	<form action="/ysl1/Controller" method="post">
 		<table>
 			<tr>
 		        	<td class="label" name="caseName">案件名</td>
@@ -38,7 +38,7 @@
 									value="${pm.userId}"
 									${casesList.pmId == pm.userId ? 'selected' : ''}>
 
-									${pmList.userName}
+									${pm.userName}
 
 								</option>
 							</c:forEach>
@@ -104,10 +104,10 @@
 		</table>
 			
 		<div class="buttonArea">
-				
+			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button"value="キャンセル"onclick="history.back()">
 		   		
-		   	<input type="submit"value="登録">
+		   	<input type="submit"name=buttonId value="登録">
 		</div>
 
 	</form>

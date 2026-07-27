@@ -18,6 +18,7 @@
 
 	<form action="${pageContext.request.contextPath}/Controller"
 		method="get">
+		<input type="hidden"name="pageId"value="C001">
 		<label>キーワード:</label> <input type="text" name="keyword"> ステータス
 		<select name="status">
 			<option value="すべて">すべて</option>
@@ -30,7 +31,7 @@
 			<option value="中">中</option>
 			<option value="低">低</option>
 		</select> <input type="submit" value="クリア"> <input type="submit"
-			value="検索"> <input type="button" value="新規登録">
+			value="検索"> <input type="submit" name="buttonId"value="新規登録"onclick="location.href='/Controller?pageId=C001'">
 	</form>
 	<!--案件一覧 -->
 	<table class="table" id="cases" border="1">
@@ -53,8 +54,16 @@
 		<tbody>
 			<c:forEach var="e" items="${casesList}">
 				<tr>
-					<td>${e.caseCode}</td>
-					<td>${e.caseName}</td>
+					<td><form method="post"action="<c:url value='/Controller'/>">
+					<input type="hidden" name="pageId" value="C001">
+					<input	type="hidden" name="id" value="${e.caseId}"> 
+					<button type="submit" name="buttonId"value="参照">
+					${e.caseCode}
+					</button>
+					</form>
+					</td>
+					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&caseId=${e.caseId}">
+					${e.caseName}</td>
 					<td>${e.customerName}</td>
 					<td>${e.caseStatus}</td>
 					<td>${e.casePriority}</td>

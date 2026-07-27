@@ -244,7 +244,7 @@ public class CasesAction {
 		CasesService service = new CasesService();
 
 		ArrayList<UsersDTO> userList = service.pmList();
-		request.setAttribute("userList", userList);
+		request.setAttribute("pmList", userList);
 		return page;
 	}
 

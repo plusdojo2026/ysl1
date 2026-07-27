@@ -126,13 +126,13 @@ public class Controller extends HttpServlet {
 				}
 			}
 			//案件一覧画面 -----------------------------------
-			//		else if (pageId.equals("C001")) {
-			//			CasesAction cAction = new CasesAction(request);
-			//			if (buttonId.equals("新規登録")) {
-			//				//新規登録画面表示[]
-			//				page = cAction.casesRegist();
-			//					}
-			//				}
+					else if (pageId.equals("C001")) {
+						CasesAction cAction = new CasesAction(request);
+						if (buttonId.equals("新規登録")) {
+							//新規登録画面表示[]
+							page = cAction.casesRegist();
+								}
+							}
 			//			
 		}
 
@@ -216,7 +216,12 @@ public class Controller extends HttpServlet {
 
 				} else if (buttonId.equals("参照")) {
 					//案件詳細画面表示[]
-					page = cAction.initiCasesDetail();
+					try {
+						page = cAction.intiCasesDetail();
+					} catch (UnsupportedEncodingException | ClassNotFoundException | SQLException e) {
+						// TODO 自動生成された catch ブロック
+						e.printStackTrace();
+					}
 
 				}
 			}
