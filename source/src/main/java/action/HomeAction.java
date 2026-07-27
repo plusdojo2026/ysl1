@@ -50,7 +50,7 @@ public class HomeAction {
 		int id = user.getUserId();
 
 		//カウントした結果を返すメソッド呼び出し
-		AllDTO count = hservice.select(id);
+		AllDTO count = hservice.select(id); //Idを引数としてselectを実行
 
 		//タスク一覧を表示するメソッド呼び出し
 		ArrayList<AllDTO> taskList = tservice.selectAll();

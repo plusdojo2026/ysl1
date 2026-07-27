@@ -77,6 +77,11 @@ public class Controller extends HttpServlet {
 					page = "/WEB-INF/jsp/user_regist.jsp";
 
 				}
+				//案件詳細画面へ（一覧から案件名を押した処理）
+			} else if (pageId.equals("C003")) {
+				System.out.println("aaaaaa");
+				CasesAction action = new CasesAction(request);
+				page = action.intiCasesDetail();
 			}
 
 			//			//月次集計画面 ------------------------------------
@@ -126,13 +131,13 @@ public class Controller extends HttpServlet {
 				}
 			}
 			//案件一覧画面 -----------------------------------
-			//		else if (pageId.equals("C001")) {
-			//			CasesAction cAction = new CasesAction(request);
-			//			if (buttonId.equals("新規登録")) {
-			//				//新規登録画面表示[]
-			//				page = cAction.casesRegist();
-			//					}
-			//				}
+			else if (pageId.equals("C001")) {
+				CasesAction cAction = new CasesAction(request);
+				if (buttonId.equals("新規登録")) {
+					//新規登録画面表示[]
+					page = cAction.casesRegist();
+				}
+			}
 			//			
 		}
 
@@ -214,10 +219,6 @@ public class Controller extends HttpServlet {
 					//編集画面表示[]
 					page = cAction.casesEdit();
 
-				} else if (buttonId.equals("参照")) {
-					//案件詳細画面表示[]
-					page = cAction.initiCasesDetail();
-
 				}
 			}
 			//案件登録、編集画面 ------------------------------
@@ -244,31 +245,31 @@ public class Controller extends HttpServlet {
 					//案件編集画面表示[]
 					page = cAction.casesEdit();
 
-					//			} else if (buttonId.equals("タスク追加")) {
-					//				TasksAction tAction = new TasksAction(request);
-					//				//タスク登録画面表示[]
-					//				page = tAction.functions();
-					//
-					//			} else if (buttonId.equals("タスク編集")) {
-					//				TasksAction tAction = new TasksAction(request);
-					//				//タスク編集画面表示[]
-					//				page = tAction.functions();
-					//
-					//			} else if (buttonId.equals("タスク削除")) {
-					//				TasksAction tAction = new TasksAction(request);
-					//				//タスク削除処理[結果:該当タスクと紐づく工数削除、案件詳細画面へ]
-					//				page = tAction.delete();
-					//
-					//			} else if (buttonId.equals("工数入力")) {
-					//				WorksAction wAction = new WorksAction(request);
-					//				//工数登録画面表示
-					//				page = wAction.insert();
-					//
-					//			} else if (buttonId.equals("すべて見る")) {
-					//				WorksAction wAction = new WorksAction(request);
-					//				//月次集計画面表示[]
-					//				page = wAction.initialize();
-					//
+				} else if (buttonId.equals("タスク追加")) {
+					TasksAction tAction = new TasksAction(request);
+					//タスク登録画面表示[]
+					page = tAction.functions();
+
+				} else if (buttonId.equals("タスク編集")) {
+					TasksAction tAction = new TasksAction(request);
+					//タスク編集画面表示[]
+					page = tAction.functions();
+
+					//								} else if (buttonId.equals("タスク削除")) {
+					//									TasksAction tAction = new TasksAction(request);
+					//									//タスク削除処理[結果:該当タスクと紐づく工数削除、案件詳細画面へ]
+					//									page = tAction.delete();
+					//					
+					//								} else if (buttonId.equals("工数入力")) {
+					//									WorksAction wAction = new WorksAction(request);
+					//									//工数登録画面表示
+					//									page = wAction.insert();
+					//					
+				} else if (buttonId.equals("すべて見る")) {
+					WorksAction wAction = new WorksAction(request);
+					//月次集計画面表示[]
+					page = wAction.initialize();
+
 				}
 			}
 

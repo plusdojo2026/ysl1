@@ -36,6 +36,7 @@
 	<!-- <h2>基本情報</h2> -->
 	<input type="hidden" name="pageId" value="C003">
 	<table class="table" id="cases_table">
+	<input type ="hidden" name="case_id">
 	
 		<c:forEach var="c" items="${casesList}">
 			<tr>

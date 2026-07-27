@@ -53,6 +53,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="e" items="${casesList}" >
+			<c:if test="${e.caseStatus == '進行中'}">
 				<tr>
 					<td>${e.caseCode}</td>
 					<td>${e.caseName}</td>
@@ -65,6 +66,7 @@
 					<td>${e.caseNow}/${e.caseSum}</td>
 					<td>${e.actualHoursSum}</td>
 				</tr>
+			</c:if>
 			</c:forEach>
 		</tbody>
 </table>
@@ -72,48 +74,49 @@
 <!-- タスクの一覧表示 -->
 <p class="mytask">担当タスク一覧</p>
 <table class="table" id="tasksTable" border="1">	
-	<thead>		<!-- thead:テーブルの見出しを強調表示するもの -->
-			<tr>
-				<th>案件名</th>
-				<th>タスク名</th>
-				<th>担当者</th>
-				<th>ステータス</th>
-				<th>優先度</th>
-				<th>期限</th>
-				<th>実績工数/見積</th>
-				<th>進捗</th>
-				<th>工数入力</th>
-			</tr>
-	</thead>
-
-	<tbody>
-	<c:forEach var="e" items="${taskList}">
-		<tr 
-		data-manager="${e.userName}"
-		data-case="${e.caseName}"
-		data-status="${e.taskStatus}">
+		<thead>		<!-- thead:テーブルの見出しを強調表示するもの -->
+				<tr>
+					<th>案件名</th>
+					<th>タスク名</th>
+					<th>担当者</th>
+					<th>ステータス</th>
+					<th>優先度</th>
+					<th>期限</th>
+					<th>実績工数/見積</th>
+					<th>進捗</th>
+					<th>工数入力</th>
+				</tr>
+		</thead>
+	
+		<tbody>
+		<c:forEach var="e" items="${taskList}">
 		
-			<td>${e.caseName}</td>
-			<td>${e.taskName}</td>
-			<td>${e.userName}</td>
-			<td>${e.taskStatus}</td>
-			<td>${e.taskPriority}</td>
-			<td>${e.deadline}</td>
-			<td>
-				${e.taskPlannedHours}/${e.actualHours}
-			</td>
-			<td>${e.taskProgressRate}</td>
-			<td>
-			<form method="POST" action="<c:url value='/Controller'/>">
-				<input type="hidden" name="page_id" value="D001">
-				<input type="hidden" name="taskId" value="${e.taskId}">							
-				<input type="submit" name="button_id" value="工数入力">
-			</form>
-			</td>
-		</tr>
-	</c:forEach>	
-	</tbody>
-</table>
+			<tr 
+			data-manager="${e.userName}"
+			data-case="${e.caseName}"
+			data-status="${e.taskStatus}">
+			
+				<td>${e.caseName}</td>
+				<td>${e.taskName}</td>
+				<td>${e.userName}</td>
+				<td>${e.taskStatus}</td>
+				<td>${e.taskPriority}</td>
+				<td>${e.deadline}</td>
+				<td>
+					${e.taskPlannedHours}/${e.actualHours}
+				</td>
+				<td>${e.taskProgressRate}</td>
+				<td>
+				<form method="POST" action="<c:url value='/Controller'/>">
+					<input type="hidden" name="page_id" value="D001">
+					<input type="hidden" name="taskId" value="${e.taskId}">							
+					<input type="submit" name="button_id" value="工数入力">
+				</form>
+				</td>
+			</tr>
+		</c:forEach>	
+		</tbody>
+	</table>
 </main>
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 
