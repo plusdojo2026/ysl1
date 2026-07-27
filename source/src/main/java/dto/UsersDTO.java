@@ -134,6 +134,10 @@ public class UsersDTO {
 		this.updateAt = updateAt;
 	}
 
+	public UsersDTO(String userId) {
+		this.userId = Integer.parseInt(userId);
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}
