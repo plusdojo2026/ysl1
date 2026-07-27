@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<!-- dateが受け付ける日付の形式に変更するやつ -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,14 +182,15 @@ taskList = ${taskList}<br>
 					<div class="form-group">
 						<label>開始日</label>
 
-						<input type="date" name="startDate" value="${taskList.startDate}">
+						<input type="date"2 name="startDate"3 value="${fn:substring(taskList.startDate, 0, 10)}">
 					</div>
 
-                    <!-- 期限 -->
+					<!-- 期限 -->
 					<div class="form-group">
 						<label>期限</label>
 
-						<input type="date" name="deadline" value="${taskList.deadline}">
+						<!-- <input type="date" name="deadline" value="${taskList.deadline}"> -->
+						<input type="date"2 name="deadline"3 value="${fn:substring(taskList.deadline, 0, 10)}">
 					</div>
 
                     <!-- 説明 -->

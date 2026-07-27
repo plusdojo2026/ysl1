@@ -292,7 +292,7 @@ public class Controller extends HttpServlet {
 				if (buttonId.equals("登録")) {
 					//タスク登録処理[結果:Tasksテーブルにレコードを追加、案件詳細画面へ]
 					page = tAction.insert();
-				} else if (buttonId.equals("編集")) {
+				} else if (buttonId.equals("更新")) {
 					//タスク更新処理[結果:Tasks該当レコードを更新、案件詳細画面へ]
 					page = tAction.update();
 				}
