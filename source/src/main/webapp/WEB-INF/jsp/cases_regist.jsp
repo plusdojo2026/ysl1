@@ -29,7 +29,7 @@
 		    <tr>	
 		    		
 		    		<td class="label">顧客名</td>
-		        	<td><input type="text" name="customerName"value="${cases.caseName }"></td>
+		        	<td><input type="text" name="customerName"value="${cases.customerName }"></td>
 		    		
 		        	<td class="label">担当PM</td>
 		        	<td><select name="pmId">
@@ -63,9 +63,18 @@
 			    	<td>
 				    	<select name="priority">
 							   
-							    <option value="高">高</option>
-							    <option value="中">中</option>
-							    <option value="低">低</option>
+							    <option value="高"
+							    ${dto.casePriority=='高' ? 'selected' : ''}>
+							    高
+							    </option>
+							    <option value="中"
+							    ${empty dto.casePriority || dto.casePriority=='中' ? 'selected' : ''}>
+							    中
+							    </option>
+							    <option value="低"
+							    ${dto.casePriority=='低' ? 'selected' : ''}>
+							    低
+							    </option>
 					    </select>
 			    	</td>
 			    	
