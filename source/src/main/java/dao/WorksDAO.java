@@ -201,6 +201,7 @@ public Connection conn = null;
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql);
 					
+					
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					
 					// ?に値をセット

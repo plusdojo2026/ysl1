@@ -1,6 +1,7 @@
 package service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -107,7 +108,17 @@ public class WorksService extends DBAccess{
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-			
+			//達成率を計算（完了タスク数/総タスク数）
+			for(AllDTO dto: caseSumList) {
+				int totalTask=dto.getCaseSum();
+				int completedTask=dto.getCaseNow();
+				int progressRate=0;
+				
+				if(totalTask!=0) {
+					progressRate=completedTask /totalTask * 100;
+				}
+				dto.setCaseProgressRate(progressRate);
+			}
 			
 			return caseSumList ;
 		}
@@ -129,6 +140,26 @@ public class WorksService extends DBAccess{
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
+			}
+			//月全体の実績工数を取得
+			AllDTO sumDTO = null;
+			try {
+				sumDTO = dao.selectSum(month);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+			BigDecimal monthlyTotalHours=sumDTO.getMonthlyTotalHours();
+			
+			
+			//全体に占める割合の計算
+			for(AllDTO dto: memberSumList) {
+				BigDecimal memberHours=dto.getActualHours();
+				int workRate=0;
+				if(monthlyTotalHours!=null && monthlyTotalHours.compareTo(BigDecimal.ZERO)!=0) {
+					workRate=memberHours.multiply(new BigDecimal("100")).divide(monthlyTotalHours, 0,RoundingMode.DOWN).intValue();
+				}
+				dto.setWorkRate(workRate);
 			}
 			
 			return memberSumList;
