@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
- 	
+ 	<main>
 	<h2>案件登録</h2>
 	
 	<form action="/ysl1/Controller" method="post">
@@ -116,12 +116,14 @@
 		<div class="buttonArea">
 			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button"value="キャンセル"onclick="history.back()">
-		   		
-		   	<input type="submit"name=buttonId value="登録">
+		   	<input type="hidden" name="id" value="${caseId}">
+		   	<input type="submit"name=buttonId value="更新">
+		   
 		</div>
 
 	</form>
 	
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
+	</main>
 </body>
 </html>
