@@ -8,10 +8,7 @@ taskList = ${taskList}<br>2taskList.class = ${taskList.getClass()}<br>
 <head>
 <meta charset="UTF-8">
 <title>
-	<c:choose>
-		<c:when test="${mode == 'edit'}">タスク編集</c:when>
-		<c:otherwise>タスク新規登録</c:otherwise>
-	</c:choose>
+    タスク詳細
 </title>
 
 <link rel="stylesheet"
