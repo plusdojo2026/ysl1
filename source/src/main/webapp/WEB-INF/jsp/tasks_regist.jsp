@@ -22,7 +22,7 @@
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 taskList = ${taskList}<br>
 <div class="container">
-	<div class="main">
+	<main class="main">
 		<h2>
 			<c:choose>
 				<c:when test="${mode == 'edit'}">
@@ -225,7 +225,7 @@ taskList = ${taskList}<br>
 				</c:choose>
 			</div>
 		</form>
-	</div>
+	</main>
 </div>
 
 <script>
