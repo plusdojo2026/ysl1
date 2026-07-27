@@ -352,7 +352,7 @@ public class CasesDAO {
 		ArrayList<AllDTO> allDTOs = new ArrayList<>();
 
 		String sql = createCasesListSql() +
-				"ORDER BY c.id DESC";
+				"ORDER BY c.id ASC";
 
 		System.out.println("【initialize SQL】");
 		System.out.println(sql);

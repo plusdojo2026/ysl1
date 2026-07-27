@@ -30,7 +30,7 @@ public class HomeService extends DBAccess{
 		
 		//AllDTOでcountを作成し、それを返す
 		HomeDAO dao = new HomeDAO(super.conn);
-		count = dao.select(id);		
+		count = dao.select(id); //引数としてIdを指定してselectを実行
 		
 		return count;
 	}
