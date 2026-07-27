@@ -230,8 +230,8 @@ public class TasksDAO {
 	 * 
 	 * @author haruto.tanaka
 	 */
-	public ArrayList<TasksDTO> selectByTaskID(int id) throws SQLException {
-		ArrayList<TasksDTO> taskList = new ArrayList<TasksDTO>();
+	public TasksDTO selectByTaskID(int id) throws SQLException {
+		TasksDTO taskList = null;
 		
 		//タスクIDが一致するデータの詳細を検索する
 		String sql = "SELECT * FROM tasks WHERE id = ?";
@@ -244,21 +244,20 @@ public class TasksDAO {
 
 		//格納
 		while (rs.next()) {
-			TasksDTO dto = new TasksDTO();
+			taskList = new TasksDTO();
 
-			dto.setId(rs.getInt("id"));
-			dto.setCaseId(rs.getInt("case_id"));
-			dto.setTaskName(rs.getString("task_name"));
-			dto.setManagerId(rs.getInt("manager_id"));
-			dto.setTaskStatus(rs.getString("task_status"));
-			dto.setTaskPriority(rs.getString("task_priority"));
-			dto.setDeadline(rs.getString("deadline"));
-			dto.setProgressRate(rs.getInt("progress_rate"));
-			dto.setStartDate(rs.getString("start_date"));
-			dto.setTaskPlannedHours(rs.getInt("task_planned_hours"));
-			dto.setTaskDescription(rs.getString("task_description"));
+			taskList.setId(rs.getInt("id"));
+			taskList.setCaseId(rs.getInt("case_id"));
+			taskList.setTaskName(rs.getString("task_name"));
+			taskList.setManagerId(rs.getInt("manager_id"));
+			taskList.setTaskStatus(rs.getString("task_status"));
+			taskList.setTaskPriority(rs.getString("task_priority"));
+			taskList.setDeadline(rs.getString("deadline"));
+			taskList.setProgressRate(rs.getInt("progress_rate"));
+			taskList.setStartDate(rs.getString("start_date"));
+			taskList.setTaskPlannedHours(rs.getInt("task_planned_hours"));
+			taskList.setTaskDescription(rs.getString("task_description"));
 
-			taskList.add(dto);
 		}
 
 		return taskList;

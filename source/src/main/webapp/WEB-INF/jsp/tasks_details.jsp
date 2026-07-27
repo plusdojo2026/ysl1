@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+taskList = ${taskList}<br>2taskList.class = ${taskList.getClass()}<br>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@
 
                     <div class="info-row">
                         <label>優先度</label>
-                        <span class="priority-badge">${taskList.priority}</span>
+                        <span class="priority-badge">${taskList.taskPriority}</span>
                     </div>
 
                     <div class="info-row">
@@ -85,7 +86,7 @@
 
                     <div class="info-row">
                         <label>終了予定日</label>
-                        <p>${taskList.plannedEndDate}</p>
+                        <!-- <p>${taskList.plannedEndDate}</p> -->
                     </div>
 
                 </div>

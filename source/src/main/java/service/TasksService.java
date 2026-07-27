@@ -86,7 +86,7 @@ public class TasksService extends DBAccess{
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
         } finally {
-            super.close();
+//            super.close();
         }
 
         return casesList;
@@ -110,7 +110,7 @@ public class TasksService extends DBAccess{
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
         } finally {
-            super.close();
+//            super.close();
         }
 
         return pmList;
@@ -125,8 +125,8 @@ public class TasksService extends DBAccess{
 	 * 
 	 * @author haruto.tanaka
 	 */
-    public ArrayList<TasksDTO> edit(int id) {
-        ArrayList<TasksDTO> taskList = null;
+    public TasksDTO edit(int id) {
+        TasksDTO taskList = null;
 
         TasksDAO dao = new TasksDAO(super.conn);
         try {

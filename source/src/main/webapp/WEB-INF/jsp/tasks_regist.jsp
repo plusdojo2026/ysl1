@@ -54,7 +54,7 @@ taskList = ${taskList}<br>
 						<select name="caseName">
 							<c:forEach var="cases" items="${casesList}">
 								<option value="${cases.id}" 
-									${cases.id == taskList.id ? 'selected' : ''}>
+									${cases.id == taskList.caseId ? 'selected' : ''}>
 									${cases.caseName}
 								</option>
 							</c:forEach>
