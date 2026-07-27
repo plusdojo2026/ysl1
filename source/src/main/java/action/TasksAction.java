@@ -88,20 +88,18 @@ public class TasksAction {
 	public String functions() throws UnsupportedEncodingException {
         String page = "/WEB-INF/jsp/tasks_regist.jsp";
         String mode = "regist";
+        TasksService service = new TasksService();
+
+        int caseId = 0;
 
         //タスクIDをStringでいったん取得（nullなら新規登録、任意の値ならそのタスクの編集）
         String taskIdStr = request.getParameter("taskId");
-        int caseId = Integer.parseInt(request.getParameter("caseId"));
+        String caseIdStr = request.getParameter("caseId");
 
-        //service呼び出し、案件名とPM名のリストを格納
-        TasksService service = new TasksService();
-        ArrayList<CasesDTO> casesList = service.selectCases();
-        ArrayList<UsersDTO> pmList = service.selectPM();
-        
-        request.setAttribute("casesList", casesList);
-        request.setAttribute("pmList", pmList);
-        request.setAttribute("caseId", caseId);
-        
+        if(caseIdStr != null) {
+        	caseId = Integer.parseInt(caseIdStr);
+        }
+
         //タスクIDがあるなら、編集モード -----------------------------
         if(taskIdStr != null && !taskIdStr.isEmpty()) {
         	//タスクIDを取得
@@ -115,7 +113,19 @@ public class TasksAction {
             
             //タスク詳細と、編集モードの状態を格納
             request.setAttribute("taskList", taskList);
+        }else if(caseId == 0){
+        	return "/WEB-INF/jsp/tasks.jsp";
         }
+
+
+        //service呼び出し、案件名とPM名のリストを格納
+        ArrayList<CasesDTO> casesList = service.selectCases();
+        ArrayList<UsersDTO> pmList = service.selectPM();
+        
+        request.setAttribute("casesList", casesList);
+        request.setAttribute("pmList", pmList);
+        request.setAttribute("caseId", caseId);
+        
         
         request.setAttribute("mode", mode);
 
