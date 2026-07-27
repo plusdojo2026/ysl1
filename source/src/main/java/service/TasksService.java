@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.TasksDAO;
+import dao.WorksDAO;
 import dto.AllDTO;
 import dto.CasesDTO;
 import dto.TasksDTO;
@@ -63,6 +64,28 @@ public class TasksService extends DBAccess{
         }
 
         return detailsList;
+    }
+    
+    /**
+     * タスク詳細の工数を取得する
+     * 
+     * 
+     * @author haruto.tanaka
+     */
+    public ArrayList<AllDTO> selectByTasksId(int id) {
+        ArrayList<AllDTO> worksList = null;
+
+        WorksDAO dao = new WorksDAO(super.conn);
+
+        try {
+            worksList = dao.selectByTasksId(id);
+
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        }
+
+        return worksList;
     }
 
 	

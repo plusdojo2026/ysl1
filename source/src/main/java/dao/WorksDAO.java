@@ -311,4 +311,97 @@ public Connection conn = null;
 					
 					return workList;
 }
+				public ArrayList<AllDTO> selectByTasksId(int id) throws SQLException {
+				    ArrayList<AllDTO> worksList = new ArrayList<AllDTO>();
+
+				    String sql =
+				          "SELECT "
+				        + "t.id AS task_id, "
+				        + "t.task_name, "
+				        + "c.case_name, "
+				        + "u.user_name, "
+				        + "c.customer_name, "
+				        + "t.task_status, "
+				        + "t.task_priority, "
+				        + "t.deadline, "
+				        + "t.progress_rate, "
+				        + "t.start_date, "
+				        + "c.planned_end_date, "
+				        + "t.task_planned_hours, "
+				        + "t.task_description, "
+				        + "w.id AS work_id, "
+				        + "w.work_description, "
+				        + "w.work_date, "
+				        + "w.actual_hours "
+				        
+				        + "FROM tasks t "
+				        + "INNER JOIN cases c "
+				        + "ON t.case_id = c.id "
+				        
+				        + "LEFT JOIN users u "
+				        + "ON t.manager_id = u.id "
+				        
+				        + "LEFT JOIN works w "
+				        + "ON t.id = w.task_id "
+				        
+				        + "WHERE t.id = ? "
+				        + "ORDER BY w.work_date";
+
+				    PreparedStatement pStmt = conn.prepareStatement(sql);
+				    pStmt.setInt(1, id);
+				    ResultSet rs = pStmt.executeQuery();
+
+				    while (rs.next()) {
+				        AllDTO dto = new AllDTO();
+
+				        dto.setTaskId(rs.getInt("task_id"));
+				        dto.setTaskName(rs.getString("task_name"));
+
+				        dto.setCaseName(rs.getString("case_name"));
+				        dto.setCustomerName(rs.getString("customer_name"));
+
+				        dto.setUserName(rs.getString("user_name"));
+
+				        dto.setTaskStatus(rs.getString("task_status"));
+				        dto.setTaskPriority(rs.getString("task_priority"));
+
+				        dto.setDeadline(rs.getString("deadline"));
+
+				        dto.setTaskProgressRate(
+				            rs.getInt("progress_rate")
+				        );
+
+				        dto.setStartDate(rs.getString("start_date"));
+
+				        dto.setPlannedEndDate(
+				            rs.getString("planned_end_date")
+				        );
+
+				        dto.setTaskPlannedHours(
+				            rs.getBigDecimal("task_planned_hours")
+				        );
+
+				        dto.setTaskDescription(
+				            rs.getString("task_description")
+				        );
+
+				        dto.setWorkId(rs.getInt("work_id"));
+
+				        dto.setWorkDate(
+				            rs.getString("work_date")
+				        );
+
+				        dto.setActualHours(
+				            rs.getBigDecimal("actual_hours")
+				        );
+
+				        dto.setWorkDescription(
+				            rs.getString("work_description")
+				        );
+
+				        worksList.add(dto);
+				    }
+				    
+				    return worksList;
+				}
 }

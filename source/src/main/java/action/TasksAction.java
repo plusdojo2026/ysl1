@@ -9,9 +9,7 @@ import dto.AllDTO;
 import dto.CasesDTO;
 import dto.TasksDTO;
 import dto.UsersDTO;
-import dto.WorksDTO;
 import service.TasksService;
-import service.WorksService;
 
 
 public class TasksAction {
@@ -62,8 +60,7 @@ public class TasksAction {
 		AllDTO detailsList = service.details(taskId);
 		
 		//そのタスクの工数一覧取得
-		WorksService wService = new WorksService();
-		ArrayList<WorksDTO> worksList = wService.selectByTasksId(taskId);
+		ArrayList<AllDTO> worksList = service.selectByTasksId(taskId);
 
 		request.setAttribute("detailsList", detailsList);
 		request.setAttribute("worksList", worksList);
