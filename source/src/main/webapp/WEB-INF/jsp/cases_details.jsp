@@ -110,11 +110,12 @@
     <h3>タスク一覧</h3>
    <div class="table" id="tasks">
 	<!-- <h2>タスク一覧</h2> -->
+	<form action="/ysl1/Controller" method="post">
 	<div><input type="submit" name="buttonId" value="タスク追加"></div>
 	<table class="table" id="tasks_table">
 		<c:forEach var="t" items="${tasksList}">
 		<tr>
-			<form action="/ysl1/Controller" method="post">
+			
 			<input type="hidden" name="pageId" value="C003">
 			<input type="hidden" name="task_id" value="${t.taskId }">
 			<input type="hidden" name="case_id" value="${param.case_id}">
