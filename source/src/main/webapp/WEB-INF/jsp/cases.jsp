@@ -13,6 +13,7 @@
 
 	<%@ include file="/WEB-INF/jsp/common/header.jsp"%>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp"%>
+	<main>
 	<!--検索系統 -->
 	<h1>案件一覧</h1>
 
@@ -82,5 +83,6 @@
 	</table>
 
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp"%>
+	</main>
 </body>
 </html>
