@@ -77,3 +77,142 @@ INSERT INTO users (
     true,
     true
 );
+
+INSERT INTO users (
+    login_id,
+    login_pw,
+    user_name,
+    mail_address,
+    authority,
+    active
+) VALUES
+(
+    'anime_honda',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '本田 ヒロト',
+    'honda@anime-demo.example',
+    FALSE,
+    TRUE
+),
+(
+    'anime_kiba',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '犬塚 キバ',
+    'kiba@anime-demo.example',
+    FALSE,
+    TRUE
+),
+(
+    'anime_naho',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '高田 なほ',
+    'naho@anime-demo.example',
+    FALSE,
+    TRUE
+),
+(
+    'anime_natsuki',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '安岐 ナツキ',
+    'natsuki@anime-demo.example',
+    TRUE,
+    TRUE
+),
+(
+    'anime_shino',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '油女 シノ',
+    'shino@anime-demo.example',
+    FALSE,
+    TRUE
+),
+(
+    'anime_genma',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '不知火 ゲンマ',
+    'genma@anime-demo.example',
+    TRUE,
+    TRUE
+),
+(
+    'anime_kamiya',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '神谷 雄介',
+    'kamiya@anime-demo.example',
+    TRUE,
+    TRUE
+),
+(
+    'anime_rika',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '篠崎 里香',
+    'rika@anime-demo.example',
+    FALSE,
+    TRUE
+),
+(
+    'anime_otogi',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    '御伽 龍児',
+    'otogi@anime-demo.example',
+    FALSE,
+    TRUE
+),
+(
+    'anime_devola',
+    '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
+    'デボル',
+    'devola@anime-demo.example',
+    FALSE,
+    TRUE
+);
+
+SET @honda_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_honda'
+);
+
+SET @kiba_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_kiba'
+);
+
+SET @naho_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_naho'
+);
+
+SET @natsuki_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_natsuki'
+);
+
+SET @shino_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_shino'
+);
+
+SET @genma_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_genma'
+);
+
+SET @kamiya_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_kamiya'
+);
+
+SET @rika_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_rika'
+);
+
+SET @otogi_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_otogi'
+);
+
+SET @devola_id = (
+    SELECT id FROM users
+    WHERE login_id = 'anime_devola'
+);
