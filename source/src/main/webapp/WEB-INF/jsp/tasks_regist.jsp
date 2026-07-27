@@ -167,7 +167,7 @@ taskList = ${taskList}<br>
 									value="${pm.userId}"
 									${taskList.managerId == pm.userId ? 'selected' : ''}>
 
-									${pmList.userName}
+									${pm.userName}
 
 								</option>
 							</c:forEach>
@@ -188,7 +188,7 @@ taskList = ${taskList}<br>
 					<div class="form-group">
 						<label>期限</label>
 
-						<input type="date" name="dueDate" value="${taskList.dueDate}">
+						<input type="date" name="deadline" value="${taskList.deadline}">
 					</div>
 
                     <!-- 説明 -->
