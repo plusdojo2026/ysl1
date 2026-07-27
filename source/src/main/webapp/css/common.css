@@ -50,7 +50,7 @@ main {
     border: 1px solid rgba(29, 79, 145, 0.15);
     border-radius: 16px;
     box-shadow: 0 14px 40px rgba(22, 75, 138, 0.08);
-    margin-left: 240px;
+    margin-left: 260px;
 }
 
 h2 {
@@ -188,14 +188,16 @@ input[type="submit"]:hover {
 /* Task Managerの文字 */
 .sidebar-header .title {
 	color: #1f2937;
-	font-size: 18px;
+	font-size: 27px;
 	font-weight: bold;
 	white-space: nowrap;
+	padding: 10px 20px;
+	margin: 0;
+	line-height: 1.2;
 }
 
 /* ナビゲーション */
 .sidebar-nav{
-	background-color: aliceblue;
 	border: none;
 	padding: 10px 20px;
 }
@@ -215,18 +217,18 @@ input[type="submit"]:hover {
 	box-sizing: border-box;
 }
 /* マウスを乗せたとき */
-.sidebar-button:hover {
+.sidebar-nav button:hover {
 	color: #2563eb;
 	background-color: #eff6ff;
 	transform: translateX(3px);
 }
 /* クリック中 */
-.sidebar-button:active {
+.sidebar-nav button:active {
 	color: #1d4ed8;
 	background-color: #dbeafe;
 }
 /* キーボード操作時 */
-.sidebar-button:focus-visible {
+.sidebar-nav button:focus-visible {
 	outline: 2px solid #2563eb;
 	outline-offset: 2px;
 }
@@ -235,4 +237,27 @@ input[type="submit"]:hover {
 	color: #ffffff;
 	background-color: #2563eb;
 	font-weight: bold;
+}
+.sidebar-nav ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar-nav li {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+.sidebar-nav button {
+appearance: none;
+border: none;
+background-color: transparent;
+font: inherit;
+}
+
+.sidebar-nav img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
