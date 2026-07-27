@@ -1,7 +1,6 @@
 package action;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ public class CasesAction {
 	}
 
 	//案件詳細を持ってくるメソッド
-	public String intiCasesDetail() throws UnsupportedEncodingException, ClassNotFoundException, SQLException {
+	public String intiCasesDetail() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 
 		String ans = null;
@@ -89,7 +88,7 @@ public class CasesAction {
 		CasesService service = new CasesService();
 		//初期の案件一覧を表示
 		ArrayList<AllDTO> casesList = service.initialize();
-		
+
 		//reqestスコープに格納する
 		request.setAttribute("casesList", casesList);
 

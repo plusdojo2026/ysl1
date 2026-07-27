@@ -5,6 +5,7 @@
 <%-- CSS --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 
+
 <%-- 各メニューのURLを生成 --%>
 <c:url var="dashboardUrl" value="/Controller">
     <c:param name="pageId" value="side" />
