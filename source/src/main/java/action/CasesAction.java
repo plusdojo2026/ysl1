@@ -283,9 +283,10 @@ public class CasesAction {
 		CasesService service = new CasesService();
 
 		ArrayList<UsersDTO> userList = service.pmList();
-		request.setAttribute("pmList", userList);
+		request.setAttribute("userList", userList);
 		return page;
 	}
+	
 
 	//案件一覧から案件詳細に遷移するメソッド
 	public String initiCasesDetail() {
