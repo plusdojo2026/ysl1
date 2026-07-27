@@ -39,7 +39,7 @@
         <div class="logo">
          
         </div>
-
+		<img src="${pageContext.request.contextPath}/images/tennpurechann.png">
         <span class="title">Task Manager</span>
     </div>
 

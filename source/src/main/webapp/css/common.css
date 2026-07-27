@@ -185,6 +185,15 @@ input[type="submit"]:hover {
 	z-index: 1000;
 	}
 	
+.sidebar-header {
+	display: flex;
+	align-items: center;
+	padding: 12px 28px 24px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #e5e7eb;
+	box-sizing: border-box;
+}	
+
 /* Task Managerの文字 */
 .sidebar-header .title {
 	color: #1f2937;
@@ -256,8 +265,10 @@ background-color: transparent;
 font: inherit;
 }
 
+/*アイコン*/
 .sidebar-nav img {
     width: 24px;
     height: 24px;
     object-fit: contain;
+	flex-shrink: 0;
 }
