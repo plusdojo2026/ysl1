@@ -113,8 +113,9 @@ public class TasksAction {
             
             //タスク詳細と、編集モードの状態を格納
             request.setAttribute("taskList", taskList);
-			request.setAttribute("mode", mode);
         }
+        
+        request.setAttribute("mode", mode);
 
         return page;
     }
@@ -138,7 +139,7 @@ public class TasksAction {
 		String taskPlannedHoursStr = request.getParameter("taskPlannedHours");
 		String progressRateStr = request.getParameter("progressRate");
 		String startDate = request.getParameter("startDate");
-		String dueDate = request.getParameter("dueDate");
+		String deadline = request.getParameter("deadline");
 		String taskDescription = request.getParameter("taskDescription");
 
 		// DTOへ格納
@@ -149,10 +150,10 @@ public class TasksAction {
 		tDTO.setManagerId(Integer.parseInt(managerIdStr));
 		tDTO.setTaskStatus(taskStatus);
 		tDTO.setTaskPriority(taskPriority);
-		tDTO.setTaskPlannedHours(Integer.parseInt(taskPlannedHoursStr));
+		tDTO.setTaskPlannedHours(Double.parseDouble(taskPlannedHoursStr));
 		tDTO.setProgressRate(Integer.parseInt(progressRateStr));
 		tDTO.setStartDate(startDate);
-		tDTO.setDeadline(dueDate);
+		tDTO.setDeadline(deadline);
 		tDTO.setTaskDescription(taskDescription);
 
 		// 登録処理
@@ -186,7 +187,7 @@ public class TasksAction {
 	    String taskPlannedHoursStr = request.getParameter("taskPlannedHours");
 	    String progressRateStr = request.getParameter("progressRate");
 	    String startDate = request.getParameter("startDate");
-	    String dueDate = request.getParameter("dueDate");
+	    String deadline = request.getParameter("deadline");
 	    String taskDescription = request.getParameter("taskDescription");
 
 	    // DTOへ格納
@@ -198,10 +199,10 @@ public class TasksAction {
 	    tDTO.setTaskName(taskName);
 	    tDTO.setTaskStatus(taskStatus);
 	    tDTO.setTaskPriority(taskPriority);
-	    tDTO.setTaskPlannedHours(Integer.parseInt(taskPlannedHoursStr));
+	    tDTO.setTaskPlannedHours(Double.parseDouble(taskPlannedHoursStr));
 	    tDTO.setProgressRate(Integer.parseInt(progressRateStr));
 	    tDTO.setStartDate(startDate);
-	    tDTO.setDeadline(dueDate);
+	    tDTO.setDeadline(deadline);
 	    tDTO.setTaskDescription(taskDescription);
 
 	    // 更新処理

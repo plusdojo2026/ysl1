@@ -52,7 +52,7 @@ taskList = ${taskList}<br>
 							案件<span class="required">必須</span>
 						</label>
 
-						<select name="caseName">
+						<select name="caseId">
 							<c:forEach var="cases" items="${casesList}">
 								<option value="${cases.id}" 
 									${cases.id == taskList.caseId ? 'selected' : ''}>
@@ -162,7 +162,7 @@ taskList = ${taskList}<br>
 					<div class="form-group">
 						<label>担当者</label>
 
-						<select name="userName">
+						<select name="managerId">
 							<c:forEach var="pm" items="${pmList}">
 								<option
 									value="${pm.userId}"
@@ -182,7 +182,7 @@ taskList = ${taskList}<br>
 					<div class="form-group">
 						<label>開始日</label>
 
-						<input type="date"2 name="startDate"3 value="${fn:substring(taskList.startDate, 0, 10)}">
+						<input type="date" name="startDate" value="${fn:substring(taskList.startDate, 0, 10)}">
 					</div>
 
 					<!-- 期限 -->
@@ -190,7 +190,7 @@ taskList = ${taskList}<br>
 						<label>期限</label>
 
 						<!-- <input type="date" name="deadline" value="${taskList.deadline}"> -->
-						<input type="date"2 name="deadline"3 value="${fn:substring(taskList.deadline, 0, 10)}">
+						<input type="date" name="deadline" value="${fn:substring(taskList.deadline, 0, 10)}">
 					</div>
 
                     <!-- 説明 -->
