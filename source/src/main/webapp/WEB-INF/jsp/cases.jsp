@@ -21,12 +21,12 @@
 		method="get">
 		<input type="hidden"name="pageId"value="C001">
 		<label>キーワード:</label> <input type="text" name="keyword"> ステータス
-		<select name="status">
+		<select id="status" name="status">
 			<option value="すべて">すべて</option>
 			<option value="進行中">進行中</option>
 			<option value="完了">完了</option>
 			<option value="中止">中止</option>
-		</select> 優先度 <select name="priority">
+		</select> 優先度 <select id="priority" name="priority">
 			<option value="すべて">すべて</option>
 			<option value="高">高</option>
 			<option value="中">中</option>
@@ -84,5 +84,8 @@
 
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp"%>
 	</main>
+	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+	<script src="<c:url value='/js/case.js' />"></script>
+	<script src="<c:url value='/js/common.js' />"></script>
 </body>
 </html>
