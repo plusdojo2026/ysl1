@@ -341,26 +341,45 @@ public class CasesDAO {
 		return allDTOs;
 	}
 
-	/**タスクを削除する
+	/**タスクを削除する前に紐づく工数を削除する
 	 * 
 	 */
-	public boolean delete(TasksDTO tasks) throws SQLException {
+	public boolean deleteWorks(TasksDTO tasks) throws SQLException {
 		boolean result = false;
 
-		String sql = "DELETE * FROM tasks WHERE id=?";
+		String sql = "DELETE FROM works WHERE task_id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		//?のための文章
 		pstmt.setInt(1, tasks.getId());
 
 		// SQL文を実行する
-		try {
-			if (pstmt.executeUpdate() == 1) {
-				result = true;
-			}
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+
+		if (pstmt.executeUpdate() == 1) {
+			result = true;
+		}
+
+		//結果を返す
+		return result;
+
+	}
+
+	/**タスクを削除する
+	 * 
+	 */
+	public boolean delete(TasksDTO tasks) throws SQLException {
+		boolean result = false;
+
+		String sql = "DELETE FROM tasks WHERE id=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		//?のための文章
+		pstmt.setInt(1, tasks.getId());
+
+		// SQL文を実行する
+
+		if (pstmt.executeUpdate() == 1) {
+			result = true;
 		}
 
 		//結果を返す

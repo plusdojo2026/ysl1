@@ -72,7 +72,7 @@
 		<c:forEach var="t" items="${tasksList}">
 			<tr>
 				<td>期間</td>
-				<td>${t.deadLine}</td>
+				<td>${t.deadline}</td>
 			</tr>
 		</c:forEach>
 		<c:forEach var="c" items="${casesList}">
@@ -89,7 +89,7 @@
 			</tr>
 			<tr>
 				<td>タスク進捗</td>
-				<td>${t.progressRate}</td>
+				<td>${t.taskProgressRate}</td>
 			</tr>
 		</c:forEach>
 		<c:forEach var="c" items="${casesList}">
@@ -110,21 +110,23 @@
     <h3>タスク一覧</h3>
    <div class="table" id="tasks">
 	<!-- <h2>タスク一覧</h2> -->
+	<form action="/ysl1/Controller" method="post">
 	<div><input type="submit" name="buttonId" value="タスク追加"></div>
 	<table class="table" id="tasks_table">
 		<c:forEach var="t" items="${tasksList}">
 		<tr>
-			<form action="/ysl1/Controller" method="post">
+			
 			<input type="hidden" name="pageId" value="C003">
-			<input type="hidden" name="task_id" value="${}">
+			<input type="hidden" name="task_id" value="${t.taskId }">
+			<input type="hidden" name="case_id" value="${param.case_id}">
 			<td>タスク名</td><td>${t.taskName}</td>
 			<td>担当者</td><td>${t.userName}</td>
 			<td>ステータス</td><td>${t.taskStatus}</td>
 			<td>優先度</td><td>${t.taskPriority}</td>
-			<td>期限</td><td>${t.deadLine}</td>
+			<td>期限</td><td>${t.deadline}</td>
 			<td>予定/実績工数</td>
 			<td>${t.taskPlannedHours}</td>/<td>${t.actualHours}</td>
-			<td>進捗</td><td>${t.progressRate}</td>
+			<td>進捗</td><td>${t.taskProgressRate}</td>
 			<td>操作</td><input>
 			<td><input type="submit" name="buttonId" value="タスク編集"></td>
 			<td><input type="submit" name="buttonId" value="タスク削除"></td>

@@ -13,9 +13,9 @@
 <main>
 
     <div>
-        <form action="Controller" method="post">
+        <form action="Controller" method="get">
          <input type="hidden" name="pageId" value="U003">
-        <input type="submit" value="+新規作成" name="buttonId">
+        <input type="submit" value="+新規登録" name="buttonId">
         </form>
     </div>
 <table class="table" id="userTable" border="1">

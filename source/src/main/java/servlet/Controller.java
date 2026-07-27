@@ -77,6 +77,8 @@ public class Controller extends HttpServlet {
 					page = "/WEB-INF/jsp/user_regist.jsp";
 				} else if (buttonId.equals("編集")) {
 					page = uAction.updateInit();
+				} else if (buttonId.equals("無効化") || buttonId.equals("無効")) {
+					page = uAction.invalid();
 				}
 				//案件詳細画面へ（一覧から案件名を押した処理）
 			} else if (pageId.equals("C003")) {
@@ -261,16 +263,16 @@ public class Controller extends HttpServlet {
 					//タスク編集画面表示[]
 					page = tAction.functions();
 
-					//								} else if (buttonId.equals("タスク削除")) {
-					//									TasksAction tAction = new TasksAction(request);
-					//									//タスク削除処理[結果:該当タスクと紐づく工数削除、案件詳細画面へ]
-					//									page = tAction.delete();
-					//					
-					//								} else if (buttonId.equals("工数入力")) {
-					//									WorksAction wAction = new WorksAction(request);
-					//									//工数登録画面表示
-					//									page = wAction.insert();
-					//					
+				} else if (buttonId.equals("タスク削除")) {
+					CasesAction tAction = new CasesAction(request);
+					//タスク削除処理[結果:該当タスクと紐づく工数削除、案件詳細画面へ]
+					page = tAction.tasksDelete();
+
+				} else if (buttonId.equals("工数入力")) {
+					WorksAction wAction = new WorksAction(request);
+					//工数登録画面表示
+					page = wAction.worksInsert();
+
 				} else if (buttonId.equals("すべて見る")) {
 					WorksAction wAction = new WorksAction(request);
 					//月次集計画面表示[]
