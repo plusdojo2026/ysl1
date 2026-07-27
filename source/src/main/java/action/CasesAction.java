@@ -1,12 +1,14 @@
 package action;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import dto.AllDTO;
 import dto.CasesDTO;
+import dto.TasksDTO;
 import dto.UsersDTO;
 import service.CasesService;
 
@@ -29,9 +31,17 @@ public class CasesAction {
 		//案件のIDを取得
 		int id = Integer.parseInt(request.getParameter("case_id"));
 
-		CasesService service = new CasesService();
-		ArrayList<AllDTO> casesList = service.intiCasesDetail(id);
+		CasesService service1 = new CasesService();
+		ArrayList<AllDTO> casesList = service1.intiCasesDetail(id);
 		request.setAttribute("casesList", casesList);
+
+		CasesService service2 = new CasesService();
+		ArrayList<AllDTO> tasksList = service2.intiCasesDetail2(id);
+		request.setAttribute("tasksList", tasksList);
+
+		CasesService service3 = new CasesService();
+		ArrayList<AllDTO> worksList = service3.intiCasesDetail3(id);
+		request.setAttribute("worksList", worksList);
 
 		return page;
 
@@ -73,7 +83,35 @@ public class CasesAction {
 
 	}
 
-	//タスクを削除するメソッド
+	/**
+	 * タスクを削除するメソッド
+	 * @return String pageのurl
+	 * @throws UnsupportedEncodingException
+	 * @throws SQLException
+	 */
+	public String tasksDelete() throws UnsupportedEncodingException {
+		String page = "/WEB-INF/jsp/cases_details.jsp";
+
+		request.setCharacterEncoding("UTF-8");
+		int id = Integer.parseInt(request.getParameter("task_id"));
+
+		CasesService service = new CasesService();
+		TasksDTO dto = new TasksDTO();
+		dto.setId(id);
+
+		boolean result = service.tasksDelete(dto);
+		if (result == true) {
+
+			request.setAttribute("msg", "タスクの削除が完了しました。");
+		} else {
+			request.setAttribute("msg", "タスクの削除が失敗しました。");
+		}
+
+		this.intiCasesDetail();
+
+		return page;
+
+	}
 
 	//案件一覧の初期画面の表示のメソッド
 	/**

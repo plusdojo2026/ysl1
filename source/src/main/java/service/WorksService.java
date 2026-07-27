@@ -118,7 +118,7 @@ public class WorksService extends DBAccess{
 				int progressRate=0;
 				
 				if(totalTask!=0) {
-					progressRate=completedTask /totalTask * 100;
+					progressRate=completedTask  * 100 /totalTask;
 				}
 				dto.setCaseProgressRate(progressRate);
 			}

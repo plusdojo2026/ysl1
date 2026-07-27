@@ -99,13 +99,28 @@ public class CasesService extends DBAccess {
 	 * @return boolean
 	 * @throws SQLException
 	 */
-	public boolean tasksDelete(TasksDTO tasks) throws SQLException {
-
-		boolean result = false;
+	public boolean tasksDelete(TasksDTO tasks) {
+		boolean result1 = false;
+		boolean result2 = false;
 		CasesDAO dao = new CasesDAO(conn);
-		result = dao.delete(tasks);
+		try {
+			conn.setAutoCommit(false);
+			result1 = dao.deleteWorks(tasks);
 
-		return result;
+			if (result1 == true) {
+				result2 = dao.delete(tasks);
+				if (result2 == true) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+		return result2;
 
 	}
 

@@ -106,8 +106,6 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
-        } finally {
-            super.close();
         }
 
         return casesList;
@@ -130,8 +128,6 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
-        } finally {
-            super.close();
         }
 
         return pmList;
@@ -155,8 +151,6 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
-        } finally {
-            super.close();
         }
 
         return taskList;
@@ -179,8 +173,6 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
-        } finally {
-            super.close();
         }
 
         return result;
@@ -203,8 +195,6 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
-        } finally {
-            super.close();
         }
 
         return result;
