@@ -49,8 +49,6 @@
           
                 <input type="hidden" name="page" value="logout">
                 <button onclick="location.href='${logoutUrl}'" class="btn btn-outline">ログアウト</button>
-           
-
         </nav>
     </c:if>
 

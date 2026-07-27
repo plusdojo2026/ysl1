@@ -49,35 +49,35 @@
             <li>
             <button onclick="location.href='${dashboardUrl}'">
                     <img src="${pageContext.request.contextPath}/images/home-icon.png">
-                    <span>ダッシュボード</span>
+                    <span class="sidebar-label">ダッシュボード</span>
               </button>
             </li>
 
             <li>
                 <button onclick="location.href='${caseListUrl}'">
                 	<img src="${pageContext.request.contextPath}/images/cases-icon.png">
-                    <span>案件一覧</span>
+                    <span class="sidebar-label">案件一覧</span>
                 </a>
             </li>
 
             <li>
                 <button onclick="location.href='${taskListUrl}'">
                 	<img src="${pageContext.request.contextPath}/images/tasks-icon.png">
-                    <span>タスク管理</span>
+                    <span class="sidebar-label">タスク管理</span>
                 </a>
             </li>
 
             <li>
                 <button onclick="location.href='${monthlyUrl}'">
                 	<img src="${pageContext.request.contextPath}/images/monthly-icon.png">
-                    <span>月次集計</span>
+                    <span class="sidebar-label">月次集計</span>
                 </a>
             </li>
 
             <li>
                  <button onclick="location.href='${memberListUrl}'">
                  	<img src="${pageContext.request.contextPath}/images/member-icon.png">
-                    <span>メンバー管理</span>
+                    <span class="sidebar-label">メンバー管理</span>
                 </a>
             </li>
         </ul>
