@@ -87,8 +87,8 @@ public class TasksDAO {
 			return taskList;
 	}
 
-	public ArrayList<AllDTO> details(int id) throws SQLException {
-		ArrayList<AllDTO> detailsList = new ArrayList<AllDTO>();
+	public AllDTO details(int id) throws SQLException {
+		AllDTO dto = new AllDTO();
 
 		String sql =
 			"SELECT " +
@@ -131,7 +131,6 @@ public class TasksDAO {
 		ResultSet rs = pStmt.executeQuery();
 
 		while (rs.next()) {
-			AllDTO dto = new AllDTO();
 			// Task
 			dto.setTaskId(rs.getInt("task_id"));
 			dto.setTaskName(rs.getString("task_name"));
@@ -158,10 +157,9 @@ public class TasksDAO {
 			dto.setWorkDate(rs.getString("work_date"));
 			dto.setActualHours(rs.getBigDecimal("actual_hours"));
 
-			detailsList.add(dto);
 		}
 
-		return detailsList;
+		return dto;
 	}
 	
 	/**

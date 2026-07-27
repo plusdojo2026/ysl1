@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dao.CasesDAO;
 import dto.AllDTO;
 import dto.CasesDTO;
+import dto.TasksDTO;
 import dto.UsersDTO;
 
 /**
@@ -89,6 +90,22 @@ public class CasesService extends DBAccess {
 
 		//返す
 		return worksList;
+
+	}
+
+	/**
+	 * タスクを削除するメソッド
+	 * @param TasksDTO
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public boolean tasksDelete(TasksDTO tasks) throws SQLException {
+
+		boolean result = false;
+		CasesDAO dao = new CasesDAO(conn);
+		result = dao.delete(tasks);
+
+		return result;
 
 	}
 

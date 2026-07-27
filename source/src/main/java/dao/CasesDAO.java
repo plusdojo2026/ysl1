@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import dto.AllDTO;
 import dto.CasesDTO;
+import dto.TasksDTO;
 import dto.UsersDTO;
 
 /**
@@ -338,6 +339,33 @@ public class CasesDAO {
 		}
 
 		return allDTOs;
+	}
+
+	/**タスクを削除する
+	 * 
+	 */
+	public boolean delete(TasksDTO tasks) throws SQLException {
+		boolean result = false;
+
+		String sql = "DELETE * FROM tasks WHERE id=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		//?のための文章
+		pstmt.setInt(1, tasks.getId());
+
+		// SQL文を実行する
+		try {
+			if (pstmt.executeUpdate() == 1) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+		//結果を返す
+		return result;
+
 	}
 
 	/**

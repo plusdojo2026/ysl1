@@ -36,8 +36,10 @@
 	<!-- <h2>基本情報</h2> -->
 	<input type="hidden" name="pageId" value="C003">
 	<table class="table" id="cases_table">
-	<input type ="hidden" name="case_id">
 	
+	<form action="/ysl1/Controller" method="post">
+		<input type="hidden" name="pageId" value="C003">
+	<input type ="hidden" name="case_id">
 		<c:forEach var="c" items="${casesList}">
 			<tr>
 				<td>案件コード</td>
@@ -97,6 +99,7 @@
 				<td><input type="submit" name="buttoId" value="案件編集"></td>
 			</tr>
 		</c:forEach>
+		</form>
 	</table>
 	
 </div>	
@@ -111,6 +114,9 @@
 	<table class="table" id="tasks_table">
 		<c:forEach var="t" items="${tasksList}">
 		<tr>
+			<form action="/ysl1/Controller" method="post">
+			<input type="hidden" name="pageId" value="C003">
+			<input type="hidden" name="task_id" value="${}">
 			<td>タスク名</td><td>${t.taskName}</td>
 			<td>担当者</td><td>${t.userName}</td>
 			<td>ステータス</td><td>${t.taskStatus}</td>
@@ -122,6 +128,7 @@
 			<td>操作</td><input>
 			<td><input type="submit" name="buttonId" value="タスク編集"></td>
 			<td><input type="submit" name="buttonId" value="タスク削除"></td>
+			</form>
 		</tr>
 		</c:forEach>
 	</table>
@@ -136,6 +143,8 @@
 	<c:forEach var="w" items="${worksList}">
 	<table class="table" id="works_table">
 		<tr>
+		<form action="/ysl1/Controller" method="post">
+		
 			<td>作業日</td><td>${w.workDate}</td>
 			<td>タスク名</td><td>${w.taskName}</td>
 			<td>担当者</td><td>${w.userName}</td>
@@ -143,6 +152,7 @@
 			<td>作業内容</td><td>${w.workDescription}</td>
 			<td><input type="submit" name="buttonId" value="工数入力"></td>
 			<td><input type="submit" name="buttonId" value="すべて見る"></td>
+		</form>
 		</tr>
 	</table>
 	</c:forEach>
