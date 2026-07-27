@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>案件一覧</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
 </head>
 <body>
 
@@ -20,7 +21,7 @@
 	<form action="${pageContext.request.contextPath}/Controller"
 		method="get">
 		<input type="hidden"name="pageId"value="C001">
-		<label>キーワード:</label> <input type="text" name="keyword"> ステータス
+		<!-- <label>キーワード:</label> <input type="text" name="keyword"> ステータス
 		<select id="status" name="status">
 			<option value="すべて">すべて</option>
 			<option value="進行中">進行中</option>
@@ -32,10 +33,11 @@
 			<option value="中">中</option>
 			<option value="低">低</option>
 		</select> <input type="submit" value="クリア"> <input type="submit"
-			value="検索"> <input type="submit" name="buttonId"value="新規登録"onclick="location.href='/Controller?pageId=C001'">
+			value="検索"> -->
+			 <input type="submit" name="buttonId"value="新規登録"onclick="location.href='/Controller?pageId=C001'">
 	</form>
 	<!--案件一覧 -->
-	<table class="table" id="cases" border="1">
+	<table class="table table-bordered" id="cases" border="1" >
 
 		<thead>
 			<tr>

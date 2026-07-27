@@ -9,11 +9,12 @@
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
 </head>
 <body>
-
+	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
+	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 <main>
 <h1>工数入力</h1>
 <form method="POST" action="/ysl1/ControllerServlet">
-<input type="hidden" name="taskId" value="${task.id}">
+<input type="hidden" name="taskId" value="${task.taskId}">
 <div class="table" id="works">
 案件名：${task.caseName}<br>
 タスク名：${task.taskName}<br>
@@ -25,6 +26,7 @@
 </form>
 </div>
 </main>
-
+	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>s
+<script src="<c:url value='/js/common.js' />"></script>
 </body>
 </html>

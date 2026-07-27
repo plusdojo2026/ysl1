@@ -341,6 +341,33 @@ public class CasesDAO {
 		return allDTOs;
 	}
 
+	/**案件詳細のステータス変更
+	 * 
+	 * @param cases
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean status(CasesDTO cases) throws SQLException {
+		boolean result = false;
+
+		String sql = "UPDATE cases SET case_status=? WHERE id=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		//?のための文章
+		pstmt.setString(1, cases.getCaseStatus());
+		pstmt.setInt(2, cases.getId());
+
+		// SQL文を実行する
+
+		if (pstmt.executeUpdate() == 1) {
+			result = true;
+		}
+
+		//結果を返す
+		return result;
+
+	}
+
 	/**タスクを削除する前に紐づく工数を削除する
 	 * 
 	 */

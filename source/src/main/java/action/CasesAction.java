@@ -29,7 +29,7 @@ public class CasesAction {
 		CasesDTO dto = null;
 		request.setCharacterEncoding("UTF-8");
 		//案件のIDを取得
-		int id = Integer.parseInt(request.getParameter("case_id"));
+		int id = Integer.parseInt(request.getParameter("caseId"));
 
 		CasesService service1 = new CasesService();
 		ArrayList<AllDTO> casesList = service1.intiCasesDetail(id);
@@ -55,7 +55,7 @@ public class CasesAction {
 		CasesDTO dto = null;
 		request.setCharacterEncoding("UTF-8");
 		//案件のIDを取得
-		int id = Integer.parseInt(request.getParameter("case_id"));
+		int id = Integer.parseInt(request.getParameter("caseId"));
 
 		CasesService service = new CasesService();
 		ArrayList<AllDTO> tasksList = service.intiCasesDetail2(id);
@@ -73,7 +73,7 @@ public class CasesAction {
 		CasesDTO dto = null;
 		request.setCharacterEncoding("UTF-8");
 		//案件のIDを取得
-		int id = Integer.parseInt(request.getParameter("case_id"));
+		int id = Integer.parseInt(request.getParameter("caseId"));
 
 		CasesService service = new CasesService();
 		ArrayList<AllDTO> worksList = service.intiCasesDetail3(id);
@@ -93,7 +93,7 @@ public class CasesAction {
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 
 		request.setCharacterEncoding("UTF-8");
-		int id = Integer.parseInt(request.getParameter("task_id"));
+		int id = Integer.parseInt(request.getParameter("taskId"));
 
 		CasesService service = new CasesService();
 		TasksDTO dto = new TasksDTO();
@@ -283,9 +283,10 @@ public class CasesAction {
 		CasesService service = new CasesService();
 
 		ArrayList<UsersDTO> userList = service.pmList();
-		request.setAttribute("pmList", userList);
+		request.setAttribute("userList", userList);
 		return page;
 	}
+	
 
 	//案件一覧から案件詳細に遷移するメソッド
 	public String initiCasesDetail() {
