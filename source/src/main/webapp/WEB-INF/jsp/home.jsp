@@ -90,7 +90,7 @@
 	
 		<tbody>
 		<c:forEach var="e" items="${taskList}">
-		
+		<c:if test="${e.userId == sessionScope.user.userId}">
 			<tr 
 			data-manager="${e.userName}"
 			data-case="${e.caseName}"
@@ -114,6 +114,7 @@
 				</form>
 				</td>
 			</tr>
+		</c:if>
 		</c:forEach>	
 		</tbody>
 	</table>
