@@ -26,3 +26,12 @@
 #casesTable,#tasksTable {
 	width:100%;
 }
+
+.number {
+	font-size:33px;
+	font-weight:bold;
+}
+
+#over{
+	color:red;
+}
