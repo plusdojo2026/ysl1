@@ -54,10 +54,23 @@ taskList = ${taskList}<br>
 
 						<select name="caseId">
 							<c:forEach var="cases" items="${casesList}">
-								<option value="${cases.id}" 
-									${cases.id == taskList.caseId ? 'selected' : ''}>
-									${cases.caseName}
-								</option>
+
+								<c:choose>
+									<c:when test="${mode == 'edit'}">
+										<option value="${cases.id}"
+											${cases.id == taskList.caseId ? 'selected' : ''}>
+											${cases.caseName}
+										</option>
+									</c:when>
+
+									<c:otherwise>
+										<option value="${cases.id}"
+											${cases.id == caseId ? 'selected' : ''}>
+											${cases.caseName}
+										</option>
+									</c:otherwise>
+								</c:choose>
+
 							</c:forEach>
 						</select>
 					</div>

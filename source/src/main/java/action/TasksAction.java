@@ -91,6 +91,7 @@ public class TasksAction {
 
         //タスクIDをStringでいったん取得（nullなら新規登録、任意の値ならそのタスクの編集）
         String taskIdStr = request.getParameter("taskId");
+        int caseId = Integer.parseInt(request.getParameter("caseId"));
 
         //service呼び出し、案件名とPM名のリストを格納
         TasksService service = new TasksService();
@@ -99,6 +100,7 @@ public class TasksAction {
         
         request.setAttribute("casesList", casesList);
         request.setAttribute("pmList", pmList);
+        request.setAttribute("caseId", caseId);
         
         //タスクIDがあるなら、編集モード -----------------------------
         if(taskIdStr != null && !taskIdStr.isEmpty()) {
