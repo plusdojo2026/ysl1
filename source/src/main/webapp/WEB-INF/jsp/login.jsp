@@ -20,7 +20,7 @@
     <input type="hidden" name="pageId" value="U001">
     <!-- ログインID入力欄: ユーザーのログインIDを入力 -->
     <label for="loginId">ログインID</label>
-    <input type="text" name="loginId" id="loginId" placeholder="ログインIDを入力" autocomplete="username" required>
+    <input type="text" name="loginId" id="loginId" placeholder="ログインIDを入力" autocomplete="loginId" required>
 
     <!-- ログインIDのエラーメッセージ表示（存在する場合のみ表示） -->
     <c:if test="${not empty errorMsgId}">

@@ -13,8 +13,8 @@ import dao.utils.Table;
  *   <li>loginPw：ログインパスワード</li>
  *   <li>userName：ユーザー名</li>
  *   <li>mailAddress：メールアドレス</li>
- *   <li>authority：ユーザー権限</li>
- *   <li>active：有効状態</li>
+ *   <li>authority：ユーザー権限 一般をtrue, 管理者をfalseとする</li>
+ *   <li>active：有効状態 有効をtrue, 無効をfalseとする</li>
  *   <li>createdAt：作成日時</li>
  *   <li>updateAt：更新日時</li>
  * </ul>

@@ -1,5 +1,8 @@
 package action;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -83,7 +86,14 @@ public class UsersAction {
 
 	public String selectAll() {
 		String page = "/WEB-INF/jsp/home.jsp";
-
+		HttpSession session = request.getSession();
+		UsersDTO loginUser = (UsersDTO) session.getAttribute("user");
+		if (loginUser.getAuthority()) {
+			request.setAttribute("message", "管理者専用機能です。");
+		} else {
+			request.setAttribute("userList", usersService.selectAll());
+			page = "/WEB-INF/jsp/user.jsp";
+		}
 		return page;
 	}
 
@@ -152,6 +162,11 @@ public class UsersAction {
 			updateUser.setAuthority(
 					"1".equals(request.getParameter("authority")));
 
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+					"yyyy-MM-dd HH:mm:ss");
+
+			updateUser.setUpdateAt(
+					LocalDateTime.now().format(formatter));
 			String newPassword = request.getParameter("loginPw");
 
 			//パスワードをハッシュ化
@@ -190,62 +205,176 @@ public class UsersAction {
 
 		UsersDTO loginUser = (UsersDTO) request.getSession().getAttribute("user");
 
+		// セッションチェック
 		if (loginUser == null) {
 			request.setAttribute(
 					"message",
 					"ログイン情報がありません。再度ログインしてください。");
+
 			return "/WEB-INF/jsp/login.jsp";
 		}
 
-		// 管理者権限の確認
+		// 管理者権限チェック
+		// false = 管理者という設計
 		if (loginUser.getAuthority()) {
 			request.setAttribute(
 					"message",
 					"登録失敗！管理者専用機能です。");
+
 			return page;
 		}
+
+		// 入力値を取得
+		String loginId = request.getParameter("loginId");
+
+		String userName = request.getParameter("userName");
+
+		String mailAddress = request.getParameter("mailAddress");
 
 		String password = request.getParameter("loginPw");
 
-		// 密码为空检查
-		if (password == null || password.isBlank()) {
+		String authority = request.getParameter("authority");
+
+		boolean hasError = false;
+
+		// ログインID：
+		// 4～20文字の半角英数字
+		if (loginId == null || loginId.isBlank()) {
+
 			request.setAttribute(
-					"message",
-					"パスワードを入力してください。");
+					"errorMsgLoginId",
+					"ログインIDを入力してください。");
+
+			hasError = true;
+
+		} else if (!loginId.matches("^[A-Za-z0-9]{4,20}$")) {
+
+			request.setAttribute(
+					"errorMsgLoginId",
+					"ログインIDは4～20文字の半角英数字で入力してください。");
+
+			hasError = true;
+		}
+
+		// 氏名：
+		// 必須、50文字以内
+		if (userName == null || userName.isBlank()) {
+
+			request.setAttribute(
+					"errorMsgName",
+					"氏名を入力してください。");
+
+			hasError = true;
+
+		} else if (userName.trim().length() > 50) {
+
+			request.setAttribute(
+					"errorMsgName",
+					"氏名は50文字以内で入力してください。");
+
+			hasError = true;
+		}
+
+		// メールアドレス：
+		// 空欄を許可し、入力された場合のみ形式確認
+		if (mailAddress != null
+				&& !mailAddress.isBlank()
+				&& !mailAddress.matches(
+						"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+
+			request.setAttribute(
+					"errorMsgMail",
+					"メールアドレスの形式が正しくありません。");
+
+			hasError = true;
+		}
+
+		// 初期パスワード：
+		// 8～20文字、半角英字と数字を両方含む
+		if (password == null || password.isBlank()) {
+
+			request.setAttribute(
+					"errorMsgLoginPw",
+					"初期パスワードを入力してください。");
+
+			hasError = true;
+
+		} else if (!password.matches(
+				"^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$")) {
+
+			request.setAttribute(
+					"errorMsgLoginPw",
+					"パスワードは8～20文字の半角英数字で、"
+							+ "英字と数字を両方含めてください。");
+
+			hasError = true;
+		}
+
+		// 権限：
+		// 0 = 管理者、1 = 一般
+		if (authority == null
+				|| (!"0".equals(authority)
+						&& !"1".equals(authority))) {
+
+			request.setAttribute(
+					"errorMsgAuthority",
+					"権限を選択してください。");
+
+			hasError = true;
+		}
+
+		// 入力エラーがある場合は登録画面へ戻る
+		if (hasError) {
 			return page;
 		}
 
-		UsersDTO newUser = new UsersDTO();
+		try {
+			UsersDTO newUser = new UsersDTO();
 
-		newUser.setLoginId(
-				request.getParameter("loginId"));
+			newUser.setLoginId(loginId.trim());
+			newUser.setUserName(userName.trim());
 
-		newUser.setUserName(
-				request.getParameter("userName"));
+			// パスワードをハッシュ化
+			String hashedPassword = BCrypt.hashpw(
+					password,
+					BCrypt.gensalt(12));
 
-		String hashedPassword = BCrypt.hashpw(
-				password,
-				BCrypt.gensalt(12));
+			newUser.setLoginPw(hashedPassword);
 
-		newUser.setLoginPw(hashedPassword);
+			// メールアドレスが空欄の場合はnullにする
+			if (mailAddress == null || mailAddress.isBlank()) {
+				newUser.setMailAddress(null);
+			} else {
+				newUser.setMailAddress(mailAddress.trim());
+			}
 
-		newUser.setMailAddress(
-				request.getParameter("mailAddress"));
+			// 0 = 管理者(false)
+			// 1 = 一般(true)
+			newUser.setAuthority("1".equals(authority));
 
-		newUser.setAuthority(
-				"1".equals(request.getParameter("authority")));
+			// 新規登録時は有効
+			newUser.setActive(true);
 
-		newUser.setActive(true);
+			if (usersService.insert(newUser)) {
 
-		if (usersService.insert(newUser)) {
-			page = "/WEB-INF/jsp/users.jsp";
+				page = "/WEB-INF/jsp/users.jsp";
+
+				request.setAttribute(
+						"message",
+						"登録成功！");
+
+			} else {
+
+				request.setAttribute(
+						"message",
+						"登録失敗。");
+			}
+
+		} catch (Exception e) {
+
 			request.setAttribute(
 					"message",
-					"登録成功！");
-		} else {
-			request.setAttribute(
-					"message",
-					"登録失敗。");
+					"登録処理中にエラーが発生しました。");
 		}
 
 		return page;
