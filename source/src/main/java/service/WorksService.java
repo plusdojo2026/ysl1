@@ -110,6 +110,9 @@ public class WorksService extends DBAccess{
 			}
 			//達成率を計算（完了タスク数/総タスク数）
 			for(AllDTO dto: caseSumList) {
+				System.out.println("総タスク数" + dto.getCaseSum());
+				System.out.println("完了タスク数" + dto.getCaseNow());
+				
 				int totalTask=dto.getCaseSum();
 				int completedTask=dto.getCaseNow();
 				int progressRate=0;

@@ -57,9 +57,13 @@ public class TasksAction {
 
 		// 詳細取得
 		TasksService service = new TasksService();
-		ArrayList<AllDTO> detailsList = service.details(taskId);
+		AllDTO detailsList = service.details(taskId);
+		
+		//そのタスクの工数一覧取得
+		ArrayList<AllDTO> worksList = service.selectByTasksId(taskId);
 
 		request.setAttribute("detailsList", detailsList);
+		request.setAttribute("worksList", worksList);
 
 		return page;
 	}

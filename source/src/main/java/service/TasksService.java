@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.TasksDAO;
+import dao.WorksDAO;
 import dto.AllDTO;
 import dto.CasesDTO;
 import dto.TasksDTO;
@@ -51,8 +52,8 @@ public class TasksService extends DBAccess{
      *
      * @author haruto.tanaka
      */
-    public ArrayList<AllDTO> details(int id) {
-        ArrayList<AllDTO> detailsList = null;
+    public AllDTO details(int id) {
+        AllDTO detailsList = null;
         TasksDAO dao = new TasksDAO(super.conn);
 
         try {
@@ -60,11 +61,31 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
-        } finally {
-            super.close();
         }
 
         return detailsList;
+    }
+    
+    /**
+     * タスク詳細の工数を取得する
+     * 
+     * 
+     * @author haruto.tanaka
+     */
+    public ArrayList<AllDTO> selectByTasksId(int id) {
+        ArrayList<AllDTO> worksList = null;
+
+        WorksDAO dao = new WorksDAO(super.conn);
+
+        try {
+            worksList = dao.selectByTasksId(id);
+
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        }
+
+        return worksList;
     }
 
 	
@@ -85,6 +106,8 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
+        } finally {
+            super.close();
         }
 
         return casesList;
@@ -107,6 +130,8 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
+        } finally {
+            super.close();
         }
 
         return pmList;
@@ -130,6 +155,8 @@ public class TasksService extends DBAccess{
         } catch (SQLException e) {
             System.out.println("SQL文おかしいよ");
             e.printStackTrace();
+        } finally {
+            super.close();
         }
 
         return taskList;
