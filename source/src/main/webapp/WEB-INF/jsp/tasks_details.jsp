@@ -18,7 +18,7 @@
 
 </head>
 <body>
-
+${detailsList.taskId}
 <!-- ヘッダー、サイドメニュー -->
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
@@ -188,19 +188,11 @@
                                     <form action="${pageContext.request.contextPath}/Controller" method="post">
 
                                         <input type="hidden" name="pageId" value="T003">
-
-                                        <input type="hidden"
-                                            name="taskId"
-                                            value="${detailsList.taskId}">
-
-                                        <input type="hidden"
-                                            name="workId"
-                                            value="${worksDTO.workId}">
+                                        <input type="hidden" name="taskId" value="${detailsList.taskId}">
+                                        <input type="hidden" name="id" value="${worksDTO.workId}">
 
                                         <button
-                                            type="submit"
-                                            name="buttonId"
-                                            value="削除">
+                                            type="submit" name="buttonId" value="削除">
 
                                             🗑
 
