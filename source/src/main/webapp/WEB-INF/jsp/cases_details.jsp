@@ -32,6 +32,7 @@
   <!-- タブ1の中身：初期表示状態（activeクラス付き） -->
   <div id="tab1" class="tab-content active">
     <h3>基本情報</h3>
+    
     <div class="table" id="cases">
 	<!-- <h2>基本情報</h2> -->
 	<table class="table" id="cases_table">
@@ -117,8 +118,8 @@
 	<!-- <h2>タスク一覧</h2> -->
 	<form action="/ysl1/Controller" method="post">
 		<input type="submit" name="buttonId" value="タスク追加">
-		<table class="table" id="tasks_table">
 		
+		<table class="table" id="tasks_table">
 		<c:forEach var="t" items="${tasksList}">
 		<tr>
 			<input type="hidden" name="pageId" value="C003">
@@ -150,7 +151,7 @@
 <!-- 	<h2>工数ログ</h2> -->
 
 	<c:forEach var="w" items="${worksList}">
-	<table class="table" id="works_table">
+		<table class="table" id="works_table">
 		<tr>
 		<form action="/ysl1/Controller" method="post">
 			<td>作業日</td><td>${w.workDate}</td>
@@ -163,9 +164,9 @@
 			<td><input type="submit" name="buttonId" value="すべて見る"></td>
 		</form>
 		</tr>
-	</table>
+		</table>
 	</c:forEach>
-</div>
+	</div>
   </div>
 </div>
 

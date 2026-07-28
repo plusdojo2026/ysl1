@@ -94,6 +94,27 @@ public class CasesService extends DBAccess {
 	}
 
 	/**
+	 * 案件詳細のステータス変更
+	 */
+	public boolean status(CasesDTO cases) {
+		boolean result = false;
+		
+		CasesDAO dao = new CasesDAO(conn);
+		try {
+			result = dao.status(cases);
+			if (result==) {
+				result=true;
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		
+			return result;
+
+	}
+
+	/**
 	 * タスクを削除するメソッド
 	 * @param TasksDTO
 	 * @return boolean

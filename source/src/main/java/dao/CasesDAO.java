@@ -347,8 +347,8 @@ public class CasesDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean status(CasesDTO cases) throws SQLException {
-		boolean result = false;
+	public int status(CasesDTO cases) throws SQLException {
+		int status = 0;
 
 		String sql = "UPDATE cases SET case_status=? WHERE id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
