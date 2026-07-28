@@ -81,42 +81,30 @@ public class CasesDAO {
 	 */
 	private String createCasesListSql() {
 
-		return "SELECT " +
-				"    c.*, " +
-
-				"    COALESCE((" +
-				"        SELECT SUM(w.actual_hours) " +
-				"        FROM tasks t " +
-				"        JOIN works w ON t.id = w.task_id " +
-				"        WHERE t.case_id = c.id" +
-				"    ), 0) AS actual_hours_sum, " +
-
-				"    (" +
-				"        SELECT COUNT(*) " +
-				"        FROM tasks t " +
-				"        WHERE t.case_id = c.id" +
-				"    ) AS task_count, " +
-
-				"    (" +
-				"        SELECT COUNT(*) " +
-				"        FROM tasks t " +
-				"        WHERE t.case_id = c.id " +
-				"          AND t.task_status = '完了'" +
-				"    ) AS completed_task_count, " +
-
-				"    (" +
-				"        SELECT GROUP_CONCAT(" +
-				"            DISTINCT u.user_name " +
-				"            ORDER BY u.user_name " +
-				"            SEPARATOR ', '" +
-				"        ) " +
-				"        FROM tasks t " +
-				"        JOIN works w ON t.id = w.task_id " +
-				"        JOIN users u ON w.user_id = u.id " +
-				"        WHERE t.case_id = c.id" +
-				"    ) AS user_names " +
-
-				"FROM `cases` c ";
+		return "SELECT"
+				+ " c.*,"
+				+ " COALESCE(("
+				+ " SELECT SUM(w.actual_hours)"
+				+ " FROM tasks t"
+				+ " JOIN works w ON t.id = w.task_id"
+				+ " WHERE t.case_id = c.id"
+				+ " ), 0) AS actual_hours_sum,"
+				+ " ("
+				+ " SELECT COUNT(*)"
+				+ " FROM tasks t"
+				+ " WHERE t.case_id = c.id"
+				+ " ) AS task_count,"
+				+ " ("
+				+ " SELECT COUNT(*)"
+				+ " FROM tasks t"
+				+ " WHERE t.case_id = c.id"
+				+ " AND t.task_status = '完了'"
+				+ " ) AS completed_task_count,"
+				+ " pm.user_name AS user_names"
+				+ " FROM `cases` c"
+				+ " LEFT JOIN users pm"
+				+ " ON c.pm_id = pm.id";
+				
 	}
 
 	/**
@@ -426,7 +414,7 @@ public class CasesDAO {
 		ArrayList<AllDTO> allDTOs = new ArrayList<>();
 
 		String sql = createCasesListSql() +
-				"ORDER BY c.id ASC";
+				" ORDER BY c.id ASC";
 
 		System.out.println("【initialize SQL】");
 		System.out.println(sql);

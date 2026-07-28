@@ -44,7 +44,7 @@ public class WorksAction {
 	 */
 	//工数登録メソッド（ダッシュボード、案件詳細画面、タスク詳細画面）---------------------------------------
 		public String worksInsert() throws UnsupportedEncodingException {
-			String page="/WEB-INF/jsp/task_details.jsp";
+			String page="/WEB-INF/jsp/tasks_details.jsp";
 			
 			//値の取得
 			request.setCharacterEncoding("UTF-8");	
@@ -209,6 +209,7 @@ public class WorksAction {
 			request.setAttribute("workList", workList);           //工数ログ一覧のリスト
 			request.setAttribute("selectedMonth", month);         //選択された月
 			request.setAttribute("displayMode", "workList");      //工数一覧ボタンを押すと工数ログが表示される
+			request.setAttribute("selectMonth", month);           //作ったMonthを表示
 			return page;
 	
 		}

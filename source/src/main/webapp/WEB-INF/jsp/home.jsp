@@ -14,31 +14,36 @@
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
  <main>
- <div class ="count_area">
- <div class ="count">
- 	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon1.png" alt="進行中案件">
- 	<p class="pcase">進行中の案件</p>
- 	<div class="number">
- 	${count.inProgressCase} 件	
-	 </div>  
- </div>
+<div class="count_area">
+    <div class="count">
+        <div class="count-heading">
+            <img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon1.png" alt="進行中案件">
+            <p class="pcase">進行中の案件</p>
+            <div class="number">
+                ${count.inProgressCase} 件
+            </div>
+        </div>
+    </div>
  
- <div class ="count">
-  	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon2.png" alt="担当タスク">
- 	<p class="ptask">担当タスク</p>
- 	<div class="number">
- 	${count.assignedTask} 件
- 	</div>
- </div>
+	 <div class ="count">
+	 	<div class="count-heading">
+		  	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon2.png" alt="担当タスク">
+		 	<p class="ptask">担当タスク</p>
+		 	<div class="number">
+		 	${count.assignedTask} 件
+		 	</div>
+		 </div>
+	 </div>
  
- <div class ="count">
- 	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon3.png" alt="期限超過件数">
- 	<p class="pdeadline">期限超過件数</p>
- 	<div class="number" id="over">
- 	
- 	${count.deadlineNumber} 件
- 	</div>
- </div>
+	 <div class ="count">
+	 	<div class="count-heading">
+		 	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon3.png" alt="期限超過件数">
+		 	<p class="pdeadline">期限超過件数</p>
+		 	<div class="number" id="over">		 	
+		 	${count.deadlineNumber} 件
+		 	</div>
+		 </div>
+	 </div>
  </div>
  
 <!--案件一覧 -->
@@ -106,7 +111,7 @@
 				<td>${e.taskPriority}</td>
 				<td>${e.deadline}</td>
 				<td>
-					${e.taskPlannedHours}/${e.actualHours}
+					${e.actualHours}/${e.taskPlannedHours}
 				</td>
 				<td>
 				<progress value="${e.taskProgressRate}" max="100"></progress>
