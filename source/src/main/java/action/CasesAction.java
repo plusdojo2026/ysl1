@@ -107,8 +107,6 @@ public class CasesAction {
 			request.setAttribute("msg", "タスクの削除が失敗しました。");
 		}
 
-		this.intiCasesDetail();
-
 		return page;
 
 	}
@@ -293,22 +291,23 @@ public class CasesAction {
 
 	public String changeStatus() throws UnsupportedEncodingException {
 		// TODO 自動生成されたメソッド・スタブ
-		String page = "/WEB-INF/jsp/cases_detail.jsp";
+		String page = "/WEB-INF/jsp/cases_details.jsp";
 		int caseId = Integer.parseInt(request.getParameter("id"));
-		String buttonId = request.getParameter("buttonId");
-		buttonId = buttonId.substring(0, 1);
-		System.out.println(buttonId);
+		String buttonString = request.getParameter("buttonId");
+		buttonString = buttonString.substring(0, 2);
+		//System.out.println(buttonString);
 
 		CasesService service = new CasesService();
 
-		boolean result = service.status(caseId, buttonId);
+		boolean result = service.status(caseId, buttonString);
 		if (result == true) {
 			request.setAttribute("msg", "変更完了しました");
 		} else {
 			request.setAttribute("msg", "変更失敗しました");
 		}
-
-		this.initiCasesDetail();
+		intiCasesDetail();
+		intiCasesDetail2();
+		intiCasesDetail3();
 		return page;
 	}
 
