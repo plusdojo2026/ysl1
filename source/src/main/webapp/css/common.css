@@ -700,3 +700,324 @@ input[type="submit"]:focus-visible {
         min-width: 70px;
     }
 }
+
+
+
+/* ========================================
+   共通アニメーション設定
+======================================== */
+
+:root {
+    --motion-fast: 160ms;
+    --motion-normal: 280ms;
+    --motion-slow: 520ms;
+    --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ページ表示時にメインコンテンツを滑らかに表示する */
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.995);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+main {
+    animation: page-enter var(--motion-slow) var(--motion-ease-out) both;
+}
+
+/* ページ遷移直前の表示状態 */
+body {
+    transition:
+        opacity 220ms ease,
+        transform 220ms ease,
+        filter 220ms ease;
+}
+
+body.is-page-leaving {
+    opacity: 0;
+    transform: translateY(-5px);
+    filter: blur(1.5px);
+    pointer-events: none;
+}
+
+/* ========================================
+   テーブル行の表示アニメーション
+======================================== */
+
+@keyframes table-row-enter {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table tbody tr {
+    opacity: 0;
+    animation: table-row-enter 400ms var(--motion-ease-out) forwards;
+}
+
+/* マウスオーバー時に行の先頭へアクセントを表示する */
+.table tbody td {
+    transition:
+        color var(--motion-fast) ease,
+        background-color var(--motion-fast) ease,
+        box-shadow var(--motion-fast) ease;
+}
+
+.table tbody tr:hover td {
+    background-color: #eef5ff;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(70, 120, 190, 0.06);
+}
+
+.table tbody tr:hover td:first-child {
+    box-shadow:
+        inset 3px 0 0 #3b78e7,
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(70, 120, 190, 0.06);
+}
+
+/* ========================================
+   ボタンの操作アニメーション
+======================================== */
+
+button,
+input[type="button"],
+input[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    will-change: transform;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    filter: brightness(1.035);
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+/* button要素の上を移動する光沢 */
+button::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -70%;
+    left: -45%;
+    width: 26%;
+    height: 240%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    pointer-events: none;
+    transform: rotate(18deg);
+    transition: left 560ms ease;
+}
+
+button:hover::after {
+    left: 125%;
+}
+
+/* JavaScriptでbutton要素に追加する波紋 */
+.button-ripple {
+    position: absolute;
+    z-index: 2;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation: button-ripple-effect 580ms ease-out forwards;
+}
+
+@keyframes button-ripple-effect {
+    from {
+        opacity: 0.72;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(24);
+    }
+}
+
+/* inputボタンは疑似要素を利用できないため背景移動で光沢を表現する */
+input[type="submit"] {
+    background-image: linear-gradient(
+        110deg,
+        #2456bd 0%,
+        #3979e7 35%,
+        #70a5ff 50%,
+        #3979e7 65%,
+        #2456bd 100%
+    );
+    background-position: 100% 50%;
+    background-size: 240% 100%;
+    transition:
+        background-position 650ms ease,
+        transform var(--motion-fast) ease,
+        box-shadow var(--motion-fast) ease,
+        filter var(--motion-fast) ease;
+}
+
+input[type="submit"]:hover {
+    background-position: 0% 50%;
+}
+
+/* ========================================
+   サイドメニューのアニメーション
+======================================== */
+
+.sidebar-button {
+    transition:
+        color var(--motion-fast) ease,
+        background-color var(--motion-fast) ease,
+        box-shadow var(--motion-fast) ease,
+        transform var(--motion-fast) ease;
+}
+
+.sidebar-button.active {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background: linear-gradient(
+        110deg,
+        #1d4ed8 0%,
+        #2563eb 35%,
+        #4b8df8 50%,
+        #2563eb 65%,
+        #1d4ed8 100%
+    );
+    background-size: 240% 100%;
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.2);
+    animation: active-menu-flow 5s ease-in-out infinite;
+}
+
+@keyframes active-menu-flow {
+    0%,
+    100% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ========================================
+   集計カードのアニメーション
+======================================== */
+
+.count {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 250ms var(--motion-ease-out),
+        border-color 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.count:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 120, 231, 0.3);
+    box-shadow:
+        0 16px 30px rgba(31, 86, 160, 0.14),
+        0 0 0 1px rgba(75, 137, 232, 0.08);
+}
+
+/* カード内を移動する薄い光沢 */
+.count::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -70%;
+    left: -50%;
+    width: 35%;
+    height: 240%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.62),
+        transparent
+    );
+    pointer-events: none;
+    transform: rotate(20deg);
+    transition: left 700ms ease;
+}
+
+.count:hover::before {
+    left: 125%;
+}
+
+/* 集計数値を順番に表示する */
+@keyframes number-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(9px) scale(0.92);
+    }
+
+    72% {
+        transform: translateY(-2px) scale(1.025);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.number {
+    animation: number-enter 550ms var(--motion-ease-out) both;
+}
+
+.count:nth-child(1) .number {
+    animation-delay: 80ms;
+}
+
+.count:nth-child(2) .number {
+    animation-delay: 160ms;
+}
+
+.count:nth-child(3) .number {
+    animation-delay: 240ms;
+}
+
+/* ========================================
+   アニメーション軽減設定
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
