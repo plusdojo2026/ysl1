@@ -21,13 +21,7 @@
     <c:param name="pageId" value="header" />
     <c:param name="buttonId" value="ログアウト" />
 </c:url>
-<%-- 
-    <div class="header__logo">
-    <a href="${dashboardUrl}">
-        <img alt="Tz"
-             src="${pageContext.request.contextPath}/images/tennpurechann.png" >
-             </a>
-    </div>--%>
+
 
     <c:if test="${empty sessionScope.user}">
         <div class="header__auth">
@@ -39,9 +33,12 @@
         <nav class="header__auth">
 
             <span class="header__welcome">
+            <div></div>
+            <!-- 
+            <img alt="userIcon" src="${pageContext.request.contextPath}/images/user.png">
                 ようこそ${sessionScope.user.userName}さん
-            </span>
-
+     
+ -->
            
               <button onclick="location.href='${resetPWUrl}'" class="btn btn-outline">パスワード変更</button>
           
