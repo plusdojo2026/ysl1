@@ -220,6 +220,8 @@ public class CasesAction {
 		//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
 		ArrayList<AllDTO> casesList = service.selectAll();
 		request.setAttribute("casesList", casesList);
+		this.initialize();
+		service.close();
 
 		return page;
 	}
@@ -271,6 +273,8 @@ public class CasesAction {
 		//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
 		ArrayList<AllDTO> casesList = service.selectAll();
 		request.setAttribute("casesList", casesList);
+		this.initialize();
+		service.close();
 
 		return page;
 	}

@@ -29,7 +29,7 @@ public class DBAccess {
 		}
 		
 		//データベースとの接続を切断するメソッド
-		protected void close() {
+		public void close() {
 			//データベースを切断
 			if (conn != null) {
 				try {

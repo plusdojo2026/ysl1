@@ -14,7 +14,13 @@
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
  	<main>
-	<h2>案件登録</h2>
+ 	
+ 	<c:if test="${param.buttonId=='新規登録' }">
+		<h2>案件登録</h2>
+	</c:if>
+	<c:if test="${param.buttonId=='編集' }">
+		<h2>案件編集</h2>
+	</c:if>
 	
 	<form action="/ysl1/Controller" method="post">
 		<table>
@@ -119,12 +125,13 @@
 		<div class="buttonArea">
 			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button"value="キャンセル"onclick="history.back()">
-		   
-		   	<input type="submit"name=buttonId value="編集">
-		   	<input type="submit"name=buttonId value="登録">
-		   
+		   	<c:if test="${param.buttonId=='新規登録' }">
+				<input type="submit"name=buttonId value="登録">
+			</c:if>
+			<c:if test="${param.buttonId=='編集' }">
+				<input type="submit"name=buttonId value="編集">
+			</c:if>
 		</div>
-
 	</form>
 	
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
