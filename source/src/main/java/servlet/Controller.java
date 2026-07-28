@@ -49,6 +49,7 @@ public class Controller extends HttpServlet {
 		//ユーザーのログイン状態をチェック
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("user");
+
 		if (pageId != null && usersDTO != null) {
 
 			//ヘッダー
@@ -86,22 +87,6 @@ public class Controller extends HttpServlet {
 				CasesAction action = new CasesAction(request);
 				page = action.intiCasesDetail();
 			}
-
-			//			//月次集計画面 ------------------------------------
-			//			else if (pageId.equals("M001")) {
-			//				WorksAction wAction = new WorksAction(request);
-			//				if (buttonId.equals("集計")) {
-			//					//選択した月の情報を表示
-			//					page = wAction.initialize();
-			//				} else if (buttonId.equals("工数一覧")) {
-			//					page = wAction.selectByMonth();
-			//				}
-
-			//				else if (buttonId.equals("CSV出力")) {
-			//				//これから実装(現在は仮でcsvとしときます)
-			//				page = wAction.csv();
-			//			}
-
 			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {
 
@@ -153,6 +138,9 @@ public class Controller extends HttpServlet {
 			else if (pageId.equals("T001")) {
 				TasksAction tAction = new TasksAction(request);
 				page = tAction.details();
+			} else {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				return;
 			}
 		}
 
@@ -367,6 +355,9 @@ public class Controller extends HttpServlet {
 					//工数登録画面表示
 					page = wAction.worksInsert();
 				}
+			} else {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				return;
 			}
 			//pageに格納したリンク先にフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
