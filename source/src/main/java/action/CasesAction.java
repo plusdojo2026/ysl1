@@ -188,7 +188,7 @@ public class CasesAction {
 	 * @throws UnsupportedEncodingException
 	 */
 	public String insert() throws UnsupportedEncodingException {
-		String page = "/WEB-INF/jsp/cases_regist.jsp";
+		String page = "/WEB-INF/jsp/cases.jsp";
 
 		//値の取得
 		request.setCharacterEncoding("UTF-8");
@@ -197,12 +197,12 @@ public class CasesAction {
 		int caseCode = Integer.parseInt(request.getParameter("caseCode"));
 		String customerName = request.getParameter("customerName");
 		int pmId = Integer.parseInt(request.getParameter("pmId"));//担当PM
-		String caseStatus = request.getParameter("caseStatus");
-		String casePriority = request.getParameter("casePriority");
+		String caseStatus = request.getParameter("status");
+		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
 		String plannedEndDate = request.getParameter("plannedEndDate");
 		int casePlannedHours = Integer.parseInt(request.getParameter("casePlannedHours"));
-		String caseDescription = request.getParameter("caseDescription");
+		String caseDescription = request.getParameter("description");
 
 		CasesDTO dto = new CasesDTO(0, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
 				startDate, plannedEndDate, caseDescription, casePlannedHours);
@@ -248,12 +248,12 @@ public class CasesAction {
 		int caseCode = Integer.parseInt(request.getParameter("caseCode"));
 		String customerName = request.getParameter("customerName");
 		int pmId = Integer.parseInt(request.getParameter("pmId"));//担当PM
-		String caseStatus = request.getParameter("caseStatus");
-		String casePriority = request.getParameter("casePriority");
+		String caseStatus = request.getParameter("status");
+		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
 		String plannedEndDate = request.getParameter("plannedEndDate");
 		int casePlannedHours = Integer.parseInt(request.getParameter("casePlannedHours"));
-		String caseDescription = request.getParameter("caseDescription");
+		String caseDescription = request.getParameter("description");
 
 		CasesDTO dto = new CasesDTO(id, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
 				startDate, plannedEndDate, caseDescription, casePlannedHours);
