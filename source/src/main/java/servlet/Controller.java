@@ -351,8 +351,11 @@ public class Controller extends HttpServlet {
 				//						}
 			}
 			//工数登録処理 -----------------------------------
-			else if (buttonId.equals("工数入力")) {
+			else if ("W001".equals(pageId)) {
 				WorksAction wAction = new WorksAction(request);
+			
+			if (buttonId.equals("工数入力")) {
+				
 				//工数登録画面表示
 				page = wAction.worksInsert();
 			}
@@ -362,4 +365,5 @@ public class Controller extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+}
 }
