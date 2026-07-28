@@ -19,7 +19,7 @@
 <div class="table" id="works">
 案件名：${task.caseName}<br>
 タスク名：${task.taskName}<br>
-作業日<input type="date" name="workDate" required><br>
+作業日<input type="datetime-local" name="workDate" required><br>
 工数<input type="number" name="actualHours" step="0.5" required><br>
 作業内容<input type="text" name="workDescription"><br>
 <input type="submit" name="buttonId" value="キャンセル"><br>

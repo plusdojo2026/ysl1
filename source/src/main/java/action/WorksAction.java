@@ -55,7 +55,12 @@ public class WorksAction {
 			String workDate = request.getParameter("workDate");
 			BigDecimal actualHours = new BigDecimal(request.getParameter("actualHours"));
 			String workDescription = request.getParameter("workDescription");
-			
+			//型を変換
+			workDate = workDate.replace("T", " ");
+
+			if (workDate.length() == 16) {
+			    workDate += ":00";
+			}
 			
 			WorksService service = new WorksService();
 			//serviceに処理を依頼
@@ -66,10 +71,28 @@ public class WorksAction {
 			}else {
 				request.setAttribute("msg", "※登録失敗！");
 			}
+			System.out.println("===== 工数登録デバッグ =====");
+			System.out.println("userId = " + userId);
+			System.out.println("taskId = " + taskId);
+			System.out.println("workDate = " + workDate);
+			System.out.println("actualHours = " + actualHours);
+			System.out.println("workDescription = " + workDescription);
+
+			int ans1 = service.worksInsert(
+			        userId,
+			        taskId,
+			        workDate,
+			        actualHours,
+			        workDescription
+			);
+
+			System.out.println("登録件数 ans = " + ans1);
+
 			
 			//タスク詳細表示メソッドを呼び出す
 			TasksService tasksService = new TasksService();
-			tasksService.edit(taskId);
+			AllDTO detailsList= tasksService.details(taskId);
+			request.setAttribute("detailsList", detailsList);
 			
 			return page;
 		}
