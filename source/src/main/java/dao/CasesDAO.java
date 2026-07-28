@@ -344,7 +344,7 @@ public class CasesDAO {
 	/**案件詳細のステータス変更
 	 * 
 	 * @param cases
-	 * @return
+	 * @return status
 	 * @throws SQLException
 	 */
 	public int status(CasesDTO cases) throws SQLException {
@@ -360,11 +360,11 @@ public class CasesDAO {
 		// SQL文を実行する
 
 		if (pstmt.executeUpdate() == 1) {
-			result = true;
+			status = 1;
 		}
 
 		//結果を返す
-		return result;
+		return status;
 
 	}
 
