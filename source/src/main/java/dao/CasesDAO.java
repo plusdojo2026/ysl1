@@ -104,7 +104,7 @@ public class CasesDAO {
 				+ " FROM `cases` c"
 				+ " LEFT JOIN users pm"
 				+ " ON c.pm_id = pm.id ";
-				
+
 	}
 
 	/**
@@ -335,20 +335,20 @@ public class CasesDAO {
 	 * @return status
 	 * @throws SQLException
 	 */
-	public int status(CasesDTO cases) throws SQLException {
-		int status = 0;
+	public boolean status(int caseId, String btId) throws SQLException {
+		boolean status = false;
 
 		String sql = "UPDATE cases SET case_status=? WHERE id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		//?のための文章
-		pstmt.setString(1, cases.getCaseStatus());
-		pstmt.setInt(2, cases.getId());
+		pstmt.setString(1, btId);
+		pstmt.setInt(2, caseId);
 
 		// SQL文を実行する
 
 		if (pstmt.executeUpdate() == 1) {
-			status = 1;
+			status = true;
 		}
 
 		//結果を返す

@@ -290,7 +290,27 @@ public class CasesAction {
 		request.setAttribute("userList", userList);
 		return page;
 	}
-	
+
+	public String changeStatus() throws UnsupportedEncodingException {
+		// TODO 自動生成されたメソッド・スタブ
+		String page = "/WEB-INF/jsp/cases_detail.jsp";
+		int caseId = Integer.parseInt(request.getParameter("id"));
+		String buttonId = request.getParameter("buttonId");
+		buttonId = buttonId.substring(0, 1);
+		System.out.println(buttonId);
+
+		CasesService service = new CasesService();
+
+		boolean result = service.status(caseId, buttonId);
+		if (result == true) {
+			request.setAttribute("msg", "変更完了しました");
+		} else {
+			request.setAttribute("msg", "変更失敗しました");
+		}
+
+		this.initiCasesDetail();
+		return page;
+	}
 
 	//案件一覧から案件詳細に遷移するメソッド
 	public String initiCasesDetail() {
