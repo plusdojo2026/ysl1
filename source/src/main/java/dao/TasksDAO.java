@@ -358,5 +358,66 @@ public class TasksDAO {
 
 	    return result;
 	}
+	
+	/**
+	 * - taskStatus, progressRateを更新 -
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public boolean updateStatusWithPR(int id, String taskStatus, int progressRate) throws SQLException {
+
+	    boolean result = false;
+
+	    String sql =
+	            "UPDATE tasks SET "
+	          + "task_status = ?, "
+	          + "progress_rate = ? "
+	          + "WHERE id = ?";
+
+	    PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	    pStmt.setString(1, taskStatus);
+	    pStmt.setInt(2, progressRate);
+	    pStmt.setInt(3, id);
+
+	    int count = pStmt.executeUpdate();
+
+	    if (count > 0) {
+	        result = true;
+	    }
+
+	    return result;
+	}
+
+	/**
+	 * - taskStatusを更新 -
+	 * 
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public boolean updateStatus(int id, String taskStatus) throws SQLException {
+
+	    boolean result = false;
+
+	    String sql =
+	            "UPDATE tasks SET "
+	          + "task_status = ? "
+	          + "WHERE id = ?";
+
+	    PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	    pStmt.setString(1, taskStatus);
+	    pStmt.setInt(2, id);
+
+	    int count = pStmt.executeUpdate();
+
+	    if (count > 0) {
+	        result = true;
+	    }
+
+	    return result;
+	}
+
 }
 	

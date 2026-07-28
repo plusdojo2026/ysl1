@@ -199,4 +199,37 @@ public class TasksService extends DBAccess{
 
         return result;
     }
+    
+    /**
+     * - タスクステータスを更新する -
+     * 
+     * 
+     * @author haruto.tanaka
+     */
+    public boolean updateStatus(int id, String taskStatus) {
+
+        boolean result = false;
+        TasksDAO dao = new TasksDAO(super.conn);
+
+        try {
+            if ("未着手".equals(taskStatus)) {
+                result = dao.updateStatusWithPR(
+                			id, taskStatus, 0
+                		);
+            } else if ("完了".equals(taskStatus)) {
+                result = dao.updateStatusWithPR(
+                        	id, taskStatus, 100
+                        );
+            } else {
+                result = dao.updateStatus(
+                        	id, taskStatus
+                        );
+            }
+        } catch (SQLException e) {
+            System.out.println("SQL文おかしいよ");
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

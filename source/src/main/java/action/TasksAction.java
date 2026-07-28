@@ -227,4 +227,33 @@ public class TasksAction {
 
 	    return page;
 	}
+	
+	/**
+	 * - タスクステータス更新処理 -
+	 * 
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public String updateStatus() throws UnsupportedEncodingException {
+
+	    String page = "/WEB-INF/jsp/tasks_details.jsp";
+
+	    // パラメータ取得
+	    String taskIdStr = request.getParameter("taskId");
+	    String taskStatus = request.getParameter("taskStatus");
+
+	    int taskId = Integer.parseInt(taskIdStr);
+
+	    // 更新処理
+	    TasksService service = new TasksService();
+	    boolean result = service.updateStatus(taskId, taskStatus);
+
+	    if (!result) {
+	        page = "/WEB-INF/jsp/tasks_details.jsp";
+	    }
+
+	    return page;
+	}
 }
