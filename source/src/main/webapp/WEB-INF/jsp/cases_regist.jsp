@@ -26,15 +26,15 @@
 	<form action="/ysl1/Controller" method="post">
 		<table class="table">
 			<tr>
-		        	<td class="label" name="caseName">案件名</td>
+		        	<td class="label" name="caseName">案件名<span class="required">必須</span></td>
 		        	<td>
 		        	<input type="hidden"  name="id" value="${cases.id }">
-		        	<input type="text"  name="caseName" value="${cases.caseName }">
+		        	<input type="text"  name="caseName" value="${cases.caseName }" required>
 		        	</td>
 		   		
 		
-		   		 <td class="label">	案件コード</td>
-		        	<td><input type="text"  name="caseCode" value="${cases.caseCode }"></td>
+		   		 <td class="label">案件コード<span class="required">必須</span></td>
+		        	<td><input type="text"  name="caseCode" value="${cases.caseCode }" required></td>
 		    </tr>	
 		    <tr>	
 		    		
@@ -59,9 +59,9 @@
 		    	
 		    <tr>
 		    
-		    	<td class="label">案件ステータス</td>
+		    	<td class="label">案件ステータス<span class="required">必須</span></td>
 			    	<td>
-				    	<select name="status">
+				    	<select name="status" required>
 							    
 							    <option value="進行中" ${cases.caseStatus=='進行中' ? 'selected' : ''}>進行中</option>
 							    <option value="完了" ${cases.caseStatus=='完了' ? 'selected' : ''}>完了</option>
@@ -70,9 +70,9 @@
 						 </select>
 			    	</td>
 		    	
-		    	<td class="label">案件優先度</td>
+		    	<td class="label">案件優先度<span class="required">必須</span></td>
 			    	<td>
-				    	<select name="priority">
+				    	<select name="priority" required>
 							   
 							    <option value="高"
 							    ${cases.casePriority=='高' ? 'selected' : ''}>
@@ -94,12 +94,12 @@
 			    	<tr>
 				    	<td class="label">開始日</td>
 				    	<td>
-				    	<input type="date" name="startDate" value="${cases.startDate.substring(0,10) }" required>
+				    	<input type="date" name="startDate" value="${cases.startDate.substring(0,10) }">
 				    	</td>
 				    	
 				    	<td class="label">終了予定日</td>
 				    	<td>
-				    	<input type="date" name="plannedEndDate" value="${cases.plannedEndDate.substring(0,10) }"required>
+				    	<input type="date" name="plannedEndDate" value="${cases.plannedEndDate.substring(0,10) }">
 			    	</td>
 		    	
 		    	</tr>
@@ -108,7 +108,7 @@
 		    	
 			    	<td class="label">予定工数(h)</td>
 			    	<td colspan="3">
-			    	<input type="number" name="casePlannedHours" step="0.5" value="${cases.casePlannedHours }"required>
+			    	<input type="number" name="casePlannedHours" step="0.5" value="${cases.casePlannedHours }">
 			    	</td>
 		    	
 		    	</tr>
