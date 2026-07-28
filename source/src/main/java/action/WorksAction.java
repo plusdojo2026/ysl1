@@ -94,6 +94,10 @@ public class WorksAction {
 			AllDTO detailsList= tasksService.details(taskId);
 			request.setAttribute("detailsList", detailsList);
 			
+			//指定タスクの実績工数を取得
+			ArrayList<AllDTO> worksList = tasksService.selectByTasksId(taskId);
+			request.setAttribute("worksList", worksList);
+			
 			return page;
 		}
 		
@@ -130,9 +134,14 @@ public class WorksAction {
 			String taskIdStr = request.getParameter("taskId");
 			int taskId = Integer.parseInt(taskIdStr);
 
+			//タスク詳細取得
 			AllDTO detailsList= tasksService.details(taskId);
 			request.setAttribute("detailsList", detailsList);
 
+			//指定タスクの実績工数を取得
+			ArrayList<AllDTO> worksList = tasksService.selectByTasksId(taskId);
+			request.setAttribute("worksList", worksList);
+			
 			return page;
 		}
 		
