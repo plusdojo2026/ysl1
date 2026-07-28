@@ -22,7 +22,7 @@
 工数<input type="number" name="actualHours" step="0.5" required><br>
 作業内容<input type="text" name="workDescription"><br>
 <input type="submit" name="buttonId" value="キャンセル"><br>
-<input type="submit" name="buttonId" value="登録"><br>
+<input type="submit" name="buttonId" value="工数入力"><br>
 </form>
 </div>
 </main>
