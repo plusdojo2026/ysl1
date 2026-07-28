@@ -32,7 +32,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
             <div class="top-button-area">
                 <form action="${pageContext.request.contextPath}/Controller" method="post">
                     <input type="hidden" name="pageId" value="T002">
-                    <input type="hidden" name="taskId" value="${detailsList.id}">
+                    <input type="hidden" name="taskId" value="${detailsList.taskId}">
                     <button type="submit" name="buttonId" value="編集">編集</button>
                 </form>
             </div>
@@ -95,11 +95,11 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
 
                         <div class="progress-bar">
                             <div class="progress-fill"
-                                style="width:${detailsList.progressRate}%;">
+                                style="width:${detailsList.taskProgressRate}%;">
                             </div>
                         </div>
 
-                        <p>${detailsList.progressRate}%</p>
+                        <p>${detailsList.taskProgressRate}%</p>
 
                     </div>
     
@@ -110,7 +110,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
                             <form action="${pageContext.request.contextPath}/Controller" method="post">
 
                                 <input type="hidden" name="pageId" value="T002">
-                                <input type="hidden" name="taskId" value="${detailsList.id}">
+                                <input type="hidden" name="taskId" value="${detailsList.taskId}">
 
                                 <c:if test="${detailsList.taskStatus != '未着手'}">
                                     <button type="submit" name="buttonId" value="未着手">
@@ -190,7 +190,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
 
                                         <input type="hidden"
                                             name="taskId"
-                                            value="${detailsList.id}">
+                                            value="${detailsList.taskId}">
 
                                         <input type="hidden"
                                             name="workId"

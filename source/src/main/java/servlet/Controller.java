@@ -146,10 +146,14 @@ public class Controller extends HttpServlet {
 						//工数入力画面表示[]
 
 						WorksAction wAction = new WorksAction(request);
-						page = wAction.workRegist();	
+						page = wAction.worksInsert();	
 						} 		
 			}
-			//			
+			//タスク詳細画面 --------------------------------
+			else if(pageId.equals("T001")) {
+				TasksAction tAction = new TasksAction(request);
+				page = tAction.details();
+			}
 		}
 
 		//ログイン画面へフォワード
@@ -276,11 +280,6 @@ public class Controller extends HttpServlet {
 					//タスク削除処理[結果:該当タスクと紐づく工数削除、案件詳細画面へ]
 					page = tAction.tasksDelete();
 
-				} else if (buttonId.equals("工数入力")) {
-					WorksAction wAction = new WorksAction(request);
-					//工数登録画面表示
-					page = wAction.worksInsert();
-
 				} else if (buttonId.equals("すべて見る")) {
 					WorksAction wAction = new WorksAction(request);
 					//月次集計画面表示[]
@@ -315,9 +314,16 @@ public class Controller extends HttpServlet {
 			}
 			//タスク詳細画面 ------------------------------------
 			else if (pageId.equals("T003")) {
-				WorksAction wAction = new WorksAction(request);
-				if (buttonId.equals("削除")) {
+				if ("未着手".equals(buttonId)
+				        || "進行中".equals(buttonId)
+				        || "保留".equals(buttonId)
+				        || "完了".equals(buttonId)) {
+					TasksAction tAction = new TasksAction(request);
+					page = tAction.updateStatus();
+					
+				}else if (buttonId.equals("削除")) {
 					//工数削除処理[結果:]
+					WorksAction wAction = new WorksAction(request);
 					page = wAction.delete();
 
 					//							} else if (buttonId.equals("工数入力")) {
@@ -338,6 +344,12 @@ public class Controller extends HttpServlet {
 				//							//これから実装(現在は仮でcsvとしときます)
 				//							page = wAction.csv();
 				//						}
+			}
+			//工数登録処理 -----------------------------------
+			else if (buttonId.equals("工数入力")) {
+				WorksAction wAction = new WorksAction(request);
+				//工数登録画面表示
+				page = wAction.worksInsert();
 			}
 		}
 		//pageに格納したリンク先にフォワードする
