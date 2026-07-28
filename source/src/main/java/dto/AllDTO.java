@@ -37,7 +37,7 @@ public class AllDTO {
 	private String startDate;
 	private String plannedEndDate;
 	private String caseDescription;
-	private int casePlannedHours; //案件予定工数
+	private double casePlannedHours; //案件予定工数
 	private int caseSum; //総タスク数
 	private int caseNow; //完了タスク数
 	private BigDecimal actualHoursSum; //実績工数の合計
@@ -80,7 +80,7 @@ public class AllDTO {
 	public AllDTO(int userId, String loginId, String loginPw, String userName, String mailAddress, boolean authority,
 			boolean active, String created_at, String update_at, int caseId, String caseName, String caseCode,
 			String customerName, String casePriority, int pmId, String caseStatus, String startDate,
-			String plannedEndDate, String caseDescription, int casePlannedHours, int caseSum, int caseNow,
+			String plannedEndDate, String caseDescription, double casePlannedHours, int caseSum, int caseNow,
 			BigDecimal actualHoursSum, int caseProgressRate, int taskId, String taskName, int managerId,
 			String taskStatus, String taskPriority, String deadline, int taskProgressRate, BigDecimal taskPlannedHours,
 			String taskDescription, int workId, String workDate, BigDecimal actualHours, String workDescription,
@@ -286,11 +286,11 @@ public class AllDTO {
 		this.caseDescription = caseDescription;
 	}
 
-	public int getCasePlannedHours() {
+	public double getCasePlannedHours() {
 		return casePlannedHours;
 	}
 
-	public void setCasePlannedHours(int casePlannedHours) {
+	public void setCasePlannedHours(double casePlannedHours) {
 		this.casePlannedHours = casePlannedHours;
 	}
 

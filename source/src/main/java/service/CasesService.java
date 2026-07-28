@@ -96,15 +96,15 @@ public class CasesService extends DBAccess {
 	/**
 	  * 案件詳細のステータス変更
 	  * @param cases
-	  * @return
+	  * @return status
 	  */
 
-	public int status(CasesDTO cases) {
-		int status = 0;
+	public boolean status(int caseId, String btId) {
+		boolean status = false;
 
 		CasesDAO dao = new CasesDAO(conn);
 		try {
-			status = dao.status(cases);
+			status = dao.status(caseId, btId);
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -250,7 +250,7 @@ public class CasesService extends DBAccess {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();
 		}
-//		super.close();
+		//		super.close();
 
 		return ans;
 	}
@@ -272,7 +272,7 @@ public class CasesService extends DBAccess {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();
 		}
-//		super.close();
+		//		super.close();
 
 		return casesList;
 

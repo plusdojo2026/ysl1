@@ -23,7 +23,7 @@
 </c:url>
 
  	<div class="logoCls">
-     <img alt="logo" src="${pageContext.request.contextPath}/images/logo.png" id="logoImg">           
+     <img alt="logo" src="${pageContext.request.contextPath}/images/newlogo-icon.png" id="logoImg">           
      </div>
              
     <c:if test="${empty sessionScope.user}">

@@ -104,7 +104,7 @@ public class CasesDAO {
 				+ " FROM `cases` c"
 				+ " LEFT JOIN users pm"
 				+ " ON c.pm_id = pm.id ";
-				
+
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class CasesDAO {
 		dto.setCaseDescription(
 				rs.getString("case_description"));
 		dto.setCasePlannedHours(
-				rs.getInt("case_planned_hours"));
+				rs.getDouble("case_planned_hours"));
 
 		dto.setUserName(rs.getString("user_names"));
 		dto.setCaseSum(rs.getInt("task_count"));
@@ -335,20 +335,20 @@ public class CasesDAO {
 	 * @return status
 	 * @throws SQLException
 	 */
-	public int status(CasesDTO cases) throws SQLException {
-		int status = 0;
+	public boolean status(int caseId, String btId) throws SQLException {
+		boolean status = false;
 
 		String sql = "UPDATE cases SET case_status=? WHERE id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		//?のための文章
-		pstmt.setString(1, cases.getCaseStatus());
-		pstmt.setInt(2, cases.getId());
+		pstmt.setString(1, btId);
+		pstmt.setInt(2, caseId);
 
 		// SQL文を実行する
 
 		if (pstmt.executeUpdate() == 1) {
-			status = 1;
+			status = true;
 		}
 
 		//結果を返す
@@ -492,7 +492,7 @@ public class CasesDAO {
 							rs.getString(
 									"case_description"));
 					dto.setCasePlannedHours(
-							rs.getInt(
+							rs.getDouble(
 									"case_planned_hours"));
 				}
 			}
@@ -612,7 +612,7 @@ public class CasesDAO {
 			pStmt.setString(
 					9,
 					valueOrEmpty(dto.getCaseDescription()));
-			pStmt.setInt(
+			pStmt.setDouble(
 					10,
 					dto.getCasePlannedHours());
 
@@ -645,7 +645,7 @@ public class CasesDAO {
 
 		System.out.println("【update SQL】");
 		System.out.println(sql);
-
+		
 		try (PreparedStatement pStmt = conn.prepareStatement(sql)) {
 
 			pStmt.setString(
@@ -676,11 +676,12 @@ public class CasesDAO {
 			pStmt.setString(
 					9,
 					valueOrEmpty(dto.getCaseDescription()));
-			pStmt.setInt(
+			pStmt.setDouble(
 					10,
 					dto.getCasePlannedHours());
+			
 			pStmt.setInt(11, dto.getId());
-
+			System.out.println(dto.getCasePlannedHours());
 			return pStmt.executeUpdate();
 		}
 	}
