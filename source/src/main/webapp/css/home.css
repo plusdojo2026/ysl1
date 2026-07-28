@@ -3,7 +3,7 @@
 .count_area {
 	display: flex;
 	gap: 80px;
-	padding: 3px 0px 20px 0px;
+	padding: 3px 0px 20px 27px;
 	justify-content: space-evenly;
 	border: solid 1px #2b4f82;
 }
@@ -30,8 +30,52 @@
 .number {
 	font-size:33px;
 	font-weight:bold;
+	position: relative;
+	right: -7.4px;
 }
 
 #over{
 	color:red;
+}
+
+.mytask_icon {
+	width:130px;
+	position: relative;
+	right:22px;
+	top:15px;
+	object-fit: contain;
+}
+
+.pcase{
+	margin-top:20px;
+	position: relative;
+	left: -5px;
+}
+
+.ptask{
+	margin-top:20px;
+	position: relative;	
+}
+
+.pdeadline{
+	margin-top:20px;
+	position: relative;
+	left: -4.3px;	
+}
+
+#regist {
+	appearance: none;
+	-webkit-appearance: none;
+	background: transparent !important;
+	color: #0078d4 !important;
+	border: 2px solid #0078d4;
+	padding: 6px 12px;
+	font-size: 16px;
+	margin-left: 12.5px;
+}
+
+#regist:hover {
+	background: transparent !important;
+	color: #005fa3 !important;
+	border-color: #005fa3;
 }

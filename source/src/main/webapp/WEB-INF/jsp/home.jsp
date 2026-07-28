@@ -16,22 +16,26 @@
  <main>
  <div class ="count_area">
  <div class ="count">
- 	<p>進行中の案件</p>
+ 	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon1.png" alt="進行中案件">
+ 	<p class="pcase">進行中の案件</p>
  	<div class="number">
-	 ${count.inProgressCase} 件	
+ 	${count.inProgressCase} 件	
 	 </div>  
  </div>
  
  <div class ="count">
- 	<p>担当タスク</p>
+  	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon2.png" alt="担当タスク">
+ 	<p class="ptask">担当タスク</p>
  	<div class="number">
  	${count.assignedTask} 件
  	</div>
  </div>
  
  <div class ="count">
- 	<p>期限超過件数</p>
+ 	<img class="mytask_icon" src="${pageContext.request.contextPath}/images/mytask_icon3.png" alt="期限超過件数">
+ 	<p class="pdeadline">期限超過件数</p>
  	<div class="number" id="over">
+ 	
  	${count.deadlineNumber} 件
  	</div>
  </div>
@@ -114,7 +118,7 @@
 					<input type="hidden" name="caseName" value="${e.caseName}">	
 					<input type="hidden" name="taskName" value="${e.taskName}">	
 					<input type="hidden" name="taskId" value="${e.taskId}">						
-					<input type="submit" name="buttonId" value="工数入力">
+					<input type="submit" id="regist" name="buttonId" value="工数入力">
 				</form>
 				</td>
 			</tr>

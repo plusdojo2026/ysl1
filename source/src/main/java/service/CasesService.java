@@ -94,23 +94,23 @@ public class CasesService extends DBAccess {
 	}
 
 	/**
-	 * 案件詳細のステータス変更
-	 */
-	public boolean status(CasesDTO cases) {
-		boolean result = false;
-		
+	  * 案件詳細のステータス変更
+	  * @param cases
+	  * @return
+	  */
+
+	public int status(CasesDTO cases) {
+		int status = 0;
+
 		CasesDAO dao = new CasesDAO(conn);
 		try {
-			result = dao.status(cases);
-			if (result==) {
-				result=true;
-			}
+			status = dao.status(cases);
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
-			return result;
+
+		return status;
 
 	}
 

@@ -83,4 +83,7 @@
         </ul>
     </nav>
 
+<div class="decoration">
+<img alt="navi" src="${pageContext.request.contextPath}/images/flowerLeft.png" id="flowerLeft">
+</div>
 </aside>
