@@ -182,7 +182,7 @@
 
                                 <td>${worksDTO.workDescription}</td>
                                 <td>${worksDTO.workDate}</td>
-                                <td>${worksDTO.actualHours} h</td>
+                                <td>${worksDTO.actualHours}</td>
                                 <td>
 
                                     <form action="${pageContext.request.contextPath}/Controller" method="post">

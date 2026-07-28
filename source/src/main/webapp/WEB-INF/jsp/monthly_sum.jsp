@@ -8,6 +8,16 @@
 <title>月次集計</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
 <link rel="stylesheet" href="<c:url value='/css/monthly_sum.css'/>">
+
+<head>
+  <script src= "https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src= "https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+	  <script src= "https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.min.js"></script>
+		  <script src= "https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+			  <script src= "https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+				  <script src= "https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"> </script>
+  
+
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
@@ -28,10 +38,6 @@
 		<input type="submit" name="buttonId" value="工数一覧"> 
 	
 		</div>
-		
-	
-		<!-- CSV出力 -->
-		<input type="submit" name="buttonId" value="CSV出力">
 		</form>
 
 	</div>
@@ -153,7 +159,7 @@
 	<!-- 工数ログ -->
 	<h2>工数ログ一覧</h2>
 	
-	<table>
+	<table id="worklogTable">
 		<thead>
 			<tr>
 				<th>作業日</th>
@@ -182,12 +188,43 @@
 	
 	</c:if>
 	
-	
-	
-	
 </div>
 
 </main>
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %> 
+
+
+
+<script>
+$(function() {
+
+    if ($('#worklogTable').length) {
+
+        $('#worklogTable').DataTable({
+
+            paging: false,
+            searching: false,
+            info: false,
+
+            dom: 'Brt',
+
+            buttons: [
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV出力',
+                    filename: 'worklog_${selectMonth}',
+                    bom: true,
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+                }
+            ]
+        });
+
+    }
+
+});
+</script>
+
 </body>
 </html>
