@@ -13,7 +13,8 @@
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 <main>
 <h1>工数入力</h1>
-<form action="${pageContext.request.contextPath}/Controller" method="get">
+<form action="${pageContext.request.contextPath}/Controller" method="post">
+<input type="hidden" name="pageId" value="W001">
 <input type="hidden" name="taskId" value="${task.taskId}">
 <div class="table" id="works">
 案件名：${task.caseName}<br>
