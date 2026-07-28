@@ -113,8 +113,8 @@
 				<td>
 					${e.actualHours}/${e.taskPlannedHours}
 				</td>
-				<td>
-				<progress value="${e.taskProgressRate}" max="100"></progress>
+				<td class="progress-cell">
+				<progress class="task-progress" value="${e.taskProgressRate}" max="100"></progress>
 				${e.taskProgressRate}%
 				</td>
 				<td>
