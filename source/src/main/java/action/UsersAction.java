@@ -36,49 +36,98 @@ public class UsersAction {
 	 * ログインメソッド
 	 * @return  String pageのURL menu.jsp
 	 */
+	/**
+	 * ログイン処理を実行する。
+	 *
+	 * @return 遷移先ページ
+	 */
 	public String login() {
-		//ページを設定
+
 		String page = "/WEB-INF/jsp/login.jsp";
-		//IDとPWをもらう
+
+		/* 入力値を取得する */
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("loginPw");
-		//値あるかを確認
-		if (loginId == null || loginId.isBlank()
-				|| password == null || password.isBlank()) {
-			//ないとエラーメッセージを表示
+
+		boolean hasError = false;
+
+		/* ログインIDの未入力チェック */
+		if (loginId == null || loginId.isBlank()) {
 			request.setAttribute(
-					"message",
-					"ログインIDとパスワードを入力してください。");
+					"errorMsgId",
+					"ログインIDを入力してください。");
+
+			hasError = true;
+		}
+
+		/* パスワードの未入力チェック */
+		if (password == null || password.isBlank()) {
+			request.setAttribute(
+					"errorMsgPw",
+					"パスワードを入力してください。");
+
+			hasError = true;
+		}
+
+		/* 入力エラーがある場合はログイン画面へ戻る */
+		if (hasError) {
 			return page;
 		}
-		//IDをDTOに設定
-		UsersDTO loginUser = new UsersDTO();
-		loginUser.setLoginId(loginId);
 
-		//このDTOに対応しているユーザーの全情報をサーチ
+		/* ログインIDをDTOへ設定する */
+		UsersDTO loginUser = new UsersDTO();
+		loginUser.setLoginId(loginId.trim());
+
+		/* ログインIDに対応するユーザーを検索する */
 		UsersDTO user = usersService.login(loginUser);
 
 		try {
-			if (user != null
-					&& user.getLoginPw() != null
-					&& BCrypt.checkpw(password, user.getLoginPw())) {
-
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-
-				page = "/WEB-INF/jsp/home.jsp";
-
-			} else {
+			/*
+			 * セキュリティ上、ユーザーが存在しない場合と
+			 * パスワードが間違っている場合は同じメッセージを表示する。
+			 */
+			if (user == null || user.getLoginPw() == null) {
 				request.setAttribute(
-						"message",
+						"errorMsgLogin",
 						"ログインIDまたはパスワードが正しくありません。");
+				System.out.println("ログインIDまたはパスワードが正しくありません。");
+
+				return page;
 			}
 
+			/* パスワードを確認する */
+			if (!BCrypt.checkpw(password, user.getLoginPw())) {
+				request.setAttribute(
+						"errorMsgLogin",
+						"ログインIDまたはパスワードが正しくありません。");
+
+				return page;
+			}
+
+			/* ログイン成功時にユーザー情報をセッションへ保存する */
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+
+			page = "/WEB-INF/jsp/home.jsp";
+
 		} catch (IllegalArgumentException e) {
-			// DBのパスワードがBCrypt形式ではない場合
+
+			/*
+			 * DBに保存されているパスワードが
+			 * BCrypt形式ではない場合に表示する。
+			 */
 			request.setAttribute(
-					"message",
-					"ログインIDまたはパスワードが正しくありません。");
+					"errorMsgSystem",
+					"ログイン処理中にエラーが発生しました。"
+							+ "管理者へお問い合わせください。");
+
+		} catch (Exception e) {
+
+			/* 予期しないエラーが発生した場合 */
+			request.setAttribute(
+					"errorMsgSystem",
+					"システムエラーが発生しました。"
+							+ "しばらくしてから再度お試しください。");
 		}
 
 		return page;
