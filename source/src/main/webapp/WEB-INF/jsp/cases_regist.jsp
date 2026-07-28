@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>案件登録</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<link rel="stylesheet" href="<c:url value='/css/cases_regist.css' />">
 </head>
 
 <!--データはとれそうだけど、新規登録のような表示になりそう -->
@@ -18,12 +19,12 @@
  	<c:if test="${param.buttonId=='新規登録' }">
 		<h2>案件登録</h2>
 	</c:if>
-	<c:if test="${param.buttonId=='編集' }">
+	<c:if test="${param.buttonId=='編集' or param.buttonId=='案件編集'}">
 		<h2>案件編集</h2>
 	</c:if>
 	
 	<form action="/ysl1/Controller" method="post">
-		<table>
+		<table class="table">
 			<tr>
 		        	<td class="label" name="caseName">案件名</td>
 		        	<td>
@@ -124,12 +125,12 @@
 			
 		<div class="buttonArea">
 			<input type="hidden"name="pageId"value="C002">	
-		   	<input type="button"value="キャンセル"onclick="history.back()">
+		   	<input type="button" id="cancel" value="キャンセル"onclick="history.back()">
 		   	<c:if test="${param.buttonId=='新規登録' }">
-				<input type="submit"name=buttonId value="登録">
+				<input type="submit" id="regist" name=buttonId value="登録">
 			</c:if>
 			<c:if test="${param.buttonId=='編集'or param.buttonId=='案件編集' }">
-				<input type="submit"name=buttonId value="編集">
+				<input type="submit" id="edit" name=buttonId value="編集">
 			</c:if>
 		</div>
 	</form>
