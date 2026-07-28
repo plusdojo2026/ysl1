@@ -20,7 +20,10 @@
 		<table>
 			<tr>
 		        	<td class="label" name="caseName">案件名</td>
-		        	<td><input type="text"  name="caseName" value="${cases.caseName }"></td>
+		        	<td>
+		        	<input type="hidden"  name="id" value="${cases.id }">
+		        	<input type="text"  name="caseName" value="${cases.caseName }">
+		        	</td>
 		   		
 		
 		   		 <td class="label">	案件コード</td>
@@ -116,7 +119,7 @@
 		<div class="buttonArea">
 			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button"value="キャンセル"onclick="history.back()">
-		   	<input type="hidden" name="id" value="${caseId}">
+		   
 		   	<input type="submit"name=buttonId value="編集">
 		   	<input type="submit"name=buttonId value="登録">
 		   
