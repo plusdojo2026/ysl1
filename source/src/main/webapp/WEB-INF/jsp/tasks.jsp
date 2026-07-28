@@ -72,7 +72,7 @@
 				<th>ステータス</th>
 				<th>優先度</th>
 				<th>期限</th>
-				<th>実績工数/見積</th>
+				<th>見積/実績工数</th>
 				<th>進捗</th>
 				<th>編集</th>
 			</tr>
@@ -82,13 +82,14 @@
 	<c:forEach var="e" items="${taskList}">
 		<tr>		
 			<td>${e.caseName}</td>
-			<td>${e.taskName}</td>
+			<td><a href="${pageContext.request.contextPath}/Controller?pageId=T001&taskId=${e.taskId}">
+			${e.taskName}</td>
 			<td>${e.userName}</td>
 			<td>${e.taskStatus}</td>
 			<td>${e.taskPriority}</td>
 			<td>${e.deadline}</td>
 			<td>
-				${e.taskPlannedHours}/${e.actualHours}
+				${e.actualHours}/${e.taskPlannedHours}
 			</td>
 			<div class="progress-bar">
 			<td>
