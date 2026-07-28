@@ -6,6 +6,7 @@
 <head>
 
 <meta charset="UTF-8">
+<div class="area">
 <title>案件一覧</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
@@ -17,6 +18,7 @@
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp"%>
 	<main>
 	<!--検索系統 -->
+	<div class="area">
 	<h1>案件一覧</h1>
 
 	<form action="${pageContext.request.contextPath}/Controller"
@@ -35,7 +37,10 @@
 			<option value="低">低</option>
 		</select> <input type="submit" value="クリア"> <input type="submit"
 			value="検索"> -->
-			 <input type="submit" name="buttonId"value="新規登録"onclick="location.href='/Controller?pageId=C001'">
+			<div class="btn">
+			<input type="submit" id="regist" name="buttonId"value="新規登録"onclick="location.href='/Controller?pageId=C001'">
+			</div>
+	</div>
 	</form>
 	<!--案件一覧 -->
 	<table class="table table-bordered" id="cases" border="1" >
@@ -76,7 +81,7 @@
 						<form method="POST" action="<c:url value='/Controller'/>">
 							<input type="hidden" name="pageId" value="C001">
 							 <input	type="hidden" name="id" value="${e.caseId}"> 
-							 <input	type="submit" name="buttonId" value="編集">
+							 <input	type="submit" id="edit" name="buttonId" value="編集">
 						</form>
 					</td>
 				</tr>
