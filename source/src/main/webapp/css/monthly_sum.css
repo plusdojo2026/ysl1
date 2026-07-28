@@ -310,26 +310,18 @@ tbody tr:hover {
 
 .progress-bar {
     display: inline-block;
-
     width: 100px;
     height: 10px;
-
     margin-right: 8px;
-
     overflow: hidden;
-
     border-radius: 10px;
-
     background-color: #e7edf5;
-
     vertical-align: middle;
 }
 
 .progress-value {
     height: 100%;
-
     border-radius: 10px;
-
     background-color: #1476df;
 }
 /*90%以上の時*/

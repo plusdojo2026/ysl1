@@ -93,7 +93,8 @@
 				<td>${caseData.casePlannedHours}h</td>
 				<td>
 				<div class="progress-bar">
-				<div class="progress-value" style="width: ${caseData.caseProgressRate}%"></div>
+				<!-- 90%以上ならクラスを追加 -->
+				<div class="progress-value${caseData.caseProgressRate >= 90 ? ' almostDone' : ''}" style="width: ${caseData.caseProgressRate}%"></div>
 				</div>
 				<span>${caseData.caseProgressRate}%</span>
 				</td>
@@ -129,8 +130,7 @@
 				<td>${memberData.actualHours}h</td>
 				<td>
 				<div class="progress-bar">
-				<!-- 90%以上ならクラスを追加 -->
-				<div class="progress-value ${memberData.workRate >= 90 ? 'almostDone' : ''}" style="width: ${memberData.workRate}%">
+				<div class="progress-value " style="width: ${memberData.workRate}%">
 				</div>
 				</div>
 				<span>${memberData.workRate}%</span>
