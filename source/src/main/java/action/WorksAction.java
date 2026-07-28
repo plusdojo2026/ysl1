@@ -44,7 +44,7 @@ public class WorksAction {
 	 */
 	//工数登録メソッド（ダッシュボード、案件詳細画面、タスク詳細画面）---------------------------------------
 		public String worksInsert() throws UnsupportedEncodingException {
-			String page="/WEB-INF/jsp/task_details.jsp";
+			String page="/WEB-INF/jsp/tasks_details.jsp";
 			
 			//値の取得
 			request.setCharacterEncoding("UTF-8");	
