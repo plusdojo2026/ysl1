@@ -1,0 +1,463 @@
+@charset "UTF-8";
+
+/* ========================================
+   ログイン画面全体
+======================================== */
+
+.login-page {
+    min-height: 100vh;
+}
+
+/* ログイン画面ではサイドバー用の余白を解除する */
+.login-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: none;
+    min-height: calc(100vh - 96px - 53px);
+
+    margin: 0;
+    padding: 48px 24px;
+
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* ========================================
+   ログインカード
+======================================== */
+
+.login-card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    padding: 38px 40px 40px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(247, 251, 255, 0.96)
+        );
+
+    border: 1px solid rgba(61, 116, 190, 0.18);
+    border-radius: 20px;
+
+    box-shadow:
+        0 24px 60px rgba(25, 73, 137, 0.14),
+        0 4px 14px rgba(25, 73, 137, 0.06);
+}
+
+/* カード上部のアクセントライン */
+.login-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #4082e7,
+        #78a9f5,
+        transparent
+    );
+
+    border-radius: 999px;
+}
+
+/* ========================================
+   カードヘッダー
+======================================== */
+
+.login-card__header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.login-card__eyebrow {
+    margin: 0 0 8px;
+
+    color: #4b7fc4;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.login-card__title {
+    margin: 0;
+
+    color: #173f72;
+
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.login-card__description {
+    margin: 10px 0 0;
+
+    color: #657d9d;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ========================================
+   ログインフォーム
+======================================== */
+
+.login-form {
+    width: 100%;
+}
+
+.login-field {
+    margin-bottom: 22px;
+}
+
+.login-field__label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #294f80;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.login-field__control {
+    position: relative;
+}
+
+.login-field__input {
+    width: 100%;
+    height: 48px;
+    margin: 0;
+    padding: 11px 14px;
+
+    color: #173a68;
+    background-color: #f8fbff;
+
+    border: 1px solid #c8d8ec;
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+.login-field__input::placeholder {
+    color: #93a4ba;
+}
+
+.login-field__input:hover {
+    border-color: #9db9df;
+}
+
+.login-field__input:focus {
+    outline: none;
+
+    background-color: #ffffff;
+    border-color: #5389df;
+
+    box-shadow:
+        0 0 0 4px rgba(83, 137, 223, 0.13),
+        0 6px 14px rgba(40, 91, 159, 0.07);
+
+    transform: translateY(-1px);
+}
+
+/* 入力エラーがある入力欄 */
+.login-field__input.input-error {
+    background-color: #fff8f9;
+    border-color: #dc687a;
+
+    box-shadow:
+        0 0 0 3px rgba(220, 104, 122, 0.1);
+}
+
+.login-field__input.input-error:focus {
+    border-color: #d6455d;
+
+    box-shadow:
+        0 0 0 4px rgba(214, 69, 93, 0.13);
+}
+
+/* ========================================
+   入力項目別エラー
+======================================== */
+
+.login-field-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+
+    margin-top: 8px;
+
+    color: #a12d40;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    animation: login-error-enter 0.3s
+        cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-field-error__icon {
+    display: inline-flex;
+    flex: 0 0 17px;
+    align-items: center;
+    justify-content: center;
+
+    width: 17px;
+    height: 17px;
+    margin-top: 1px;
+
+    color: #ffffff;
+    background-color: #d6455d;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.login-field-error__text {
+    flex: 1;
+}
+
+/* ========================================
+   認証・システムエラー
+======================================== */
+
+.login-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+
+    margin-bottom: 24px;
+    padding: 13px 14px;
+
+    border: 1px solid;
+    border-radius: 10px;
+
+    animation: login-message-enter 0.36s
+        cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ログイン認証エラー */
+.login-message--authentication {
+    color: #8e293b;
+    background-color: #fff1f3;
+    border-color: #efb4bf;
+
+    box-shadow:
+        0 5px 14px rgba(170, 45, 67, 0.07);
+}
+
+/* システムエラー */
+.login-message--system {
+    color: #7b5515;
+    background-color: #fff8e6;
+    border-color: #e8cf91;
+
+    box-shadow:
+        0 5px 14px rgba(150, 102, 25, 0.07);
+}
+
+.login-message__icon {
+    display: inline-flex;
+    flex: 0 0 21px;
+    align-items: center;
+    justify-content: center;
+
+    width: 21px;
+    height: 21px;
+    margin-top: 1px;
+
+    color: #ffffff;
+    border-radius: 50%;
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.login-message--authentication .login-message__icon {
+    background-color: #d6455d;
+}
+
+.login-message--system .login-message__icon {
+    background-color: #d39a2d;
+}
+
+.login-message__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.login-message__title {
+    margin: 0 0 3px;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.login-message__text {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+/* ========================================
+   ログインボタン
+======================================== */
+
+.login-actions {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 30px;
+}
+
+.login-submit {
+    width: 220px;
+    min-height: 46px;
+    margin: 0;
+    padding: 11px 24px;
+
+    color: #ffffff;
+
+    background-image: linear-gradient(
+        110deg,
+        #1d4f9c 0%,
+        #3479df 34%,
+        #6aa2f5 50%,
+        #3479df 66%,
+        #1d4f9c 100%
+    );
+
+    background-position: 100% 50%;
+    background-size: 240% 100%;
+
+    border: 0;
+    border-radius: 11px;
+
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    box-shadow:
+        0 8px 18px rgba(35, 87, 155, 0.2);
+
+    transition:
+        background-position 0.65s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease,
+        transform 0.18s ease;
+}
+
+.login-submit:hover {
+    background-position: 0% 50%;
+
+    box-shadow:
+        0 12px 24px rgba(35, 87, 155, 0.26);
+
+    transform: translateY(-2px);
+}
+
+.login-submit:active {
+    box-shadow:
+        0 5px 12px rgba(35, 87, 155, 0.2);
+
+    transform: translateY(1px) scale(0.985);
+}
+
+.login-submit:focus-visible {
+    outline: 3px solid rgba(80, 143, 235, 0.3);
+    outline-offset: 3px;
+}
+
+/* ========================================
+   表示アニメーション
+======================================== */
+
+@keyframes login-message-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes login-error-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   レスポンシブ対応
+======================================== */
+
+@media (max-width: 600px) {
+    .login-main {
+        min-height: auto;
+        margin: 0;
+        padding: 28px 16px;
+    }
+
+    .login-card {
+        max-width: 100%;
+        padding: 30px 22px 32px;
+        border-radius: 16px;
+    }
+
+    .login-card__title {
+        font-size: 26px;
+    }
+
+    .login-submit {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* OSのアニメーション軽減設定に対応する */
+@media (prefers-reduced-motion: reduce) {
+    .login-card,
+    .login-message,
+    .login-field-error,
+    .login-field__input,
+    .login-submit {
+        animation: none;
+        transition: none;
+    }
+}

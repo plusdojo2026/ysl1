@@ -22,7 +22,10 @@
     <c:param name="buttonId" value="ログアウト" />
 </c:url>
 
-
+ 	<div class="logoCls">
+     <img alt="logo" src="${pageContext.request.contextPath}/images/logo.png" id="logoImg">           
+     </div>
+             
     <c:if test="${empty sessionScope.user}">
         <div class="header__auth">
                  <button onclick="location.href='${loginUrl}'" class="btn btn-outline">ログイン</button>
@@ -33,12 +36,8 @@
         <nav class="header__auth">
 
             <span class="header__welcome">
-            <div></div>
-            <!-- 
-            <img alt="userIcon" src="${pageContext.request.contextPath}/images/user.png">
-                ようこそ${sessionScope.user.userName}さん
-     
- -->
+           
+           
            
               <button onclick="location.href='${resetPWUrl}'" class="btn btn-outline">パスワード変更</button>
           
