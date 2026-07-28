@@ -135,7 +135,7 @@ public class CasesDAO {
 		dto.setCaseDescription(
 				rs.getString("case_description"));
 		dto.setCasePlannedHours(
-				rs.getInt("case_planned_hours"));
+				rs.getDouble("case_planned_hours"));
 
 		dto.setUserName(rs.getString("user_names"));
 		dto.setCaseSum(rs.getInt("task_count"));
@@ -492,7 +492,7 @@ public class CasesDAO {
 							rs.getString(
 									"case_description"));
 					dto.setCasePlannedHours(
-							rs.getInt(
+							rs.getDouble(
 									"case_planned_hours"));
 				}
 			}
@@ -612,7 +612,7 @@ public class CasesDAO {
 			pStmt.setString(
 					9,
 					valueOrEmpty(dto.getCaseDescription()));
-			pStmt.setInt(
+			pStmt.setDouble(
 					10,
 					dto.getCasePlannedHours());
 
@@ -645,7 +645,7 @@ public class CasesDAO {
 
 		System.out.println("【update SQL】");
 		System.out.println(sql);
-
+		
 		try (PreparedStatement pStmt = conn.prepareStatement(sql)) {
 
 			pStmt.setString(
@@ -676,11 +676,12 @@ public class CasesDAO {
 			pStmt.setString(
 					9,
 					valueOrEmpty(dto.getCaseDescription()));
-			pStmt.setInt(
+			pStmt.setDouble(
 					10,
 					dto.getCasePlannedHours());
+			
 			pStmt.setInt(11, dto.getId());
-
+			System.out.println(dto.getCasePlannedHours());
 			return pStmt.executeUpdate();
 		}
 	}

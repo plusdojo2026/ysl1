@@ -254,7 +254,7 @@ public class CasesAction {
 		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
 		String plannedEndDate = request.getParameter("plannedEndDate");
-		int casePlannedHours = Integer.parseInt(request.getParameter("casePlannedHours"));
+		double casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
 		String caseDescription = request.getParameter("description");
 
 		CasesDTO dto = new CasesDTO(id, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
