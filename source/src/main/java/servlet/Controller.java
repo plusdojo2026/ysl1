@@ -289,6 +289,10 @@ public class Controller extends HttpServlet {
 					//月次集計画面表示[]
 					page = wAction.initialize();
 
+				} else if (buttonId.equals("工数入力")) {
+					WorksAction wAction = new WorksAction(request);
+					//工数登録画面表示
+					page = wAction.worksInsert();
 				}
 			}
 
