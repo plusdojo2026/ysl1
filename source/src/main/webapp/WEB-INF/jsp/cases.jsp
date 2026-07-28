@@ -57,10 +57,10 @@
 		<tbody>
 			<c:forEach var="e" items="${casesList}">
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&case_id=${e.caseId}">
+					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&caseId=${e.caseId}">
 					${e.caseCode}
 					</td>
-					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&case_id=${e.caseId}">
+					<td><a href="${pageContext.request.contextPath}/Controller?pageId=C003&caseId=${e.caseId}">
 					${e.caseName}</td>
 					<td>${e.customerName}</td>
 					<td>${e.caseStatus}</td>
