@@ -46,6 +46,7 @@
 				<td>案件コード</td>
 				<td>
 					<input type ="hidden" name="id" value="${c.caseId}">
+					<input type ="hidden" name="caseId" value="${c.caseId}">
 					${c.caseCode}
 				</td>
 			</tr>

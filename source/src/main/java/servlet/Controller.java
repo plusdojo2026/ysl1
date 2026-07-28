@@ -139,18 +139,18 @@ public class Controller extends HttpServlet {
 				if (buttonId.equals("新規登録")) {
 					//新規登録画面表示[]
 					page = cAction.casesRegist();
-				}			
-				}else if (pageId.equals("D001")||(pageId.equals("C003"))
-						||(pageId.equals("T003"))) {
-					if (buttonId.equals("工数入力")) {	
-						//工数入力画面表示[]
+				}
+			} else if (pageId.equals("D001") || (pageId.equals("C003"))
+					|| (pageId.equals("T003"))) {
+				if (buttonId.equals("工数入力")) {
+					//工数入力画面表示[]
 
-						WorksAction wAction = new WorksAction(request);
-						page = wAction.workRegist();	
-						} 		
+					WorksAction wAction = new WorksAction(request);
+					page = wAction.workRegist();
+				}
 			}
 			//タスク詳細画面 --------------------------------
-			else if(pageId.equals("T001")) {
+			else if (pageId.equals("T001")) {
 				TasksAction tAction = new TasksAction(request);
 				page = tAction.details();
 			}
@@ -257,8 +257,12 @@ public class Controller extends HttpServlet {
 			//			//案件詳細画面 ------------------------------------
 			else if (pageId.equals("C003")) {
 				if (buttonId.equals("完了にする")) {
+					CasesAction cAction = new CasesAction(request);
+					page = cAction.changeStatus();
 
 				} else if (buttonId.equals("中止にする")) {
+					CasesAction cAction = new CasesAction(request);
+					page = cAction.changeStatus();
 
 				} else if (buttonId.equals("案件編集")) {
 					CasesAction cAction = new CasesAction(request);
@@ -318,20 +322,20 @@ public class Controller extends HttpServlet {
 				if (buttonId.equals("編集")) {
 					TasksAction tAction = new TasksAction(request);
 					page = tAction.functions();
-					
-				}else if ("未着手".equals(buttonId)
-				        || "進行中".equals(buttonId)
-				        || "保留".equals(buttonId)
-				        || "完了".equals(buttonId)) {
+
+				} else if ("未着手".equals(buttonId)
+						|| "進行中".equals(buttonId)
+						|| "保留".equals(buttonId)
+						|| "完了".equals(buttonId)) {
 					TasksAction tAction = new TasksAction(request);
 					page = tAction.updateStatus();
-					
-				}else if (buttonId.equals("削除")) {
+
+				} else if (buttonId.equals("削除")) {
 					//工数削除処理[結果:]
 					WorksAction wAction = new WorksAction(request);
 					page = wAction.delete();
 
-				}else if(buttonId.equals("工数入力")) {
+				} else if (buttonId.equals("工数入力")) {
 					WorksAction wAction = new WorksAction(request);
 					page = wAction.workRegist();
 				}
@@ -353,17 +357,17 @@ public class Controller extends HttpServlet {
 			//工数登録処理 -----------------------------------
 			else if ("W001".equals(pageId)) {
 				WorksAction wAction = new WorksAction(request);
-			
-			if (buttonId.equals("工数入力")) {
-				
-				//工数登録画面表示
-				page = wAction.worksInsert();
-			}
-		}
-		//pageに格納したリンク先にフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-		dispatcher.forward(request, response);
-	}
 
-}
+				if (buttonId.equals("工数入力")) {
+
+					//工数登録画面表示
+					page = wAction.worksInsert();
+				}
+			}
+			//pageに格納したリンク先にフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
+		}
+
+	}
 }
