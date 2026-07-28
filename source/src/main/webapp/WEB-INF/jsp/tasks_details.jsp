@@ -192,7 +192,7 @@ ${detailsList.taskId}
                                         <input type="hidden" name="id" value="${worksDTO.workId}">
 
                                         <button
-                                            type="submit" name="buttonId" value="削除">
+                                            type="submit" name="buttonId" value="削除" onclick="return delete1()">
 
                                             🗑
 
@@ -214,5 +214,12 @@ ${detailsList.taskId}
             </div>
 		</main>
 	</div>
+	<script>
+	function delete1(){
+			if (!confirm("削除します。よろしいですか？")) {
+				return false;
+				}
+		}
+	</script>
 </body>
 </html>
