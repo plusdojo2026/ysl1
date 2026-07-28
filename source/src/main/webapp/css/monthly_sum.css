@@ -332,7 +332,10 @@ tbody tr:hover {
 
     background-color: #1476df;
 }
-
+/*90%以上の時*/
+.progress-value.almostDone{
+	background-color: #e53935;
+}
 
 /* =========================
    注釈

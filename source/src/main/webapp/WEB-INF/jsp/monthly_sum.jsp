@@ -129,7 +129,9 @@
 				<td>${memberData.actualHours}h</td>
 				<td>
 				<div class="progress-bar">
-				<div class="progress-value" style="width: ${memberData.workRate}%"></div>
+				<!-- 90%以上ならクラスを追加 -->
+				<div class="progress-value ${memberData.workRate >= 90 ? 'almostDone' : ''}" style="width: ${memberData.workRate}%">
+				</div>
 				</div>
 				<span>${memberData.workRate}%</span>
 				</td>
