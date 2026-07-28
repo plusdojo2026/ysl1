@@ -10,11 +10,11 @@ left: 0;
 z-index: 1000;
 }
 
-.area {
+/*.area {
 	position: sticky;
 	left: 0;
 	z-index: 1000;
-}
+}*/
 
 .btn{
 	display: flex;
@@ -61,3 +61,10 @@ text-align: center;
     color: #005fa3 !important;
     border-color: #005fa3;
 }
+
+/*テーブルの大きさの指定*/
+dataTables_wrapper {
+    width: 100%;
+    overflow: hidden; /* 親要素からのはみ出しをふせごう */
+}
+

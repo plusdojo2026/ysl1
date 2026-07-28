@@ -14,7 +14,14 @@
             }
         });
         
-        $("#cases").DataTable();
+        //テーブルのスクロール指定
+        $('#cases').DataTable({
+		    scrollY: '250px',      // スクロールさせたい高さ
+		    scrollCollapse: true,  // データが少ない時に高さを縮める
+		    autoWidth: false,
+		    scrollX: true
+		   
+		});
         
 	//------------------------------------------------------------
     
