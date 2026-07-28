@@ -94,6 +94,10 @@ public class WorksAction {
 			AllDTO detailsList= tasksService.details(taskId);
 			request.setAttribute("detailsList", detailsList);
 			
+			//指定タスクの実績工数を取得
+			ArrayList<AllDTO> worksList = tasksService.selectByTasksId(taskId);
+			request.setAttribute("worksList", worksList);
+			
 			return page;
 		}
 		
@@ -106,7 +110,7 @@ public class WorksAction {
 	 */
 	//工数削除メソッド（タスク詳細画面）---------------------------------------
 		public String delete() throws UnsupportedEncodingException {
-			String page="/WEB-INF/jsp/task_details.jsp";
+			String page="/WEB-INF/jsp/tasks_details.jsp";
 					
 			//値の取得
 			request.setCharacterEncoding("UTF-8");		
@@ -126,10 +130,18 @@ public class WorksAction {
 					
 			//タスク詳細表示メソッドを呼び出す
 			TasksService tasksService = new TasksService();
+			
 			String taskIdStr = request.getParameter("taskId");
 			int taskId = Integer.parseInt(taskIdStr);
-			tasksService.edit(taskId);
-					
+
+			//タスク詳細取得
+			AllDTO detailsList= tasksService.details(taskId);
+			request.setAttribute("detailsList", detailsList);
+
+			//指定タスクの実績工数を取得
+			ArrayList<AllDTO> worksList = tasksService.selectByTasksId(taskId);
+			request.setAttribute("worksList", worksList);
+			
 			return page;
 		}
 		

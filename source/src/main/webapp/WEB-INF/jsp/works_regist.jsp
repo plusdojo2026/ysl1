@@ -5,29 +5,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>工数入力</title>
-<link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<title>工数入力</title
+ <link rel="stylesheet" href="<c:url value='/css/common.css' />"> 
+<link rel="stylesheet" href="<c:url value='/css/works_regist.css' />">
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp" %>
-	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
+	 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 <main>
 <h1>工数入力</h1>
+<div class="table" id="works">
 <form action="${pageContext.request.contextPath}/Controller" method="post">
 <input type="hidden" name="pageId" value="W001">
 <input type="hidden" name="taskId" value="${task.taskId}">
-<div class="table" id="works">
-案件名：${task.caseName}<br>
-タスク名：${task.taskName}<br>
-作業日<input type="datetime-local" name="workDate" required><br>
-工数<input type="number" name="actualHours" step="0.5" required><br>
-作業内容<input type="text" name="workDescription"><br>
-<input type="submit" name="buttonId" value="キャンセル"><br>
-<input type="submit" name="buttonId" value="工数入力"><br>
+<!-- 案件情報 -->
+<div class="info-item">案件名：${task.caseName}</div>
+<div class="info-item">タスク名：${task.taskName}</div>
+<!-- 入力項目 -->
+<div class="field-group"><label>作業日</label><input type="datetime-local" name="workDate" required></div>
+<div class="field-group"><label>工数</label><input type="number" name="actualHours" step="0.5" required></div>
+<div class="field-group"><label>作業内容</label><input type="text" name="workDescription"></div>
+
+<div class="button-group">
+<input type="submit" name="buttonId" value="キャンセル" id="btn-cancel">
+<input type="submit" name="buttonId" value="工数入力" id="btn-submit">
+</div>
 </form>
 </div>
 </main>
-	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>s
+	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script src="<c:url value='/js/common.js' />"></script>
 </body>
 </html>

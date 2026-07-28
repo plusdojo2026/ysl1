@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<br>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,14 +18,14 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
 
 </head>
 <body>
-
 <!-- ヘッダー、サイドメニュー -->
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 
 	<div class="container">
 		<main class="main">
-            <h2>タスク詳細</h2>
+            <h3>タスク詳細:</h3><br>
+            <h2>${detailsList.taskName}</h2>
 
             <!-- 編集ボタン -->
             <div class="top-button-area">
@@ -189,19 +188,11 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
                                     <form action="${pageContext.request.contextPath}/Controller" method="post">
 
                                         <input type="hidden" name="pageId" value="T003">
-
-                                        <input type="hidden"
-                                            name="taskId"
-                                            value="${detailsList.taskId}">
-
-                                        <input type="hidden"
-                                            name="workId"
-                                            value="${worksDTO.workId}">
+                                        <input type="hidden" name="taskId" value="${detailsList.taskId}">
+                                        <input type="hidden" name="id" value="${worksDTO.workId}">
 
                                         <button
-                                            type="submit"
-                                            name="buttonId"
-                                            value="削除">
+                                            type="submit" name="buttonId" value="削除" onclick="return delete1()">
 
                                             🗑
 
@@ -223,5 +214,12 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
             </div>
 		</main>
 	</div>
+	<script>
+	function delete1(){
+			if (!confirm("削除します。よろしいですか？")) {
+				return false;
+				}
+		}
+	</script>
 </body>
 </html>
