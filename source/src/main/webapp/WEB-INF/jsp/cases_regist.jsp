@@ -117,7 +117,7 @@
 			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button"value="キャンセル"onclick="history.back()">
 		   	<input type="hidden" name="id" value="${caseId}">
-		   	<input type="submit"name=buttonId value="更新">
+		   	<input type="submit"name=buttonId value="編集">
 		   	<input type="submit"name=buttonId value="登録">
 		   
 		</div>

@@ -244,16 +244,16 @@ public class CasesAction {
 		//値の取得
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));//編集だとidが必要かな。
-		String caseName = request.getParameter("case_name");
-		int caseCode = Integer.parseInt(request.getParameter("case_code"));
-		String customerName = request.getParameter("customer_name");
-		int pmId = Integer.parseInt(request.getParameter("pm_id"));//担当PM
-		String caseStatus = request.getParameter("case_status");
-		String casePriority = request.getParameter("case_priority");
-		String startDate = request.getParameter("start_date");
-		String plannedEndDate = request.getParameter("planned_end_date");
-		int casePlannedHours = Integer.parseInt(request.getParameter("case_planned_hours"));
-		String caseDescription = request.getParameter("case_description");
+		String caseName = request.getParameter("caseName");
+		int caseCode = Integer.parseInt(request.getParameter("caseCode"));
+		String customerName = request.getParameter("customerName");
+		int pmId = Integer.parseInt(request.getParameter("pmId"));//担当PM
+		String caseStatus = request.getParameter("caseStatus");
+		String casePriority = request.getParameter("casePriority");
+		String startDate = request.getParameter("startDate");
+		String plannedEndDate = request.getParameter("plannedEndDate");
+		int casePlannedHours = Integer.parseInt(request.getParameter("casePlannedHours"));
+		String caseDescription = request.getParameter("caseDescription");
 
 		CasesDTO dto = new CasesDTO(id, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
 				startDate, plannedEndDate, caseDescription, casePlannedHours);
