@@ -34,20 +34,37 @@ header {
 	min-height: 96px;
 	box-sizing: border-box;
 }
+/*ヘッダーボタン*/
 .header__auth button.btn{
 display: inline-flex;
 align-items: center;
 justify-content: center;
-min-height: 52px;
-padding: 0 24px;
-color: #17365f;
-background-color:palevioletred;
-border: 1px solid rgba(255, 255, 255, 0.8);
-border-radius: 12px;
-font-size: 17px;
-font-weight: 700;
-text-decoration: none;
-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+gap:10px;
+padding:6px 16px;
+font-size: 12px;
+border-radius:50px;
+background-color: white;
+color: #2a5592;
+border:2px solid white;
+cursor: pointer;
+font-weight: bold;
+transition: all 0.3s ease;
+outline:none;
+}
+.header__auth button.btn:hover{
+	background-color: rgba(255,255,255,0.2);
+	color: white;
+	box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+#logout-btn{
+	background-color: #d9534f;
+	border-color: #d9534f;
+	color: white;
+}
+#logout-btn:hover{
+	background-color: #c9302c;
+	border-color: #c9302c;
+	box-shadow: 0 0 10px rgbs(217, 83, 79, 0.5);
 }
 div.header__logo img{
 	height: 65px;
@@ -287,21 +304,22 @@ input[type="submit"]:hover {
 }
 
 .sidebar-nav ul {
-margin: 0;
-padding: 0;
-list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 .sidebar-nav li {
-margin: 0;
-padding: 0;
-list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .sidebar-nav button {
-appearance: none;
-border: none;
-background-color: transparent;
-font: inherit;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	font: inherit;
+	gap:18px;
 }
 
 /*アイコン*/
