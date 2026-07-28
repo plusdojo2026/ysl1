@@ -96,3 +96,111 @@ function showRequestMessage(message) {
 function confirmAction(message) {
     return confirm(message || '確認してください。');
 }
+
+
+
+/* ========================================
+   共通アニメーション制御
+======================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initializeTableRowAnimation();
+    initializePageTransition();
+});
+
+/* テーブル行の表示タイミングを順番に設定する */
+function initializeTableRowAnimation() {
+    const rows = document.querySelectorAll(".table tbody tr");
+
+    rows.forEach((row, index) => {
+        const delay = Math.min(index * 35, 350);
+        row.style.animationDelay = `${delay}ms`;
+    });
+}
+
+/* 同一サイト内のページ遷移時にフェードアウトする */
+function initializePageTransition() {
+    const links = document.querySelectorAll("a[href]");
+
+    links.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const href = link.getAttribute("href");
+
+            if (!isTransitionTarget(event, link, href)) {
+                return;
+            }
+
+            const destination = new URL(link.href, window.location.href);
+
+            if (destination.origin !== window.location.origin) {
+                return;
+            }
+
+            event.preventDefault();
+            document.body.classList.add("is-page-leaving");
+
+            window.setTimeout(() => {
+                window.location.assign(destination.href);
+            }, 220);
+        });
+    });
+}
+
+/* ページ遷移アニメーションの対象リンクか判定する */
+function isTransitionTarget(event, link, href) {
+    if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey
+    ) {
+        return false;
+    }
+
+    if (
+        !href ||
+        href.startsWith("#") ||
+        href.startsWith("javascript:") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        link.target === "_blank" ||
+        link.hasAttribute("download")
+    ) {
+        return false;
+    }
+
+    return true;
+}
+
+/* button要素をクリックした位置から波紋を表示する */
+document.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+
+    if (!button || button.disabled) {
+        return;
+    }
+
+    const rect = button.getBoundingClientRect();
+    const ripple = document.createElement("span");
+
+    ripple.className = "button-ripple";
+    ripple.style.left = `${event.clientX - rect.left}px`;
+    ripple.style.top = `${event.clientY - rect.top}px`;
+
+    button.appendChild(ripple);
+
+    ripple.addEventListener(
+        "animationend",
+        () => {
+            ripple.remove();
+        },
+        { once: true }
+    );
+});
+
+/* ブラウザーの戻る操作後に遷移状態を解除する */
+window.addEventListener("pageshow", () => {
+    document.body.classList.remove("is-page-leaving");
+});
