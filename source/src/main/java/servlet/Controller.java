@@ -146,7 +146,7 @@ public class Controller extends HttpServlet {
 						//工数入力画面表示[]
 
 						WorksAction wAction = new WorksAction(request);
-						page = wAction.worksInsert();	
+						page = wAction.workRegist();	
 						} 		
 			}
 			//タスク詳細画面 --------------------------------
@@ -314,7 +314,12 @@ public class Controller extends HttpServlet {
 			}
 			//タスク詳細画面 ------------------------------------
 			else if (pageId.equals("T003")) {
-				if ("未着手".equals(buttonId)
+				//タスク編集画面表示
+				if (buttonId.equals("編集")) {
+					TasksAction tAction = new TasksAction(request);
+					page = tAction.details();
+					
+				}else if ("未着手".equals(buttonId)
 				        || "進行中".equals(buttonId)
 				        || "保留".equals(buttonId)
 				        || "完了".equals(buttonId)) {
