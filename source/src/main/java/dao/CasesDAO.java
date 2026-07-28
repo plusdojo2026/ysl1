@@ -103,7 +103,7 @@ public class CasesDAO {
 				+ " pm.user_name AS user_names"
 				+ " FROM `cases` c"
 				+ " LEFT JOIN users pm"
-				+ " ON c.pm_id = pm.id";
+				+ " ON c.pm_id = pm.id ";
 				
 	}
 
@@ -176,7 +176,7 @@ public class CasesDAO {
 		ArrayList<AllDTO> allDTOs = new ArrayList<>();
 
 		String sql = createCasesListSql() +
-				"WHERE c.id = ?";
+				" WHERE c.id = ?";
 
 		System.out.println("【selectCases SQL】");
 		System.out.println(sql);
