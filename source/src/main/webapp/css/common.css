@@ -302,6 +302,9 @@ input[type="submit"]:hover {
 	background-color: #2563eb;
 	font-weight: bold;
 }
+.sidebar .decoration #flowerLeft{
+	max-width: 214px;
+}
 
 .sidebar-nav ul {
 	margin: 0;
