@@ -31,7 +31,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
             <!-- 編集ボタン -->
             <div class="top-button-area">
                 <form action="${pageContext.request.contextPath}/Controller" method="post">
-                    <input type="hidden" name="pageId" value="T002">
+                    <input type="hidden" name="pageId" value="T003">
                     <input type="hidden" name="taskId" value="${detailsList.taskId}">
                     <button type="submit" name="buttonId" value="編集">編集</button>
                 </form>
@@ -109,7 +109,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
                         <div class="status-buttons">
                             <form action="${pageContext.request.contextPath}/Controller" method="post">
 
-                                <input type="hidden" name="pageId" value="T002">
+                                <input type="hidden" name="pageId" value="T003">
                                 <input type="hidden" name="taskId" value="${detailsList.taskId}">
 
                                 <c:if test="${detailsList.taskStatus != '未着手'}">
@@ -155,10 +155,12 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
                 <div class="works-header">
                     <h3>工数実績</h3>
 
-                    <button type="button" name="buttonId" value="工数入力" id="workInputButton">
-                        工数入力
-                    </button>
-
+                    <form action="${pageContext.request.contextPath}/Controller" method="post">
+                        <input type="hidden" name="pageId" value="T003">
+                        <button type="submit" name="buttonId" value="工数入力">
+                            工数入力
+                        </button>
+                    </form>
                 </div>
 
                 <table>
@@ -183,10 +185,9 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
                                 <td>${worksDTO.actualHours} h</td>
                                 <td>
 
-                                    <form action="${pageContext.request.contextPath}/Controller"
-                                        method="post">
+                                    <form action="${pageContext.request.contextPath}/Controller" method="post">
 
-                                        <input type="hidden" name="pageId" value="T002">
+                                        <input type="hidden" name="pageId" value="T003">
 
                                         <input type="hidden"
                                             name="taskId"
