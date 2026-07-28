@@ -157,6 +157,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
 
                     <form action="${pageContext.request.contextPath}/Controller" method="post">
                         <input type="hidden" name="pageId" value="T003">
+                        <input type="hidden" name="taskId" value="${detailsList.taskId}">
                         <button type="submit" name="buttonId" value="工数入力">
                             工数入力
                         </button>

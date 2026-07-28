@@ -242,17 +242,28 @@ public class TasksAction {
 
 	    // パラメータ取得
 	    String taskIdStr = request.getParameter("taskId");
-	    String taskStatus = request.getParameter("taskStatus");
-
-	    int taskId = Integer.parseInt(taskIdStr);
+	    String taskStatus = request.getParameter("buttonId");
+	    int taskId = 0;
+	    
+	    if(taskIdStr != null) {
+		    taskId = Integer.parseInt(taskIdStr);	    	
+	    }else {
+	    	System.out.println("タスクIDを入れろやボケェ！");
+	    	//中断
+	    	return page;
+	    }
 
 	    // 更新処理
 	    TasksService service = new TasksService();
 	    boolean result = service.updateStatus(taskId, taskStatus);
 
 	    if (!result) {
-	        page = "/WEB-INF/jsp/tasks_details.jsp";
+	        System.out.println("お前は間違いを犯した。");
 	    }
+	    //再度タスク詳細を取得
+    	AllDTO detailsList = service.details(taskId);
+    	request.setAttribute("detailsList", detailsList);
+
 
 	    return page;
 	}

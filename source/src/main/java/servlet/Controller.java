@@ -317,7 +317,7 @@ public class Controller extends HttpServlet {
 				//タスク編集画面表示
 				if (buttonId.equals("編集")) {
 					TasksAction tAction = new TasksAction(request);
-					page = tAction.details();
+					page = tAction.functions();
 					
 				}else if ("未着手".equals(buttonId)
 				        || "進行中".equals(buttonId)
@@ -331,9 +331,9 @@ public class Controller extends HttpServlet {
 					WorksAction wAction = new WorksAction(request);
 					page = wAction.delete();
 
-					//							} else if (buttonId.equals("工数入力")) {
-					//								//工数入力モーダル
-					//								page = wAction.insert();
+				}else if(buttonId.equals("工数入力")) {
+					WorksAction wAction = new WorksAction(request);
+					page = wAction.workRegist();
 				}
 			}
 			//月次集計画面 ------------------------------------
