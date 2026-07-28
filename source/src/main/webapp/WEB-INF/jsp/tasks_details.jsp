@@ -18,14 +18,14 @@
 
 </head>
 <body>
-${detailsList.taskId}
 <!-- ヘッダー、サイドメニュー -->
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 
 	<div class="container">
 		<main class="main">
-            <h2>タスク詳細</h2>
+            <h3>タスク詳細:</h3><br>
+            <h2>${detailsList.taskName}</h2>
 
             <!-- 編集ボタン -->
             <div class="top-button-area">
