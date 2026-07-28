@@ -12,14 +12,14 @@ public class CasesDTO {
 	private String startDate;
 	private String plannedEndDate;
 	private String caseDescription;
-	private int casePlannedHours;
+	private double casePlannedHours;
 
 	public CasesDTO() {
 		super();
 	}
 
 	public CasesDTO(int id, String caseName, int caseCode, String customerName, String casePriority, int pmId,
-			String caseStatus, String startDate, String plannedEndDate, String caseDescription, int casePlannedHours) {
+			String caseStatus, String startDate, String plannedEndDate, String caseDescription, double casePlannedHours) {
 		super();
 		this.id = id;
 		this.caseName = caseName;
@@ -114,11 +114,11 @@ public class CasesDTO {
 		this.caseDescription = caseDescription;
 	}
 
-	public int getCasePlannedHours() {
+	public double getCasePlannedHours() {
 		return casePlannedHours;
 	}
 
-	public void setCasePlannedHours(int casePlannedHours) {
+	public void setCasePlannedHours(double casePlannedHours) {
 		this.casePlannedHours = casePlannedHours;
 	}
 }
