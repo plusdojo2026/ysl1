@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+main {
+	padding: 15px;
+	max-width: 400px; 
+	margin: 0 auto;
+	font-family: sans-serif;
+}
+
+main h1 {
+	font-size: 18px;
+	color: #1A365D;
+	margin-bottom: 12px;
+}
+
+/* カード全体の枠組み */
+#works {
+	background-color: white;
+	border-radius: 10px;
+	padding: 16px 20px; 
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+	border: 1px solid #E2E8F0;
+	color: #475569;
+	font-size: 13px;
+}
+
+/* 案件名・タスク名のスタイル */
+#works .info-item {
+	margin-bottom: 4px;
+	font-weight: bold;
+}
+
+/* 入力エリアの隙間を詰める */
+#works .field-group {
+	margin-top: 8px; 
+}
+
+#works .field-group label {
+	display: block;
+	font-size: 12px;
+	margin-bottom: 2px; 
+	color: #64748b;
+}
+
+/* 入力欄サイズ個別設定 */
+#works input[type="datetime-local"],
+#works input[type="number"],
+#works input[type="text"] {
+	box-sizing: border-box;
+	padding: 5px 8px;
+	font-size: 13px;
+	border: 1px solid #CBD5E1;
+	border-radius: 4px;
+	outline: none;
+	background-color: white;
+}
+
+#works input[type="datetime-local"] {
+	width: 200px;
+}
+
+#works input[type="number"] {
+	width: 80px; 
+}
+
+#works input[type="text"] {
+	width: 100%; 
+}
+
+/* ------------------------------------------
+   ボタン領域（中央寄せ＆色を反映）
+   ------------------------------------------ */
+#works .button-group {
+	text-align: center ; 
+	margin-top: 16px;
+}
+
+#works input[type="submit"] {
+	background-color: #2563EB ;
+	border: 1px solid #2563EB ;
+	color: white ;
+	display: inline-block;
+	padding: 6px 18px;
+	font-size: 13px;
+	font-weight: bold;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+/* キャンセルボタン*/
+#btn-cancel {
+	appearance: none;
+    -webkit-appearance: none;
+	background-color: #ffffff ;
+	border: 1px solid #cbd5e1 ;
+	color: #475569 ;
+	margin-right: 8px;
+}
+
+#btn-cancel:hover {
+	background-color: #f1f5f9 ;
+	color: #1e293b ;
+}
+
+/* 工数入力ボタン */
+#btn-submit{
+	appearance: none;
+    -webkit-appearance: none;
+	background-color: #2563EB ;
+	border: 1px solid #2563EB ;
+	color: white ;
+}
+
+#btn-submit:hover {
+	background-color: #1D4ED8 ;
+}
