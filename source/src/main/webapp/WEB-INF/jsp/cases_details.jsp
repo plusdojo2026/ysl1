@@ -39,12 +39,15 @@
 	
 	<form action="/ysl1/Controller" method="post">
 		<input type="hidden" name="pageId" value="C003">
-		<input type ="hidden" name="caseId">
+		
 		
 		<c:forEach var="c" items="${casesList}">
 			<tr>
 				<td>案件コード</td>
-				<td>${c.caseCode}</td>
+				<td>
+					<input type ="hidden" name="id" value="${c.caseId}">
+					${c.caseCode}
+				</td>
 			</tr>
 
 			<tr>
@@ -101,7 +104,7 @@
 			<tr>
 				<td>説明</td>
 				<td>${c.caseDescription}</td>
-				<td><input type="submit" name="buttoId" value="案件編集"></td>
+				<td><input type="submit" name="buttonId" value="案件編集"></td>
 			</tr>
 		</c:forEach>
 	</form>

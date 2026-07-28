@@ -128,7 +128,7 @@
 		   	<c:if test="${param.buttonId=='新規登録' }">
 				<input type="submit"name=buttonId value="登録">
 			</c:if>
-			<c:if test="${param.buttonId=='編集' }">
+			<c:if test="${param.buttonId=='編集'or param.buttonId=='案件編集' }">
 				<input type="submit"name=buttonId value="編集">
 			</c:if>
 		</div>
