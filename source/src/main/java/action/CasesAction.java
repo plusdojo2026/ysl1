@@ -239,7 +239,7 @@ public class CasesAction {
 	 * @throws UnsupportedEncodingException
 	 */
 	public String update() throws UnsupportedEncodingException {
-		String page = "/WEB-INF/jsp/cases_regist.jsp";
+		String page = "/WEB-INF/jsp/cases.jsp";
 
 		//値の取得
 		request.setCharacterEncoding("UTF-8");
