@@ -120,7 +120,7 @@ public Connection conn = null;
 					AllDTO selectSum = new AllDTO();
 					
 					// ①月合計工数のSQL文を準備する
-					String sql1 = "select sum(actual_hours) as monthly_total_hours from works where date_format(work_date, '%Y-%m')=?";
+					String sql1 = "select COALESCE(SUM(actual_hours), 0) as monthly_total_hours from works where date_format(work_date, '%Y-%m')=?";
 					
 					//デバッグ（SQL文の確認用）
 					System.out.println(sql1);

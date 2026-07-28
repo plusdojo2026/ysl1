@@ -209,6 +209,7 @@ public class WorksAction {
 			request.setAttribute("workList", workList);           //工数ログ一覧のリスト
 			request.setAttribute("selectedMonth", month);         //選択された月
 			request.setAttribute("displayMode", "workList");      //工数一覧ボタンを押すと工数ログが表示される
+			request.setAttribute("selectMonth", month);           //作ったMonthを表示
 			return page;
 	
 		}
