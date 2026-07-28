@@ -155,7 +155,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
                 <div class="works-header">
                     <h3>工数実績</h3>
 
-                    <button type="button" id="workInputButton">
+                    <button type="button" name="buttonId" value="工数入力" id="workInputButton">
                         工数入力
                     </button>
 
@@ -194,7 +194,7 @@ detailsList = ${detailsList}<br>2detailsList.class = ${detailsList.getClass()}<b
 
                                         <input type="hidden"
                                             name="workId"
-                                            value="${worksDTO.id}">
+                                            value="${worksDTO.workId}">
 
                                         <button
                                             type="submit"

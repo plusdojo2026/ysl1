@@ -72,7 +72,7 @@
 				<th>ステータス</th>
 				<th>優先度</th>
 				<th>期限</th>
-				<th>見積/実績工数</th>
+				<th>実績/工数見積</th>
 				<th>進捗</th>
 				<th>編集</th>
 			</tr>
@@ -102,7 +102,7 @@
 				<form method="POST" action="<c:url value='/Controller'/>">
 					<input type="hidden" name="pageId" value="T001">
 					<input type="hidden" name="taskId" value="${e.taskId}"> 
-					<input type="submit" name="buttonId" value="編集">
+					<input type="submit" id="edit" name="buttonId" value="編集">
 					<!-- <input type="image"  src="<c:url value='/images/edit.png'/>" alt="編集"> -->
 				</form>
 			</td>
