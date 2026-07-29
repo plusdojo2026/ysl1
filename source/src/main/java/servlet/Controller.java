@@ -191,7 +191,7 @@ public class Controller extends HttpServlet {
 			} else if (pageId.equals("U002") && buttonId.equals("保存")) {
 				UsersAction uAction = new UsersAction(request);
 				//パスワード更新処理[結果:成功メッセージ]
-				page = uAction.update();
+				page = uAction.resetPassword();
 
 				//メンバー一覧画面 --------------------------------
 			} else if (pageId.equals("U003")) {

@@ -60,7 +60,7 @@
                    value="${updateUser.mailAddress}"
                    placeholder="メールアドレスを入力"
                    autocomplete="email"
-                   required>
+                   >
 
             <c:if test="${not empty errorMsgMail}">
                 <div class="error">

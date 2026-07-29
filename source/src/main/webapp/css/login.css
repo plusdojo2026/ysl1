@@ -202,7 +202,7 @@
 ======================================== */
 
 .login-field-error {
-    display: flex;
+    display: none;
     align-items: flex-start;
     gap: 7px;
 
@@ -216,7 +216,12 @@
     animation: login-error-enter 0.3s
         cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+.login-field-error.is-visible {
+    display: flex;
 
+    animation: login-error-enter 0.3s
+        cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 .login-field-error__icon {
     display: inline-flex;
     flex: 0 0 17px;

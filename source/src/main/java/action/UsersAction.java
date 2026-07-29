@@ -535,4 +535,176 @@ public class UsersAction {
 		return page;
 	}
 
+	/**
+	 * パスワードリセット処理を実行する。
+	 *
+	 * @return 遷移先ページ
+	 */
+	public String resetPassword() {
+
+		String page = "/WEB-INF/jsp/resetPassword.jsp";
+
+		/* ログインユーザーをセッションから取得する */
+		HttpSession session = request.getSession();
+
+		UsersDTO loginUser = (UsersDTO) session.getAttribute("user");
+
+		if (loginUser == null) {
+
+			request.setAttribute(
+					"message",
+					"ログイン情報がありません。再度ログインしてください。");
+
+			return "/WEB-INF/jsp/login.jsp";
+		}
+
+		/* 入力値を取得する */
+		String passwordNow = request.getParameter("passwordNow");
+
+		String newPassword = request.getParameter("loginPw");
+
+		String newPasswordConfirm = request.getParameter("loginPwConfirm");
+
+		boolean hasError = false;
+
+		/* 現在のパスワード未入力チェック */
+		if (passwordNow == null
+				|| passwordNow.isBlank()) {
+
+			request.setAttribute(
+					"errorMsgPasswordNow",
+					"現在のパスワードを入力してください。");
+
+			hasError = true;
+		}
+
+		/* 新しいパスワード入力チェック */
+		if (newPassword == null
+				|| newPassword.isBlank()) {
+
+			request.setAttribute(
+					"errorMsgPw",
+					"新しいパスワードを入力してください。");
+
+			hasError = true;
+
+		} else if (!newPassword.matches(
+				"^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$")) {
+
+			request.setAttribute(
+					"errorMsgPw",
+					"パスワードは8～20文字の半角英数字で、"
+							+ "英字と数字を両方含めてください。");
+
+			hasError = true;
+		}
+
+		/* 確認用パスワード入力チェック */
+		if (newPasswordConfirm == null
+				|| newPasswordConfirm.isBlank()) {
+
+			request.setAttribute(
+					"errorMsgPwConfirm",
+					"確認用パスワードを入力してください。");
+
+			hasError = true;
+
+		} else if (newPassword != null
+				&& !newPassword.equals(newPasswordConfirm)) {
+
+			request.setAttribute(
+					"errorMsgPwConfirm",
+					"新しいパスワードが一致しません。");
+
+			hasError = true;
+		}
+
+		if (hasError) {
+			return page;
+		}
+
+		try {
+
+			/* セッションのユーザーIDで更新対象を取得する */
+			UsersDTO updateUser = usersService.select(
+					new UsersDTO(loginUser.getUserId()));
+
+			if (updateUser == null) {
+
+				request.setAttribute(
+						"message",
+						"ユーザー情報が見つかりません。");
+
+				return page;
+			}
+
+			/* 現在のパスワードを確認する */
+			if (!BCrypt.checkpw(
+					passwordNow,
+					updateUser.getLoginPw())) {
+
+				request.setAttribute(
+						"errorMsgPasswordNow",
+						"現在のパスワードが正しくありません。");
+
+				return page;
+			}
+
+			/* 新しいパスワードをハッシュ化する */
+			String hashedPassword = BCrypt.hashpw(
+					newPassword,
+					BCrypt.gensalt(12));
+
+			updateUser.setLoginPw(hashedPassword);
+
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+					"yyyy-MM-dd HH:mm:ss");
+
+			updateUser.setUpdateAt(
+					LocalDateTime.now().format(formatter));
+
+			/* UPDATEを実行する */
+			if (usersService.update(updateUser)) {
+
+				/*
+				 * セッション内のユーザー情報も
+				 * 更新後の値へ差し替える
+				 */
+				session.setAttribute(
+						"user",
+						updateUser);
+
+				request.setAttribute(
+						"message",
+						"パスワードを変更しました。");
+
+				page = "/WEB-INF/jsp/home.jsp";
+
+			} else {
+
+				request.setAttribute(
+						"message",
+						"パスワードの変更に失敗しました。");
+			}
+
+		} catch (IllegalArgumentException e) {
+
+			/*
+			 * DBに保存されているパスワードが
+			 * BCrypt形式ではない場合
+			 */
+			request.setAttribute(
+					"message",
+					"パスワードの確認中にエラーが発生しました。");
+
+		} catch (Exception e) {
+
+			request.setAttribute(
+					"message",
+					"パスワード変更処理中にエラーが発生しました。");
+		}
+
+		return page;
+	}
+
 }
