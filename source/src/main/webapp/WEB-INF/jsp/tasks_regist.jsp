@@ -207,7 +207,7 @@
 					<input
 						type="date"
 						name="startDate"
-						value="">
+						value="${today}">
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -226,7 +226,7 @@
 					<input
 						type="date"
 						name="deadline"
-						value="">
+						value="${today}">
 				</c:otherwise>
 			</c:choose>
 		</div>

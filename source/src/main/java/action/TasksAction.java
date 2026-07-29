@@ -133,7 +133,10 @@ public class TasksAction {
 			//タスク詳細と、編集モードの状態を格納
 			request.setAttribute("taskList", taskList);
 		} else {
+			//とりあえずtaskListに空でも入れる
 			request.setAttribute("taskList", new TasksDTO());
+			//時間フォーマット
+			request.setAttribute("today", java.time.LocalDate.now().toString());
 		}
 
 		//service呼び出し、案件名とPM名のリストを格納
