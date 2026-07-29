@@ -23,7 +23,7 @@
 <div class="info-item">タスク名：${task.taskName}</div>
 <!-- 入力項目 -->
 <div class="field-group"><label>作業日</label><input type="datetime-local" name="workDate" required></div>
-<div class="field-group"><label>工数</label><input type="number" name="actualHours" step="0.5" required></div>
+<div class="field-group"><label>工数</label><input type="number" name="actualHours" min="0.5" max="24" step="0.5" required></div>
 <div class="field-group"><label>作業内容</label><input type="text" name="workDescription"></div>
 
 <div class="button-group">
