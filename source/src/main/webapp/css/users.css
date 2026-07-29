@@ -3,3 +3,40 @@
 #regist {
 	margin-bottom: 13px;
 }
+
+/*ユーザーの新規登録-------------------------------------------------*/
+.radioArea {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.title {
+    min-width: 60px;
+}
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.authorityAdmin,
+.authorityUser {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.authorityAdmin label,
+.authorityUser label {
+    display: inline;
+    padding-top: 5.5px;
+}
+
+#submitArea{
+	margin-top: 12px;
+}
+
+
+/**/
