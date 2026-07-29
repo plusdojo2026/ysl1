@@ -150,12 +150,12 @@
 			<td>${t.taskPriority}</td>
 			<td>${t.deadline.substring(0, 10)}</td>
 			
-			<td>${t.taskPlannedHours}</td>/<td>${t.actualHours}</td>
+			<td colspan="2">${t.taskPlannedHours}/${t.actualHours}</td>
 			<td>${t.taskProgressRate}</td>
-			<input>
+			
 			
 			<td><input type="submit" name="buttonId" value="タスク編集">
-			<input type="submit" name="buttonId" value="タスク削除">
+			<input type="submit" name="buttonId" value="タスク削除" onclick="return delete1()">
 			<input type="submit" name="buttonId" value="工数入力"></td>
 		</tr>
 		</c:forEach>
@@ -218,6 +218,13 @@
     // クリックされたボタン自身にもactiveを付けて選択状態を見せる
     btnElement.classList.add('active');
   }
+  //削除ボタンのアラート
+  function delete1(){
+		if (!confirm("削除します。よろしいですか？")) {
+			return false;
+			}
+	}
+
 </script>
 </body>
 </html>
