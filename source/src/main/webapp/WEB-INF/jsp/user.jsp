@@ -12,7 +12,6 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
 <main>
-
     <div>
         <form action="Controller" method="get">
          <input type="hidden" name="pageId" value="U003">
@@ -48,7 +47,10 @@
 					<td><c:if test="${u.active}">有効</c:if><c:if test="${!u.active}">無効</c:if></td>
 					<td>${u.createdAt}</td>
 					<td>${u.updateAt}</td>
-                    <td><button name="buttonId" value="無効" type="submit">無効化</button></td>
+                    <td><c:if test="${!u.active}">    <button name="buttonId" value="有効" type="submit">有効化</button></c:if><c:if test="${u.active}">    <button name="buttonId" value="無効" type="submit">無効化</button></c:if>
+                   </td>
+                    
+                    
                     <td><button name="buttonId" type="submit" value="編集"> 編集</button></td>
 				</tr>
                 </form>
