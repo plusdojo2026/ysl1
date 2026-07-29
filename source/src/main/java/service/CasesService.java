@@ -226,7 +226,7 @@ public class CasesService extends DBAccess {
 			System.out.println("SQL文おかしいよ");
 			e.printStackTrace();
 		}
-
+//		super.close();
 		return ans;
 	}
 
