@@ -78,16 +78,6 @@ public class WorksAction {
 			System.out.println("actualHours = " + actualHours);
 			System.out.println("workDescription = " + workDescription);
 
-			int ans1 = service.worksInsert(
-			        userId,
-			        taskId,
-			        workDate,
-			        actualHours,
-			        workDescription
-			);
-
-			System.out.println("登録件数 ans = " + ans1);
-
 			
 			//タスク詳細表示メソッドを呼び出す
 			TasksService tasksService = new TasksService();

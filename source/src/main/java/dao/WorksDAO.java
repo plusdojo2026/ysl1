@@ -60,6 +60,7 @@ public Connection conn = null;
 				String sql ="INSERT INTO works(user_id,task_id,work_date,actual_hours,work_description) VALUES(?,?,?,?,?)";
 				//デバッグ（SQL文の確認用）
 				System.out.println(sql);
+				System.out.println("worksInsert実行");
 				
 				// まとめる
 				PreparedStatement pStmt = conn.prepareStatement(sql);
