@@ -47,3 +47,19 @@
     color: #005fa3 !important;
     border-color: #005fa3;
 }
+#delete {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent !important;
+    color: #4f5b66 !important;
+    border: 2px solid #4f5b66;
+    padding: 6px 12px;
+    font-size: 16px;
+    margin-top: 14px;
+}
+
+#delete:hover {
+    background: transparent !important;
+    color: #d9534f !important;
+    border-color: #d9534f;
+}

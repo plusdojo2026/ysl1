@@ -8,6 +8,7 @@
     <title>ユーザー編集</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/users.css">
 </head>
 <body>
 
@@ -105,7 +106,7 @@
         <!-- 権限：false = 管理者、true = 一般 -->
         <fieldset class="formItem">
             <legend>権限</legend>
-
+			<div class="radioArea">
             <input type="radio"
                    name="authority"
                    id="authorityAdmin"
@@ -119,7 +120,7 @@
                    value="1"
                    ${updateUser.authority ? 'checked' : ''}>
             <label for="authorityGeneral">一般</label>
-
+			</div>
             <c:if test="${not empty errorMsgAuthority}">
                 <div class="error">
                     <c:out value="${errorMsgAuthority}"/>
@@ -130,7 +131,7 @@
         <!-- 状態：false = 無効、true = 有効 -->
         <fieldset class="formItem">
             <legend>状態</legend>
-
+			<div class="radioArea">
             <input type="radio"
                    name="userStatus"
                    id="userStatusDisabled"
@@ -144,7 +145,7 @@
                    value="1"
                    ${updateUser.active ? 'checked' : ''}>
             <label for="userStatusEnabled">有効</label>
-
+			</div>
             <c:if test="${not empty errorMsgStatus}">
                 <div class="error">
                     <c:out value="${errorMsgStatus}"/>

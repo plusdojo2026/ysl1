@@ -17,8 +17,6 @@ CREATE TABLE IF NOT EXISTS works (
     CONSTRAINT chk_works_actual_hours
         CHECK (actual_hours >= 0 AND actual_hours <= 24),
 
-    CONSTRAINT uk_works_user_task_date
-        UNIQUE (user_id, task_id, work_date),
 
     CONSTRAINT fk_works_user
         FOREIGN KEY (user_id)

@@ -85,7 +85,7 @@ public class Controller extends HttpServlet {
 			} else if (pageId.equals("C003")) {
 				System.out.println("aaaaaa");
 				CasesAction action = new CasesAction(request);
-				page = action.intiCasesDetail();
+				page = action.intiCasesDetail1();
 			}
 			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {
@@ -294,6 +294,9 @@ public class Controller extends HttpServlet {
 				} else if (buttonId.equals("編集")) {
 					//タスク編集画面表示[]
 					page = tAction.functions();
+				} else if (buttonId.equals("削除")) {
+					//タスク削除処理
+					page = tAction.delete();
 				}
 			}
 

@@ -367,6 +367,20 @@ tbody tr:hover {
         0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+.dt-button {
+    background-color: #4CAF50;
+    color: white ;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.dt-button:hover {
+    background-color: #45a049;
+}
 
 /* =========================
    レスポンシブ

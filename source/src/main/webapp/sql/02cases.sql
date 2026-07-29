@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS cases (
 
     case_description VARCHAR(1000),
 
-    case_planned_hours DEMICAL(10,1),
+    case_planned_hours DECIMAL(10,1),
 
     CONSTRAINT chk_cases_planned_hours
         CHECK (
