@@ -22,7 +22,15 @@ public class CasesAction {
 	}
 
 	//案件詳細を持ってくるメソッド
-	public String intiCasesDetail() throws UnsupportedEncodingException {
+	public void intiCasesDetail() throws UnsupportedEncodingException {
+		intiCasesDetail1();
+		intiCasesDetail2();
+		intiCasesDetail3();
+
+	}
+
+	public String intiCasesDetail1() throws UnsupportedEncodingException {
+
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 
 		String ans = null;
@@ -44,7 +52,6 @@ public class CasesAction {
 		request.setAttribute("worksList", worksList);
 
 		return page;
-
 	}
 
 	//タスクを持ってくるメソッド
@@ -305,9 +312,9 @@ public class CasesAction {
 		} else {
 			request.setAttribute("msg", "変更失敗しました");
 		}
+
 		intiCasesDetail();
-		intiCasesDetail2();
-		intiCasesDetail3();
+
 		return page;
 	}
 
