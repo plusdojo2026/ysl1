@@ -60,14 +60,15 @@
 			</c:forEach>
 		</select>
 	</div>
-
-	<div>
-		<form action="${pageContext.request.contextPath}/Controller" method="post">
-			<input type="hidden" name="pageId" value="T001">
-			<button type="submit" name="buttonId" value="登録" id="regist">＋新規登録</button>
-		</form>
-	</div>
 </div>
+	<form action="${pageContext.request.contextPath}/Controller" method="post">
+		<input type="hidden" name="pageId" value="T001">
+		<div class="btn">
+		<button type="submit" name="buttonId" value="登録" id="regist">＋新規登録</button>
+		</div>
+	</form>
+	
+
 
 <!-- タスクの一覧表示 -->
 <table class="table" id="tasksTable" border="1">	
