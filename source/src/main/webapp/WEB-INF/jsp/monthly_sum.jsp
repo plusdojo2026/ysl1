@@ -174,7 +174,7 @@
 		<tbody>
 		<c:forEach var="workData" items="${workList}">
 		<tr>
-			<td>${workData.workDate}</td>
+			<td>${workData.workDate.substring(0,16)}</td>
 			<td>${workData.caseName}</td>
 			<td>${workData.taskName}</td>
 			<td>${workData.userName}</td>
