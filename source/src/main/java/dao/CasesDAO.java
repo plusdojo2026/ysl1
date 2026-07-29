@@ -129,13 +129,27 @@ public class CasesDAO {
 		dto.setCasePriority(rs.getString("case_priority"));
 		dto.setPmId(rs.getInt("pm_id"));
 		dto.setCaseStatus(rs.getString("case_status"));
-		dto.setStartDate(rs.getString("start_date"));
-		dto.setPlannedEndDate(
-				rs.getString("planned_end_date"));
+		if(rs.getString("start_date").equals("1970-12-31 00:00:00")) {
+			dto.setStartDate(null);
+		}else {
+			dto.setStartDate(rs.getString("start_date"));
+		}
+		if(rs.getString("planned_end_date").equals("1970-12-31 00:00:00")) {
+			dto.setStartDate(null);
+		}else {
+			dto.setPlannedEndDate(
+					rs.getString("planned_end_date"));
+		}		
 		dto.setCaseDescription(
 				rs.getString("case_description"));
-		dto.setCasePlannedHours(
-				rs.getDouble("case_planned_hours"));
+		
+		if(rs.getDouble("case_planned_hours")==9999.0) {
+			dto.setCasePlannedHours(0);
+		}else {
+			dto.setCasePlannedHours(
+					rs.getDouble("case_planned_hours"));
+		}
+		
 
 		dto.setUserName(rs.getString("user_names"));
 		dto.setCaseSum(rs.getInt("task_count"));
@@ -483,17 +497,28 @@ public class CasesDAO {
 							rs.getString("case_status"));
 					dto.setCasePriority(
 							rs.getString("case_priority"));
-					dto.setStartDate(
-							rs.getString("start_date"));
-					dto.setPlannedEndDate(
-							rs.getString(
-									"planned_end_date"));
+					if(rs.getString("start_date").equals("1970-12-31 00:00:00")) {
+						dto.setStartDate(null);
+					}else {
+						dto.setStartDate(rs.getString("start_date"));
+					}
+					if(rs.getString("planned_end_date").equals("1970-12-31 00:00:00")) {
+						dto.setStartDate(null);
+					}else {
+						dto.setPlannedEndDate(
+								rs.getString("planned_end_date"));
+					}
+					
+					
 					dto.setCaseDescription(
 							rs.getString(
 									"case_description"));
-					dto.setCasePlannedHours(
-							rs.getDouble(
-									"case_planned_hours"));
+					if(rs.getDouble("case_planned_hours")==(9999.0)) {
+						dto.setCasePlannedHours(0);
+					}else {
+						dto.setCasePlannedHours(
+								rs.getDouble("case_planned_hours"));
+					}
 				}
 			}
 		}

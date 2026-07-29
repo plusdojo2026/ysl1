@@ -16,7 +16,7 @@
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
  	<main>
  	
- 	<c:if test="${param.buttonId=='新規登録' }">
+ 	<c:if test="${param.buttonId=='新規登録'or param.buttonId=='登録' }">
 		<h2>案件登録</h2>
 	</c:if>
 	<c:if test="${param.buttonId=='編集' or param.buttonId=='案件編集'}">
@@ -111,7 +111,8 @@
 		    	
 			    	<td class="label">予定工数(h)</td>
 			    	<td colspan="3">
-			    	<input type="number" name="casePlannedHours" step="0.5" value="${cases.casePlannedHours }">
+			    	<input type="number" name="casePlannedHours" step="0.5" 
+			    	value="${cases.casePlannedHours }">
 			    	</td>
 		    	
 		    	</tr>
@@ -129,13 +130,15 @@
 		<div class="buttonArea">
 			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button" id="cancel" value="キャンセル"onclick="history.back()">
-		   	<c:if test="${param.buttonId=='新規登録' }">
-				<input type="submit" id="regist" name=buttonId value="登録">
+		   	<c:if test="${param.buttonId=='新規登録'or param.buttonId=='登録' }">
+				<input type="submit" id="regist" name="buttonId" value="登録">
+				
 			</c:if>
 			<c:if test="${param.buttonId=='編集'or param.buttonId=='案件編集' }">
-				<input type="submit" id="edit" name=buttonId value="編集">
+				<input type="submit" id="edit" name="buttonId" value="編集">
 			</c:if>
 			<p style=color:red><span id="msg"></span></p>
+			<p style="color:red;">${msg}</p>
 		</div>
 	</form>
 	
