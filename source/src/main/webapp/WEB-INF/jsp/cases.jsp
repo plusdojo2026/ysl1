@@ -43,6 +43,7 @@
 	</div>
 	</form>
 	<!--案件一覧 -->
+	<p style="color:red;">${msg}</p>
 	<table class="table table-bordered" id="cases" border="1" >
 
 		<thead>
