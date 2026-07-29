@@ -85,7 +85,7 @@ public class Controller extends HttpServlet {
 			} else if (pageId.equals("C003")) {
 				System.out.println("aaaaaa");
 				CasesAction action = new CasesAction(request);
-				page = action.intiCasesDetail();
+				page = action.intiCasesDetail1();
 			}
 			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {
