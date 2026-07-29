@@ -183,7 +183,7 @@
                             <tr>
 
                                 <td>${worksDTO.workDescription}</td>
-                                <td>${worksDTO.workDate}</td>
+                                <td>${worksDTO.workDate.substring(0,16)}</td>
                                 <td>${worksDTO.actualHours}</td>
                                 <td>
 
