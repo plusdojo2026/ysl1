@@ -300,7 +300,7 @@ public class CasesAction {
 		ArrayList<AllDTO> casesList = service.selectAll();
 		request.setAttribute("casesList", casesList);
 		this.initialize();
-		this.casesRegist();
+		casesEdit();
 		
 		service.close();
 
