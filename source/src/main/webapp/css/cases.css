@@ -20,6 +20,37 @@ td {
 text-align: center;
 }
 
+.search_area{
+    display:flex;
+    gap:20px;
+    padding-bottom: -15px;
+}
+
+.search{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:0px;
+    width:auto;
+    font-size:15px;    
+}
+
+.title{
+	margin-bottom:30px;
+}
+
+#caseStatus,#casePriority{
+    font-size:14px;  
+}
+
+
+.number {
+	font-size:30px;
+	font-weight:bold;
+}
+
+
+
+
 /*編集ボタン-------------------------------------------------------------*/
 #edit {
     appearance: none;
@@ -61,6 +92,14 @@ text-align: center;
     background: transparent !important;
     color: #005fa3 !important;
     border-color: #005fa3;
+}
+
+.btnarea{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 14px;
+    padding-top: -100px;
 }
 
 /*テーブルの大きさの指定*/

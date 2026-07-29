@@ -26,17 +26,17 @@
 	//------------------------------------------------------------
     
     // フィルタ処理で複合条件で絞り込みできるようにする	 
-	$(function () {
+
 
     const table = $("#cases").DataTable();
 
     function filterCases() {
-        const caseStatus = $("#caseStatus").val();
-        const casePriority = $("#casePriority").val();
+        const status = $("#caseStatus").val();
+        const priority = $("#casePriority").val();
        
 
-        table.column(3).search(caseStatus);
-        table.column(4).search(casePriority);
+        table.column(3).search(status);
+        table.column(4).search(priority);
 
         table.draw();
     }
@@ -44,7 +44,5 @@
     $("#caseStatus").on("change", filterCases);
     $("#casePriority").on("change", filterCases);
    
-
    
     });
-	});

@@ -19,32 +19,47 @@
 	<main>
 	<!--検索系統 -->
 	<div class="area">
-	<h1>案件一覧</h1>
+	<h1 class="title">案件一覧</h1>
 
 	<form action="${pageContext.request.contextPath}/Controller"
 		method="get">
 		<input type="hidden"name="pageId"value="C001">
-		<!-- <label>キーワード:</label> <input type="text" name="keyword"> ステータス
-		<select id="status" name="status">
-			<option value="すべて">すべて</option>
-			<option value="進行中">進行中</option>
-			<option value="完了">完了</option>
-			<option value="中止">中止</option>
-		</select> 優先度 <select id="priority" name="priority">
-			<option value="すべて">すべて</option>
-			<option value="高">高</option>
-			<option value="中">中</option>
-			<option value="低">低</option>
-		</select> <input type="submit" value="クリア"> <input type="submit"
-			value="検索"> -->
-			<div class="btn">
-			<input type="submit" id="regist" name="buttonId"value="新規登録"onclick="location.href='/Controller?pageId=C001'">
+		<!--  
+		<label>キーワード:</label> <input type="text" name="keyword"> ステータス-->
+		
+	<!-- 検索条件 -->
+	<div class="search_area">
+		<!-- ステータスの選択 -->
+		<div class="search">
+		<label for="caseStatus">ステータス</label>
+			<select id="caseStatus">
+				<option value="">すべて</option>
+				<option value="進行中">進行中</option>
+				<option value="完了">完了</option>
+				<option value="保留">保留</option>
+				<option value="未着手">未着手</option>			
+			</select>
+		</div>
+		
+		<!-- 優先度の選択 -->
+		<div class="search">
+		<label for="casePriority">優先度</label>
+			<select id="casePriority">
+				<option value="">すべて</option>
+				<option value="高">高</option>
+				<option value="中">中</option>
+				<option value="低">低</option>
+		 	</select> 
+		</div>
+	</div>
+			<div class="btnarea">
+			<input type="submit" id="regist" name="buttonId"value="+新規登録"onclick="location.href='/Controller?pageId=C001'">
 			</div>
 	</div>
 	</form>
 	<!--案件一覧 -->
 	<p style="color:red;">${msg}</p>
-	<table class="table table-bordered" id="cases" border="1" >
+	<table class="table" id="cases" border="1" >
 
 		<thead>
 			<tr>
