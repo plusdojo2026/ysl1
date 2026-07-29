@@ -1078,3 +1078,24 @@ input[type="submit"]:hover {
     }
 }
 
+/* 6. パスワード表示切り替えエリア */
+.show-password-wrapper {
+    margin-top: -15px;
+    margin-bottom: 8px; 
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.show-password-wrapper input[type="checkbox"] {
+    cursor: pointer;
+    margin: 0;
+}
+
+.show-password-label {
+    font-size: 13px;
+    color: #666666;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 4px;
+}
