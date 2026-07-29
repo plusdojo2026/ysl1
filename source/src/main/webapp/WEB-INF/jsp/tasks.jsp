@@ -63,7 +63,7 @@
 </div>
 	<form action="${pageContext.request.contextPath}/Controller" method="post">
 		<input type="hidden" name="pageId" value="T001">
-		<div class="btn">
+		<div class="btnarea">
 		<button type="submit" name="buttonId" value="登録" id="regist">＋新規登録</button>
 		</div>
 	</form>
