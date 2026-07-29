@@ -281,7 +281,7 @@ public class Controller extends HttpServlet {
 				} else if (buttonId.equals("工数入力")) {
 					WorksAction wAction = new WorksAction(request);
 					//工数登録画面表示
-					page = wAction.worksInsert();
+					page = wAction.workRegist();
 				}
 			}
 

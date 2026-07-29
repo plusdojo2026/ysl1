@@ -36,9 +36,7 @@
 <%@ include file="/WEB-INF/jsp/common/side_menu.jsp"%>
 
 <div class="container">
-
 	<main class="main">
-
 		<h2>
 			<c:choose>
 
@@ -55,122 +53,100 @@
 
 		<form action="${pageContext.request.contextPath}/Controller" method="post">
 
-			<input
-				type="hidden"
-				name="pageId"
-				value="T002">
-
-			<input
-				type="hidden"
-				name="taskId"
-				value="${taskList.id}">
+			<input type="hidden" name="pageId" value="T002">
+			<input type="hidden" name="taskId" value="${taskList.id}">
 
 		<!-- タスク名（大きく表示） -->
-
 			<div class="task-name-area">
 				<label>
 					タスク名
 					<span class="required">必須</span>
 				</label>
+				<c:choose>
 
-				<input
-					class="task-name-input"
-					type="text"
-					name="taskName"
-					maxlength="50"
-					required
-					value="${taskList.taskName}">
+					<c:when test="${mode=='edit'}">
+						<input
+							class="task-name-input"
+							type="text"
+							name="taskName"
+							maxlength="50"
+							required
+							value="${taskList.taskName}">
+					</c:when>
 
+					<c:otherwise>
+						<input
+							class="task-name-input"
+							type="text"
+							name="taskName"
+							maxlength="50"
+							required>
+					</c:otherwise>
+
+				</c:choose>
 			</div>
 
 		<!-- メインカード -->
-
 		<div class="task-card">
 
 		<!-- 左側 -->
-
 		<div class="left-column">
-
 		<div class="form-group">
+			<label>
+				案件
+				<span class="required">必須</span>
+			</label>
 
-		<label>
+			<select name="caseId">
+				<c:forEach
+					var="cases"
+					items="${casesList}">
+					<c:choose>
+						<c:when test="${mode=='edit'}">
+							<option
+								value="${cases.id}"
+								${cases.id==taskList.caseId?'selected':''}>
+							${cases.caseName}
+							</option>
+						</c:when>
 
-		案件
-
-		<span class="required">
-
-		必須
-
-		</span>
-
-		</label>
-
-		<select name="caseId">
-
-		<c:forEach
-			var="cases"
-			items="${casesList}">
-
-		<c:choose>
-
-		<c:when test="${mode=='edit'}">
-
-		<option
-			value="${cases.id}"
-			${cases.id==taskList.caseId?'selected':''}>
-
-		${cases.caseName}
-
-		</option>
-
-		</c:when>
-
-		<c:otherwise>
-
-		<option
-			value="${cases.id}"
-			${cases.id==caseId?'selected':''}>
-
-		${cases.caseName}
-
-		</option>
-
-		</c:otherwise>
-
-		</c:choose>
-
-		</c:forEach>
-
-		</select>
-
+						<c:otherwise>
+							<option
+								value="${cases.id}"
+								${cases.id==caseId?'selected':''}>
+								${cases.caseName}
+							</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
 		</div>
 
 		<div class="form-group">
+		<label>担当者</label>
+			<select name="managerId">
+				<c:forEach var="pm" items="${pmList}">
+					<c:choose>
 
-		<label>
+						<c:when test="${mode=='edit'}">
+							<option
+								value="${pm.userId}"
+								${taskList.managerId==pm.userId?'selected':''}>
+								${pm.userName}
+							</option>
+						</c:when>
 
-		担当者
+						<c:otherwise>
+							<option value="${pm.userId}">
+								${pm.userName}
+							</option>
+						</c:otherwise>
 
-		</label>
+					</c:choose>
 
-		<select name="managerId">
+				</c:forEach>
 
-		<c:forEach
-			var="pm"
-			items="${pmList}">
-
-		<option
-			value="${pm.userId}"
-			${taskList.managerId==pm.userId?'selected':''}>
-
-		${pm.userName}
-
-		</option>
-
-		</c:forEach>
-
-		</select>
-
+			</select>
 		</div>
 
 		<div class="form-group">
@@ -238,32 +214,43 @@
 
 		<div class="form-group">
 
-		<label>
+			<label>
+				開始日
+			</label>
+			<c:choose>
+				<c:when test="${mode=='edit'}">
+					<input
+						type="date"
+						name="startDate"
+						value="${fn:substring(taskList.startDate,0,10)}">
+				</c:when>
 
-		開始日
-
-		</label>
-
-		<input
-			type="date"
-			name="startDate"
-			value="${fn:substring(taskList.startDate,0,10)}">
-
+				<c:otherwise>
+					<input
+						type="date"
+						name="startDate"
+						value="">
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<div class="form-group">
+		<label>期限</label>
+			<c:choose>
+				<c:when test="${mode=='edit'}">
+					<input
+						type="date"
+						name="deadline"
+						value="${fn:substring(taskList.deadline,0,10)}">
+				</c:when>
 
-		<label>
-
-		期限
-
-		</label>
-
-		<input
-			type="date"
-			name="deadline"
-			value="${fn:substring(taskList.deadline,0,10)}">
-
+				<c:otherwise>
+					<input
+						type="date"
+						name="deadline"
+						value="">
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		</div>

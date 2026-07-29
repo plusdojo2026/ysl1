@@ -132,8 +132,8 @@ public class TasksAction {
 
 			//タスク詳細と、編集モードの状態を格納
 			request.setAttribute("taskList", taskList);
-		} else if (caseId == 0) {
-			return "/WEB-INF/jsp/tasks.jsp";
+		} else {
+			request.setAttribute("taskList", new TasksDTO());
 		}
 
 		//service呼び出し、案件名とPM名のリストを格納
