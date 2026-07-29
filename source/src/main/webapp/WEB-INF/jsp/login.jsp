@@ -24,7 +24,7 @@
                 <p class="login-card__eyebrow">TASK MANAGER</p>
                 <h2 id="loginTitle" class="login-card__title">ログイン</h2>
                 <p class="login-card__description">
-                    ログインIDとパスワードを入力してください。
+                   TASK MANAGERへようこそ。<br/>快適な業務管理をサポートします。
                 </p>
             </div>
 
@@ -88,8 +88,8 @@
                     </div>
 
                     <!-- ログインIDの入力エラー -->
-                    <c:if test="${not empty errorMsgId}">
-                        <div class="login-field-error"
+
+                        <div class="login-field-error ${not empty errorMsgId ? 'is-visible' : ''}"
                             id="loginIdError"
                             role="alert">
                             <span class="login-field-error__icon"
@@ -98,7 +98,7 @@
                                 <c:out value="${errorMsgId}" />
                             </span>
                         </div>
-                    </c:if>
+
                 </div>
 
                 <!-- パスワード -->
@@ -122,8 +122,8 @@
                     </div>
 
                     <!-- パスワードの入力エラー -->
-                    <c:if test="${not empty errorMsgPw}">
-                        <div class="login-field-error"
+
+                        <div class="login-field-error ${not empty errorMsgPw ? 'is-visible' : ''}"
                             id="loginPwError"
                             role="alert">
                             <span class="login-field-error__icon"
@@ -132,7 +132,7 @@
                                 <c:out value="${errorMsgPw}" />
                             </span>
                         </div>
-                    </c:if>
+
                 </div>
 
                 <div class="login-actions">
@@ -148,5 +148,6 @@
     <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 
     <script src="<c:url value='/js/common.js' />"></script>
+     <script src="<c:url value='/js/login.js' />"></script>
 </body>
 </html>
