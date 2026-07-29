@@ -63,3 +63,9 @@
     color: #d9534f !important;
     border-color: #d9534f;
 }
+
+/*テーブルの大きさの指定*/
+dataTables_wrapper {
+    width: 100%;
+    overflow: hidden; /* 親要素からのはみ出しをふせごう */
+}
