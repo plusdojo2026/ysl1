@@ -6,16 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
        HTML要素取得
     ======================================== */
 
-    const passwordNow =
+    var passwordNow =
         document.getElementById("passwordNow");
 
-    const loginPw =
+    var loginPw =
         document.getElementById("loginPw");
 
-    const loginPwConfirm =
+    var loginPwConfirm =
         document.getElementById("loginPwConfirm");
 
-    const showPasswordCheckbox =
+    var showPasswordCheckbox =
         document.getElementById("show-password");
 
     /*
@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
     /*
      * パスワード入力欄を基準に対象フォームを取得する
      */
-    const form =
+    var form =
         passwordNow.closest("form");
 
     if (!form) {
         return;
     }
 
-    const submitButton =
+    var submitButton =
         form.querySelector(
             'input[type="submit"]'
         );
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /*
      * パスワード入力欄一覧
      */
-    const passwordInputs = [
+    var passwordInputs = [
         passwordNow,
         loginPw,
         loginPwConfirm
@@ -58,13 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
      * 8～20文字の半角英数字
      * 英字と数字を両方含む
      */
-    const passwordRegex =
+    var passwordRegex =
         /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$/;
 
     /*
      * 乱码表示に使用する文字
      */
-    const scrambleCharacters =
+    var scrambleCharacters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         + "abcdefghijklmnopqrstuvwxyz"
         + "0123456789"
@@ -73,12 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
     /*
      * 確認済みの送信かどうか
      */
-    let submitConfirmed = false;
+    var submitConfirmed = false;
 
     /*
      * パスワード表示アニメーション中かどうか
      */
-    let isPasswordAnimating = false;
+    var isPasswordAnimating = false;
 
     /* ========================================
        パスワード表示切替
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         showPasswordCheckbox.addEventListener(
             "change",
-            async function () {
+            function () {
 
                 if (isPasswordAnimating) {
                     return;
@@ -97,13 +97,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 isPasswordAnimating = true;
                 showPasswordCheckbox.disabled = true;
 
-                const showPassword =
+                var showPassword =
                     showPasswordCheckbox.checked;
 
                 /*
                  * 入力済みパスワードを保存する
                  */
-                const originalValues =
+                var originalValues =
                     passwordInputs.map(
                         function (input) {
                             return input.value;
@@ -119,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 passwordInputs.forEach(
                     function (input) {
-
                         input.classList.remove(
                             "password-text-changing",
                             "password-text-revealed"
@@ -141,112 +140,125 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
                 /*
-                 * スキャン光が入力欄付近へ到達するまで待つ
+                 * Promiseで順番に実行する
                  */
-                await wait(250);
+                wait(250)
+                    .then(function () {
 
-                if (showPassword) {
+                        if (showPassword) {
 
-                    /*
-                     * 表示する場合は一度textへ変更し、
-                     * 乱码から実際のパスワードへ解読する
-                     */
-                    passwordInputs.forEach(
-                        function (input) {
-                            input.type = "text";
+                            /*
+                             * 表示する場合は一度textへ変更し、
+                             * 乱码から実際のパスワードへ解読する
+                             */
+                            passwordInputs.forEach(
+                                function (input) {
+                                    input.type = "text";
+                                }
+                            );
+
+                            document.body.classList.add(
+                                "preview-mode"
+                            );
+
+                            return Promise.all(
+                                passwordInputs.map(
+                                    function (input, index) {
+                                        return scrambleReveal(
+                                            input,
+                                            originalValues[index]
+                                        );
+                                    }
+                                )
+                            );
                         }
-                    );
 
-                    document.body.classList.add(
-                        "preview-mode"
-                    );
+                        /*
+                         * 非表示にする場合は実際の文字から変換
+                         */
+                        return Promise.all(
+                            passwordInputs.map(
+                                function (input, index) {
+                                    return scrambleHide(
+                                        input,
+                                        originalValues[index]
+                                    );
+                                }
+                            )
+                        ).then(function () {
 
-                    await Promise.all(
-                        passwordInputs.map(
-                            function (input, index) {
+                            /*
+                             * 元の値へ戻してpassword型へ変更する
+                             */
+                            passwordInputs.forEach(
+                                function (input, index) {
+                                    input.value =
+                                        originalValues[index];
 
-                                return scrambleReveal(
-                                    input,
-                                    originalValues[index]
+                                    input.type = "password";
+                                }
+                            );
+
+                            document.body.classList.remove(
+                                "preview-mode"
+                            );
+                        });
+                    })
+                    .then(function () {
+
+                        /*
+                         * 文字表示完了クラスを一時的に付与する
+                         */
+                        passwordInputs.forEach(
+                            function (input) {
+                                input.classList.add(
+                                    "password-text-revealed"
                                 );
                             }
-                        )
-                    );
+                        );
 
-                } else {
+                        return wait(280);
+                    })
+                    .then(function () {
 
-                    /*
-                     * 非表示にする場合は実際の文字から
-                     * 乱码へ変化させる
-                     */
-                    await Promise.all(
-                        passwordInputs.map(
-                            function (input, index) {
-
-                                return scrambleHide(
-                                    input,
-                                    originalValues[index]
+                        passwordInputs.forEach(
+                            function (input) {
+                                input.classList.remove(
+                                    "password-text-revealed"
                                 );
                             }
-                        )
-                    );
-
-                    /*
-                     * 元の値へ戻してpassword型へ変更する
-                     */
-                    passwordInputs.forEach(
-                        function (input, index) {
-
-                            input.value =
-                                originalValues[index];
-
-                            input.type = "password";
-                        }
-                    );
-
-                    document.body.classList.remove(
-                        "preview-mode"
-                    );
-                }
-
-                /*
-                 * 文字表示完了クラスを一時的に付与する
-                 */
-                passwordInputs.forEach(
-                    function (input) {
-
-                        input.classList.add(
-                            "password-text-revealed"
                         );
-                    }
-                );
 
-                await wait(280);
-
-                passwordInputs.forEach(
-                    function (input) {
-
-                        input.classList.remove(
-                            "password-text-revealed"
+                        /*
+                         * スキャン終了
+                         */
+                        document.body.classList.remove(
+                            "password-scan"
                         );
-                    }
-                );
 
-                /*
-                 * スキャン終了
-                 */
-                document.body.classList.remove(
-                    "password-scan"
-                );
+                        showPasswordCheckbox.disabled = false;
+                        isPasswordAnimating = false;
+                    })
+                    .catch(function (error) {
 
-                showPasswordCheckbox.disabled = false;
-                isPasswordAnimating = false;
+                        console.error(error);
+
+                        /*
+                         * エラー時も操作不能にならないように復帰する
+                         */
+                        document.body.classList.remove(
+                            "password-scan"
+                        );
+
+                        showPasswordCheckbox.disabled = false;
+                        isPasswordAnimating = false;
+                    });
             }
         );
     }
 
     /* ========================================
-       乱码からパスワードを表示する
+       暗号化からパスワードを表示する
     ======================================== */
 
     function scrambleReveal(
@@ -265,15 +277,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            let revealedLength = 0;
+            var revealedLength = 0;
 
-            const timer = window.setInterval(
+            var timer = window.setInterval(
                 function () {
 
-                    let displayValue = "";
+                    var displayValue = "";
+                    var index;
 
                     for (
-                        let index = 0;
+                        index = 0;
                         index < originalValue.length;
                         index++
                     ) {
@@ -305,7 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         resolve();
                     }
-
                 },
                 45
             );
@@ -331,15 +343,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            let hiddenLength = 0;
+            var hiddenLength = 0;
 
-            const timer = window.setInterval(
+            var timer = window.setInterval(
                 function () {
 
-                    let displayValue = "";
+                    var displayValue = "";
+                    var index;
 
                     for (
-                        let index = 0;
+                        index = 0;
                         index < originalValue.length;
                         index++
                     ) {
@@ -373,7 +386,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         resolve();
                     }
-
                 },
                 35
             );
@@ -386,7 +398,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getRandomCharacter() {
 
-        const index =
+        var index =
             Math.floor(
                 Math.random()
                 * scrambleCharacters.length
@@ -511,13 +523,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const currentPasswordValid =
+            var currentPasswordValid =
                 validateCurrentPassword();
 
-            const newPasswordValid =
+            var newPasswordValid =
                 validateNewPassword();
 
-            const confirmPasswordValid =
+            var confirmPasswordValid =
                 validateConfirmPassword();
 
             /*
@@ -530,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
                 event.preventDefault();
 
-                const firstError =
+                var firstError =
                     form.querySelector(
                         ".input-error"
                     );
@@ -554,7 +566,7 @@ document.addEventListener("DOMContentLoaded", function () {
              */
             event.preventDefault();
 
-            const message =
+            var message =
                 "この内容でパスワードを"
                 + "リセットしますか？";
 
@@ -562,7 +574,7 @@ document.addEventListener("DOMContentLoaded", function () {
              * common.jsのconfirmActionが存在する場合は利用し、
              * 存在しない場合は標準confirmを利用する
              */
-            const confirmed =
+            var confirmed =
                 typeof confirmAction === "function"
                     ? confirmAction(message)
                     : window.confirm(message);
@@ -571,34 +583,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-           submitConfirmed = true;
+            submitConfirmed = true;
 
-/*
- * form.submit()では送信ボタンのname/valueが送信されないため、
- * buttonIdをhidden項目として追加する
- */
-let buttonIdInput =
-    form.querySelector(
-        'input[type="hidden"][name="buttonId"]'
-    );
+            /*
+             * form.submit()では送信ボタンのname/valueが送信されないため、
+             * buttonIdをhidden項目として追加する
+             */
+            var buttonIdInput =
+                form.querySelector(
+                    'input[type="hidden"][name="buttonId"]'
+                );
 
-if (!buttonIdInput) {
-    buttonIdInput =
-        document.createElement("input");
+            if (!buttonIdInput) {
 
-    buttonIdInput.type = "hidden";
-    buttonIdInput.name = "buttonId";
+                buttonIdInput =
+                    document.createElement("input");
 
-    form.appendChild(buttonIdInput);
-}
+                buttonIdInput.type = "hidden";
+                buttonIdInput.name = "buttonId";
 
-buttonIdInput.value = "保存";
+                form.appendChild(buttonIdInput);
+            }
 
-/*
- * submitイベントを再発火させず直接送信する
- */
-HTMLFormElement.prototype.submit.call(form);
+            buttonIdInput.value = "保存";
 
+            /*
+             * submitイベントを再発火させず直接送信する
+             */
+            HTMLFormElement.prototype.submit.call(form);
         }
     );
 
@@ -657,7 +669,6 @@ HTMLFormElement.prototype.submit.call(form);
                         "preview-mode",
                         "password-scan"
                     );
-
                 },
                 0
             );
@@ -670,7 +681,7 @@ HTMLFormElement.prototype.submit.call(form);
 
     function validateCurrentPassword() {
 
-        const value =
+        var value =
             passwordNow.value.trim();
 
         if (value === "") {
@@ -698,7 +709,7 @@ HTMLFormElement.prototype.submit.call(form);
 
     function validateNewPassword() {
 
-        const value =
+        var value =
             loginPw.value;
 
         if (value === "") {
@@ -739,7 +750,7 @@ HTMLFormElement.prototype.submit.call(form);
 
     function validateConfirmPassword() {
 
-        const value =
+        var value =
             loginPwConfirm.value;
 
         if (value === "") {
@@ -782,7 +793,7 @@ HTMLFormElement.prototype.submit.call(form);
         message
     ) {
 
-        const errorElement =
+        var errorElement =
             document.getElementById(
                 errorElementId
             );
@@ -805,7 +816,7 @@ HTMLFormElement.prototype.submit.call(form);
             return;
         }
 
-        const textElement =
+        var textElement =
             errorElement.querySelector(
                 ".form-error__text"
             );
@@ -828,7 +839,7 @@ HTMLFormElement.prototype.submit.call(form);
         errorElementId
     ) {
 
-        const errorElement =
+        var errorElement =
             document.getElementById(
                 errorElementId
             );
@@ -850,7 +861,7 @@ HTMLFormElement.prototype.submit.call(form);
             return;
         }
 
-        const textElement =
+        var textElement =
             errorElement.querySelector(
                 ".form-error__text"
             );
