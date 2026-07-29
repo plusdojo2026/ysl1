@@ -35,8 +35,23 @@
 }
 
 #submitArea{
-	margin-top: 12px;
+	margin-top: 14px;
 }
 
 
-/**/
+/*ユーザーの編集-----------------------------------------------------------------*/
+
+.radioArea {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	row-gap: 8px;
+	column-gap: 5px;
+}
+
+#authorityAdmin label,
+#authorityGeneral label,
+#userStatusDisabled label,
+#userStatusEnabled label {
+    display: inline;
+    padding-top: 5.5px;
+}
