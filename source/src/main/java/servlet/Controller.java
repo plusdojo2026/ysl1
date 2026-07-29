@@ -78,7 +78,7 @@ public class Controller extends HttpServlet {
 					page = "/WEB-INF/jsp/user_regist.jsp";
 				} else if (buttonId.equals("編集")) {
 					page = uAction.updateInit();
-				} else if (buttonId.equals("無効化") || buttonId.equals("無効")) {
+				} else if (buttonId.contains("無効") || buttonId.contains("有効")) {
 					page = uAction.invalid();
 				}
 				//案件詳細画面へ（一覧から案件名を押した処理）
