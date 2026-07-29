@@ -138,6 +138,7 @@ public class Controller extends HttpServlet {
 			else if (pageId.equals("T001")) {
 				TasksAction tAction = new TasksAction(request);
 				page = tAction.details();
+
 			} else {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND);
 				return;
@@ -290,6 +291,10 @@ public class Controller extends HttpServlet {
 				if (buttonId.equals("検索")) {
 					//タスク検索処理[結果:絞り込んだデータを取得して表示]
 					page = tAction.selectAll();
+
+				} else if (buttonId.equals("登録")) {
+					//タスク登録画面（新規モード）表示
+					page = tAction.functions();
 
 				} else if (buttonId.equals("編集")) {
 					//タスク編集画面表示[]
