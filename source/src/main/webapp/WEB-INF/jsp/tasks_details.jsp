@@ -157,6 +157,8 @@
                     <form action="${pageContext.request.contextPath}/Controller" method="post">
                         <input type="hidden" name="pageId" value="T003">
                         <input type="hidden" name="taskId" value="${detailsList.taskId}">
+                        <input type="hidden" name="caseName" value="${detailsList.caseName}">
+                        <input type="hidden" name="taskName" value="${detailsList.taskName}">
                         <button type="submit" name="buttonId" value="工数入力">
                             工数入力
                         </button>

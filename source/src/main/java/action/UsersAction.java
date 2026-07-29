@@ -103,6 +103,14 @@ public class UsersAction {
 
 				return page;
 			}
+			//権限状態確認
+			if (!user.getActive()) {
+				request.setAttribute(
+						"errorMsgLogin",
+						"このアカウントは無効化されています。");
+
+				return page;
+			}
 
 			/* ログイン成功時にユーザー情報をセッションへ保存する */
 			HttpSession session = request.getSession();
@@ -211,14 +219,21 @@ public class UsersAction {
 
 			boolean newActiveStatus = "1".equals(request.getParameter("userStatus"));
 
-			// 自分自身の無効化を禁止
-			if (loginUser.getUserId() == updatedId
-					&& !newActiveStatus) {
+			if (!newActiveStatus) {
 
-				request.setAttribute(
-						"message",
-						"自分を無効に変更できません。");
-				return page;
+				if (loginUser.getUserId() == updatedId) {
+					request.setAttribute(
+							"message",
+							"自分を無効化できません。");
+					return page;
+				}
+
+				if (!updateUser.getAuthority()) {
+					request.setAttribute(
+							"message",
+							"管理者を無効化できません。");
+					return page;
+				}
 			}
 
 			//ページの情報をDTOに保存
@@ -491,14 +506,20 @@ public class UsersAction {
 				return page;
 			}
 
-			if (loginUser.getUserId() == updatedId) {
+			boolean newActiveStatus = request.getParameter("buttonId").contains("有効");
+
+			if (!newActiveStatus
+					&& (loginUser.getUserId() == updatedId
+							|| !updateUser.getAuthority())) {
+
 				request.setAttribute(
 						"message",
-						"自分を無効に変更できません。");
+						"自分または管理者を無効化できません。");
+
 				return page;
 			}
-			//無効化に設定
-			updateUser.setActive(false);
+
+			updateUser.setActive(newActiveStatus);
 			//更新実行、成功したらページを変更
 			if (usersService.update(updateUser)) {
 				page = selectAll();

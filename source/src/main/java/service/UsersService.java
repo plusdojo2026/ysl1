@@ -1,8 +1,11 @@
 package service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import dao.UsersDAO;
+import dao.utils.DBUtils;
 import dto.UsersDTO;
 
 /**
@@ -72,14 +75,27 @@ public class UsersService {
 	public boolean insert(UsersDTO uDTO) {
 		UsersDAO dao = new UsersDAO();
 		boolean ans = false;
+		Connection conn = null;
+		try {
+			conn = DBUtils.getConnection();
+			DBUtils.setAutoCommit(conn, false);
+			if (uDTO == null
+					|| uDTO.getLoginId() == null
+					|| uDTO.getLoginId().isBlank()) {
 
-		if (uDTO == null
-				|| uDTO.getLoginId() == null
-				|| uDTO.getLoginId().isBlank()) {
-
-			return ans;
-		} else if (dao.check(uDTO)) {
-			ans = dao.insert(uDTO);
+				return ans;
+			} else if (dao.check(uDTO)) {
+				ans = dao.insert(conn, uDTO);
+				if (ans) {
+					DBUtils.commit(conn);
+				} else {
+					DBUtils.rollback(conn);
+				}
+			}
+		} catch (Exception e) {
+			DBUtils.rollback(conn);
+		} finally {
+			DBUtils.close(conn);
 		}
 
 		return ans;
@@ -93,15 +109,33 @@ public class UsersService {
 	 * @return 件数int
 	 */
 	public boolean update(UsersDTO uDTO) {
-		UsersDAO dao = new UsersDAO();
+		Connection conn = null;
 		boolean ans = false;
-		if (!(uDTO == null
-				|| uDTO.getUserId() == null
-				|| uDTO.getUserId() <= 0)) {
+		try {
+			conn = DBUtils.getConnection();
+			DBUtils.setAutoCommit(conn, false);
+			UsersDAO dao = new UsersDAO();
 
-			ans = dao.update(uDTO);
+			if (!(uDTO == null
+					|| uDTO.getUserId() == null
+					|| uDTO.getUserId() <= 0)) {
+
+				ans = dao.update(conn, uDTO);
+				//ansの結果でトランザクションを判断
+				if (ans) {
+					DBUtils.commit(conn);
+				} else {
+					DBUtils.rollback(conn);
+				}
+
+			}
+		} catch (Exception e) {
+			DBUtils.rollback(conn);
+
+		} finally {
+			DBUtils.close(conn);
+
 		}
-
 		return ans;
 	}
 
@@ -113,25 +147,40 @@ public class UsersService {
 	 * @return 件数int 0の場合は失敗
 	 */
 	public boolean delete(String id) {
-		UsersDAO usersDAO = new UsersDAO();
-		//id数値チェック
-		if (id == null || id.isBlank()) {
-			return false;
-		}
-
+		Connection conn = null;
 		try {
+			conn = DBUtils.getConnection();
+			DBUtils.setAutoCommit(conn, false);
+			UsersDAO usersDAO = new UsersDAO();
+			//id数値チェック
+			if (id == null || id.isBlank()) {
+				return false;
+			}
+
 			//String→int
 			int userId = Integer.parseInt(id);
 
 			if (userId <= 0) {
 				return false;
 			}
-			//実行
-			return usersDAO.delete(userId);
 
-		} catch (NumberFormatException e) {
+			//実行
+			boolean ans = usersDAO.delete(conn, userId);
+
+			if (ans) {
+				DBUtils.commit(conn);
+			} else {
+				DBUtils.rollback(conn);
+			}
+
+			return ans;
+		} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+
 			//転換失敗の場合FALSE
+			DBUtils.rollback(conn);
 			return false;
+		} finally {
+			DBUtils.close(conn);
 		}
 	}
 

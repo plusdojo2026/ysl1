@@ -201,6 +201,65 @@ public abstract class BaseDAO<T> {
 	}
 
 	/**
+	 * トランザクション制御用の更新処理を実行する。
+	 *
+	 * <p>
+	 * INSERT、UPDATE、DELETEに対応する。
+	 * </p>
+	 *
+	 * <p>
+	 * 本メソッドではConnectionの生成・commit・rollback・closeは行わない。
+	 * 呼び出し元でトランザクションを管理すること。
+	 * </p>
+	 *
+	 * <pre>
+	 * try (Connection conn = DBUtils.getConnection()) {
+	 *
+	 *     conn.setAutoCommit(false);
+	 *
+	 *     dao.executeUpdateTx(
+	 *             conn,
+	 *             sql,
+	 *             params);
+	 *
+	 *     conn.commit();
+	 *
+	 * } catch (Exception e) {
+	 *
+	 *     conn.rollback();
+	 * }
+	 * </pre>
+	 *
+	 * @param conn   外部で管理するConnection
+	 * @param sql    SQL文
+	 * @param params SQLパラメータ
+	 * @return 影響行数
+	 * @throws RuntimeException 更新処理失敗時
+	 */
+
+	protected int executeUpdateInTransaction(
+			Connection conn,
+			String sql,
+			Object... params) {
+
+		validateSql(sql);
+
+		try (
+				PreparedStatement ps = createPreparedStatement(
+						conn,
+						sql,
+						params)) {
+
+			return ps.executeUpdate();
+
+		} catch (Exception e) {
+			throw new RuntimeException(
+					"更新処理に失敗しました。SQL: " + sql,
+					e);
+		}
+	}
+
+	/**
 	 * 単一値を取得する。
 	 *
 	 * <p>
