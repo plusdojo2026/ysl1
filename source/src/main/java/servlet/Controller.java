@@ -245,11 +245,8 @@ public class Controller extends HttpServlet {
 			}
 			//			//案件詳細画面 ------------------------------------
 			else if (pageId.equals("C003")) {
-				if (buttonId.equals("完了にする")) {
-					CasesAction cAction = new CasesAction(request);
-					page = cAction.changeStatus();
-
-				} else if (buttonId.equals("中止にする")) {
+				if (buttonId.equals("完了にする") || buttonId.equals("中止にする") || buttonId.equals("進行中にする")
+						|| buttonId.equals("未着手にする")) {
 					CasesAction cAction = new CasesAction(request);
 					page = cAction.changeStatus();
 
