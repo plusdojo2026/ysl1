@@ -267,4 +267,33 @@ public class TasksAction {
 
 	    return page;
 	}
+	
+	/**
+	 * - 削除処理 -
+	 *
+	 * @author haruto.tanaka
+	 */
+	public String delete() throws UnsupportedEncodingException {
+
+	    String page = "/WEB-INF/jsp/cases_details.jsp";
+
+	    // パラメータ取得
+	    String taskIdStr = request.getParameter("taskId");
+
+	    // タスクID取得
+	    int taskId = Integer.parseInt(taskIdStr);
+
+	    // 削除処理
+	    TasksService service = new TasksService();
+	    boolean result = service.delete(taskId);
+
+	    if (!result) {
+	        page = "/WEB-INF/jsp/tasks_regist.jsp";
+	    }
+	    //案件詳細取得
+	    CasesAction action = new CasesAction(request);
+	    action.initiCasesDetail();
+
+	    return page;
+	}
 }

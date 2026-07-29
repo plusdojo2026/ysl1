@@ -75,6 +75,7 @@
 				<th>実績/工数見積</th>
 				<th>進捗</th>
 				<th>編集</th>
+				<th>削除</th>
 			</tr>
 	</thead>
 
@@ -106,6 +107,14 @@
 					<!-- <input type="image"  src="<c:url value='/images/edit.png'/>" alt="編集"> -->
 				</form>
 			</td>
+			<td>
+				<!-- 削除ボタン -->
+				<form method="POST" action="<c:url value='/Controller'/>">
+					<input type="hidden" name="pageId" value="T001">
+					<input type="hidden" name="taskId" value="${e.taskId}"> 
+					<input type="submit" name="buttonId" value="削除" id="delete" onclick="return delete1()">
+				</form>
+			</td>
 		</tr>
 	</c:forEach>	
 	</tbody>
@@ -115,6 +124,15 @@
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script src="<c:url value='/js/task.js' />"></script>
 <script src="<c:url value='/js/common.js' />"></script>
+
+<script>
+function delete1(){
+		if (!confirm("削除します。よろしいですか？")) {
+			return false;
+			}
+	}
+</script>
+
 </body>
 </html>
 	
