@@ -34,7 +34,7 @@ body {
 header,
 footer {
     color: #ffffff;
-    background: linear-gradient(90deg, #1d4f91 0%, #3a7ccf 100%);
+    background: linear-gradient(90deg, #f1f1f1 0%, #3786eb 100%);
 }
 
 header {
