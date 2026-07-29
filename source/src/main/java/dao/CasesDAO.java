@@ -39,24 +39,24 @@ public class CasesDAO {
 	 * @return 数値の案件コード
 	 * @throws SQLException 案件コードの形式が不正な場合
 	 */
-	private int parseCaseCode(String caseCode) throws SQLException {
-
-		if (caseCode == null || caseCode.isBlank()) {
-			return 0;
-		}
-
-		String numberPart = caseCode.trim()
-				.replaceFirst("(?i)^CASE", "");
-
-		try {
-			return Integer.parseInt(numberPart);
-
-		} catch (NumberFormatException e) {
-			throw new SQLException(
-					"case_codeの形式が不正です: " + caseCode,
-					e);
-		}
-	}
+//	private int parseCaseCode(String caseCode) throws SQLException {
+//
+//		if (caseCode == null || caseCode.isBlank()) {
+//			return 0;
+//		}
+//
+//		String numberPart = caseCode.trim()
+//				.replaceFirst("(?i)^CASE", "");
+//
+//		try {
+//			return Integer.parseInt(numberPart);
+//
+//		} catch (NumberFormatException e) {
+//			throw new SQLException(
+//					"case_codeの形式が不正です: " + caseCode,
+//					e);
+//		}
+//	}
 
 	/**
 	 * 数値の案件コードをDB保存形式へ変換する。
@@ -67,9 +67,9 @@ public class CasesDAO {
 	 * @param caseCode 数値の案件コード
 	 * @return DB保存用の案件コード
 	 */
-	private String formatCaseCode(int caseCode) {
-		return String.format("CASE%03d", caseCode);
-	}
+//	private String formatCaseCode(int caseCode) {
+//		return String.format("CASE%03d", caseCode);
+//	}
 
 	/**
 	 * 案件一覧用SQLを作成する。
@@ -473,8 +473,8 @@ public class CasesDAO {
 					 * CASE001 → 1
 					 */
 					dto.setCaseCode(
-							parseCaseCode(
-									rs.getString("case_code")));
+							
+									rs.getString("case_code"));
 
 					dto.setCustomerName(
 							rs.getString("customer_name"));
@@ -591,7 +591,7 @@ public class CasesDAO {
 			 */
 			pStmt.setString(
 					2,
-					formatCaseCode(dto.getCaseCode()));
+					valueOrEmpty(dto.getCaseCode()));
 
 			pStmt.setString(
 					3,
@@ -655,7 +655,7 @@ public class CasesDAO {
 			// 数字1 → CASE001
 			pStmt.setString(
 					2,
-					formatCaseCode(dto.getCaseCode()));
+					valueOrEmpty(dto.getCaseCode()));
 
 			pStmt.setString(
 					3,

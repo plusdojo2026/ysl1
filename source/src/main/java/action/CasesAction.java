@@ -192,14 +192,14 @@ public class CasesAction {
 		request.setCharacterEncoding("UTF-8");
 		//String id = request.getParameter("id");登録すると自動でつくため。
 		String caseName = request.getParameter("caseName");
-		int caseCode = Integer.parseInt(request.getParameter("caseCode"));
+		String caseCode = request.getParameter("caseCode");
 		String customerName = request.getParameter("customerName");
 		int pmId = Integer.parseInt(request.getParameter("pmId"));//担当PM
 		String caseStatus = request.getParameter("status");
 		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
 		String plannedEndDate = request.getParameter("plannedEndDate");
-		int casePlannedHours = Integer.parseInt(request.getParameter("casePlannedHours"));
+		double casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
 		String caseDescription = request.getParameter("description");
 
 		CasesDTO dto = new CasesDTO(0, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
@@ -245,7 +245,7 @@ public class CasesAction {
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));//編集だとidが必要かな。
 		String caseName = request.getParameter("caseName");
-		int caseCode = Integer.parseInt(request.getParameter("caseCode"));
+		String caseCode = request.getParameter("caseCode");
 		String customerName = request.getParameter("customerName");
 		int pmId = Integer.parseInt(request.getParameter("pmId"));//担当PM
 		String caseStatus = request.getParameter("status");

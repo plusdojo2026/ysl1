@@ -4,7 +4,7 @@ public class CasesDTO {
 
 	private int id;
 	private String caseName;
-	private int caseCode;
+	private String caseCode;
 	private String customerName;
 	private String casePriority;
 	private int pmId;
@@ -18,7 +18,7 @@ public class CasesDTO {
 		super();
 	}
 
-	public CasesDTO(int id, String caseName, int caseCode, String customerName, String casePriority, int pmId,
+	public CasesDTO(int id, String caseName, String caseCode, String customerName, String casePriority, int pmId,
 			String caseStatus, String startDate, String plannedEndDate, String caseDescription, double casePlannedHours) {
 		super();
 		this.id = id;
@@ -50,11 +50,11 @@ public class CasesDTO {
 		this.caseName = caseName;
 	}
 
-	public int getCaseCode() {
+	public String getCaseCode() {
 		return caseCode;
 	}
 
-	public void setCaseCode(int caseCode) {
+	public void setCaseCode(String caseCode) {
 		this.caseCode = caseCode;
 	}
 
