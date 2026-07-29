@@ -65,9 +65,22 @@
 			</tr>
 			<tr>
 				<td>ステータス</td>
-				<td>${c.caseStatus}</td>
-				<td><input type="submit" name="buttonId" value="完了にする"></td>
-				<td><input type="submit" name="buttonId" value="中止にする"></td>
+				<td>${c.caseStatus}
+				<c:if test="${c.caseStatus!='未着手'}"> 
+				<input type="submit" name="buttonId" value="未着手にする">
+				</c:if>
+				<c:if test="${c.caseStatus!='進行中'}"> 
+				<input type="submit" name="buttonId" value="進行中にする">
+				</c:if>
+				<c:if test="${c.caseStatus!='完了'}">
+				<input type="submit" name="buttonId" value="完了にする">
+				</c:if>
+				<c:if test="${c.caseStatus!='中止'}">
+				<input type="submit" name="buttonId" value="中止にする">
+				</c:if>
+				</td>
+				
+				
 			</tr>
 			<tr>
 				<td>優先度</td>
@@ -104,8 +117,8 @@
 		<c:forEach var="c" items="${casesList}">
 			<tr>
 				<td>説明</td>
-				<td>${c.caseDescription}</td>
-				<td><input type="submit" name="buttonId" value="案件編集"></td>
+				<td>${c.caseDescription}<input type="submit" name="buttonId" value="案件編集"></td>
+				
 			</tr>
 		</c:forEach>
 	</form>

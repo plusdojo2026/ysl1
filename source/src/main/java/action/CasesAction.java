@@ -301,7 +301,13 @@ public class CasesAction {
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 		int caseId = Integer.parseInt(request.getParameter("id"));
 		String buttonString = request.getParameter("buttonId");
-		buttonString = buttonString.substring(0, 2);
+		String buttonId = request.getParameter("buttonId");
+		if (buttonId.equals("完了にする") || buttonId.equals("中止にする")) {
+			buttonString = buttonString.substring(0, 2);
+		} else if (buttonId.equals("進行中にする")
+				|| buttonId.equals("未着手にする")) {
+			buttonString = buttonString.substring(0, 3);
+		}
 		//System.out.println(buttonString);
 
 		CasesService service = new CasesService();
