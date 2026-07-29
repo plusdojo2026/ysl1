@@ -22,6 +22,7 @@
 	<c:if test="${param.buttonId=='編集' or param.buttonId=='案件編集'}">
 		<h2>案件編集</h2>
 	</c:if>
+			<p style="color:red;">${msg}</p>
 	
 	<form id=cases action="/ysl1/Controller" method="post">
 		<table class="table">
@@ -138,7 +139,6 @@
 				<input type="submit" id="edit" name="buttonId" value="編集">
 			</c:if>
 			<p style=color:red><span id="msg"></span></p>
-			<p style="color:red;">${msg}</p>
 		</div>
 	</form>
 	
