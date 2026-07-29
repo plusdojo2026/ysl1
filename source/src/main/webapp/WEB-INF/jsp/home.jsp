@@ -73,8 +73,8 @@
 					<td>${e.caseStatus}</td>
 					<td>${e.casePriority}</td>
 					<td>${sessionScope.user.userName}</td>
-					<td>${e.startDate}</td>
-					<td>${e.plannedEndDate}</td>
+					<td>${e.startDate.substring(0,10)}</td>
+					<td>${e.plannedEndDate.substring(0,10)}</td>
 					<td>
 					<progress value="${e.caseNow}" max="${e.caseSum}"></progress>
 					${e.caseNow}/${e.caseSum}
