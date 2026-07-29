@@ -8,6 +8,7 @@
     <title>ユーザー編集</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/users.css">
 </head>
 <body>
 

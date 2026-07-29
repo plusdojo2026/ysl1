@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>新規作成</title>
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/users.css">
 </head>
 
 <body>
@@ -88,8 +89,9 @@
         <!-- 権限 -->
         <div class="radioArea">
 
-            <span>権限</span>
-             <span>
+            <span class="title">権限</span>
+            <div class="radioGroup">
+       		<span class="authorityAdmin">
             <input type="radio"
                    name="authority"
                    id="authorityAdmin"
@@ -98,7 +100,7 @@
                        checked
                    </c:if>>
             <label for="authorityAdmin">管理者</label></span>
-            <span>
+            <span class="authorityUser">
                 <input type="radio"
                    name="authority"
                    id="authorityUser"
@@ -106,8 +108,8 @@
                    <c:if test="${param.authority == '1'}">
                        checked
                    </c:if>> <label for="authorityUser">一般</label>
-            </span>
-
+                   </span>
+            </div>
         </div>
 
         <div class="error" id="errorMsgAuthority">
