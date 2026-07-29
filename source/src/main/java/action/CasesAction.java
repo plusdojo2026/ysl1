@@ -205,8 +205,17 @@ public class CasesAction {
 		String caseStatus = request.getParameter("status");
 		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
+		if(startDate.equals("")) {
+			startDate = "1970-12-31";
+		}
 		String plannedEndDate = request.getParameter("plannedEndDate");
-		double casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
+		if(plannedEndDate.equals("")) {
+			plannedEndDate = "1970-12-31";
+		}
+		double casePlannedHours =9999.0;
+		if(!request.getParameter("casePlannedHours").equals("")) {
+			casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
+		}
 		String caseDescription = request.getParameter("description");
 
 		CasesDTO dto = new CasesDTO(0, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
@@ -217,15 +226,17 @@ public class CasesAction {
 		int ans = service.insert(dto);
 		//ちゃんと登録できたか確認
 		if (ans == 1) {
-			request.setAttribute("msg", "※の登録完了！");
+			request.setAttribute("msg", "※登録完了！");
 		} else {
-			request.setAttribute("msg", "※登録失敗！");
+			request.setAttribute("msg", "※登録失敗！案件コードが重複しています。");
+			page = "/WEB-INF/jsp/cases_regist.jsp";
 		}
 		//ユーザー情報を全て取得する,
 		//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
 		ArrayList<AllDTO> casesList = service.selectAll();
 		request.setAttribute("casesList", casesList);
 		this.initialize();
+		this.casesRegist();
 		service.close();
 
 		return page;
@@ -258,8 +269,17 @@ public class CasesAction {
 		String caseStatus = request.getParameter("status");
 		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
+		if(startDate.equals("")) {
+			startDate = "1970-12-31";
+		}
 		String plannedEndDate = request.getParameter("plannedEndDate");
-		double casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
+		if(plannedEndDate.equals("")) {
+			plannedEndDate = "1970-12-31";
+		}
+		double casePlannedHours =9999.0;
+		if(!request.getParameter("casePlannedHours").equals("")) {
+			casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
+		}
 		String caseDescription = request.getParameter("description");
 
 		CasesDTO dto = new CasesDTO(id, caseName, caseCode, customerName, casePriority, pmId, caseStatus,
@@ -270,15 +290,18 @@ public class CasesAction {
 		int ans = service.update(dto);
 		//ちゃんと登録できたか確認
 		if (ans == 1) {
-			request.setAttribute("msg", "※の登録完了！");
+			request.setAttribute("msg", "登録完了！");
 		} else {
-			request.setAttribute("msg", "※登録失敗！");
+			request.setAttribute("msg", "※登録失敗！案件コードが重複しています。");
+			page = "/WEB-INF/jsp/cases_regist.jsp";
 		}
 		//ユーザー情報を全て取得する
 		//案件登録をした後の画面で案件一覧を出すために全部取ってくる。selectAll。しかし、casesiniti()メソッドとの違いがわからない…
 		ArrayList<AllDTO> casesList = service.selectAll();
 		request.setAttribute("casesList", casesList);
 		this.initialize();
+		casesEdit();
+		
 		service.close();
 
 		return page;
@@ -301,7 +324,13 @@ public class CasesAction {
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 		int caseId = Integer.parseInt(request.getParameter("id"));
 		String buttonString = request.getParameter("buttonId");
-		buttonString = buttonString.substring(0, 2);
+		String buttonId = request.getParameter("buttonId");
+		if (buttonId.equals("完了にする") || buttonId.equals("中止にする")) {
+			buttonString = buttonString.substring(0, 2);
+		} else if (buttonId.equals("進行中にする")
+				|| buttonId.equals("未着手にする")) {
+			buttonString = buttonString.substring(0, 3);
+		}
 		//System.out.println(buttonString);
 
 		CasesService service = new CasesService();
