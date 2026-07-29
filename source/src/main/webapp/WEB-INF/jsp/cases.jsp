@@ -53,7 +53,7 @@
 		</div>
 	</div>
 			<div class="btnarea">
-			<input type="submit" id="regist" name="buttonId"value="+新規登録"onclick="location.href='/Controller?pageId=C001'">
+			<input type="submit" id="regist" name="buttonId"value="＋新規登録"onclick="location.href='/Controller?pageId=C001'">
 			</div>
 	</div>
 	</form>

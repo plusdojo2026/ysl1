@@ -43,12 +43,6 @@ text-align: center;
 }
 
 
-.number {
-	font-size:30px;
-	font-weight:bold;
-}
-
-
 
 
 /*編集ボタン-------------------------------------------------------------*/
@@ -71,11 +65,7 @@ text-align: center;
     border-color: #005fa3;
 }
 
-.btn{
-	display: flex;
-	justify-content: flex-end;
-	padding-bottom: 30px;
-}
+
 
 /* 新規登録ボタン------------------------------------------------------*/
 #regist {
@@ -98,8 +88,9 @@ text-align: center;
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 14px;
+    padding-bottom: 5px;
     padding-top: -100px;
+    margin-left: 11px;
 }
 
 /*テーブルの大きさの指定*/
