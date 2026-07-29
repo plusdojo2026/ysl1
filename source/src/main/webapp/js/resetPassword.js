@@ -571,22 +571,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            submitConfirmed = true;
+           submitConfirmed = true;
 
-            /*
-             * requestSubmitを使用することで
-             * buttonIdのnameとvalueを維持する
-             */
-            if (submitButton) {
+/*
+ * form.submit()では送信ボタンのname/valueが送信されないため、
+ * buttonIdをhidden項目として追加する
+ */
+let buttonIdInput =
+    form.querySelector(
+        'input[type="hidden"][name="buttonId"]'
+    );
 
-                form.requestSubmit(
-                    submitButton
-                );
+if (!buttonIdInput) {
+    buttonIdInput =
+        document.createElement("input");
 
-            } else {
+    buttonIdInput.type = "hidden";
+    buttonIdInput.name = "buttonId";
 
-                form.requestSubmit();
-            }
+    form.appendChild(buttonIdInput);
+}
+
+buttonIdInput.value = "保存";
+
+/*
+ * submitイベントを再発火させず直接送信する
+ */
+HTMLFormElement.prototype.submit.call(form);
+
         }
     );
 

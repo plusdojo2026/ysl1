@@ -119,28 +119,44 @@
     <h3>タスク一覧</h3>
     
    <div class="table" id="tasks">
+   <form action="/ysl1/Controller" method="post">
+  	 <input type="submit" name="buttonId" value="タスク追加">
+  	 
+  	 <input type="hidden" name="pageId" value="C003">
+  	</form>
 	<!-- <h2>タスク一覧</h2> -->
 	<form action="/ysl1/Controller" method="post">
-		<input type="submit" name="buttonId" value="タスク追加">
+		<!-- <input type="submit" name="buttonId" value="タスク追加"> -->
 		
-		<table class="table" id="tasks_table">
+		<table class="table" id="tasks_table" style="white-space: nowrap">
+		<tr>
+			<th>タスク名</th>
+			<th>担当者</th>
+			<th>ステータス</th>
+			<th>優先度</th>
+			<th>期限</th>
+			<th colspan="2">予定/実績工数</th>
+			<th>進捗</th>
+			<th >操作</th>
+		</tr>
 		<c:forEach var="t" items="${tasksList}">
 		<tr>
 			<input type="hidden" name="pageId" value="C003">
 			<input type="hidden" name="taskId" value="${t.taskId }">
 			<input type="hidden" name="caseId" value="${param.caseId}">
-			<td>タスク名</td><td>${t.taskName}</td>
-			<td>担当者</td><td>${t.userName}</td>
-			<td>ステータス</td><td>${t.taskStatus}</td>
-			<td>優先度</td><td>${t.taskPriority}</td>
-			<td>期限</td><td>${t.deadline}</td>
-			<td>予定/実績工数</td>
-			<td>${t.taskPlannedHours}</td>/<td>${t.actualHours}</td>
-			<td>進捗</td><td>${t.taskProgressRate}</td>
-			<td>操作</td><input>
+			<td>${t.taskName}</td>
+			<td>${t.userName}</td>
+			<td>${t.taskStatus}</td>
+			<td>${t.taskPriority}</td>
+			<td>${t.deadline.substring(0, 10)}</td>
 			
-			<td><input type="submit" name="buttonId" value="タスク編集"></td>
-			<td><input type="submit" name="buttonId" value="タスク削除"></td>
+			<td>${t.taskPlannedHours}</td>/<td>${t.actualHours}</td>
+			<td>${t.taskProgressRate}</td>
+			<input>
+			
+			<td><input type="submit" name="buttonId" value="タスク編集">
+			<input type="submit" name="buttonId" value="タスク削除">
+			<input type="submit" name="buttonId" value="工数入力"></td>
 		</tr>
 		</c:forEach>
 		</table>
@@ -164,8 +180,8 @@
 			<td>工数</td><td>${w.actualHours}</td>
 			<td>作業内容</td><td>${w.workDescription}</td>
 			
-			<td><input type="submit" name="buttonId" value="工数入力"></td>
-			<td><input type="submit" name="buttonId" value="すべて見る"></td>
+			<!-- <td><input type="submit" name="buttonId" value="工数入力"></td>
+			<td><input type="submit" name="buttonId" value="すべて見る"></td> -->
 		</form>
 		</tr>
 		</table>
