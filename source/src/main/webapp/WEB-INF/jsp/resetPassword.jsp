@@ -23,7 +23,13 @@
     <!-- 現在のパスワード入力欄: ユーザーの現在のパスワードを入力 -->
     <label for="passwordNow">現在のパスワード</label>
     <input type="password" name="passwordNow" id="passwordNow" placeholder="現在のパスワードを入力" autocomplete="current-password" required>
-
+	<!-- パスワードを表示するボタン -->
+    <div class="show-password-wrapper">
+    <input type="checkbox" id="show-password">
+    <label for="show-password" class="show-password-label">パスワードを表示する</label>
+   	</div>
+	
+	
     <!-- 現在のパスワードのエラーメッセージ表示（存在する場合のみ表示） -->
     <c:if test="${not empty errorMsgId}">
         <div class="error"><c:out value="${errorMsgId}"/></div>
@@ -32,7 +38,9 @@
     <!-- パスワード入力欄: ユーザーのパスワードを入力 -->
     <label for="loginPw">新しいパスワード</label>
     <input type="password" name="loginPw" id="loginPw" placeholder="新しいパスワードを入力" autocomplete="current-password" required>
-
+	
+	
+	
     <!-- パスワードのエラーメッセージ表示（存在する場合のみ表示） -->
     <c:if test="${not empty errorMsgPw}">
         <div class="error"><c:out value="${errorMsgPw}"/></div>
@@ -54,4 +62,5 @@
 
 </body>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/js/resetPassword.js"></script>
 </html>
