@@ -73,13 +73,14 @@
                     <span class="sidebar-label">月次集計</span>
                 </a>
             </li>
-
+			<c:if test="${sessionScope.user.authority==false}">
             <li>
                  <button onclick="location.href='${memberListUrl}'">
                  	<img src="${pageContext.request.contextPath}/images/member-icon.png">
                     <span class="sidebar-label">メンバー管理</span>
                 </a>
             </li>
+            </c:if>
         </ul>
     </nav>
 
