@@ -41,6 +41,27 @@ public class TasksAction {
 	}
 
 	/**
+	 * タスク新規登録画面へ（堀越独自メソッドスペシャル）
+	 * @return String page
+	 */
+	public String getNewRegist() throws UnsupportedEncodingException {
+		String page = "/WEB-INF/jsp/tasks_regist.jsp";
+
+		//TaskServiceを呼びだす
+		TasksService service = new TasksService();
+
+		//service呼び出し、案件名とPM名のリストを格納
+		ArrayList<CasesDTO> casesList = service.selectCases();
+		ArrayList<UsersDTO> pmList = service.selectPM();
+
+		request.setAttribute("casesList", casesList);
+		request.setAttribute("pmList", pmList);
+
+		//ページを返す
+		return page;
+	}
+
+	/**
 	 * - タスク詳細表示 -
 	 * @return String page;
 	 * jspへ渡す値:
