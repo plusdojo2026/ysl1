@@ -22,7 +22,7 @@
 <div class="info-item">案件名：${task.caseName}</div>
 <div class="info-item">タスク名：${task.taskName}</div>
 <!-- 入力項目 -->
-<div class="field-group"><label>作業日</label><input type="datetime-local" name="workDate" required></div>
+<div class="field-group"><label>作業日</label><input type="datetime-local" id="workDate" name="workDate" required></div>
 <div class="field-group"><label>工数</label><input type="number" name="actualHours" min="0.5" max="24" step="0.5" required></div>
 <div class="field-group"><label>作業内容</label><input type="text" name="workDescription"></div>
 
@@ -35,5 +35,14 @@
 </main>
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script src="<c:url value='/js/common.js' />"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+
+    document.getElementById('workDate').value =
+        now.toISOString().substring(0, 16);
+});
+</script>
 </body>
 </html>
