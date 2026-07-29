@@ -60,6 +60,7 @@
 				<th>編集</th>
 			</tr>
 		</thead>
+		
 		<tbody>
 			<c:forEach var="e" items="${casesList}">
 				<tr>
@@ -74,7 +75,10 @@
 					<td>${e.userName}</td>
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
-					<td>${e.caseNow}/${e.caseSum}</td>
+					<td>
+					<progress value="${e.caseNow}" max="${e.caseSum}"></progress>
+					${e.caseNow}/${e.caseSum}
+					</td>
 					<td>${e.actualHoursSum}</td>
 					<td>
 						<!-- 編集ボタン -->

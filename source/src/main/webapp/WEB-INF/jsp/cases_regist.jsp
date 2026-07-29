@@ -23,7 +23,7 @@
 		<h2>案件編集</h2>
 	</c:if>
 	
-	<form action="/ysl1/Controller" method="post">
+	<form id=cases action="/ysl1/Controller" method="post">
 		<table class="table">
 			<tr>
 		        	<td class="label" name="caseName">案件名<span class="required">必須</span></td>
@@ -42,16 +42,19 @@
 		        	<td><input type="text" name="customerName"value="${cases.customerName }"></td>
 		    		
 		        	<td class="label">担当PM</td>
-		        	<td><select name="pmId"value="${cases.pmId }>
-		        	<c:forEach var="pm" items="${userList}">
-								<option
-									value="${pm.userId}"
-									${cases.pmId == pm.userId ? 'selected' : ''}>
-
-									${pm.userName}
-
-								</option>
-							</c:forEach>
+		        	<td>
+		        		<select name="pmId">
+			        		<!-- <option value="0" selected>担当PMを選んでください</option> -->
+				        		<c:forEach var="pm" items="${userList}">
+										
+										<option
+											value="${pm.userId}"
+											${cases.pmId == pm.userId ? 'selected' : ''}>
+		
+											${pm.userName}
+		
+										</option>
+								</c:forEach>
 						</select>
 		        	</td>
 		        	
@@ -132,10 +135,24 @@
 			<c:if test="${param.buttonId=='編集'or param.buttonId=='案件編集' }">
 				<input type="submit" id="edit" name=buttonId value="編集">
 			</c:if>
+			<p style=color:red><span id="msg"></span></p>
 		</div>
 	</form>
 	
 	<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 	</main>
+	
+<script>
+'use strict';
+document.getElementById('cases').onsubmit = function(event) {
+	let caseCode = document.getElementById('cases').elements['caseCode'].value;
+
+    if(caseCode.length>20){
+    	document.getElementById('msg').textContent =
+            '案件コードは２０文字以内で設定してください。';
+        event.preventDefault();
+    }
+}
+</script>
 </body>
 </html>

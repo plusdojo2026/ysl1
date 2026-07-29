@@ -75,7 +75,10 @@
 					<td>${sessionScope.user.userName}</td>
 					<td>${e.startDate}</td>
 					<td>${e.plannedEndDate}</td>
-					<td>${e.caseNow}/${e.caseSum}</td>
+					<td>
+					<progress value="${e.caseNow}" max="${e.caseSum}"></progress>
+					${e.caseNow}/${e.caseSum}
+					</td>
 					<td>${e.actualHoursSum}</td>
 				</tr>
 			</c:if>
