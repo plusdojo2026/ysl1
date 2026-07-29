@@ -294,6 +294,9 @@ public class Controller extends HttpServlet {
 				} else if (buttonId.equals("編集")) {
 					//タスク編集画面表示[]
 					page = tAction.functions();
+				} else if (buttonId.equals("削除")) {
+					//タスク削除処理
+					page = tAction.delete();
 				}
 			}
 
