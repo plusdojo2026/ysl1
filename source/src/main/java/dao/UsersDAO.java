@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.util.List;
 
 import dao.utils.BaseDAO;
@@ -132,10 +133,11 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 	/**
 	 * UsersDTO情報を新規登録する。
 	 *
+	 * @param Connection
 	 * @param user 登録対象のUsersDTO
 	 * @return 登録に成功した場合true
 	 */
-	public boolean insert(UsersDTO user) {
+	public boolean insert(Connection conn, UsersDTO user) {
 		String sql = """
 				INSERT INTO %s (
 				    login_id,
@@ -150,7 +152,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 		// activeの初期設定：nullの場合はtrue、それ以外はDTOの値を使用
 		Boolean active = user.getActive() == null ? true : user.getActive();
 
-		int result = executeUpdate(
+		int result = executeUpdateInTransaction(conn,
 				sql,
 				user.getLoginId(),
 				user.getLoginPw(),
@@ -165,10 +167,11 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 	/**
 	 * UsersDTO情報を更新する。
 	 *
+	 * @param Connection
 	 * @param user 更新対象のUsersDTO
 	 * @return 更新に成功した場合true
 	 */
-	public boolean update(UsersDTO user) {
+	public boolean update(Connection conn, UsersDTO user) {
 
 		String sql = """
 				UPDATE %s
@@ -182,7 +185,7 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 				WHERE id = ?
 				""".formatted(getTableName());
 
-		int result = executeUpdate(
+		int result = executeUpdateInTransaction(conn,
 				sql,
 				user.getLoginId(),
 				user.getLoginPw(),
@@ -198,17 +201,18 @@ public class UsersDAO extends BaseDAO<UsersDTO> {
 	/**
 	 * 指定されたユーザーIDのユーザーを削除する。
 	 *
+	 * @param Connection
 	 * @param userId 削除対象ユーザーID
 	 * @return 削除に成功した場合true
 	 */
-	public boolean delete(int userId) {
+	public boolean delete(Connection conn, int userId) {
 
 		String sql = """
 				DELETE FROM %s
 				WHERE id = ?
 				""".formatted(getTableName());
 
-		return executeUpdate(sql, userId) > 0;
+		return executeUpdateInTransaction(conn, sql, userId) > 0;
 	}
 
 }
