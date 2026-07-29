@@ -10,7 +10,18 @@ jQuery(function ($) {
             url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
         }
     });
-
+	
+	
+	//テーブルのスクロール指定
+        $('#tasksTable').DataTable({
+		    scrollY: '250px',      // スクロールさせたい高さ
+		    scrollCollapse: true,  // データが少ない時に高さを縮める
+		    autoWidth: false,
+		    scrollX: true
+		    	   
+		});
+		
+		
     // DataTable初期化
     const table = $("#tasksTable").DataTable();
 
@@ -31,7 +42,8 @@ jQuery(function ($) {
     $("#managerId").on("change", filterTasks);
     $("#taskStatus").on("change", filterTasks);
 
-    // 案件名の重複削除
+
+    // 案件名の重複削除---------------------------------------------------------
     const caseValues = new Set();
 
     $("#caseName option").each(function () {
@@ -48,7 +60,7 @@ jQuery(function ($) {
         }
     });
 
-    // 担当者の重複削除
+    // 担当者の重複削除------------------------------------------------------------
     const managerValues = new Set();
 
     $("#managerId option").each(function () {

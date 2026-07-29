@@ -61,6 +61,14 @@
 		</select>
 	</div>
 </div>
+	<form action="${pageContext.request.contextPath}/Controller" method="post">
+		<input type="hidden" name="pageId" value="T001">
+		<div class="btn">
+		<button type="submit" name="buttonId" value="登録" id="regist">＋新規登録</button>
+		</div>
+	</form>
+	
+
 
 <!-- タスクの一覧表示 -->
 <table class="table" id="tasksTable" border="1">	
@@ -88,7 +96,7 @@
 			<td>${e.userName}</td>
 			<td>${e.taskStatus}</td>
 			<td>${e.taskPriority}</td>
-			<td>${e.deadline}</td>
+			<td>${e.deadline.substring(0,16)}</td>
 			<td>
 				${e.actualHours}/${e.taskPlannedHours}
 			</td>
