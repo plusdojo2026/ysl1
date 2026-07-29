@@ -419,5 +419,42 @@ public class TasksDAO {
 	    return result;
 	}
 
+	/**
+	 * タスクを削除する
+	 *
+	 * @return result
+	 * @throws SQLException
+	 * 
+	 * @author haruto.tanaka
+	 */
+	public boolean delete(int id) throws SQLException {
+
+		boolean result = false;
+
+		// worksテーブルの関連レコードを削除
+		String worksSql =
+			"DELETE FROM works " +
+			"WHERE task_id = ?";
+
+		PreparedStatement worksStmt = conn.prepareStatement(worksSql);
+		worksStmt.setInt(1, id);
+		worksStmt.executeUpdate();
+
+		// tasksテーブルのレコードを削除
+		String tasksSql =
+			"DELETE FROM tasks " +
+			"WHERE id = ?";
+
+		PreparedStatement tasksStmt = conn.prepareStatement(tasksSql);
+		tasksStmt.setInt(1, id);
+
+		int count = tasksStmt.executeUpdate();
+
+		if (count > 0) {
+			result = true;
+		}
+
+		return result;
+	}
 }
 	
