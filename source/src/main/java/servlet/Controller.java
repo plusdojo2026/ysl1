@@ -46,6 +46,7 @@ public class Controller extends HttpServlet {
 		//ページIDとボタンIDを取得
 		String pageId = request.getParameter("pageId");
 		String buttonId = request.getParameter("buttonId");
+		String caseId = request.getParameter("caseId");
 		//ユーザーのログイン状態をチェック
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("user");
@@ -82,10 +83,9 @@ public class Controller extends HttpServlet {
 					page = uAction.invalid();
 				}
 				//案件詳細画面へ（一覧から案件名を押した処理）
-			} else if (pageId.equals("C003")) {
-				System.out.println("aaaaaa");
+			} else if (pageId.equals("C003") && caseId != null) {
 				CasesAction action = new CasesAction(request);
-				page = action.intiCasesDetail1();
+				page = action.intiCasesDetail();
 			}
 			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {
