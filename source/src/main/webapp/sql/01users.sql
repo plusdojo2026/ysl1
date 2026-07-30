@@ -1,3 +1,11 @@
+-- ユーザー作成
+CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'GvJ28VvAB9AFkRKa';
+
+-- 権限を付与（全DB・全テーブルへのフルアクセス）
+GRANT ALL PRIVILEGES ON *.* TO 'ysl1'@'localhost';
+
+-- 反映
+FLUSH PRIVILEGES;
 -- データベース作成
 CREATE DATABASE IF NOT EXISTS ysl1
     CHARACTER SET utf8mb4
