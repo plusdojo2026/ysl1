@@ -184,9 +184,7 @@
     <h3>工数ログ</h3>
    <div class="table" id="works">
 <!-- 	<h2>工数ログ</h2> -->
-
-	<c:forEach var="w" items="${worksList}">
-		<table class="table" id="works_table">
+<table class="table" id="works_table">
 		<tr>
 			<td>作業日</td>
 			<td>タスク名</td>
@@ -194,6 +192,7 @@
 			<td>工数</td>
 			<td>作業内容</td>
 		</tr>
+	<c:forEach var="w" items="${worksList}">
 		<form action="/ysl1/Controller" method="post">
 			<tr>
 			<td>${w.workDate}</td>
@@ -203,9 +202,9 @@
 			<td>${w.workDescription}</td>
 			</tr>
 		</form>
-		
+			</c:forEach>
 		</table>
-	</c:forEach>
+
 	</div>
   </div>
 </div>
