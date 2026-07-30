@@ -120,6 +120,7 @@ public class DBUtils {
 					+ "?useUnicode=true"
 					+ "&characterEncoding=UTF-8"
 					+ "&serverTimezone=Asia/Tokyo"
+					+ "&allowPublicKeyRetrieval=true"
 					+ "&useSSL=false";
 			break;
 
