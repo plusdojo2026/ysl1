@@ -73,7 +73,7 @@
 				<input type="submit" name="buttonId" value="進行中にする">
 				</c:if>
 				<c:if test="${c.caseStatus!='完了'}">
-				<input type="submit" name="buttonId" value="完了にする">
+				<input type="submit" name="buttonId" value="完了にする" onclick="return complete()">
 				</c:if>
 				<c:if test="${c.caseStatus!='中止'}">
 				<input type="submit" name="buttonId" value="中止にする">
@@ -239,6 +239,13 @@
 			return false;
 			}
 	}
+
+	function complete(){
+		if(!confirm("完了にしますか？")) {
+			return
+		}
+    }
+
 
 </script>
 </body>
