@@ -21,16 +21,11 @@ public class CasesAction {
 		this.request = request;
 	}
 
-	//案件詳細を持ってくるメソッド
-	public void intiCasesDetail() throws UnsupportedEncodingException {
-		intiCasesDetail1();
-		intiCasesDetail2();
-		intiCasesDetail3();
-
-	}
-
-	public String intiCasesDetail1() throws UnsupportedEncodingException {
-
+	/**
+	 * 案件詳細を持ってくるメソッド
+	 * @throws UnsupportedEncodingException
+	 */
+	public String intiCasesDetail() throws UnsupportedEncodingException {
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 
 		String ans = null;
@@ -39,54 +34,115 @@ public class CasesAction {
 		//案件のIDを取得
 		int id = Integer.parseInt(request.getParameter("caseId"));
 
-		CasesService service1 = new CasesService();
-		ArrayList<AllDTO> casesList = service1.intiCasesDetail(id);
-		request.setAttribute("casesList", casesList);
-
-		CasesService service2 = new CasesService();
-		ArrayList<AllDTO> tasksList = service2.intiCasesDetail2(id);
-		request.setAttribute("tasksList", tasksList);
-
-		CasesService service3 = new CasesService();
-		ArrayList<AllDTO> worksList = service3.intiCasesDetail3(id);
-		request.setAttribute("worksList", worksList);
-
+		intiCasesDetail1(id);
+		intiCasesDetail2(id);
+		intiCasesDetail3(id);
 		return page;
 	}
 
-	//タスクを持ってくるメソッド
-	public String intiCasesDetail2() throws UnsupportedEncodingException {
-		String page = "/WEB-INF/jsp/cases_details.jsp";
+	/**
+	 * 指定された案件IDの案件詳細情報を取得し、
+	 * リクエストスコープに casesList として設定する。
+	 *
+	 * <p>取得した案件情報は AllDTO に格納され、以下の項目を含む。</p>
+	 * <ul>
+	 *   <li>caseId（案件ID）</li>
+	 *   <li>caseName（案件名）</li>
+	 *   <li>caseCode（案件コード）</li>
+	 *   <li>customerName（顧客名）</li>
+	 *   <li>casePriority（案件優先度）</li>
+	 *   <li>pmId（PMユーザーID）</li>
+	 *   <li>userName（PM名）</li>
+	 *   <li>caseStatus（案件ステータス）</li>
+	 *   <li>startDate（開始日）</li>
+	 *   <li>plannedEndDate（終了予定日）</li>
+	 *   <li>caseDescription（案件概要）</li>
+	 *   <li>casePlannedHours（予定工数）</li>
+	 *   <li>actualHoursSum（実績工数合計）</li>
+	 *   <li>caseSum（タスク数）</li>
+	 *   <li>caseNow（完了タスク数）</li>
+	 *   <li>caseProgressRate（進捗率）</li>
+	 * </ul>
+	 *
+	 * @param id 案件ID
+	 * @throws UnsupportedEncodingException 文字エンコーディング処理でエラーが発生した場合
+	 */
+	public void intiCasesDetail1(int id) throws UnsupportedEncodingException {
 
-		String ans = null;
-		CasesDTO dto = null;
-		request.setCharacterEncoding("UTF-8");
-		//案件のIDを取得
-		int id = Integer.parseInt(request.getParameter("caseId"));
+		CasesService service1 = new CasesService();
+		ArrayList<AllDTO> casesList = service1.intiCasesDetail(id);
+		for (AllDTO allDTO : casesList) {
+			System.out.println(allDTO.toString());
+		}
+		request.setAttribute("casesList", casesList);
+	}
+
+	//堀越ローリングスペシャルメソッド（上ののパクリ）
+	public String intiCasesDetail1ex(int id) throws UnsupportedEncodingException {
+
+		CasesService service1 = new CasesService();
+		ArrayList<AllDTO> casesList = service1.intiCasesDetail(id);
+		for (AllDTO allDTO : casesList) {
+			System.out.println(allDTO.toString());
+		}
+		request.setAttribute("casesList", casesList);
+
+		return "/WEB-INF/jsp/cases_details.jsp";
+
+	}
+
+	/**
+	 * 指定された案件IDに紐づくタスク一覧を取得し、
+	 * リクエストスコープに tasksList として設定する。
+	 *
+	 * <p>取得したタスク情報は AllDTO に格納され、以下の項目を含む。</p>
+	 * <ul>
+	 *   <li>taskId（タスクID）</li>
+	 *   <li>taskName（タスク名）</li>
+	 *   <li>taskStatus（タスクステータス）</li>
+	 *   <li>managerId（担当者ID）</li>
+	 *   <li>userName（担当者名）</li>
+	 *   <li>actualHoursSum（タスク実績工数合計）</li>
+	 * </ul>
+	 *
+	 * @param id 案件ID
+	 * @throws UnsupportedEncodingException 文字エンコーディング処理でエラーが発生した場合
+	 */
+	public void intiCasesDetail2(int id) throws UnsupportedEncodingException {
 
 		CasesService service = new CasesService();
 		ArrayList<AllDTO> tasksList = service.intiCasesDetail2(id);
 		request.setAttribute("tasksList", tasksList);
 
-		return page;
-
 	}
 
-	//工数を持ってくるメソッド
-	public String intiCasesDetail3() throws UnsupportedEncodingException {
-		String page = "/WEB-INF/jsp/cases_details.jsp";
+	/**
+	 * 指定された案件IDに紐づく作業実績一覧を取得し、
+	 * リクエストスコープに worksList として設定する。
+	 *
+	 * <p>取得した作業実績情報は AllDTO に格納され、以下の項目を含む。</p>
+	 * <ul>
+	 *   <li>workId（作業実績ID）</li>
+	 *   <li>taskId（タスクID）</li>
+	 *   <li>taskName（タスク名）</li>
+	 *   <li>userId（作業者ID）</li>
+	 *   <li>userName（作業者名）</li>
+	 *   <li>workDate（作業日）</li>
+	 *   <li>actualHours（実績工数）</li>
+	 *   <li>workDescription（作業内容）</li>
+	 * </ul>
+	 *
+	 * <p>作業日の降順、同日の場合は作業実績IDの降順で取得する。</p>
+	 *
+	 * @param id 案件ID
+	 * @throws UnsupportedEncodingException 文字エンコーディング処理でエラーが発生した場合
+	 */
 
-		String ans = null;
-		CasesDTO dto = null;
-		request.setCharacterEncoding("UTF-8");
-		//案件のIDを取得
-		int id = Integer.parseInt(request.getParameter("caseId"));
+	public void intiCasesDetail3(int id) throws UnsupportedEncodingException {
 
 		CasesService service = new CasesService();
 		ArrayList<AllDTO> worksList = service.intiCasesDetail3(id);
 		request.setAttribute("worksList", worksList);
-
-		return page;
 
 	}
 
@@ -205,15 +261,15 @@ public class CasesAction {
 		String caseStatus = request.getParameter("status");
 		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
-		if(startDate.equals("")) {
+		if (startDate.equals("")) {
 			startDate = "1970-12-31";
 		}
 		String plannedEndDate = request.getParameter("plannedEndDate");
-		if(plannedEndDate.equals("")) {
+		if (plannedEndDate.equals("")) {
 			plannedEndDate = "1970-12-31";
 		}
-		double casePlannedHours =9999.0;
-		if(!request.getParameter("casePlannedHours").equals("")) {
+		double casePlannedHours = 9999.0;
+		if (!request.getParameter("casePlannedHours").equals("")) {
 			casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
 		}
 		String caseDescription = request.getParameter("description");
@@ -269,15 +325,15 @@ public class CasesAction {
 		String caseStatus = request.getParameter("status");
 		String casePriority = request.getParameter("priority");
 		String startDate = request.getParameter("startDate");
-		if(startDate.equals("")) {
+		if (startDate.equals("")) {
 			startDate = "1970-12-31";
 		}
 		String plannedEndDate = request.getParameter("plannedEndDate");
-		if(plannedEndDate.equals("")) {
+		if (plannedEndDate.equals("")) {
 			plannedEndDate = "1970-12-31";
 		}
-		double casePlannedHours =9999.0;
-		if(!request.getParameter("casePlannedHours").equals("")) {
+		double casePlannedHours = 9999.0;
+		if (!request.getParameter("casePlannedHours").equals("")) {
 			casePlannedHours = Double.parseDouble(request.getParameter("casePlannedHours"));
 		}
 		String caseDescription = request.getParameter("description");
@@ -301,7 +357,7 @@ public class CasesAction {
 		request.setAttribute("casesList", casesList);
 		this.initialize();
 		casesEdit();
-		
+
 		service.close();
 
 		return page;

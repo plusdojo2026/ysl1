@@ -86,34 +86,33 @@
 				<td>優先度</td>
 				<td>${c.casePriority}</td>
 			</tr>
-		</c:forEach>
+	
 		
-		<c:forEach var="t" items="${tasksList}">
+	
 			<tr>
 				<td>期間</td>
-				<td>${t.deadline}</td>
+				<td>${c.plannedEndDate}</td>
 			</tr>
-		</c:forEach>
 		
-		<c:forEach var="c" items="${casesList}">
+	
 			<tr>
 				<td>予定工数</td>
 				<td>${c.casePlannedHours}</td>
-		</c:forEach>
 		
-		<c:forEach var="t" items="${tasksList}">
+		
+		
 			</tr>
 			<!-- tasksから -->
 			<tr>
 				<td>実績工数</td>
-				<td>${t.actualHours}</td>
+				<td>${c.actualHoursSum}</td>
 			</tr>
 			<tr>
 				<td>タスク進捗</td>
-				<td>${t.taskProgressRate}</td>
+				<td>${c.caseProgressRate}</td>
 			</tr>
-		</c:forEach>
 		
+			</c:forEach>
 		<c:forEach var="c" items="${casesList}">
 			<tr>
 				<td>説明</td>

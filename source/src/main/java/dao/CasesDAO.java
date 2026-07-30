@@ -39,24 +39,24 @@ public class CasesDAO {
 	 * @return 数値の案件コード
 	 * @throws SQLException 案件コードの形式が不正な場合
 	 */
-//	private int parseCaseCode(String caseCode) throws SQLException {
-//
-//		if (caseCode == null || caseCode.isBlank()) {
-//			return 0;
-//		}
-//
-//		String numberPart = caseCode.trim()
-//				.replaceFirst("(?i)^CASE", "");
-//
-//		try {
-//			return Integer.parseInt(numberPart);
-//
-//		} catch (NumberFormatException e) {
-//			throw new SQLException(
-//					"case_codeの形式が不正です: " + caseCode,
-//					e);
-//		}
-//	}
+	//	private int parseCaseCode(String caseCode) throws SQLException {
+	//
+	//		if (caseCode == null || caseCode.isBlank()) {
+	//			return 0;
+	//		}
+	//
+	//		String numberPart = caseCode.trim()
+	//				.replaceFirst("(?i)^CASE", "");
+	//
+	//		try {
+	//			return Integer.parseInt(numberPart);
+	//
+	//		} catch (NumberFormatException e) {
+	//			throw new SQLException(
+	//					"case_codeの形式が不正です: " + caseCode,
+	//					e);
+	//		}
+	//	}
 
 	/**
 	 * 数値の案件コードをDB保存形式へ変換する。
@@ -67,12 +67,13 @@ public class CasesDAO {
 	 * @param caseCode 数値の案件コード
 	 * @return DB保存用の案件コード
 	 */
-//	private String formatCaseCode(int caseCode) {
-//		return String.format("CASE%03d", caseCode);
-//	}
+	//	private String formatCaseCode(int caseCode) {
+	//		return String.format("CASE%03d", caseCode);
+	//	}
 
 	/**
 	 * 案件一覧用SQLを作成する。
+	 * 案件情報(c.*)＋案件の実績工数合計(actual_hours_sum)＋案件のタスク数(task_count)＋完了タスク数(completed_task_count)＋PM名(user_names)
 	 *
 	 * GROUP BYを使わず、サブクエリで集計することで
 	 * ONLY_FULL_GROUP_BYによるエラーを回避する。
@@ -129,27 +130,26 @@ public class CasesDAO {
 		dto.setCasePriority(rs.getString("case_priority"));
 		dto.setPmId(rs.getInt("pm_id"));
 		dto.setCaseStatus(rs.getString("case_status"));
-		if(rs.getString("start_date").equals("1970-12-31 00:00:00")) {
+		if (rs.getString("start_date").equals("1970-12-31 00:00:00")) {
 			dto.setStartDate(null);
-		}else {
+		} else {
 			dto.setStartDate(rs.getString("start_date"));
 		}
-		if(rs.getString("planned_end_date").equals("1970-12-31 00:00:00")) {
+		if (rs.getString("planned_end_date").equals("1970-12-31 00:00:00")) {
 			dto.setStartDate(null);
-		}else {
+		} else {
 			dto.setPlannedEndDate(
 					rs.getString("planned_end_date"));
-		}		
+		}
 		dto.setCaseDescription(
 				rs.getString("case_description"));
-		
-		if(rs.getDouble("case_planned_hours")==9999.0) {
+
+		if (rs.getDouble("case_planned_hours") == 9999.0) {
 			dto.setCasePlannedHours(0);
-		}else {
+		} else {
 			dto.setCasePlannedHours(
 					rs.getDouble("case_planned_hours"));
 		}
-		
 
 		dto.setUserName(rs.getString("user_names"));
 		dto.setCaseSum(rs.getInt("task_count"));
@@ -170,6 +170,7 @@ public class CasesDAO {
 			int progressRate = completedTaskCount * 100 / taskCount;
 
 			dto.setCaseProgressRate(progressRate);
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa" + progressRate);
 		} else {
 			dto.setCaseProgressRate(0);
 		}
@@ -487,8 +488,8 @@ public class CasesDAO {
 					 * CASE001 → 1
 					 */
 					dto.setCaseCode(
-							
-									rs.getString("case_code"));
+
+							rs.getString("case_code"));
 
 					dto.setCustomerName(
 							rs.getString("customer_name"));
@@ -497,25 +498,24 @@ public class CasesDAO {
 							rs.getString("case_status"));
 					dto.setCasePriority(
 							rs.getString("case_priority"));
-					if(rs.getString("start_date").equals("1970-12-31 00:00:00")) {
+					if (rs.getString("start_date").equals("1970-12-31 00:00:00")) {
 						dto.setStartDate(null);
-					}else {
+					} else {
 						dto.setStartDate(rs.getString("start_date"));
 					}
-					if(rs.getString("planned_end_date").equals("1970-12-31 00:00:00")) {
+					if (rs.getString("planned_end_date").equals("1970-12-31 00:00:00")) {
 						dto.setStartDate(null);
-					}else {
+					} else {
 						dto.setPlannedEndDate(
 								rs.getString("planned_end_date"));
 					}
-					
-					
+
 					dto.setCaseDescription(
 							rs.getString(
 									"case_description"));
-					if(rs.getDouble("case_planned_hours")==(9999.0)) {
+					if (rs.getDouble("case_planned_hours") == (9999.0)) {
 						dto.setCasePlannedHours(0);
-					}else {
+					} else {
 						dto.setCasePlannedHours(
 								rs.getDouble("case_planned_hours"));
 					}
@@ -670,7 +670,7 @@ public class CasesDAO {
 
 		System.out.println("【update SQL】");
 		System.out.println(sql);
-		
+
 		try (PreparedStatement pStmt = conn.prepareStatement(sql)) {
 
 			pStmt.setString(
@@ -704,7 +704,7 @@ public class CasesDAO {
 			pStmt.setDouble(
 					10,
 					dto.getCasePlannedHours());
-			
+
 			pStmt.setInt(11, dto.getId());
 			System.out.println(dto.getCasePlannedHours());
 			return pStmt.executeUpdate();

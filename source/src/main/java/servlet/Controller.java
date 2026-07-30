@@ -85,7 +85,7 @@ public class Controller extends HttpServlet {
 				//案件詳細画面へ（一覧から案件名を押した処理）
 			} else if (pageId.equals("C003") && caseId != null) {
 				CasesAction action = new CasesAction(request);
-				page = action.intiCasesDetail1();
+				page = action.intiCasesDetail();
 			}
 			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {

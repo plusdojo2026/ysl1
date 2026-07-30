@@ -486,4 +486,52 @@ public class AllDTO {
 		this.workRate = workRate;
 	}
 
+	@Override
+	public String toString() {
+		return "AllDTO [userId=" + userId
+				+ ", loginId=" + loginId
+				+ ", loginPw=" + loginPw
+				+ ", userName=" + userName
+				+ ", mailAddress=" + mailAddress
+				+ ", authority=" + authority
+				+ ", active=" + active
+				+ ", created_at=" + created_at
+				+ ", update_at=" + update_at
+				+ ", caseId=" + caseId
+				+ ", caseName=" + caseName
+				+ ", caseCode=" + caseCode
+				+ ", customerName=" + customerName
+				+ ", casePriority=" + casePriority
+				+ ", pmId=" + pmId
+				+ ", caseStatus=" + caseStatus
+				+ ", startDate=" + startDate
+				+ ", plannedEndDate=" + plannedEndDate
+				+ ", caseDescription=" + caseDescription
+				+ ", casePlannedHours=" + casePlannedHours
+				+ ", caseSum=" + caseSum
+				+ ", caseNow=" + caseNow
+				+ ", actualHoursSum=" + actualHoursSum
+				+ ", caseProgressRate=" + caseProgressRate
+				+ ", taskId=" + taskId
+				+ ", taskName=" + taskName
+				+ ", managerId=" + managerId
+				+ ", taskStatus=" + taskStatus
+				+ ", taskPriority=" + taskPriority
+				+ ", deadline=" + deadline
+				+ ", taskProgressRate=" + taskProgressRate
+				+ ", taskPlannedHours=" + taskPlannedHours
+				+ ", taskDescription=" + taskDescription
+				+ ", workId=" + workId
+				+ ", workDate=" + workDate
+				+ ", actualHours=" + actualHours
+				+ ", workDescription=" + workDescription
+				+ ", inProgressCase=" + inProgressCase
+				+ ", assignedTask=" + assignedTask
+				+ ", deadlineNumber=" + deadlineNumber
+				+ ", monthlyTotalHours=" + monthlyTotalHours
+				+ ", caseCount=" + caseCount
+				+ ", memberCount=" + memberCount
+				+ ", workRate=" + workRate
+				+ "]";
+	}
 }

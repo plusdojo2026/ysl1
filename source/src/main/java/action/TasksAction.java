@@ -197,6 +197,8 @@ public class TasksAction {
 			page = "/WEB-INF/jsp/tasks_regist.jsp";
 		}
 
+		CasesAction action = new CasesAction(request);
+		action.intiCasesDetail();
 		return page;
 	}
 
@@ -245,7 +247,8 @@ public class TasksAction {
 			page = "/WEB-INF/jsp/tasks_regist.jsp";
 		}
 		CasesAction action = new CasesAction(request);
-		action.intiCasesDetail1();
+		/*action.intiCasesDetail1(Integer.parseInt(caseIdStr));*/
+		action.intiCasesDetail();
 
 		return page;
 	}
