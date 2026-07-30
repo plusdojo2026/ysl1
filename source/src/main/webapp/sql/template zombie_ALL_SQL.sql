@@ -4,22 +4,22 @@ drop table tasks;
 drop table cases;
 drop table users;
 
--- �g�p����f�[�^�x�[�X���w��
+-- 使用するデータベースを指定
 USE ysl1;
 
--- DB�ڑ��p���[�U�[�쐬
+-- DB接続用ユーザー作成
 -- CREATE USER IF NOT EXISTS 'ysl1'@'localhost'
 -- IDENTIFIED BY '<DB_PASSWORD>';
 
--- ysl1�f�[�^�x�[�X�ɑ΂��錠����t�^
+-- ysl1データベースに対する権限を付与
 -- GRANT ALL PRIVILEGES
 -- ON ysl1.*
 -- TO 'ysl1'@'localhost';
 
--- �����𔽉f
+-- 権限を反映
 -- FLUSH PRIVILEGES;
 
--- users�e�[�u���쐬
+-- usersテーブル作成
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 delete from users;
--- �����f�[�^�o�^
+-- 初期データ登録
 INSERT INTO users (
     login_id,
     login_pw,
@@ -58,7 +58,7 @@ INSERT INTO users (
 (
     'tanaka456',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�c���b����',
+    '田中恵梨香',
     'tanaka@example.com',
     false,
     true
@@ -66,7 +66,7 @@ INSERT INTO users (
 (
     'sato_hanako',
     '$2a$12$UjsS9xhZ5PypWlaMwMyAWOPuxDJBGC5H2oaRz2lmsXqjTpTI2L/lq',
-    '���� �Ԏq',
+    '佐藤 花子',
     'sato@example.com',
     true,
     true
@@ -74,7 +74,7 @@ INSERT INTO users (
 (
     'admin001',
     '$2a$12$bIMk7jQ9JzBb0Vy36Cu1suxaZo4WIJvOdMOCdEuB9yRJboFHxZ8VK',
-    '�V�X�e���Ǘ���',
+    'システム管理者',
     'admin@example.com',
     true,
     true
@@ -91,7 +91,7 @@ INSERT INTO users (
 (
     'anime_honda',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�{�c �q���g',
+    '本田 ヒロト',
     'honda@anime-demo.example',
     FALSE,
     TRUE
@@ -99,7 +99,7 @@ INSERT INTO users (
 (
     'anime_kiba',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '���� �L�o',
+    '犬塚 キバ',
     'kiba@anime-demo.example',
     FALSE,
     TRUE
@@ -107,7 +107,7 @@ INSERT INTO users (
 (
     'anime_naho',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '���c �Ȃ�',
+    '高田 なほ',
     'naho@anime-demo.example',
     FALSE,
     TRUE
@@ -115,7 +115,7 @@ INSERT INTO users (
 (
     'anime_natsuki',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '���� �i�c�L',
+    '安岐 ナツキ',
     'natsuki@anime-demo.example',
     TRUE,
     TRUE
@@ -123,7 +123,7 @@ INSERT INTO users (
 (
     'anime_shino',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '���� �V�m',
+    '油女 シノ',
     'shino@anime-demo.example',
     FALSE,
     TRUE
@@ -131,7 +131,7 @@ INSERT INTO users (
 (
     'anime_genma',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�s�m�� �Q���}',
+    '不知火 ゲンマ',
     'genma@anime-demo.example',
     TRUE,
     TRUE
@@ -139,7 +139,7 @@ INSERT INTO users (
 (
     'anime_kamiya',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�_�J �Y��',
+    '神谷 雄介',
     'kamiya@anime-demo.example',
     TRUE,
     TRUE
@@ -147,7 +147,7 @@ INSERT INTO users (
 (
     'anime_rika',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�� ����',
+    '篠崎 里香',
     'rika@anime-demo.example',
     FALSE,
     TRUE
@@ -155,7 +155,7 @@ INSERT INTO users (
 (
     'anime_otogi',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�䉾 ����',
+    '御伽 龍児',
     'otogi@anime-demo.example',
     FALSE,
     TRUE
@@ -163,7 +163,7 @@ INSERT INTO users (
 (
     'anime_devola',
     '$2a$12$Sqh1UTh8D5j9ixHedaNkHO.f8.jmyc4dU2akAXNOWZKiTWHhRta8y',
-    '�f�{��',
+    'デボル',
     'devola@anime-demo.example',
     FALSE,
     TRUE
@@ -232,11 +232,11 @@ CREATE TABLE IF NOT EXISTS cases (
 
     customer_name VARCHAR(30),
 
-    case_priority VARCHAR(10) NOT NULL DEFAULT '��',
+    case_priority VARCHAR(10) NOT NULL DEFAULT '中',
 
     pm_id INT,
 
-    case_status VARCHAR(10) NOT NULL DEFAULT '�i�s��',
+    case_status VARCHAR(10) NOT NULL DEFAULT '進行中',
 
     start_date TIMESTAMP NULL,
 
@@ -279,39 +279,39 @@ INSERT IGNORE INTO cases (
     case_planned_hours
 ) VALUES
 (
-    '�̔��Ǘ��V�X�e�����V',
+    '販売管理システム刷新',
     'CASE001',
-    '�������ABC����',
-    '��',
+    '株式会社ABC商事',
+    '高',
     1,
-    '�i�s��',
+    '進行中',
     '2026-07-01 09:00:00',
     '2026-09-30 18:00:00',
-    '�����̔��Ǘ��V�X�e���̃��j���[�A���Č�',
+    '既存販売管理システムのリニューアル案件',
     500
 ),
 (
-    '�݌ɊǗ��A�v���J��',
+    '在庫管理アプリ開発',
     'CASE002',
-    '�������XYZ����',
-    '��',
+    '株式会社XYZ物流',
+    '中',
     2,
-    '������',
+    '未着手',
     '2026-08-01 09:00:00',
     '2026-11-30 18:00:00',
-    '�X�}�[�g�t�H�������݌ɊǗ��A�v���̐V�K�J��',
+    'スマートフォン向け在庫管理アプリの新規開発',
     350
 ),
 (
-    '�ڋq�|�[�^���@�\�ǉ�',
+    '顧客ポータル機能追加',
     'CASE003',
-    '������ЃT���v���T�[�r�X',
-    '��',
+    '株式会社サンプルサービス',
+    '低',
     3,
-    '����',
+    '完了',
     '2026-04-01 09:00:00',
     '2026-06-30 18:00:00',
-    '�����ڋq�|�[�^���ւ̖₢���킹�Ǘ��@�\�ǉ�',
+    '既存顧客ポータルへの問い合わせ管理機能追加',
     200
 );
 
@@ -328,63 +328,63 @@ INSERT INTO cases (
     case_planned_hours
 ) VALUES
 (
-    '�w���C�x���g�Ǘ��V�X�e��',
+    '学園イベント管理システム',
     'CHARA-C001',
-    '������w��',
-    '��',
+    '童実野学園',
+    '中',
     @honda_id,
-    '�i�s��',
+    '進行中',
     '2026-05-01 09:00:00',
     '2026-09-30 18:00:00',
-    '�C�x���g�̓����A�Q���ҁA�S���҂��Ǘ�����V�X�e��',
+    'イベントの日程、参加者、担当者を管理するシステム',
     180
 ),
 (
-    '�������N�Ǘ��V�X�e��',
+    '動物健康管理システム',
     'CHARA-C002',
-    '�؃m�t������ÃZ���^�[',
-    '��',
+    '木ノ葉動物医療センター',
+    '高',
     @kiba_id,
-    '�i�s��',
+    '進行中',
     '2026-05-15 09:00:00',
     '2026-10-31 18:00:00',
-    '�����̌��N��ԁA�f�×����A����󋵂��Ǘ�����V�X�e��',
+    '動物の健康状態、診療履歴、投薬状況を管理するシステム',
     240
 ),
 (
-    '��Ë@��݌ɊǗ��V�X�e��',
+    '医療機器在庫管理システム',
     'CHARA-C003',
-    '�C�m��Ì�����',
-    '��',
+    '海洋医療研究所',
+    '高',
     @natsuki_id,
-    '�i�s��',
+    '進行中',
     '2026-06-01 09:00:00',
     '2026-11-30 18:00:00',
-    '��Ë@��̍݌ɁA�ݏo�A�_���������Ǘ�����V�X�e��',
+    '医療機器の在庫、貸出、点検履歴を管理するシステム',
     300
 ),
 (
-    '�L������i���Ǘ��V�X�e��',
+    '広告制作進捗管理システム',
     'CHARA-C004',
-    '�ڍ��L����',
-    '��',
+    '目黒広告社',
+    '高',
     @kamiya_id,
-    '�i�s��',
+    '進行中',
     '2026-05-20 09:00:00',
     '2026-11-15 18:00:00',
-    '�L������̍H���A�S���ҁA���r���[�󋵂��Ǘ�����V�X�e��',
+    '広告制作の工程、担当者、レビュー状況を管理するシステム',
     280
 ),
 (
-    '�@�탁���e�i���X�Ǘ��V�X�e��',
+    '機器メンテナンス管理システム',
     'CHARA-C005',
-    '���W�X�^���X�Z�p��',
-    '��',
+    'レジスタンス技術部',
+    '中',
     @devola_id,
-    '�i�s��',
+    '進行中',
     '2026-04-01 09:00:00',
     '2026-09-15 18:00:00',
-    '�@��̓_�������A�C�������A�������i���Ǘ�����V�X�e��',
+    '機器の点検履歴、修理履歴、交換部品を管理するシステム',
     220
 );
 
@@ -401,9 +401,9 @@ CREATE TABLE IF NOT EXISTS tasks (
 
     manager_id INT,
 
-    task_status VARCHAR(10) NOT NULL DEFAULT '������',
+    task_status VARCHAR(10) NOT NULL DEFAULT '未着手',
 
-    task_priority VARCHAR(10) NOT NULL DEFAULT '��',
+    task_priority VARCHAR(10) NOT NULL DEFAULT '中',
 
     deadline TIMESTAMP NULL,
 
@@ -454,228 +454,228 @@ INSERT INTO tasks (
 ) VALUES
 
 -- -----------------------------------------------------
--- CHARA-C001 �w���C�x���g�Ǘ��V�X�e��
--- ����2�� / 5�� = 40%
+-- CHARA-C001 学園イベント管理システム
+-- 完了2件 / 5件 = 40%
 -- -----------------------------------------------------
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C001'),
-    '�C�x���g�v����`',
+    'イベント要件定義',
     (SELECT id FROM users WHERE login_id = 'anime_honda'),
-    '����', '��', '2026-05-31 18:00:00', 100,
+    '完了', '高', '2026-05-31 18:00:00', 100,
     '2026-05-01 09:00:00', 24.0,
-    '�C�x���g�Ǘ��ɕK�v�ȋ@�\�Ɖ�ʂ𐮗�����'
+    'イベント管理に必要な機能と画面を整理する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C001'),
-    '�C�x���g�ꗗ��ʂ̍쐬',
+    'イベント一覧画面の作成',
     (SELECT id FROM users WHERE login_id = 'anime_rika'),
-    '�i�s��', '��', '2026-08-15 18:00:00', 60,
+    '進行中', '中', '2026-08-15 18:00:00', 60,
     '2026-06-01 09:00:00', 40.0,
-    '�C�x���g�ꗗ�ƌ����@�\���쐬����'
+    'イベント一覧と検索機能を作成する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C001'),
-    '�Q���ғo�^�@�\�̎���',
+    '参加者登録機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_otogi'),
-    '�i�s��', '��', '2026-09-10 18:00:00', 10,
+    '進行中', '中', '2026-09-10 18:00:00', 10,
     '2026-07-20 09:00:00', 36.0,
-    '�C�x���g�Q���҂�o�^����@�\����������'
+    'イベント参加者を登録する機能を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C001'),
-    '�C�x���g�ڍ׉�ʂ̍쐬',
+    'イベント詳細画面の作成',
     (SELECT id FROM users WHERE login_id = 'anime_rika'),
-    '����', '��', '2026-07-31 18:00:00', 100,
+    '完了', '中', '2026-07-31 18:00:00', 100,
     '2026-06-15 09:00:00', 28.0,
-    '�C�x���g�̏ڍ׏���\�������ʂ��쐬����'
+    'イベントの詳細情報を表示する画面を作成する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C001'),
-    '�C�x���g�ʒm�@�\�̎���',
+    'イベント通知機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_honda'),
-    '�i�s��', '��', '2026-09-20 18:00:00', 40,
+    '進行中', '低', '2026-09-20 18:00:00', 40,
     '2026-07-15 09:00:00', 24.0,
-    '�J�×\��̃C�x���g�𗘗p�҂֒ʒm����'
+    '開催予定のイベントを利用者へ通知する'
 ),
 
 -- -----------------------------------------------------
--- CHARA-C002 �������N�Ǘ��V�X�e��
--- ����3�� / 5�� = 60%
+-- CHARA-C002 動物健康管理システム
+-- 完了3件 / 5件 = 60%
 -- -----------------------------------------------------
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C002'),
-    '���N�Ǘ��f�[�^�x�[�X�݌v',
+    '健康管理データベース設計',
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
-    '����', '��', '2026-06-30 18:00:00', 100,
+    '完了', '高', '2026-06-30 18:00:00', 100,
     '2026-05-15 09:00:00', 30.0,
-    '�������Ɛf�×����̃e�[�u����݌v����'
+    '動物情報と診療履歴のテーブルを設計する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C002'),
-    '�f�×���o�^�@�\�̎���',
+    '診療履歴登録機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_kiba'),
-    '�i�s��', '��', '2026-08-20 18:00:00', 75,
+    '進行中', '高', '2026-08-20 18:00:00', 75,
     '2026-06-20 09:00:00', 48.0,
-    '�f�Ó��e�ƌ��N��Ԃ�o�^����@�\����������'
+    '診療内容と健康状態を登録する機能を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C002'),
-    '�f�×���������ʂ̍쐬',
+    '診療履歴検索画面の作成',
     (SELECT id FROM users WHERE login_id = 'anime_naho'),
-    '�i�s��', '��', '2026-09-20 18:00:00', 25,
+    '進行中', '中', '2026-09-20 18:00:00', 25,
     '2026-07-15 09:00:00', 32.0,
-    '�������Ɛf�Ó��Ō��������ʂ��쐬����'
+    '動物名と診療日で検索する画面を作成する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C002'),
-    '������o�^�@�\�̎���',
+    '投薬情報登録機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_kiba'),
-    '����', '��', '2026-07-20 18:00:00', 100,
+    '完了', '高', '2026-07-20 18:00:00', 100,
     '2026-06-10 09:00:00', 36.0,
-    '��̎�ށA����ʁA���������o�^����'
+    '薬の種類、投薬量、投薬日時を登録する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C002'),
-    '���N��ԃ��|�[�g�̍쐬',
+    '健康状態レポートの作成',
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
-    '����', '��', '2026-08-10 18:00:00', 100,
+    '完了', '中', '2026-08-10 18:00:00', 100,
     '2026-06-25 09:00:00', 30.0,
-    '���N��Ԃ����ԕʂɏW�v���ĕ\������'
+    '健康状態を期間別に集計して表示する'
 ),
 
 -- -----------------------------------------------------
--- CHARA-C003 ��Ë@��݌ɊǗ��V�X�e��
--- ����1�� / 5�� = 20%
+-- CHARA-C003 医療機器在庫管理システム
+-- 完了1件 / 5件 = 20%
 -- -----------------------------------------------------
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C003'),
-    '��Ë@��ꗗ��ʂ̍쐬',
+    '医療機器一覧画面の作成',
     (SELECT id FROM users WHERE login_id = 'anime_natsuki'),
-    '�i�s��', '��', '2026-08-10 18:00:00', 80,
+    '進行中', '高', '2026-08-10 18:00:00', 80,
     '2026-06-01 09:00:00', 36.0,
-    '��Ë@��̈ꗗ�ƌ����@�\���쐬����'
+    '医療機器の一覧と検索機能を作成する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C003'),
-    '�@��ݏo�@�\�̎���',
+    '機器貸出機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_genma'),
-    '�i�s��', '��', '2026-09-10 18:00:00', 45,
+    '進行中', '中', '2026-09-10 18:00:00', 45,
     '2026-07-10 09:00:00', 44.0,
-    '��Ë@��̑ݏo�ƕԋp��o�^����@�\����������'
+    '医療機器の貸出と返却を登録する機能を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C003'),
-    '�݌ɕs���ʒm�@�\�̎���',
+    '在庫不足通知機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_honda'),
-    '������', '��', '2026-10-15 18:00:00', 0,
+    '未着手', '中', '2026-10-15 18:00:00', 0,
     NULL, 28.0,
-    '�݌ɐ�����l����������Ƃ��ɒʒm����'
+    '在庫数が基準値を下回ったときに通知する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C003'),
-    '��Ë@��}�X�^�̍쐬',
+    '医療機器マスタの作成',
     (SELECT id FROM users WHERE login_id = 'anime_natsuki'),
-    '����', '��', '2026-06-30 18:00:00', 100,
+    '完了', '高', '2026-06-30 18:00:00', 100,
     '2026-06-01 09:00:00', 26.0,
-    '��Ë@��̖��́A���ށA�ۊǏꏊ���Ǘ�����'
+    '医療機器の名称、分類、保管場所を管理する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C003'),
-    '�@��_��������ʂ̍쐬',
+    '機器点検履歴画面の作成',
     (SELECT id FROM users WHERE login_id = 'anime_genma'),
-    '�i�s��', '��', '2026-09-30 18:00:00', 30,
+    '進行中', '中', '2026-09-30 18:00:00', 30,
     '2026-07-20 09:00:00', 32.0,
-    '��Ë@��̓_���������ꗗ�\������'
+    '医療機器の点検履歴を一覧表示する'
 ),
 
 -- -----------------------------------------------------
--- CHARA-C004 �L������i���Ǘ��V�X�e��
--- ����3�� / 5�� = 60%
+-- CHARA-C004 広告制作進捗管理システム
+-- 完了3件 / 5件 = 60%
 -- -----------------------------------------------------
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C004'),
-    '����H���}�X�^�̍쐬',
+    '制作工程マスタの作成',
     (SELECT id FROM users WHERE login_id = 'anime_kamiya'),
-    '����', '��', '2026-06-30 18:00:00', 100,
+    '完了', '高', '2026-06-30 18:00:00', 100,
     '2026-05-20 09:00:00', 20.0,
-    '�L������Ŏg�p����H���}�X�^���쐬����'
+    '広告制作で使用する工程マスタを作成する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C004'),
-    '����i����ʂ̎���',
+    '制作進捗画面の実装',
     (SELECT id FROM users WHERE login_id = 'anime_rika'),
-    '�i�s��', '��', '2026-08-31 18:00:00', 65,
+    '進行中', '高', '2026-08-31 18:00:00', 65,
     '2026-07-05 09:00:00', 50.0,
-    '���앨���Ƃ̐i����\�������ʂ���������'
+    '制作物ごとの進捗を表示する画面を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C004'),
-    '���r���[���F�@�\�̎���',
+    'レビュー承認機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_otogi'),
-    '�i�s��', '��', '2026-09-30 18:00:00', 30,
+    '進行中', '中', '2026-09-30 18:00:00', 30,
     '2026-07-18 09:00:00', 38.0,
-    '���ʕ��ւ̃R�����g�Ə��F�@�\����������'
+    '成果物へのコメントと承認機能を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C004'),
-    '�S���Ҋ����@�\�̎���',
+    '担当者割当機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_kamiya'),
-    '����', '��', '2026-07-15 18:00:00', 100,
+    '完了', '高', '2026-07-15 18:00:00', 100,
     '2026-06-10 09:00:00', 30.0,
-    '�L������H�����ƂɒS���҂����蓖�Ă�'
+    '広告制作工程ごとに担当者を割り当てる'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C004'),
-    '��������ʒm�@�\�̎���',
+    '制作期限通知機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_otogi'),
-    '����', '��', '2026-08-15 18:00:00', 100,
+    '完了', '中', '2026-08-15 18:00:00', 100,
     '2026-07-01 09:00:00', 26.0,
-    '����������߂��^�X�N��S���҂֒ʒm����'
+    '制作期限が近いタスクを担当者へ通知する'
 ),
 
 -- -----------------------------------------------------
--- CHARA-C005 �@�탁���e�i���X�Ǘ��V�X�e��
--- ����3�� / 5�� = 60%
+-- CHARA-C005 機器メンテナンス管理システム
+-- 完了3件 / 5件 = 60%
 -- -----------------------------------------------------
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C005'),
-    '�_�����ڃ}�X�^�̍쐬',
+    '点検項目マスタの作成',
     (SELECT id FROM users WHERE login_id = 'anime_devola'),
-    '����', '��', '2026-05-31 18:00:00', 100,
+    '完了', '中', '2026-05-31 18:00:00', 100,
     '2026-04-10 09:00:00', 20.0,
-    '�@�킲�Ƃ̓_�����ڂ�o�^����}�X�^���쐬����'
+    '機器ごとの点検項目を登録するマスタを作成する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C005'),
-    '�_������o�^�@�\�̎���',
+    '点検履歴登録機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
-    '�i�s��', '��', '2026-07-31 18:00:00', 90,
+    '進行中', '高', '2026-07-31 18:00:00', 90,
     '2026-05-20 09:00:00', 42.0,
-    '�_�����e�Ɠ_�����ʂ�o�^����@�\����������'
+    '点検内容と点検結果を登録する機能を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C005'),
-    '�C�����������@�\�̎���',
+    '修理履歴検索機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_genma'),
-    '�i�s��', '��', '2026-08-31 18:00:00', 50,
+    '進行中', '中', '2026-08-31 18:00:00', 50,
     '2026-07-10 09:00:00', 34.0,
-    '�@�햼�ƏC�����ŗ�������������@�\����������'
+    '機器名と修理日で履歴を検索する機能を実装する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C005'),
-    '�������i�}�X�^�̍쐬',
+    '交換部品マスタの作成',
     (SELECT id FROM users WHERE login_id = 'anime_devola'),
-    '����', '��', '2026-06-20 18:00:00', 100,
+    '完了', '中', '2026-06-20 18:00:00', 100,
     '2026-05-15 09:00:00', 22.0,
-    '�������i�̖��́A�^�ԁA�݌ɐ����Ǘ�����'
+    '交換部品の名称、型番、在庫数を管理する'
 ),
 (
     (SELECT id FROM cases WHERE case_code = 'CHARA-C005'),
-    '����_���ʒm�@�\�̎���',
+    '定期点検通知機能の実装',
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
-    '����', '��', '2026-07-20 18:00:00', 100,
+    '完了', '高', '2026-07-20 18:00:00', 100,
     '2026-06-15 09:00:00', 28.0,
-    '����_�������߂��@���ʒm����'
+    '次回点検日が近い機器を通知する'
 );
 
 -- works
@@ -721,196 +721,196 @@ INSERT INTO works (
 ) VALUES
 
 -- =====================================================
--- CHARA-C001 �w���C�x���g�Ǘ��V�X�e�� 5��
+-- CHARA-C001 学園イベント管理システム 5件
 -- =====================================================
 (
     (SELECT id FROM users WHERE login_id = 'anime_honda'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C001' AND t.task_name = '�C�x���g�v����`'),
+     WHERE c.case_code = 'CHARA-C001' AND t.task_name = 'イベント要件定義'),
     '2026-05-08 09:00:00', 4.0,
-    '�C�x���g�Ǘ��v���̃q�A�����O'
+    'イベント管理要件のヒアリング'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_rika'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C001' AND t.task_name = '�C�x���g�ꗗ��ʂ̍쐬'),
+     WHERE c.case_code = 'CHARA-C001' AND t.task_name = 'イベント一覧画面の作成'),
     '2026-06-08 09:00:00', 6.0,
-    '�C�x���g�ꗗ��ʂ̃��C�A�E�g�쐬'
+    'イベント一覧画面のレイアウト作成'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_otogi'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C001' AND t.task_name = '�Q���ғo�^�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C001' AND t.task_name = '参加者登録機能の実装'),
     '2026-07-21 09:00:00', 2.5,
-    '�Q���ғo�^�@�\�̎d�l�m�F'
+    '参加者登録機能の仕様確認'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_rika'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C001' AND t.task_name = '�C�x���g�ڍ׉�ʂ̍쐬'),
+     WHERE c.case_code = 'CHARA-C001' AND t.task_name = 'イベント詳細画面の作成'),
     '2026-07-24 09:00:00', 5.0,
-    '�C�x���g�ڍ׉�ʂ̎����Ɗm�F'
+    'イベント詳細画面の実装と確認'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_honda'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C001' AND t.task_name = '�C�x���g�ʒm�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C001' AND t.task_name = 'イベント通知機能の実装'),
     '2026-07-27 09:00:00', 3.5,
-    '�C�x���g�ʒm�����̐݌v'
+    'イベント通知条件の設計'
 ),
 
 -- =====================================================
--- CHARA-C002 �������N�Ǘ��V�X�e�� 5��
+-- CHARA-C002 動物健康管理システム 5件
 -- =====================================================
 (
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '���N�Ǘ��f�[�^�x�[�X�݌v'),
+     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '健康管理データベース設計'),
     '2026-05-20 09:00:00', 6.0,
-    '���N�Ǘ��e�[�u���Ɛf�×����e�[�u���̐݌v'
+    '健康管理テーブルと診療履歴テーブルの設計'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_kiba'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '�f�×���o�^�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '診療履歴登録機能の実装'),
     '2026-06-25 09:00:00', 7.0,
-    '�f�×���o�^�����̎���'
+    '診療履歴登録処理の実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_naho'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '�f�×���������ʂ̍쐬'),
+     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '診療履歴検索画面の作成'),
     '2026-07-18 09:00:00', 3.0,
-    '�f�×���������ʂ̍��ڍ쐬'
+    '診療履歴検索画面の項目作成'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_kiba'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '������o�^�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '投薬情報登録機能の実装'),
     '2026-06-18 09:00:00', 5.5,
-    '������o�^�����Ɠ��̓`�F�b�N�̎���'
+    '投薬情報登録処理と入力チェックの実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '���N��ԃ��|�[�g�̍쐬'),
+     WHERE c.case_code = 'CHARA-C002' AND t.task_name = '健康状態レポートの作成'),
     '2026-07-23 09:00:00', 4.5,
-    '���N��ԃ��|�[�g�̏W�v�������쐬'
+    '健康状態レポートの集計処理を作成'
 ),
 
 -- =====================================================
--- CHARA-C003 ��Ë@��݌ɊǗ��V�X�e�� 5��
+-- CHARA-C003 医療機器在庫管理システム 5件
 -- =====================================================
 (
     (SELECT id FROM users WHERE login_id = 'anime_natsuki'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '��Ë@��ꗗ��ʂ̍쐬'),
+     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '医療機器一覧画面の作成'),
     '2026-06-05 09:00:00', 7.5,
-    '��Ë@��ꗗ�̕\������������'
+    '医療機器一覧の表示処理を実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_genma'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '�@��ݏo�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '機器貸出機能の実装'),
     '2026-07-13 09:00:00', 6.5,
-    '�@��ݏo�o�^�����̎���'
+    '機器貸出登録処理の実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_honda'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '�݌ɕs���ʒm�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '在庫不足通知機能の実装'),
     '2026-07-28 09:00:00', 2.0,
-    '�݌ɕs���ʒm�@�\�̎��O����'
+    '在庫不足通知機能の事前調査'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_natsuki'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '��Ë@��}�X�^�̍쐬'),
+     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '医療機器マスタの作成'),
     '2026-06-15 09:00:00', 5.0,
-    '��Ë@��}�X�^�̓o�^�ƃe�X�g'
+    '医療機器マスタの登録とテスト'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_genma'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '�@��_��������ʂ̍쐬'),
+     WHERE c.case_code = 'CHARA-C003' AND t.task_name = '機器点検履歴画面の作成'),
     '2026-07-20 09:00:00', 4.0,
-    '�@��_��������ʂ̃��C�A�E�g�쐬'
+    '機器点検履歴画面のレイアウト作成'
 ),
 
 -- =====================================================
--- CHARA-C004 �L������i���Ǘ��V�X�e�� 5��
+-- CHARA-C004 広告制作進捗管理システム 5件
 -- =====================================================
 (
     (SELECT id FROM users WHERE login_id = 'anime_kamiya'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '����H���}�X�^�̍쐬'),
+     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '制作工程マスタの作成'),
     '2026-05-25 09:00:00', 5.0,
-    '����H���}�X�^�̍��ڐ݌v'
+    '制作工程マスタの項目設計'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_rika'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '����i����ʂ̎���'),
+     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '制作進捗画面の実装'),
     '2026-07-10 09:00:00', 7.0,
-    '����i���ꗗ��ʂ̍쐬'
+    '制作進捗一覧画面の作成'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_otogi'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '���r���[���F�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C004' AND t.task_name = 'レビュー承認機能の実装'),
     '2026-07-22 09:00:00', 4.5,
-    '���r���[�R�����g�o�^�����̎���'
+    'レビューコメント登録処理の実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_kamiya'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '�S���Ҋ����@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '担当者割当機能の実装'),
     '2026-06-12 09:00:00', 5.5,
-    '�H���ʂ̒S���Ҋ�������������'
+    '工程別の担当者割当処理を実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_otogi'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '��������ʒm�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C004' AND t.task_name = '制作期限通知機能の実装'),
     '2026-07-15 09:00:00', 4.0,
-    '��������ʒm�̔��菈��������'
+    '制作期限通知の判定処理を実装'
 ),
 
 -- =====================================================
--- CHARA-C005 �@�탁���e�i���X�Ǘ��V�X�e�� 5��
+-- CHARA-C005 機器メンテナンス管理システム 5件
 -- =====================================================
 (
     (SELECT id FROM users WHERE login_id = 'anime_devola'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '�_�����ڃ}�X�^�̍쐬'),
+     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '点検項目マスタの作成'),
     '2026-04-15 09:00:00', 4.0,
-    '�_�����ڃ}�X�^�̐݌v'
+    '点検項目マスタの設計'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '�_������o�^�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '点検履歴登録機能の実装'),
     '2026-06-22 09:00:00', 7.5,
-    '�_������o�^�����̎���'
+    '点検履歴登録処理の実装'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_genma'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '�C�����������@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '修理履歴検索機能の実装'),
     '2026-07-16 09:00:00', 5.5,
-    '�C�������̌���SQL���쐬'
+    '修理履歴の検索SQLを作成'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_devola'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '�������i�}�X�^�̍쐬'),
+     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '交換部品マスタの作成'),
     '2026-05-18 09:00:00', 4.5,
-    '�������i�}�X�^�̓o�^�Ɗm�F'
+    '交換部品マスタの登録と確認'
 ),
 (
     (SELECT id FROM users WHERE login_id = 'anime_shino'),
     (SELECT t.id FROM tasks t INNER JOIN cases c ON t.case_id = c.id
-     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '����_���ʒm�@�\�̎���'),
+     WHERE c.case_code = 'CHARA-C005' AND t.task_name = '定期点検通知機能の実装'),
     '2026-07-08 09:00:00', 5.0,
-    '����_���ʒm�̑Ώے��o����������'
+    '定期点検通知の対象抽出処理を実装'
 );
