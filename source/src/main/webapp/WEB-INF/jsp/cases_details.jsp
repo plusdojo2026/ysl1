@@ -108,8 +108,8 @@
 				<td>${c.actualHoursSum}</td>
 			</tr>
 			<tr>
-				<td>タスク進捗</td>
-				<td>${c.caseProgressRate}</td>
+				<td>完成したタスクの進捗</td>
+				<td>${c.caseProgressRate}％</td>
 			</tr>
 		
 			</c:forEach>
@@ -135,6 +135,9 @@
   	 <input type="submit" name="buttonId" value="タスク追加">
   	 
   	 <input type="hidden" name="pageId" value="C003">
+  	 <input type ="hidden" name="caseId" value="${casesList[0].caseId}">
+  	 <input type ="hidden" name="caseName" value="${casesList[0].caseName}">
+  	 
   	</form>
 	<!-- <h2>タスク一覧</h2> -->
 	<form action="/ysl1/Controller" method="post">

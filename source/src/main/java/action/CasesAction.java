@@ -365,7 +365,7 @@ public class CasesAction {
 
 	//案件一覧から案件登録に移動するメソッド
 	public String casesRegist() throws UnsupportedEncodingException {
-		// TODO 自動生成されたメソッド・スタブ
+
 		String page = "/WEB-INF/jsp/cases_regist.jsp";
 
 		CasesService service = new CasesService();
@@ -376,7 +376,7 @@ public class CasesAction {
 	}
 
 	public String changeStatus() throws UnsupportedEncodingException {
-		// TODO 自動生成されたメソッド・スタブ
+
 		String page = "/WEB-INF/jsp/cases_details.jsp";
 		int caseId = Integer.parseInt(request.getParameter("id"));
 		String buttonString = request.getParameter("buttonId");
@@ -405,7 +405,7 @@ public class CasesAction {
 
 	//案件一覧から案件詳細に遷移するメソッド
 	public String initiCasesDetail() {
-		// TODO 自動生成されたメソッド・スタブ
+
 		return null;
 	}
 	//	//案件一覧の検索メソッド　ジェークエリーを使うから使わなかった

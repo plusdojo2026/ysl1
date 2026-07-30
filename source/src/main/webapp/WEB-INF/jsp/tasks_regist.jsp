@@ -97,29 +97,31 @@
 				<span class="required">必須</span>
 			</label>
 
-			<select name="caseId">
-				<c:forEach
-					var="cases"
-					items="${casesList}">
+			
 					<c:choose>
 						<c:when test="${mode=='edit'}">
-							<option
-								value="${cases.id}"
-								${cases.id==taskList.caseId?'selected':''}>
-							${cases.caseName}
-							</option>
+						<select name="caseId">
+							<c:forEach	var="cases" items="${casesList}">
+								<option
+									value="${cases.id}"
+									${cases.id==taskList.caseId?'selected':''}>
+								${cases.caseName}
+								</option>
+							</c:forEach>
+					   </select>
 						</c:when>
 
 						<c:otherwise>
-							<option
+							<%-- <option
 								value="${cases.id}"
 								${cases.id==caseId?'selected':''}>
 								${cases.caseName}
-							</option>
+							</option> --%>
+							${param.caseName }
+							<input type ="hidden" name="caseId" value="${param.caseId}">
 						</c:otherwise>
 					</c:choose>
-				</c:forEach>
-			</select>
+				
 		</div>
 
 		<div class="form-group">
