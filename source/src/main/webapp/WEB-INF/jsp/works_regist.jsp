@@ -27,7 +27,7 @@
 <div class="field-group"><label>作業内容</label><input type="text" name="workDescription"></div>
 
 <div class="button-group">
-<input type="submit" name="buttonId" value="キャンセル" id="btn-cancel">
+<input type="button" name="buttonId" onclick="history.back()" value="キャンセル" id="btn-cancel">
 <input type="submit" name="buttonId" value="工数入力" id="btn-submit">
 </div>
 </form>
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('workDate').value =
         now.toISOString().substring(0, 16);
 });
+
 </script>
 </body>
 </html>
