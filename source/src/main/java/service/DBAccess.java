@@ -18,7 +18,7 @@ public class DBAccess {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ysl1?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");	//あとで変更
+						"ysl1", "GvJ28VvAB9AFkRKa");	//あとで変更
 				
 				//例外処理
 				}catch (ClassNotFoundException e) {
