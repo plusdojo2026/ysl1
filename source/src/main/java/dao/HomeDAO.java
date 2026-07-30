@@ -99,7 +99,8 @@ public class HomeDAO {
 		
 		//担当タスク内の期限超過件数
 		String oversql = "SELECT COUNT(*) AS overDate from tasks t "
-						 + "WHERE t.manager_id = ? and t.deadline < CURRENT_DATE ";
+						 + "WHERE t.manager_id = ? and t.deadline < CURRENT_DATE "
+						 + "and t.task_status NOT IN ('完了') ";
 				 
 		//デバッグ（SQL文の確認用）
 		System.out.println(oversql);		
