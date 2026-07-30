@@ -1,11 +1,11 @@
 -- ユーザー作成
-CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'GvJ28VvAB9AFkRKa';
+-- CREATE USER 'ysl1'@'localhost' IDENTIFIED BY 'GvJ28VvAB9AFkRKa';
 
 -- 権限を付与（全DB・全テーブルへのフルアクセス）
-GRANT ALL PRIVILEGES ON *.* TO 'ysl1'@'localhost';
+-- GRANT ALL PRIVILEGES ON *.* TO 'ysl1'@'localhost';
 
 -- 反映
-FLUSH PRIVILEGES;
+-- FLUSH PRIVILEGES;
 -- データベース作成
 CREATE DATABASE IF NOT EXISTS ysl1
     CHARACTER SET utf8mb4
@@ -15,16 +15,16 @@ CREATE DATABASE IF NOT EXISTS ysl1
 USE ysl1;
 
 -- DB接続用ユーザー作成
-CREATE USER IF NOT EXISTS 'ysl1'@'localhost'
-IDENTIFIED BY '<DB_PASSWORD>';
+-- CREATE USER IF NOT EXISTS 'ysl1'@'localhost'
+-- IDENTIFIED BY '<DB_PASSWORD>';
 
 -- ysl1データベースに対する権限を付与
-GRANT ALL PRIVILEGES
-ON ysl1.*
-TO 'ysl1'@'localhost';
+-- GRANT ALL PRIVILEGES
+-- ON ysl1.*
+-- TO 'ysl1'@'localhost';
 
 -- 権限を反映
-FLUSH PRIVILEGES;
+-- FLUSH PRIVILEGES;
 
 -- usersテーブル作成
 CREATE TABLE IF NOT EXISTS users (
