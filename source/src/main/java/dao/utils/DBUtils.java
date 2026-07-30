@@ -71,10 +71,10 @@ public class DBUtils {
 	private static final String DB_NAME = "ysl1";
 
 	/** ユーザー名 */
-	private static final String USER = "root";
+	private static final String USER = "ysl1";
 
 	/** パスワード */
-	private static final String PASSWORD = "password";
+	private static final String PASSWORD = "GvJ28VvAB9AFkRKa";
 
 	/**
 	 * 実際に使用するポートを取得する
