@@ -98,30 +98,37 @@
 			</label>
 
 			
-					<c:choose>
-						<c:when test="${mode=='edit'}">
-						<select name="caseId">
-							<c:forEach	var="cases" items="${casesList}">
-								<option
-									value="${cases.id}"
-									${cases.id==taskList.caseId?'selected':''}>
+			<c:choose>
+				<c:when test="${mode == 'edit'}">
+					<select name="caseId">
+						<c:forEach var="cases" items="${casesList}">
+							<option value="${cases.id}"
+								${cases.id == taskList.caseId ? 'selected' : ''}>
 								${cases.caseName}
+							</option>
+						</c:forEach>
+					</select>
+				</c:when>
+
+				<c:otherwise>
+					<%-- caseIdが取得できない場合はプルダウン --%>
+					<c:if test="${empty param.caseId}">
+						<select name="caseId">
+							<c:forEach var="cases" items="${casesList}">
+								<option value="${cases.id}">
+									${cases.caseName}
 								</option>
 							</c:forEach>
-					   </select>
-						</c:when>
+						</select>
+					</c:if>
 
-						<c:otherwise>
-							<%-- <option
-								value="${cases.id}"
-								${cases.id==caseId?'selected':''}>
-								${cases.caseName}
-							</option> --%>
-							${param.caseName }
-							<input type ="hidden" name="caseId" value="${param.caseId}">
-						</c:otherwise>
-					</c:choose>
-				
+					<%-- caseIdがある場合は固定表示 --%>
+					<c:if test="${not empty param.caseId}">
+						${param.caseName}
+						<input type="hidden" name="caseId" value="${param.caseId}">
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<div class="form-group">
