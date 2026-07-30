@@ -112,7 +112,7 @@
 				<td>${e.userName}</td>
 				<td>${e.taskStatus}</td>
 				<td>${e.taskPriority}</td>
-				<td>${e.deadline}</td>
+				<td>${e.deadline.substring(0,10)}</td>
 				<td>
 					${e.actualHours}/${e.taskPlannedHours}
 				</td>

@@ -72,12 +72,12 @@
 
                     <div class="info-row">
                         <label>期限</label>
-                        <p>${detailsList.deadline.substring(0,16)}</p>
+                        <p>${detailsList.deadline.substring(0,10)}</p>
                     </div>
 
                     <div class="info-row">
                         <label>開始日</label>
-                        <p>${detailsList.startDate.substring(0,16)}</p>
+                        <p>${detailsList.startDate.substring(0,10)}</p>
                     </div>
 
                     <div class="info-row">
