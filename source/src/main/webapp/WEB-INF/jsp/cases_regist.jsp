@@ -16,7 +16,7 @@
 	<%@ include file="/WEB-INF/jsp/common/side_menu.jsp" %>
  	<main>
  	
- 	<c:if test="${param.buttonId=='新規登録'or param.buttonId=='登録' }">
+ 	<c:if test="${param.buttonId=='＋新規登録'or param.buttonId=='登録' }">
 		<h2>案件登録</h2>
 	</c:if>
 	<c:if test="${param.buttonId=='編集' or param.buttonId=='案件編集'}">
@@ -69,7 +69,6 @@
 							    
 							    <option value="進行中" ${cases.caseStatus=='進行中' ? 'selected' : ''}>進行中</option>
 							    <option value="完了" ${cases.caseStatus=='完了' ? 'selected' : ''}>完了</option>
-							    <option value="未着手" ${cases.caseStatus=='未着手' ? 'selected' : ''}>未着手</option>
 							    <option value="中止" ${cases.caseStatus=='中止' ? 'selected' : ''}>中止</option>
 						 </select>
 			    	</td>
@@ -131,7 +130,7 @@
 		<div class="buttonArea">
 			<input type="hidden"name="pageId"value="C002">	
 		   	<input type="button" id="cancel" value="キャンセル"onclick="history.back()">
-		   	<c:if test="${param.buttonId=='新規登録'or param.buttonId=='登録' }">
+		   	<c:if test="${param.buttonId=='＋新規登録'or param.buttonId=='登録' }">
 				<input type="submit" id="regist" name="buttonId" value="登録">
 				
 			</c:if>

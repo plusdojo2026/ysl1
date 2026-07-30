@@ -85,7 +85,7 @@ public class Controller extends HttpServlet {
 				//案件詳細画面へ（一覧から案件名を押した処理）
 			} else if (pageId.equals("C003") && caseId != null) {
 				CasesAction action = new CasesAction(request);
-				page = action.intiCasesDetail();
+				page = action.intiCasesDetail1();
 			}
 			//					ダッシュボード画面 ------------------------------
 			else if ("side".equals(pageId)) {
@@ -121,7 +121,7 @@ public class Controller extends HttpServlet {
 			//案件一覧画面 -----------------------------------
 			else if (pageId.equals("C001")) {
 				CasesAction cAction = new CasesAction(request);
-				if (buttonId.equals("新規登録")) {
+				if (buttonId.equals("＋新規登録")) {
 					//新規登録画面表示[]
 					page = cAction.casesRegist();
 				}

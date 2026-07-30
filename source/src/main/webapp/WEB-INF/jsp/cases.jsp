@@ -36,8 +36,7 @@
 				<option value="">すべて</option>
 				<option value="進行中">進行中</option>
 				<option value="完了">完了</option>
-				<option value="保留">保留</option>
-				<option value="未着手">未着手</option>			
+				<option value="中止">中止</option>		
 			</select>
 		</div>
 		
