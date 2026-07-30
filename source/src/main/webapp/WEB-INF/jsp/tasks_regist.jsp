@@ -318,6 +318,10 @@
 		========================= -->
 		<div class="button-area">
 
+			<button type="button" class="js-back-page">
+                戻る
+            </button>
+
 			<button type="reset">
 				リセット
 			</button>
@@ -346,6 +350,8 @@
 		</form>
 	</main>
 </div>
+
+<script src="${pageContext.request.contextPath}/js/common.js"></script>
 
 <script>
 	const slider = document.getElementById("progressRate");
