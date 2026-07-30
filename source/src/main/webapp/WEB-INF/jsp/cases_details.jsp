@@ -188,17 +188,22 @@
 	<c:forEach var="w" items="${worksList}">
 		<table class="table" id="works_table">
 		<tr>
-		<form action="/ysl1/Controller" method="post">
-			<td>作業日</td><td>${w.workDate}</td>
-			<td>タスク名</td><td>${w.taskName}</td>
-			<td>担当者</td><td>${w.userName}</td>
-			<td>工数</td><td>${w.actualHours}</td>
-			<td>作業内容</td><td>${w.workDescription}</td>
-			
-			<!-- <td><input type="submit" name="buttonId" value="工数入力"></td>
-			<td><input type="submit" name="buttonId" value="すべて見る"></td> -->
-		</form>
+			<td>作業日</td>
+			<td>タスク名</td>
+			<td>担当者</td>
+			<td>工数</td>
+			<td>作業内容</td>
 		</tr>
+		<form action="/ysl1/Controller" method="post">
+			<tr>
+			<td>${w.workDate}</td>
+			<td>${w.taskName}</td>
+			<td>${w.userName}</td>
+			<td>${w.actualHours}</td>
+			<td>${w.workDescription}</td>
+			</tr>
+		</form>
+		
 		</table>
 	</c:forEach>
 	</div>
