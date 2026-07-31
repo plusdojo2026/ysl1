@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>工数入力</title
+<title>工数入力</title>
  <link rel="stylesheet" href="<c:url value='/css/common.css' />"> 
 <link rel="stylesheet" href="<c:url value='/css/works_regist.css' />">
 </head>
